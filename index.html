@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Futuristic Tech Services</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Titillium+Web:wght@300;400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div style="color:white; font-weight:bold;">Futuristic</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#how">How It Works</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#how">How It Works</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Empowering Your Digital Future</h1>
+    <p>Professional Shopify & Website Solutions Tailored for Your Growth</p>
+    <a href="#services" class="btn">Explore Services</a>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="trust-section">
+    <h2>Trusted By Over 100+ Businesses</h2>
+    <div class="trust-logos">
+      <img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" alt="Shopify" />
+      <img src="https://cdn.worldvectorlogo.com/logos/google-2015.svg" alt="Google" />
+      <img src="https://cdn.worldvectorlogo.com/logos/wordpress-blue.svg" alt="WordPress" />
+      <img src="https://cdn.worldvectorlogo.com/logos/facebook.svg" alt="Facebook" />
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="tabs-section">
+    <div class="tabs-container">
+      <div class="tabs">
+        <div class="tab active" onclick="showTab('maintenance')">Maintenance Plans</div>
+        <div class="tab" onclick="showTab('development')">Development Services</div>
+      </div>
+      <div class="tab-content active" id="maintenance">
+        <div class="card">
+          <h3>1 Month Plan</h3>
+          <p><del>₹12,000</del> <strong>₹8,000</strong></p>
+          <ul>
+            <li>Content & Image Updates</li>
+            <li>Security Patching</li>
+            <li>Backup & Restore Setup</li>
+            <li>Speed Optimization</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>3 Month Plan <span class="badge">SAVE 8K</span></h3>
+          <p><del>₹30,000</del> <strong>₹22,000</strong></p>
+          <ul>
+            <li>Includes 1 Month Plan Features</li>
+            <li>SEO Fixes</li>
+            <li>App Compatibility</li>
+            <li>Priority Support</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-content" id="development">
+        <div class="card">
+          <ul>
+            <li>Shopify Store Setup</li>
+            <li>Theme Customization</li>
+            <li>Mobile Responsive Design</li>
+            <li>UI/UX Enhancements</li>
+          </ul>
+          <button onclick="window.open('https://wa.me/919876543210', '_blank')" class="btn">Discuss on WhatsApp</button>
+        </div>
+      </div>
+    </div>
+    <div class="benefits-container">
+      <h2>Why Choose Us?</h2>
+      <div class="card">
+        <ul>
+          <li>✔️ Expert Shopify Developers</li>
+          <li>✔️ 24/7 Support</li>
+          <li>✔️ Speed & SEO Optimized</li>
+          <li>✔️ Affordable Pricing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how" class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">1. Connect via WhatsApp</div>
+      <div class="step">2. Share Your Requirements</div>
+      <div class="step">3. We Build Your Site</div>
+      <div class="step">4. You Go Live!</div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2 style="text-align:center; margin-top:3rem;">What Clients Say</h2>
+    <div class="testimonial-container">
+      <div class="testimonial">
+        <p>“Amazing support and fast turnaround. My Shopify store looks professional now.”</p>
+        <strong>– Ayesha K.</strong>
+      </div>
+      <div class="testimonial">
+        <p>“Very responsive and skilled team. Highly recommended!”</p>
+        <strong>– Rohit M.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact">
+    <h2>Let’s Build Something Great</h2>
+    <p>Email: connect@futuretech.dev | WhatsApp: +91 9876543210</p>
+    <p>&copy; 2025 Futuristic Tech Services</p>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <div class="whatsapp">
+    <a href="https://wa.me/919876543210" target="_blank">
+      <i class="fab fa-whatsapp"></i> Chat with Us
+    </a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
