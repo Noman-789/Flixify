@@ -279,6 +279,25 @@ a {
   font-weight: bold;
   color: #333;
 }
+/* === FOOTER === */
+footer#contact {
+  background: #0c1023;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text);
+}
+
+footer#contact h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+footer#contact p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #ccc;
+}
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
