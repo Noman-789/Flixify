@@ -1,4 +1,3 @@
-
 function showTab(id) {
   const tabContent = document.getElementById(id);
   const tabButton = document.querySelector(`.tab[onclick*="${id}"]`);
@@ -14,3 +13,4 @@ function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   if (menu) menu.classList.toggle('show');
 }
+
