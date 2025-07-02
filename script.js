@@ -14,9 +14,3 @@ function toggleMenu() {
   if (menu) menu.classList.toggle('show');
 }
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const popup = document.getElementById('chatPopup');
-    if (popup) popup.classList.add('show');
-  }, 5000);
-});
