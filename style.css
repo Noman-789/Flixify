@@ -298,7 +298,6 @@ footer#contact p {
   font-size: 1rem;
   color: #ccc;
 }
-
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .desktop-nav { display: none; }
