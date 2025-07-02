@@ -1,10 +1,10 @@
 :root {
   --primary: #3be8b0;
   --accent: #7c4dff;
-  --bg-color: linear-gradient(135deg, #0a0f1c 0%, #121e36 100%);
+  --bg: linear-gradient(135deg, #0a0f1c, #1e2a47);
   --text: #e0f7fa;
-  --card-glass: rgba(255, 255, 255, 0.05);
-  --whatsapp-green: #25d366;
+  --glass: rgba(255, 255, 255, 0.04);
+  --green: #25d366;
 }
 
 * {
@@ -15,37 +15,53 @@
 }
 
 body {
-  background: var(--bg-color);
+  background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
   overflow-x: hidden;
 }
 
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #0c1023;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav.main-nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  background: #0c1023;
   padding: 1rem 2rem;
-  z-index: 1000;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(123,104,238,0.3);
+  flex-wrap: wrap;
+}
+
+.logo-container {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
 }
 
 .nav-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  transition: 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -55,15 +71,6 @@ nav {
 
 .hamburger {
   display: none;
-  flex-direction: column;
-  gap: 4px;
-  cursor: pointer;
-}
-
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background: white;
 }
 
 .mobile-menu {
@@ -72,17 +79,10 @@ nav {
   position: fixed;
   top: 60px;
   left: 0;
-  background: #111927;
   width: 100%;
-  z-index: 999;
+  background: #111927;
   padding: 1rem;
-}
-
-.mobile-menu a {
-  padding: 0.8rem 0;
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid #333;
+  z-index: 999;
 }
 
 .mobile-menu.show {
@@ -90,9 +90,9 @@ nav {
 }
 
 .hero {
+  padding: 8rem 1rem 4rem;
   text-align: center;
-  padding: 7rem 1rem 5rem;
-  background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
 }
 
 .hero h1 {
@@ -102,137 +102,92 @@ nav {
 
 .hero p {
   margin-top: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #ccc;
 }
 
-.hero .btn {
+.btn {
+  display: inline-block;
   margin-top: 2rem;
   background: var(--accent);
   color: white;
-  padding: 0.8rem 1.6rem;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   font-weight: bold;
   box-shadow: 0 0 10px var(--accent);
+  transition: 0.3s;
 }
 
-.trust-section {
-  text-align: center;
-  padding: 4rem 1rem;
+.btn:hover {
+  transform: scale(1.05);
 }
 
-.trust-logos {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-}
-
-.trust-logos img {
-  width: 80px;
-  filter: brightness(0.9) invert(0.8);
-}
-
-.tabs-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 4rem 1.5rem 2rem;
+.section {
+  padding: 4rem 1.5rem;
   max-width: 1200px;
   margin: auto;
+  text-align: center;
 }
 
-.tabs-container {
-  flex: 1 1 60%;
-}
-
-.benefits-container {
-  flex: 1 1 38%;
-}
-
-.tabs {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
+.section-title {
+  color: var(--primary);
   margin-bottom: 2rem;
+  font-size: 2rem;
 }
 
-.tab {
-  padding: 1rem 2rem;
-  background: #1f253b;
-  color: var(--text);
-  border-radius: 12px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: 0.3s ease;
-}
-
-.tab.active {
-  border-color: var(--primary);
-  background: var(--accent);
-  color: white;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
+.card-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
-  background: var(--card-glass);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
   padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(123, 104, 238, 0.3);
-  backdrop-filter: blur(10px);
-  margin-bottom: 2rem;
+  flex: 1 1 300px;
+  box-shadow: 0 0 15px rgba(0,255,255,0.08);
+  backdrop-filter: blur(8px);
 }
 
-.card:nth-child(odd) {
-  transform: rotate(-1deg);
+.card ul {
+  margin-top: 1rem;
+  list-style: disc inside;
+  text-align: left;
+  line-height: 1.8;
 }
 
-.card:nth-child(even) {
-  transform: rotate(1deg);
-}
-
-.badge {
+.card .badge {
   background: var(--primary);
-  color: black;
+  color: #000;
   padding: 2px 8px;
-  font-size: 0.75rem;
-  border-radius: 6px;
-  margin-left: 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-left: 6px;
 }
 
-.how-it-works {
-  padding: 4rem 1rem;
-  text-align: center;
+.wide-card {
+  text-align: left;
 }
 
-.steps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.grid-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
   margin-top: 2rem;
 }
 
 .step {
-  background: #1e2b3a;
+  background: #1a223a;
   padding: 1.5rem;
   border-radius: 12px;
-  width: 200px;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0,255,255,0.1);
 }
 
-footer {
+footer.footer {
   background: #0a0f1c;
   padding: 3rem 1rem;
   text-align: center;
@@ -247,40 +202,50 @@ footer {
 }
 
 .whatsapp a {
-  background: var(--whatsapp-green);
+  background: var(--green);
   color: #fff;
-  padding: 0.9rem 1.2rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 50px;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(0,255,0,0.3);
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: bold;
+  gap: 6px;
   text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-  animation: pulse 2s infinite;
+  transition: all 0.3s ease;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+.whatsapp a:hover {
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
+  nav.main-nav {
+    flex-direction: column;
+  }
+
+  .logo-container {
+    margin-bottom: 0.5rem;
+  }
+
   .nav-links {
     display: none;
   }
 
   .hamburger {
     display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
   }
 
-  .tabs-section {
+  .card-grid {
     flex-direction: column;
   }
 
-  .trust-logos {
-    justify-content: center;
+  .grid-steps {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
