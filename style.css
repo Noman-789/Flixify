@@ -263,6 +263,60 @@ a {
   }
   .industries-enhanced .industry-grid {
     grid-template-columns: repeat(2, 1fr);
+
+    .exceptional-final {
+  text-align: center;
+}
+.exceptional-final .subheading {
+  max-width: 800px;
+  margin: 1rem auto 2rem;
+  color: #ccc;
+  font-size: 1.05rem;
+}
+.exceptional-flex {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.exceptional-left {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.exceptional-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0,255,255,0.05);
+}
+.exceptional-box h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.exceptional-box .highlight {
+  color: #ff4b5c;
+}
+.exceptional-right {
+  flex: 1 1 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.exceptional-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  .exceptional-flex {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
