@@ -168,104 +168,7 @@ a {
   font-weight: bold;
 }
 
-/* Exceptional Section */
-.exceptional-boxed .exceptional-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  background: rgba(255,255,255,0.04);
-  border-radius: 16px;
-  padding: 2rem;
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-.exceptional-text {
-  flex: 1 1 400px;
-  text-align: left;
-}
-.exceptional-text ul {
-  list-style: disc inside;
-  line-height: 1.8;
-  margin-top: 1rem;
-}
-.exceptional-text li {
-  margin-bottom: 1rem;
-}
-.exceptional-image {
-  flex: 1 1 300px;
-}
-.exceptional-image img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,255,255,0.1);
-}
-
-/* Industry Grid */
-.industries-enhanced .industry-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-.industries-enhanced .industry-grid div {
-  background: #1a2a3c;
-  padding: 1rem;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0,255,255,0.1);
-  text-align: center;
-}
-.industries-enhanced .industry-grid img {
-  width: 48px;
-  margin-bottom: 0.5rem;
-}
-
-/* WhatsApp Button */
-.whatsapp {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 1000;
-}
-.whatsapp a {
-  background: var(--green);
-  color: white;
-  padding: 0.8rem 1.2rem;
-  border-radius: 30px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  box-shadow: 0 0 12px rgba(0,255,0,0.3);
-  transition: 0.3s ease;
-}
-.whatsapp a:hover {
-  transform: scale(1.05);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-  .hamburger {
-    display: block;
-  }
-  .exceptional-wrapper {
-    flex-direction: column;
-  }
-  .industries-enhanced .industry-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+/* ✅ Exact Visual Match: Exceptional Section */
 .exceptional-exact {
   background: #f9f9f9;
   padding: 4rem 1rem;
@@ -323,7 +226,39 @@ a {
   height: auto;
   border-radius: 8px;
 }
+
+/* ✅ WhatsApp */
+.whatsapp {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+.whatsapp a {
+  background: var(--green);
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(0,255,0,0.3);
+  transition: 0.3s ease;
+}
+.whatsapp a:hover {
+  transform: scale(1.05);
+}
+
+/* ✅ Responsive */
 @media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
   .exceptional-wrapper {
     flex-direction: column;
     text-align: center;
@@ -332,5 +267,6 @@ a {
     text-align: left;
   }
 }
+
 
 
