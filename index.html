@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Futuristic Tech Services</title>
@@ -11,15 +11,13 @@
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav>
     <div style="color:white; font-weight:bold;">Futuristic</div>
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#services">Services</a>
-      <a href="#benefits">Benefits</a>
+      <a href="#benefits">Why Us</a>
       <a href="#how">How It Works</a>
-      <a href="#testimonials">Testimonials</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="hamburger" onclick="toggleMenu()">
@@ -27,26 +25,22 @@
     </div>
   </nav>
 
-  <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#home">Home</a>
     <a href="#services">Services</a>
-    <a href="#benefits">Benefits</a>
+    <a href="#benefits">Why Us</a>
     <a href="#how">How It Works</a>
-    <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
   </div>
 
-  <!-- Hero Section -->
   <section id="home" class="hero">
-    <h1>Empowering Your Digital Future</h1>
-    <p>Professional Shopify & Website Solutions Tailored for Your Growth</p>
-    <a href="#services" class="btn">Explore Services</a>
+    <h1>Build Smarter. Sell Faster.</h1>
+    <p>Professional Shopify & Business Websites Designed to Convert Visitors into Customers.</p>
+    <a href="#services" class="btn">Start Your Project</a>
   </section>
 
-  <!-- Trust Section -->
   <section class="trust-section">
-    <h2>Trusted By Over 100+ Businesses</h2>
+    <h2>Trusted by Over 100+ Growing Businesses</h2>
     <div class="trust-logos">
       <img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" alt="Shopify" />
       <img src="https://cdn.worldvectorlogo.com/logos/google-2015.svg" alt="Google" />
@@ -55,7 +49,6 @@
     </div>
   </section>
 
-  <!-- Services Section -->
   <section id="services" class="tabs-section">
     <div class="tabs-container">
       <div class="tabs">
@@ -96,20 +89,21 @@
         </div>
       </div>
     </div>
-    <div class="benefits-container">
+
+    <div class="benefits-container" id="benefits">
       <h2>Why Choose Us?</h2>
       <div class="card">
-        <ul>
-          <li>✔️ Expert Shopify Developers</li>
-          <li>✔️ 24/7 Support</li>
-          <li>✔️ Speed & SEO Optimized</li>
-          <li>✔️ Affordable Pricing</li>
+        <ul style="line-height: 1.8;">
+          <li><strong>🧠 Expertise That Delivers:</strong> Built by professionals who understand business goals and modern design.</li>
+          <li><strong>⚡ Fast Turnaround:</strong> Get your website up and running in days, not weeks.</li>
+          <li><strong>🔒 Secure & Optimized:</strong> We ensure your site is safe, fast-loading, and SEO-friendly.</li>
+          <li><strong>🤝 Personalized Support:</strong> Direct WhatsApp access and one-on-one guidance at every step.</li>
+          <li><strong>📈 Business-Oriented Design:</strong> Every layout is built to help you gain trust and convert users into customers.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
   <section id="how" class="how-it-works">
     <h2>How It Works</h2>
     <div class="steps">
@@ -120,29 +114,13 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2 style="text-align:center; margin-top:3rem;">What Clients Say</h2>
-    <div class="testimonial-container">
-      <div class="testimonial">
-        <p>“Amazing support and fast turnaround. My Shopify store looks professional now.”</p>
-        <strong>– Ayesha K.</strong>
-      </div>
-      <div class="testimonial">
-        <p>“Very responsive and skilled team. Highly recommended!”</p>
-        <strong>– Rohit M.</strong>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact / Footer -->
   <footer id="contact">
-    <h2>Let’s Build Something Great</h2>
-    <p>Email: connect@futuretech.dev | WhatsApp: +91 9876543210</p>
+    <h2>Let’s Build Something That Grows Your Business</h2>
+    <p>We don’t just build websites — we build revenue-generating platforms.</p>
+    <p><strong>Email:</strong> connect@futuretech.dev | <strong>WhatsApp:</strong> +91 9876543210</p>
     <p>&copy; 2025 Futuristic Tech Services</p>
   </footer>
 
-  <!-- Floating WhatsApp -->
   <div class="whatsapp">
     <a href="https://wa.me/919876543210" target="_blank">
       <i class="fab fa-whatsapp"></i> Chat with Us
@@ -152,3 +130,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
