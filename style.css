@@ -250,6 +250,7 @@ a {
   background: #f9f9f9;
   padding: 4rem 1rem;
   color: #222;
+  border-radius: 20px;
 }
 .exceptional-wrapper {
   display: flex;
