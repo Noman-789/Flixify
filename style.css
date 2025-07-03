@@ -52,7 +52,9 @@ a {
   background: var(--accent);
   color: white;
 }
-.hamburger { display: none; }
+.hamburger {
+  display: none;
+}
 
 /* === MOBILE MENU === */
 .mobile-menu {
@@ -66,7 +68,9 @@ a {
   width: 100%;
   z-index: 999;
 }
-.mobile-menu.show { display: flex; }
+.mobile-menu.show {
+  display: flex;
+}
 
 /* === HERO === */
 .hero-section {
@@ -93,7 +97,9 @@ a {
   margin-top: 1.5rem;
   transition: 0.3s;
 }
-.btn:hover { transform: scale(1.05); }
+.btn:hover {
+  transform: scale(1.05);
+}
 
 /* === SECTION WRAPPER === */
 .section {
@@ -182,16 +188,13 @@ a {
 .why-choose-us-boxed {
   background: #0f172a;
   padding: 80px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .boxed-container {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   padding: 50px 30px;
   max-width: 1100px;
-  width: 100%;
+  margin: auto;
   box-shadow: 0 0 30px rgba(0, 255, 200, 0.1);
   color: #fff;
   text-align: center;
@@ -215,7 +218,6 @@ a {
   max-width: 1200px;
   margin: auto;
 }
-
 .feature-box {
   background: rgba(255, 255, 255, 0.06);
   padding: 20px;
@@ -360,6 +362,8 @@ footer#contact p {
   font-size: 1rem;
   color: #ccc;
 }
+
+/* === CONTAINER === */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -368,8 +372,12 @@ footer#contact p {
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .desktop-nav { display: none; }
-  .hamburger { display: block; }
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
   .exceptional-wrapper {
     flex-direction: column;
     text-align: center;
@@ -387,6 +395,7 @@ footer#contact p {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
