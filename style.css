@@ -412,6 +412,8 @@ footer#contact p {
   .features-grid {
     grid-template-columns: 1fr;
   }
+  .boxed-container {
+    padding: 40px 15px;
   .cards {
     grid-template-columns: repeat(1, 1fr);
   }
