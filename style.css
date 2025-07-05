@@ -193,6 +193,8 @@ a {
   background: #0f172a;
   padding: 80px 20px;
   width: 100%;
+  width: 100vw;         /* force full width */
+  margin-left: calc(-50vw + 50%); /* override any center constraints */
 }
 
 .boxed-container {
