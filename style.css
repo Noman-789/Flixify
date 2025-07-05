@@ -104,10 +104,6 @@ a {
 /* === SECTION WRAPPER === */
 .section {
   padding: 3rem 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  text-align: center;
 }
 
 /* === SERVICE CARDS === */
@@ -194,55 +190,11 @@ a {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   padding: 50px 30px;
-  max-width: 1100px;
-  margin: auto;
-  width: 100%;
   box-shadow: 0 0 30px rgba(0, 255, 200, 0.1);
   color: #fff;
   text-align: center;
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.boxed-container h2 {
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 15px;
-}
-.boxed-container .subtitle {
-  color: #ccc;
-  font-size: 1.1rem;
-  margin-bottom: 40px;
-}
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  max-width: 1200px;
-  margin: auto;
-}
-.feature-box {
-  background: rgba(255, 255, 255, 0.06);
-  padding: 20px;
-  border-radius: 16px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-.feature-box:hover {
-  transform: translateY(-6px);
-}
-.icon {
-  font-size: 2rem;
-  color: var(--primary);
-  margin-bottom: 10px;
-  display: block;
-}
-.feature-box h3 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-}
-.feature-box p {
-  font-size: 0.95rem;
-  color: #ddd;
 }
 
 /* === EXCEPTIONAL SECTION === */
@@ -256,8 +208,6 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
-  max-width: 1200px;
-  margin: auto;
   align-items: center;
   width: 100%;
 }
@@ -322,9 +272,6 @@ a {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
 }
 .industry-grid div {
   background: white;
@@ -368,11 +315,17 @@ footer#contact p {
   color: #ccc;
 }
 
-/* === CONTAINER === */
-.container {
+/* === CONTAINER WIDTH UNIFICATION === */
+.section,
+.cards,
+.steps-grid,
+.features-grid,
+.industry-grid,
+.boxed-container,
+.exceptional-wrapper {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
 }
 
@@ -401,3 +354,4 @@ footer#contact p {
     grid-template-columns: 1fr;
   }
 }
+
