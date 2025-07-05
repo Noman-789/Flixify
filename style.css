@@ -117,10 +117,6 @@ a {
   justify-content: center;
   gap: 1.5rem;
   margin-top: 2rem;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
 }
 .card {
   background: var(--card);
@@ -157,10 +153,6 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
   margin-top: 2rem;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
 }
 .step {
   background: #1c2c3a;
@@ -202,7 +194,7 @@ a {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   padding: 50px 30px;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
   width: 100%;
   box-shadow: 0 0 30px rgba(0, 255, 200, 0.1);
@@ -227,7 +219,6 @@ a {
   gap: 25px;
   max-width: 1200px;
   margin: auto;
-  width: 100%;
 }
 .feature-box {
   background: rgba(255, 255, 255, 0.06);
@@ -332,7 +323,7 @@ a {
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   width: 100%;
 }
 .industry-grid div {
@@ -377,6 +368,14 @@ footer#contact p {
   color: #ccc;
 }
 
+/* === CONTAINER === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .desktop-nav {
@@ -402,5 +401,3 @@ footer#contact p {
     grid-template-columns: 1fr;
   }
 }
-
-
