@@ -401,8 +401,9 @@ footer#contact p {
   }
   .features-grid {
     grid-template-columns: 1fr;
-    
-    .cards {
+  }
+  .cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
