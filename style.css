@@ -415,7 +415,19 @@ footer#contact p {
     grid-template-columns: 1fr;
   }
   .boxed-container {
-    padding: 40px 15px;
+    padding: 60px 20px;
+  }
+  .feature-box {
+    padding: 30px 25px; /* increased padding for mobile */
+    font-size: 1rem;     /* slightly larger text */
+  }
+
+  .feature-box h3 {
+    font-size: 1.3rem;
+  }
+
+  .feature-box p {
+    font-size: 1.05rem;
   }
   .cards {
     grid-template-columns: repeat(1, 1fr);
