@@ -112,17 +112,19 @@ a {
 
 /* === SERVICE CARDS === */
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 .card {
   background: var(--card);
   border-radius: 12px;
   padding: 2rem;
-  width: 300px;
   box-shadow: 0 0 10px rgba(0,255,255,0.05);
 }
 .card ul {
@@ -399,5 +401,8 @@ footer#contact p {
   }
   .features-grid {
     grid-template-columns: 1fr;
+    
+    .cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
