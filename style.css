@@ -64,24 +64,6 @@
   background: #e0002b;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 600px) {
-  .payment-icons {
-    gap: 1rem;
-  }
-  .payment-icons img {
-    width: 40px;
-    height: 40px;
-  }
-  .close-section {
-    top: 15px;
-    right: 15px;
-    padding: 5px 10px;
-    font-size: 0.85rem;
-  }
-}
-
-
 /* === VARIABLES & RESET === */
 :root {
   --primary: #3be8b0;
