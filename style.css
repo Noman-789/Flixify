@@ -90,13 +90,12 @@
   transition: all 0.3s ease;
   z-index: 10;
 }
+
+/* Hover Effect */
 .back-button:hover {
   background: linear-gradient(135deg, #0cd9a4, #3be8b0);
   transform: scale(1.05);
-  color: #000;
 }
-
-
 
 /* === VARIABLES & RESET === */
 :root {
@@ -492,6 +491,14 @@ footer#contact p {
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
+  /* Back Button */
+  .back-button {
+    top: 15px;
+    left: 15px;
+    font-size: 0.85rem;
+    padding: 7px 14px;
+  }
+  
   /* Navbar */
   .desktop-nav {
     display: none;
