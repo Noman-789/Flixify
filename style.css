@@ -1,3 +1,87 @@
+/* === SHOPIFY MAINTENANCE SECTION === */
+.shopify-maintenance {
+  background: #f4f4f4;
+  padding: 3rem 1rem;
+  color: #222;
+  position: relative;
+}
+.shopify-maintenance .container {
+  max-width: 800px;
+  margin: auto;
+}
+.maintenance-list {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  line-height: 1.7;
+}
+
+/* === PAYMENT OPTIONS SECTION === */
+.payment-options {
+  background: #1a1a1a;
+  color: white;
+  padding: 3rem 1rem;
+  text-align: center;
+  position: relative;
+}
+.payment-options .container {
+  max-width: 800px;
+  margin: auto;
+}
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.payment-icons img {
+  width: 48px;
+  height: 48px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+.payment-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* === CLOSE BUTTON === */
+.close-section {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4b5c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+.close-section:hover {
+  background: #e0002b;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .payment-icons {
+    gap: 1rem;
+  }
+  .payment-icons img {
+    width: 40px;
+    height: 40px;
+  }
+  .close-section {
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+
 /* === VARIABLES & RESET === */
 :root {
   --primary: #3be8b0;
@@ -392,6 +476,19 @@ footer#contact p {
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
+  .payment-icons {
+    gap: 1rem;
+  }
+  .payment-icons img {
+    width: 40px;
+    height: 40px;
+  }
+  .close-section {
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+  }
   .desktop-nav {
     display: none;
   }
