@@ -10,11 +10,17 @@
   margin: auto;
   position: relative;
 }
+.maintenance-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
 
 /* === PAYMENT OPTIONS SECTION === */
 .payment-options {
-  background: #1a1a1a;
-  color: white;
+  background: #0e0e0e;
+  color: #f5f5f5;
   padding: 3rem 1rem;
   text-align: center;
   position: relative;
@@ -29,11 +35,11 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin: 1.5rem 0;
+  margin: 2rem 0;
 }
 .payment-icons img {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   filter: brightness(0) invert(1);
   transition: transform 0.3s ease;
 }
@@ -41,25 +47,55 @@
   transform: scale(1.1);
 }
 
+/* === UPI QR CODE BOX === */
+.upi-box {
+  background: #1c1c1c;
+  border: 2px dashed #3be8b0;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.upi-box h3 {
+  color: #3be8b0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+.upi-box img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.upi-box p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+}
+
 /* === CLOSE BUTTON === */
 .close-section {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: #ff4b5c;
+  background: linear-gradient(135deg, #ff4b5c, #d62839);
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 16px;
   font-size: 0.9rem;
-  font-weight: bold;
-  border-radius: 6px;
+  font-weight: 600;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 75, 92, 0.3);
+  transition: all 0.3s ease;
   z-index: 10;
 }
 .close-section:hover {
-  background: #e0002b;
+  background: linear-gradient(135deg, #d62839, #ff4b5c);
+  transform: scale(1.05);
 }
+
 
 /* === VARIABLES & RESET === */
 :root {
