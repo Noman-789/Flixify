@@ -6,13 +6,9 @@
   position: relative;
 }
 .shopify-maintenance .container {
-  position: relative;
+  max-width: 800px;
   margin: auto;
-}
-.maintenance-list {
-  list-style-type: disc;
-  padding-left: 1.2rem;
-  line-height: 1.7;
+  position: relative;
 }
 
 /* === PAYMENT OPTIONS SECTION === */
@@ -24,8 +20,9 @@
   position: relative;
 }
 .payment-options .container {
-  position: relative;
+  max-width: 800px;
   margin: auto;
+  position: relative;
 }
 .payment-icons {
   display: flex;
@@ -479,8 +476,8 @@ footer#contact p {
   .close-section {
     top: 15px;
     right: 15px;
+    font-size: 0.8rem;
     padding: 5px 10px;
-    font-size: 0.85rem;
   }
 
   /* Exceptional Section */
