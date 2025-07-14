@@ -1,0 +1,98 @@
+<!-- inquiry.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inquiry - Futuristic Tech Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Titillium Web', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #3be8b0;
+    }
+    .inquiry-form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .inquiry-form label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: 600;
+    }
+    .inquiry-form input,
+    .inquiry-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .inquiry-form button {
+      background: #3be8b0;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .inquiry-form button:hover {
+      background: #2fd39c;
+    }
+    footer {
+      margin-top: auto;
+      padding: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Inquiry Form</h1>
+    <p>Please fill out the form below and we’ll get in touch with you shortly.</p>
+  </header>
+
+  <form class="inquiry-form">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" placeholder="John Doe" required />
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" placeholder="john@example.com" required />
+
+    <label for="message">Project Details</label>
+    <textarea id="message" rows="5" placeholder="Describe your requirements..." required></textarea>
+
+    <button type="submit">Send Inquiry</button>
+  </form>
+
+  <footer>
+    &copy; 2025 Futuristic Tech Services
+  </footer>
+
+</body>
+</html>
