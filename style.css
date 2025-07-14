@@ -6,7 +6,7 @@
   position: relative;
 }
 .shopify-maintenance .container {
-  max-width: 800px;
+  position: relative;
   margin: auto;
 }
 .maintenance-list {
@@ -24,7 +24,7 @@
   position: relative;
 }
 .payment-options .container {
-  max-width: 800px;
+  position: relative;
   margin: auto;
 }
 .payment-icons {
