@@ -74,27 +74,28 @@
   margin-top: 0.5rem;
 }
 
-/* === CLOSE BUTTON === */
-.close-section {
+/* === BACK BUTTON === */
+.back-button {
   position: absolute;
   top: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, #ff4b5c, #d62839);
-  color: white;
-  border: none;
+  left: 20px;
+  background: linear-gradient(135deg, #3be8b0, #0cd9a4);
+  color: #000;
   padding: 8px 16px;
   font-size: 0.9rem;
   font-weight: 600;
   border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(255, 75, 92, 0.3);
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(59, 232, 176, 0.3);
   transition: all 0.3s ease;
   z-index: 10;
 }
-.close-section:hover {
-  background: linear-gradient(135deg, #d62839, #ff4b5c);
+.back-button:hover {
+  background: linear-gradient(135deg, #0cd9a4, #3be8b0);
   transform: scale(1.05);
+  color: #000;
 }
+
 
 
 /* === VARIABLES & RESET === */
