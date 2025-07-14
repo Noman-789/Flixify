@@ -458,6 +458,15 @@ footer#contact p {
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
+  /* Navbar */
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  /* Payment Icons */
   .payment-icons {
     gap: 1rem;
   }
@@ -465,18 +474,16 @@ footer#contact p {
     width: 40px;
     height: 40px;
   }
+
+  /* Close Button */
   .close-section {
     top: 15px;
     right: 15px;
     padding: 5px 10px;
     font-size: 0.85rem;
   }
-  .desktop-nav {
-    display: none;
-  }
-  .hamburger {
-    display: block;
-  }
+
+  /* Exceptional Section */
   .exceptional-wrapper {
     flex-direction: column;
     text-align: center;
@@ -484,34 +491,39 @@ footer#contact p {
   .highlight-box {
     text-align: left;
   }
+
+  /* Industry Grid */
   .industry-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Why Choose Us Section */
   .why-choose-us-boxed {
     padding: 60px 15px;
-  }
-  .features-grid {
-    grid-template-columns: 1fr;
   }
   .boxed-container {
     padding: 60px 20px;
   }
-  .feature-box {
-    padding: 30px 25px; /* increased padding for mobile */
-    font-size: 1rem;     /* slightly larger text */
+  .features-grid {
+    grid-template-columns: 1fr;
   }
-
+  .feature-box {
+    padding: 30px 25px;
+    font-size: 1rem;
+  }
   .feature-box h3 {
     font-size: 1.3rem;
   }
-
   .feature-box p {
     font-size: 1.05rem;
   }
+
+  /* Cards Section */
   .cards {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
   }
 }
+
 
 
 
