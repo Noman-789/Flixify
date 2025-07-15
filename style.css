@@ -17,13 +17,24 @@
   font-size: 1.05rem;
 }
 
-element.style {
+/* === SHOPIFY MAINTENANCE SCOPE === */
+maintenance-heading {
     background: #25d366;
     border-radius: 20px;
     padding: 1rem;
     box-shadow: 0 0 5px rgba(0, 255, 255, 0.05);
     color: white;
     text-align: center;
+}
+
+  /* === SHOPIFY MAINTENANCE SCOPE === */
+      background: lightblue;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.05);
+    width: 100%;
+    margin-top: 1rem;
+}
 
 /* === PAYMENT OPTIONS SECTION === */
 .payment-options {
