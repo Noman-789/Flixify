@@ -18,7 +18,7 @@
 }
 
 /* === SHOPIFY MAINTENANCE SCOPE === */
-maintenance-heading {
+.maintenance-heading {
     background: #25d366;
     border-radius: 20px;
     padding: 1rem;
@@ -27,8 +27,8 @@ maintenance-heading {
     text-align: center;
 }
 
-  /* === MAINTENANCE LIST === */
-    maintenance-list {
+/* === MAINTENANCE LIST === */
+  .maintenance-list {
     background: lightblue;
     border-radius: 20px;
     padding: 3rem;
