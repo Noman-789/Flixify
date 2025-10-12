@@ -3,212 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Futuristic Tech Services</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Titillium+Web:wght@300;400;700&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <title>ShopifyXperts — Premium Shopify Services</title>
+  <meta name="description" content="Premium Shopify services: store setup, theme customization, app integration, speed optimisation, development & ongoing maintenance." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <header class="site-header">
-    <div class="logo-center">
-      <img src="https://dummyimage.com/150x50/3be8b0/ffffff&text=LOGO" alt="Site Logo" />
-    </div>
-    <nav class="desktop-nav">
-      <a href="#home">Home</a>
+  <header class="header">
+    <div class="logo">SX</div>
+    <nav class="nav">
       <a href="#services">Services</a>
-      <a href="#benefits">Why Us</a>
-      <a href="#how">How It Works</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div><div></div><div></div>
-    </div>
+    <a href="#contact" class="cta">Get a Quote</a>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#benefits">Why Us</a>
-    <a href="#how">How It Works</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero-section">
-    <h1>We Build Clean, Fast & Trustworthy Websites</h1>
-    <p>Perfect for Shopify, Business, and Custom Brands</p>
-    <a href="#services" class="btn">Explore Plans</a>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="section">
-    <h2>Our Services</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>1 Month Plan <span class="badge">SAVE ₹4K</span></h3>
-        <p><del>₹12,000</del> <strong>₹8,000</strong></p>
-        <ul>
-          <li>Content/Image Updates</li>
-          <li>Speed & Security</li>
-          <li>Backup & Monitoring</li>
-        </ul>
-        <a href="1-Month-Plan.html" target="_blank" class="btn">More Details</a>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Launch, Optimize & Grow Your Shopify Store</h1>
+        <p>Full-service Shopify experts: setup, themes, apps, speed optimization & ongoing maintenance.</p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="scrollToSection('contact')">Get a Free Consultation</button>
+          <button class="btn-ghost" onclick="scrollToSection('services')">See Services</button>
+        </div>
       </div>
-      <div class="card">
-        <h3>3 Month Plan <span class="badge">SAVE ₹8K</span></h3>
-        <p><del>₹30,000</del> <strong>₹22,000</strong></p>
-        <ul>
-          <li>All Maintenance Features</li>
-          <li>SEO Fixes</li>
-          <li>Priority Support</li>
-        </ul>
-        <a href="https://wa.me/919760892383" target="_blank" class="btn">Inquiry Now</a>
-      </div>
-      <div class="card">
-        <h3>Website Development</h3>
-        <span class="badge price-badge"><strong>START FROM ₹35,000</strong></span>
-        <ul>
-          <li>Shopify & Business Sites</li>
-          <li>Responsive Design</li>
-          <li>UI/UX Customizations</li>
-        </ul>
-        <a href="https://wa.me/919760892383" target="_blank" class="btn">Inquiry Now</a>
-      </div>
-      <div class="card">
-        <h3>Website Revamp</h3>
-        <span class="badge price-badge"><strong>START FROM ₹20,000</strong></span>
-        <ul>
-          <li>Shopify & Business Sites</li>
-          <li>Responsive Design</li>
-          <li>UI/UX Customizations</li>
-        </ul>
-        <a href="https://wa.me/919760892383" target="_blank" class="btn">Inquiry Now</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us -->
-  <section class="why-choose-us-boxed">
-    <div class="container">
-      <div class="boxed-container">
-        <h2>Why Choose Us?</h2>
-        <p class="subtitle">We build future-ready websites that drive results and reflect your brand identity.</p>
-
-        <div class="features-grid">
-          <div class="feature-box">
-            <i class="icon">🚀</i>
-            <h3>Modern & Futuristic Design</h3>
-            <p>Your site will stand out with sleek, responsive designs that captivate visitors.</p>
-          </div>
-          <div class="feature-box">
-            <i class="icon">👨‍💻</i>
-            <h3>Experienced Professionals</h3>
-            <p>Our skilled team brings years of hands-on experience in web development & branding.</p>
-          </div>
-          <div class="feature-box">
-            <i class="icon">⚙️</i>
-            <h3>Custom-Built Solutions</h3>
-            <p>We create tailored websites to match your specific business needs and goals.</p>
-          </div>
-          <div class="feature-box">
-            <i class="icon">💼</i>
-            <h3>Trusted by Businesses</h3>
-            <p>From startups to enterprises, we’ve helped clients grow their online presence.</p>
-          </div>
-          <div class="feature-box">
-            <i class="icon">⏱️</i>
-            <h3>On-Time Delivery</h3>
-            <p>We stick to deadlines and ensure timely delivery without compromising quality.</p>
-          </div>
-          <div class="feature-box">
-            <i class="icon">📞</i>
-            <h3>Reliable Support</h3>
-            <p>Get continuous assistance before, during, and after your website goes live.</p>
+      <div class="hero-visual">
+        <div class="mockup">
+          <div class="bar"></div>
+          <div class="grid">
+            <div class="item"><h4>Home</h4><div>Hero & CTA</div></div>
+            <div class="item"><h4>Collections</h4><div>Filters & Navigation</div></div>
+            <div class="item"><h4>Product</h4><div>Templates</div></div>
+            <div class="item"><h4>Cart</h4><div>Fast Checkout</div></div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Exceptional Section -->
-  <section class="section exceptional-exact">
-    <div class="container">
-      <div class="exceptional-wrapper">
-        <div class="exceptional-left">
-          <h2 class="section-heading">What Makes Our Websites Exceptional?</h2>
-          <p class="section-subtext">We infuse creativity, passion, and precision into every project we undertake. With a streamlined process and expert coordination, we ensure each website is unique, innovative, and tailored to your needs.</p>
-
-          <div class="highlight-box">
-            <h3>Skilled <span>Professionals</span></h3>
-            <p>Our seasoned team of web designers and developers brings years of experience and industry knowledge to deliver cutting-edge solutions for your business.</p>
-          </div>
-
-          <div class="highlight-box">
-            <h3>Focused On Client <span>Success</span></h3>
-            <p>We prioritize understanding your business goals and target audience, creating customer-centric solutions that cater to businesses of all scales, big or small.</p>
-          </div>
-
-          <div class="highlight-box">
-            <h3>Dedicated <span>Support</span></h3>
-            <p>Our expert support team is available 24/7 to address any queries or issues, ensuring your website operates flawlessly and meets your expectations.</p>
-          </div>
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <h2>What We Do</h2>
+      <p class="subtitle">Comprehensive Shopify services for growing your business.</p>
+      <div class="service-grid">
+        <div class="card">
+          <div class="service-icon">📦</div>
+          <h3>Store Setup & Launch</h3>
+          <p>Full Shopify store setup including payments, shipping, domains & testing.</p>
         </div>
-
-        <div class="exceptional-right">
-          <img src="https://cdn.pixabay.com/photo/2019/03/26/07/05/ok-4087443_1280.png" alt="Happy Client" />
+        <div class="card">
+          <div class="service-icon">🎨</div>
+          <h3>Theme Customization</h3>
+          <p>Custom sections, responsive design & pixel-perfect UI adjustments.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">⚙️</div>
+          <h3>App Integration & Development</h3>
+          <p>Install, configure, and integrate Shopify apps with custom solutions.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">🚀</div>
+          <h3>Speed Optimization</h3>
+          <p>Improve load times, optimize images & code for better conversions.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">🛠️</div>
+          <h3>Ongoing Maintenance</h3>
+          <p>Monthly updates, backups, security checks & performance monitoring.</p>
+        </div>
+        <div class="card">
+          <div class="service-icon">📝</div>
+          <h3>Product Listing & Catalog</h3>
+          <p>SEO-friendly product descriptions, variants & bulk imports.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Industries Section -->
-  <section class="section industries-enhanced">
-    <div class="container">
-      <h2>We Cater to Every Industry with Tailored Solutions</h2>
-      <div class="industry-grid">
-        <div><img src="https://cdn-icons-png.flaticon.com/128/944/944498.png"/><span>Banking</span></div>
-        <div><img src="https://cdn-icons-png.flaticon.com/128/2991/2991148.png"/><span>Automotive</span></div>
-        <div><img src="https://cdn-icons-png.flaticon.com/128/3135/3135755.png"/><span>Education</span></div>
-        <div><img src="https://cdn-icons-png.flaticon.com/128/906/906175.png"/><span>Digital Agency</span></div>
-        <div><img src="https://cdn-icons-png.flaticon.com/128/2965/2965567.png"/><span>Healthcare</span></div>
-        <div><img src="https://cdn-icons-png.flaticon.com/128/2350/2350688.png"/><span>Hospitality</span></div>
-        <div><img src="https://cdn-icons-png.flaticon.com/128/3595/3595455.png"/><span>Logistics</span></div>
-        <div><img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png"/><span>E-Commerce</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section id="how" class="section">
-    <div class="container">
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section">
       <h2>How It Works</h2>
-      <div class="steps-grid">
-        <div class="step">1️⃣ Contact via WhatsApp</div>
-        <div class="step">2️⃣ Share Your Needs</div>
-        <div class="step">3️⃣ We Build Your Site</div>
-        <div class="step">4️⃣ You Go Live!</div>
+      <div class="steps">
+        <div class="step">
+          <h3>Discovery</h3>
+          <p>Share your goals, priorities & store access.</p>
+        </div>
+        <div class="step">
+          <h3>Proposal</h3>
+          <p>We deliver a scoped plan with timelines and costs.</p>
+        </div>
+        <div class="step">
+          <h3>Implementation</h3>
+          <p>Theme edits, app integration & speed improvements.</p>
+        </div>
+        <div class="step">
+          <h3>Handover & Support</h3>
+          <p>Training, testing, and optional ongoing maintenance.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <h2>Ready to Launch?</h2>
-    <p>Email: connect@futuretech.dev</p>
-    <p>WhatsApp: +91 9760892383</p>
-    <p>&copy; 2025 Futuristic Tech Services</p>
+    <!-- CASE STUDY -->
+    <section class="section">
+      <h2>Featured Case Study</h2>
+      <div class="card case-study">
+        <p>E-commerce brand: theme revamp + speed optimization</p>
+        <p>Results: Mobile LCP improved by 2.4s & conversion rate up 18%.</p>
+        <button class="btn-primary">Book a Review</button>
+        <button class="btn-ghost">Read More</button>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section">
+      <h2>Why Merchants Choose Us</h2>
+      <div class="feature-grid">
+        <div class="card">
+          <h3>Pro Developers & Designers</h3>
+          <p>Experienced in Shopify Liquid, JS, APIs & theme architecture.</p>
+        </div>
+        <div class="card">
+          <h3>Performance-First Approach</h3>
+          <p>Core Web Vitals, speed & UX optimizations.</p>
+        </div>
+        <div class="card">
+          <h3>Clear Process & Reporting</h3>
+          <p>Weekly updates, prioritized tickets, and transparent billing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section">
+      <h2>Pricing Plans</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <p>₹6,999 (one-time)</p>
+          <ul>
+            <li>Store setup & launch</li>
+            <li>Theme minor tweaks</li>
+            <li>Basic SEO for products</li>
+          </ul>
+          <button class="btn-primary" onclick="scrollToSection('contact')">Order Starter</button>
+        </div>
+        <div class="price-card">
+          <h3>Growth</h3>
+          <p>₹19,999 (one-time)</p>
+          <ul>
+            <li>Theme customization</li>
+            <li>Speed optimization</li>
+            <li>App integration</li>
+          </ul>
+          <button class="btn-primary" onclick="scrollToSection('contact')">Order Growth</button>
+        </div>
+        <div class="price-card">
+          <h3>Care</h3>
+          <p>₹6,999 / month</p>
+          <ul>
+            <li>Monthly updates</li>
+            <li>Priority support</li>
+            <li>Product listing assistance</li>
+          </ul>
+          <button class="btn-primary" onclick="scrollToSection('contact')">Subscribe</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact & Inquiry</h2>
+      <form id="leadForm" class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="phone" placeholder="Phone / WhatsApp" />
+        <select name="service">
+          <option>Store Setup</option>
+          <option>Theme Customization</option>
+          <option>Speed Optimisation</option>
+          <option>App Integration</option>
+          <option>Maintenance & Listing</option>
+          <option>Custom Development</option>
+        </select>
+        <textarea name="message" placeholder="Project details"></textarea>
+        <button type="submit" class="btn-primary">Send Inquiry</button>
+      </form>
+
+      <div class="contact-info">
+        <div class="card">
+          <h3>Need a quick chat?</h3>
+          <p>Share your store link & goals. Free 15-min consultation.</p>
+          <p>Email: hello@shopifyxperts.example</p>
+          <p>Phone: +91 99999 99999</p>
+        </div>
+
+        <div class="card">
+          <h3>What we need</h3>
+          <ul>
+            <li>Store admin access</li>
+            <li>Theme access (if needed)</li>
+            <li>Sample products or CSV</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> ShopifyXperts • All Rights Reserved</p>
   </footer>
 
-  <!-- WhatsApp Button -->
-  <div class="whatsapp">
-    <a href="https://wa.me/919760892383" target="_blank">
-      <i class="fab fa-whatsapp"></i> Let's Talk
-    </a>
-  </div>
+  <a class="whatsapp-btn" href="https://wa.me/919999999999" target="_blank">Chat on WhatsApp</a>
 
-  <script src="script.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
+
 
 
