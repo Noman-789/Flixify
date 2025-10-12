@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ShopifyXperts — Premium Shopify Services</title>
-  <meta name="description" content="Premium Shopify services: store setup, theme customization, app integration, speed optimisation, development & ongoing maintenance." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Premium Shopify services: store setup, theme customization, app integration, speed optimisation, development & ongoing maintenance.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="header">
@@ -14,212 +14,197 @@
       <a href="#services">Services</a>
       <a href="#how-it-works">How It Works</a>
       <a href="#pricing">Pricing</a>
+      <a href="#why-choose-us">Why Choose Us</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="cta">Get a Quote</a>
+    <a href="#contact" class="cta-btn">Get a Quote</a>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Launch, Optimize & Grow Your Shopify Store</h1>
-        <p>Full-service Shopify experts: setup, themes, apps, speed optimization & ongoing maintenance.</p>
-        <div class="hero-buttons">
-          <button class="btn-primary" onclick="scrollToSection('contact')">Get a Free Consultation</button>
-          <button class="btn-ghost" onclick="scrollToSection('services')">See Services</button>
-        </div>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Launch & Grow Your Shopify Store</h1>
+      <p>We provide full Shopify services including setup, theme customization, app integration, speed optimisation & maintenance.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Free Consultation</a>
+        <a href="#services" class="btn btn-secondary">See Services</a>
       </div>
-      <div class="hero-visual">
-        <div class="mockup">
-          <div class="bar"></div>
-          <div class="grid">
-            <div class="item"><h4>Home</h4><div>Hero & CTA</div></div>
-            <div class="item"><h4>Collections</h4><div>Filters & Navigation</div></div>
-            <div class="item"><h4>Product</h4><div>Templates</div></div>
-            <div class="item"><h4>Cart</h4><div>Fast Checkout</div></div>
-          </div>
-        </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://via.placeholder.com/420x380/4CAF50/fff?text=Shopify+Store+Mockup" alt="Shopify Mockup">
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <h2>What We Do</h2>
+    <p class="subtitle">Complete Shopify services tailored to your business.</p>
+    <div class="service-cards">
+      <div class="card">
+        <div class="icon">📦</div>
+        <h3>Store Setup</h3>
+        <p>Complete Shopify store setup: product catalog, payments, shipping & launch support.</p>
       </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="section">
-      <h2>What We Do</h2>
-      <p class="subtitle">Comprehensive Shopify services for growing your business.</p>
-      <div class="service-grid">
-        <div class="card">
-          <div class="service-icon">📦</div>
-          <h3>Store Setup & Launch</h3>
-          <p>Full Shopify store setup including payments, shipping, domains & testing.</p>
-        </div>
-        <div class="card">
-          <div class="service-icon">🎨</div>
-          <h3>Theme Customization</h3>
-          <p>Custom sections, responsive design & pixel-perfect UI adjustments.</p>
-        </div>
-        <div class="card">
-          <div class="service-icon">⚙️</div>
-          <h3>App Integration & Development</h3>
-          <p>Install, configure, and integrate Shopify apps with custom solutions.</p>
-        </div>
-        <div class="card">
-          <div class="service-icon">🚀</div>
-          <h3>Speed Optimization</h3>
-          <p>Improve load times, optimize images & code for better conversions.</p>
-        </div>
-        <div class="card">
-          <div class="service-icon">🛠️</div>
-          <h3>Ongoing Maintenance</h3>
-          <p>Monthly updates, backups, security checks & performance monitoring.</p>
-        </div>
-        <div class="card">
-          <div class="service-icon">📝</div>
-          <h3>Product Listing & Catalog</h3>
-          <p>SEO-friendly product descriptions, variants & bulk imports.</p>
-        </div>
+      <div class="card">
+        <div class="icon">🎨</div>
+        <h3>Theme Customization</h3>
+        <p>Custom theme edits, responsive design, and pixel-perfect UI matching your brand.</p>
       </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works" class="section">
-      <h2>How It Works</h2>
-      <div class="steps">
-        <div class="step">
-          <h3>Discovery</h3>
-          <p>Share your goals, priorities & store access.</p>
-        </div>
-        <div class="step">
-          <h3>Proposal</h3>
-          <p>We deliver a scoped plan with timelines and costs.</p>
-        </div>
-        <div class="step">
-          <h3>Implementation</h3>
-          <p>Theme edits, app integration & speed improvements.</p>
-        </div>
-        <div class="step">
-          <h3>Handover & Support</h3>
-          <p>Training, testing, and optional ongoing maintenance.</p>
-        </div>
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Speed Optimisation</h3>
+        <p>Improve load times, Core Web Vitals, and overall performance to boost sales.</p>
       </div>
-    </section>
-
-    <!-- CASE STUDY -->
-    <section class="section">
-      <h2>Featured Case Study</h2>
-      <div class="card case-study">
-        <p>E-commerce brand: theme revamp + speed optimization</p>
-        <p>Results: Mobile LCP improved by 2.4s & conversion rate up 18%.</p>
-        <button class="btn-primary">Book a Review</button>
-        <button class="btn-ghost">Read More</button>
+      <div class="card">
+        <div class="icon">🔧</div>
+        <h3>App Integration</h3>
+        <p>Install and configure apps to enhance functionality and automate tasks.</p>
       </div>
-    </section>
-
-    <!-- WHY CHOOSE US -->
-    <section class="section">
-      <h2>Why Merchants Choose Us</h2>
-      <div class="feature-grid">
-        <div class="card">
-          <h3>Pro Developers & Designers</h3>
-          <p>Experienced in Shopify Liquid, JS, APIs & theme architecture.</p>
-        </div>
-        <div class="card">
-          <h3>Performance-First Approach</h3>
-          <p>Core Web Vitals, speed & UX optimizations.</p>
-        </div>
-        <div class="card">
-          <h3>Clear Process & Reporting</h3>
-          <p>Weekly updates, prioritized tickets, and transparent billing.</p>
-        </div>
+      <div class="card">
+        <div class="icon">🛠️</div>
+        <h3>Development</h3>
+        <p>Custom development solutions tailored to your business needs.</p>
       </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="section">
-      <h2>Pricing Plans</h2>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Starter</h3>
-          <p>₹6,999 (one-time)</p>
-          <ul>
-            <li>Store setup & launch</li>
-            <li>Theme minor tweaks</li>
-            <li>Basic SEO for products</li>
-          </ul>
-          <button class="btn-primary" onclick="scrollToSection('contact')">Order Starter</button>
-        </div>
-        <div class="price-card">
-          <h3>Growth</h3>
-          <p>₹19,999 (one-time)</p>
-          <ul>
-            <li>Theme customization</li>
-            <li>Speed optimization</li>
-            <li>App integration</li>
-          </ul>
-          <button class="btn-primary" onclick="scrollToSection('contact')">Order Growth</button>
-        </div>
-        <div class="price-card">
-          <h3>Care</h3>
-          <p>₹6,999 / month</p>
-          <ul>
-            <li>Monthly updates</li>
-            <li>Priority support</li>
-            <li>Product listing assistance</li>
-          </ul>
-          <button class="btn-primary" onclick="scrollToSection('contact')">Subscribe</button>
-        </div>
+      <div class="card">
+        <div class="icon">📈</div>
+        <h3>Maintenance</h3>
+        <p>Ongoing support, backups, security checks, and performance monitoring.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h2>Contact & Inquiry</h2>
-      <form id="leadForm" class="contact-form" onsubmit="handleSubmit(event)">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="text" name="phone" placeholder="Phone / WhatsApp" />
-        <select name="service">
-          <option>Store Setup</option>
-          <option>Theme Customization</option>
-          <option>Speed Optimisation</option>
-          <option>App Integration</option>
-          <option>Maintenance & Listing</option>
-          <option>Custom Development</option>
-        </select>
-        <textarea name="message" placeholder="Project details"></textarea>
-        <button type="submit" class="btn-primary">Send Inquiry</button>
-      </form>
-
-      <div class="contact-info">
-        <div class="card">
-          <h3>Need a quick chat?</h3>
-          <p>Share your store link & goals. Free 15-min consultation.</p>
-          <p>Email: hello@shopifyxperts.example</p>
-          <p>Phone: +91 99999 99999</p>
-        </div>
-
-        <div class="card">
-          <h3>What we need</h3>
-          <ul>
-            <li>Store admin access</li>
-            <li>Theme access (if needed)</li>
-            <li>Sample products or CSV</li>
-          </ul>
-        </div>
+  <!-- WHY CHOOSE US -->
+  <section id="why-choose-us" class="why-choose-us">
+    <h2>Why Merchants Choose Us</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Expert Team</h3>
+        <p>Experienced developers & designers specializing in Shopify Liquid, JS, APIs, and theme architecture.</p>
       </div>
-    </section>
+      <div class="feature">
+        <h3>Performance Focused</h3>
+        <p>Optimized for speed, Core Web Vitals, and high-converting user experiences.</p>
+      </div>
+      <div class="feature">
+        <h3>Transparent Process</h3>
+        <p>Clear weekly updates, reporting, and project visibility.</p>
+      </div>
+    </div>
+    <div class="case-study">
+      <h3>Featured Case Study</h3>
+      <p>Improved mobile load time by 2.5s & increased conversion rate by 18% after full theme optimization.</p>
+      <a href="#contact" class="btn btn-primary">Book a Review</a>
+    </div>
+  </section>
 
-  </main>
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. Discovery</h3>
+        <p>Share your store access, goals, and priorities.</p>
+      </div>
+      <div class="step">
+        <h3>2. Proposal</h3>
+        <p>We provide a scoped plan with timelines.</p>
+      </div>
+      <div class="step">
+        <h3>3. Implementation</h3>
+        <p>Theme edits, app integration, speed optimisation, and design tweaks.</p>
+      </div>
+      <div class="step">
+        <h3>4. Handover</h3>
+        <p>Store launch, testing, and optional maintenance plans.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <h2>Pricing Plans</h2>
+    <div class="pricing-cards">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <p class="price">₹6,999 <span>/one-time</span></p>
+        <ul>
+          <li>Store Setup</li>
+          <li>Basic Theme Tweaks</li>
+          <li>Email Support</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Select Plan</a>
+      </div>
+      <div class="price-card">
+        <h3>Standard</h3>
+        <p class="price">₹19,999 <span>/one-time</span></p>
+        <ul>
+          <li>All Basic Features</li>
+          <li>Advanced Theme Customization</li>
+          <li>App Integration</li>
+          <li>Priority Support</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Select Plan</a>
+      </div>
+      <div class="price-card">
+        <h3>Premium</h3>
+        <p class="price">₹6,999 <span>/month</span></p>
+        <ul>
+          <li>Ongoing Maintenance</li>
+          <li>Monthly Updates</li>
+          <li>Product Listing</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Subscribe</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2>Contact & Inquiry</h2>
+    <form id="contactForm">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Business / Store Name" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div class="quick-chat">
+      <h3>Need a Quick Chat?</h3>
+      <p>Get a free 15-minute consultation. Share your store link and a short brief.</p>
+      <p><strong>Email:</strong> hello@shopifyxperts.example</p>
+      <p><strong>Phone:</strong> +91 99999 99999</p>
+      <p><strong>Working Hours:</strong> Mon–Sat, 9:30 – 18:30 IST</p>
+    </div>
+
+    <div class="requirements">
+      <h3>What We Need</h3>
+      <ul>
+        <li>Store admin access (collaborator or staff)</li>
+        <li>Theme access (if needed)</li>
+        <li>Product CSV or sample products</li>
+      </ul>
+    </div>
+  </section>
 
   <footer>
     <p>© <span id="year"></span> ShopifyXperts • All Rights Reserved</p>
   </footer>
 
-  <a class="whatsapp-btn" href="https://wa.me/919999999999" target="_blank">Chat on WhatsApp</a>
+  <a class="whatsapp" href="https://wa.me/919999999999" target="_blank">💬</a>
 
-  <script src="scripts.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thank you! Your inquiry has been submitted.');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
+
 
 
 
