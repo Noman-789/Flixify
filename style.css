@@ -1,5 +1,4 @@
 /* ===== VARIABLES ===== */
-<style>
 :root {
   --bg: linear-gradient(135deg,#0f172a,#0b1f2e);
   --accent1: #7c3aed;
@@ -67,7 +66,6 @@ footer{text-align:center;padding:20px;color:var(--muted);margin-top:40px;border-
 /* RESPONSIVE */
 @media(max-width:1024px){.hero{flex-direction:column;}.service-grid{grid-template-columns:repeat(2,1fr);}.steps{grid-template-columns:repeat(2,1fr);}.feature-grid{grid-template-columns:repeat(2,1fr);}.pricing-grid{grid-template-columns:repeat(2,1fr);}.contact-info{flex-direction:column;}}
 @media(max-width:640px){.service-grid, .steps, .feature-grid, .pricing-grid{grid-template-columns:1fr;}}
-</style>
 
 
 
