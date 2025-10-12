@@ -1,16 +1,22 @@
-function showTab(id) {
-  const tabContent = document.getElementById(id);
-  const tabButton = document.querySelector(`.tab[onclick*="${id}"]`);
-  if (!tabContent || !tabButton) return;
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-  tabContent.classList.add('active');
-  tabButton.classList.add('active');
+function scrollToSection(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function toggleMenu() {
-  const menu = document.getElementById('mobileMenu');
-  if (menu) menu.classList.toggle('show');
+function handleSubmit(e){
+  e.preventDefault();
+  const form = document.getElementById('leadForm');
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    service: form.service.value,
+    message: form.message.value,
+    time: new Date().toISOString()
+  };
+  console.log('Lead submitted', data);
+  alert('Thank you! Your inquiry has been received. We will contact you within 24 business hours.');
+  form.reset();
 }
-
