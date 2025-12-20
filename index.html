@@ -202,6 +202,127 @@
     padding:28px;
   }
 }
+/* ===============================
+   WHAT WE ACTUALLY DO – FINAL
+   =============================== */
+
+.what-we-do{
+  background:linear-gradient(180deg,#f8fafc,#eef2ff);
+  padding:120px 20px;
+}
+
+.what-wrapper{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1.3fr;
+  gap:60px;
+  align-items:start;
+}
+
+/* LEFT CONTENT */
+.what-left h2{
+  font-size:38px;
+  margin-bottom:20px;
+}
+
+.what-left .lead{
+  font-size:18px;
+  color:#334155;
+  line-height:1.75;
+  margin-bottom:18px;
+}
+
+.what-left .desc{
+  font-size:16.5px;
+  color:#475569;
+  line-height:1.75;
+}
+
+/* RIGHT GRID */
+.what-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+}
+
+/* CARDS */
+.what-card{
+  position:relative;
+  padding:36px;
+  border-radius:26px;
+  border:none;
+  transition:.35s;
+}
+
+.what-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 25px 60px rgba(0,0,0,.15);
+}
+
+/* COLORS */
+.what-card:nth-child(1){
+  background:linear-gradient(135deg,#e0f2fe,#dbeafe);
+}
+.what-card:nth-child(2){
+  background:linear-gradient(135deg,#ecfeff,#cffafe);
+}
+.what-card:nth-child(3){
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+}
+.what-card:nth-child(4){
+  background:linear-gradient(135deg,#fefce8,#fef3c7);
+}
+
+/* TEXT */
+.what-card h3{
+  font-size:21px;
+  margin-bottom:10px;
+}
+
+.what-card p{
+  font-size:15.5px;
+  line-height:1.6;
+  color:#334155;
+}
+
+/* NUMBER */
+.what-number{
+  position:absolute;
+  top:-18px;
+  right:24px;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  background:#020617;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  box-shadow:0 12px 28px rgba(0,0,0,.25);
+}
+
+/* ---------- MOBILE FIX ---------- */
+@media (max-width:768px){
+
+  .what-wrapper{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .what-left h2{
+    font-size:30px;
+  }
+
+  .what-grid{
+    grid-template-columns:1fr;
+  }
+
+  .what-card{
+    padding:28px;
+  }
+}
 
 
     /* =================================================
@@ -388,46 +509,72 @@
 </div>
 
 <!-- ABOUT / DETAILS BOXES -->
-<section>
-  <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start" class="about-split">
+<section class="what-we-do">
 
-    <!-- LEFT CONTENT -->
-    <div data-aos="fade-right">
-      <h2 style="text-align:center">What We Actually Do</h2>
-      <p class="lead" style="text-align:left;margin-left:0">
-        We are a Shopify‑focused digital studio helping brands plan, design, build and scale high‑converting ecommerce experiences. Everything we do is structured, measurable and growth‑oriented.
+  <div class="what-wrapper">
+
+    <!-- LEFT CONTENT (NOT MISSED NOW) -->
+    <div class="what-left" data-aos="fade-right">
+      <h2>What We Actually Do</h2>
+
+      <p class="lead">
+        We are a Shopify-focused digital studio helping brands plan, design,
+        build and scale high-converting ecommerce experiences. Everything we do
+        is structured, measurable and growth-oriented.
       </p>
-      <p style="color:#475569;font-size:17px;line-height:1.8">
-        Our role goes beyond just development. We work as a strategic partner — aligning design, technology and performance to support long‑term ecommerce success.
+
+      <p class="desc">
+        Our role goes beyond just development. We work as a strategic partner —
+        aligning design, technology and performance to support long-term
+        ecommerce success.
       </p>
     </div>
 
-    <!-- RIGHT BOXES -->
-    <div class="grid">
-      <div class="card" data-aos="fade-up" style="position:relative">
-        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">01</span>
-        <h3>Business‑First Approach</h3>
-        <p>Before design or development, we understand your business model, audience and revenue goals to ensure every decision supports growth.</p>
+    <!-- RIGHT BLOCKS -->
+    <div class="what-grid">
+
+      <div class="card what-card" data-aos="fade-up">
+        <span class="what-number">01</span>
+        <h3>Business-First Approach</h3>
+        <p>
+          We deeply understand your business model, audience and revenue goals
+          before starting design or development.
+        </p>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="100" style="position:relative">
-        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">02</span>
-        <h3>Conversion‑Focused UI</h3>
-        <p>Layouts are designed to guide users smoothly from landing to checkout using proven UX and CRO principles.</p>
+
+      <div class="card what-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="what-number">02</span>
+        <h3>Conversion-Focused UI</h3>
+        <p>
+          Layouts are crafted using UX & CRO principles that guide users smoothly
+          from landing to checkout.
+        </p>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200" style="position:relative">
-        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">03</span>
+
+      <div class="card what-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="what-number">03</span>
         <h3>Scalable Architecture</h3>
-        <p>Our Shopify builds are clean, maintainable and ready for future features, traffic spikes and integrations.</p>
+        <p>
+          Clean, maintainable Shopify builds ready for future features, traffic
+          spikes and integrations.
+        </p>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="300" style="position:relative">
-        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">04</span>
+
+      <div class="card what-card" data-aos="fade-up" data-aos-delay="300">
+        <span class="what-number">04</span>
         <h3>Data & Growth Insights</h3>
-        <p>We use analytics, user behavior and performance data to continuously improve conversion and revenue.</p>
+        <p>
+          Analytics-driven decisions help continuously improve conversion and
+          revenue over time.
+        </p>
       </div>
+
     </div>
 
   </div>
+
 </section>
+
 
 <!-- SERVICES -->
 <section class="services">
