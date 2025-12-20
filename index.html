@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flixify</title>
 
+  <!-- Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- AOS -->
@@ -344,31 +347,38 @@
     padding:28px;
   }
 }
-/* ===============================
-   OUR CORE SERVICES – PREMIUM
+    /* ===============================
+   OUR CORE SERVICES – FINAL
    =============================== */
 
 .services-new{
-  background:linear-gradient(180deg,#f8fafc,#eef2ff);
+  background:linear-gradient(180deg,#eef2ff,#f8fafc);
   padding:120px 20px;
 }
 
 /* HEADER */
 .services-head{
   text-align:center;
-  max-width:720px;
-  margin:0 auto 70px;
+  max-width:760px;
+  margin:0 auto 80px;
 }
 
 .services-head h2{
-  font-size:40px;
-  margin-bottom:16px;
+  font-size:42px;
+  margin-bottom:18px;
+  font-weight:700;
+}
+
+.services-head h2 span{
+  background:linear-gradient(90deg,#6366f1,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .services-head p{
   font-size:18px;
   color:#475569;
-  line-height:1.7;
+  line-height:1.75;
 }
 
 /* GRID */
@@ -377,42 +387,61 @@
   margin:auto;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:30px;
+  gap:32px;
 }
 
 /* CARD */
 .service-card{
   background:#ffffff;
-  padding:42px 34px;
-  border-radius:28px;
+  padding:48px 34px 38px;
+  border-radius:30px;
   border:1px solid #e2e8f0;
   transition:.35s;
   position:relative;
 }
 
 .service-card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 30px 70px rgba(0,0,0,.12);
+  transform:translateY(-14px);
+  box-shadow:0 35px 80px rgba(0,0,0,.15);
 }
 
-/* ICON */
+/* ICON BASE */
 .service-icon{
-  display:inline-flex;
-  width:56px;
-  height:56px;
-  border-radius:18px;
+  width:64px;
+  height:64px;
+  border-radius:20px;
+  display:flex;
   align-items:center;
   justify-content:center;
   font-size:26px;
-  margin-bottom:20px;
-  background:linear-gradient(135deg,#6366f1,#22c55e);
   color:#fff;
+  margin-bottom:26px;
+}
+
+/* ICON COLORS */
+.service-icon.design{
+  background:linear-gradient(135deg,#6366f1,#818cf8);
+}
+.service-icon.dev{
+  background:linear-gradient(135deg,#0ea5e9,#22d3ee);
+}
+.service-icon.speed{
+  background:linear-gradient(135deg,#f59e0b,#facc15);
+}
+.service-icon.mobile{
+  background:linear-gradient(135deg,#22c55e,#4ade80);
+}
+.service-icon.migrate{
+  background:linear-gradient(135deg,#8b5cf6,#a78bfa);
+}
+.service-icon.support{
+  background:linear-gradient(135deg,#ec4899,#f472b6);
 }
 
 /* TEXT */
 .service-card h3{
-  font-size:21px;
-  margin-bottom:12px;
+  font-size:22px;
+  margin-bottom:14px;
   color:#0f172a;
 }
 
@@ -422,14 +451,14 @@
   color:#334155;
 }
 
-/* --------- TABLET --------- */
+/* ---------- TABLET ---------- */
 @media (max-width:1024px){
   .services-grid{
     grid-template-columns:repeat(2,1fr);
   }
 }
 
-/* --------- MOBILE --------- */
+/* ---------- MOBILE ---------- */
 @media (max-width:640px){
 
   .services-head h2{
@@ -441,9 +470,16 @@
   }
 
   .service-card{
-    padding:34px 26px;
+    padding:36px 26px;
+  }
+
+  .service-icon{
+    width:56px;
+    height:56px;
+    font-size:22px;
   }
 }
+
 
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
@@ -700,26 +736,32 @@
 <section class="services-new">
 
   <div class="services-head" data-aos="fade-up">
-    <h2>Our Core Services</h2>
+    <h2>
+      <span>Our</span> Core Services
+    </h2>
     <p>
-      End-to-end Shopify services delivered with clarity, performance and
-      long-term scalability in mind.
+      End-to-end Shopify services designed to build, optimize and scale
+      high-performing ecommerce brands.
     </p>
   </div>
 
   <div class="services-grid">
 
     <div class="service-card" data-aos="fade-up">
-      <span class="service-icon">🛍️</span>
+      <div class="service-icon design">
+        <i class="fa-solid fa-palette"></i>
+      </div>
       <h3>Shopify Store Design</h3>
       <p>
-        Modern, brand-aligned UI designs focused on trust, clarity and
-        conversions across all devices.
+        Modern, brand-aligned UI designs focused on trust, clarity and conversions
+        across all devices.
       </p>
     </div>
 
     <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-      <span class="service-icon">⚙️</span>
+      <div class="service-icon dev">
+        <i class="fa-solid fa-code"></i>
+      </div>
       <h3>Custom Shopify Development</h3>
       <p>
         Theme customization, custom sections and performance-optimized Shopify
@@ -728,7 +770,9 @@
     </div>
 
     <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-      <span class="service-icon">🚀</span>
+      <div class="service-icon speed">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
       <h3>Speed & Performance</h3>
       <p>
         Page speed optimization, clean code and performance best practices for
@@ -737,7 +781,9 @@
     </div>
 
     <div class="service-card" data-aos="fade-up">
-      <span class="service-icon">📱</span>
+      <div class="service-icon mobile">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+      </div>
       <h3>Mobile Optimization</h3>
       <p>
         Mobile-first layouts ensuring smooth browsing and checkout experiences.
@@ -745,7 +791,9 @@
     </div>
 
     <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-      <span class="service-icon">🔄</span>
+      <div class="service-icon migrate">
+        <i class="fa-solid fa-right-left"></i>
+      </div>
       <h3>Platform Migration</h3>
       <p>
         Safe and structured migration from WooCommerce, Magento or custom
@@ -754,15 +802,20 @@
     </div>
 
     <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-      <span class="service-icon">🛠️</span>
+      <div class="service-icon support">
+        <i class="fa-solid fa-headset"></i>
+      </div>
       <h3>Ongoing Support</h3>
       <p>
         Post-launch maintenance, improvements, new features and continuous
         store monitoring.
       </p>
     </div>
+
   </div>
+
 </section>
+
 
 <!-- PROCESS -->
 <section class="process">
