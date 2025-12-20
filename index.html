@@ -740,6 +740,151 @@
   }
 }
 
+/* ===============================
+   CONTACT & INQUIRY – PREMIUM
+   =============================== */
+
+.contact-section{
+  background:linear-gradient(180deg,#f8fafc,#eef2ff);
+  padding:120px 20px;
+}
+
+/* HEADER */
+.contact-head{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 80px;
+}
+
+.contact-head h2{
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.contact-head h2 span{
+  background:linear-gradient(90deg,#6366f1,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.contact-head p{
+  font-size:18px;
+  color:#475569;
+  line-height:1.75;
+}
+
+/* GRID */
+.contact-grid{
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:40px;
+}
+
+/* CARD */
+.contact-card{
+  background:#ffffff;
+  padding:48px 36px;
+  border-radius:32px;
+  border:1px solid #e2e8f0;
+  text-align:center;
+  transition:.35s;
+}
+
+.contact-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 30px 70px rgba(0,0,0,.12);
+}
+
+/* HIGHLIGHT CARD */
+.contact-card.highlight{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:#ffffff;
+  border:none;
+}
+
+.contact-card.highlight p,
+.contact-card.highlight h3{
+  color:#ffffff;
+}
+
+/* ICON */
+.contact-icon{
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  margin:0 auto 24px;
+  color:#fff;
+}
+
+.contact-icon.email{
+  background:linear-gradient(135deg,#6366f1,#818cf8);
+}
+
+.contact-icon.whatsapp{
+  background:#ffffff;
+  color:#16a34a;
+}
+
+/* TEXT */
+.contact-card h3{
+  font-size:22px;
+  margin-bottom:14px;
+  color:#0f172a;
+}
+
+.contact-card p{
+  font-size:16px;
+  line-height:1.65;
+  color:#334155;
+  margin-bottom:18px;
+}
+
+/* LINKS */
+.contact-link{
+  font-weight:600;
+  color:#6366f1;
+  font-size:16px;
+}
+
+.contact-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:14px 32px;
+  border-radius:40px;
+  background:#ffffff;
+  color:#16a34a;
+  font-weight:600;
+  transition:.3s;
+}
+
+.contact-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:768px){
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-head h2{
+    font-size:30px;
+  }
+
+  .contact-card{
+    padding:36px 28px;
+  }
+}
+
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
    ================================================= */
@@ -1207,9 +1352,7 @@
       </p>
     </div>
   </div>
-
 </div>
-
 
   </div>
 </section>
@@ -1281,20 +1424,47 @@
 
 
 <!-- CONTACT & INQUIRY -->
-<section style="background:#f8fafc">
-  <h2 data-aos="fade-up">Contact & Inquiry</h2>
-  <p class="lead" data-aos="fade-up" data-aos-delay="100">Have a project in mind or need expert guidance? Let’s discuss how we can help your brand grow on Shopify.</p>
+<section class="contact-section">
 
-  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px" data-aos="fade-up">
-    <div class="card">
+  <div class="contact-head" data-aos="fade-up">
+    <h2>
+      <span>Contact</span> & Inquiry
+    </h2>
+    <p>
+      Have a project in mind or need expert guidance?
+      Let’s discuss how we can help your brand grow on Shopify.
+    </p>
+  </div>
+
+  <div class="contact-grid">
+
+    <!-- EMAIL -->
+    <div class="contact-card" data-aos="fade-up">
+      <div class="contact-icon email">
+        <i class="fa-solid fa-envelope"></i>
+      </div>
       <h3>Email Us</h3>
-      <p>Reach out for detailed inquiries or proposals.</p>
-      <p><strong>Email:</strong> hello@yourbrand.com</p>
+      <p>
+        Reach out for detailed inquiries, proposals or project discussions.
+      </p>
+      <a href="mailto:hello@yourbrand.com" class="contact-link">
+        hello@yourbrand.com
+      </a>
     </div>
-    <div class="card">
-      <h3>Call / WhatsApp</h3>
-      <p>Quick questions or consultations? We’re just a message away.</p>
-      <p><strong>Phone:</strong> +91 9XXXX XXXXX</p>
+
+    <!-- WHATSAPP -->
+    <div class="contact-card highlight" data-aos="fade-up" data-aos-delay="100">
+      <div class="contact-icon whatsapp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <h3>WhatsApp / Call</h3>
+      <p>
+        Quick questions or free consultation?
+        Chat directly with our Shopify experts.
+      </p>
+      <a href="https://wa.me/919000000000" target="_blank" class="contact-btn">
+        Chat on WhatsApp
+      </a>
     </div>
   </div>
 </section>
