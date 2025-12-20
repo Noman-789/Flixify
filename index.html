@@ -108,6 +108,162 @@
       display:flex;align-items:center;justify-content:center;
       box-shadow:0 10px 25px rgba(0,0,0,.35);
     }
+    /* =================================================
+   RESPONSIVE FIX : MOBILE + TABLET
+   ================================================= */
+
+/* ---------- MOBILE (phones) ---------- */
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero{
+    min-height:auto;
+    padding:60px 16px;
+  }
+
+  .hero h1{
+    font-size:32px;
+    line-height:1.25;
+  }
+
+  .hero p{
+    font-size:16px;
+    margin:14px auto;
+  }
+
+  /* BUTTONS */
+  .btn{
+    padding:14px 26px;
+    font-size:15px;
+    margin-top:18px;
+  }
+
+  /* SECTIONS */
+  section{
+    padding:60px 16px;
+  }
+
+  section h2{
+    font-size:28px;
+  }
+
+  section p.lead{
+    font-size:16px;
+    margin-bottom:36px;
+  }
+
+  /* GRID → SINGLE COLUMN */
+  .grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  /* CARDS */
+  .card{
+    padding:26px;
+  }
+
+  .card h3{
+    font-size:19px;
+  }
+
+  .card p{
+    font-size:15px;
+  }
+
+  /* NUMBER BADGE FIX */
+  .card span{
+    left:16px;
+    top:-18px;
+  }
+
+  /* TRUST */
+  .trust{
+    padding:50px 16px;
+  }
+
+  .trust-box{
+    font-size:17px;
+  }
+
+  /* WHY */
+  .why{
+    padding:70px 16px;
+  }
+
+  /* FOOTER */
+  footer{
+    padding:60px 16px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  footer h4{
+    font-size:18px;
+  }
+
+  footer p{
+    font-size:14px;
+  }
+
+  /* WHATSAPP */
+  .whatsapp{
+    width:52px;
+    height:52px;
+    right:16px;
+    bottom:16px;
+  }
+}
+
+/* ---------- TABLET (iPad etc.) ---------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* HERO */
+  .hero{
+    min-height:60vh;
+    padding:80px 24px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  /* SECTIONS */
+  section{
+    padding:80px 24px;
+  }
+
+  section h2{
+    font-size:34px;
+  }
+
+  /* GRID → 2 COLUMN */
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+
+  /* ABOUT SPLIT */
+  .about-split{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  /* CARDS */
+  .card{
+    padding:32px;
+  }
+
+  /* FOOTER */
+  .footer-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+  }
+}
+
   </style>
 </head>
 <body>
