@@ -108,58 +108,101 @@
       display:flex;align-items:center;justify-content:center;
       box-shadow:0 10px 25px rgba(0,0,0,.35);
     }
-    /* =========================
-   WHY ZIG-ZAG LAYOUT
+  /* =========================
+   WHY ZIG-ZAG – COLORFUL + OVERLAP
    ========================= */
+
 .why-zigzag{
   max-width:1000px;
-  margin:70px auto 0;
+  margin:80px auto 0;
   display:flex;
   flex-direction:column;
-  gap:50px;
 }
 
+/* Each item */
 .why-item{
   display:flex;
   justify-content:flex-start;
+  margin-top:-50px; /* 👈 overlap */
+  position:relative;
+  z-index:1;
+}
+
+.why-item:first-child{
+  margin-top:0;
 }
 
 .why-item.reverse{
   justify-content:flex-end;
 }
 
+/* Card */
 .why-content{
-  background:#ffffff;
-  border:1px solid #e2e8f0;
-  border-radius:22px;
-  padding:36px;
-  max-width:520px;
-  box-shadow:0 16px 40px rgba(0,0,0,.06);
+  max-width:540px;
+  padding:38px;
+  border-radius:26px;
+  color:#0f172a;
+  box-shadow:0 25px 60px rgba(0,0,0,.12);
+  position:relative;
 }
 
+/* COLOR VARIATIONS */
+.why-item:nth-child(1) .why-content{
+  background:linear-gradient(135deg,#e0f2fe,#dbeafe);
+}
+
+.why-item:nth-child(2) .why-content{
+  background:linear-gradient(135deg,#ecfeff,#cffafe);
+}
+
+.why-item:nth-child(3) .why-content{
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+}
+
+.why-item:nth-child(4) .why-content{
+  background:linear-gradient(135deg,#fefce8,#fef3c7);
+}
+
+/* Text */
 .why-content h3{
-  font-size:22px;
+  font-size:23px;
   margin-bottom:12px;
-  color:#0f172a;
+  font-weight:600;
 }
 
 .why-content p{
   font-size:16px;
-  color:#475569;
   line-height:1.7;
+  color:#334155;
 }
 
-/* Mobile fix */
+/* Decorative accent */
+.why-content::before{
+  content:"";
+  position:absolute;
+  top:-18px;
+  left:30px;
+  width:60px;
+  height:6px;
+  border-radius:6px;
+  background:linear-gradient(90deg,#6366f1,#22c55e);
+}
+
+/* ---------- MOBILE FIX ---------- */
 @media (max-width:768px){
+
   .why-item,
   .why-item.reverse{
     justify-content:center;
+    margin-top:20px; /* overlap off */
   }
 
   .why-content{
     max-width:100%;
+    padding:28px;
   }
 }
+
 
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
