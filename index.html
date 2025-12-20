@@ -63,12 +63,40 @@
     section p.lead{text-align:center;max-width:880px;margin:0 auto 60px;color:#475569}
 
     /* TRUST */
-    .trust{
-      background:linear-gradient(180deg,#e0f2fe,);
-      padding:70px 20px;
-    }
-    .trust-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;text-align:center}
-    .trust-box{font-size:20px;font-weight:600;color:#6366f1}
+    /* TRUST SECTION */
+.trust{
+  background:linear-gradient(180deg,#eef2ff);
+  padding:80px 20px;
+}
+
+/* GRID */
+.trust-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+
+/* BOX */
+.trust-box{
+  background:#ffffff;
+  padding:32px 24px;
+  border-radius:22px; /* 🔥 rounded square */
+  font-size:18px;
+  font-weight:600;
+  color:#1e40af;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  transition:.35s;
+}
+
+/* HOVER EFFECT */
+.trust-box:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
 
     /* SERVICES (COLOR SEPARATION) */
     .services{background:#f8fafc}
