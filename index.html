@@ -608,6 +608,138 @@
   }
 }
 
+/* ===============================
+   INDUSTRIES – PREMIUM DESIGN
+   =============================== */
+
+.industries{
+  background:#ffffff;
+  padding:120px 20px;
+}
+
+/* HEADER */
+.industries-head{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 80px;
+}
+
+.industries-head h2{
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.industries-head h2 span{
+  background:linear-gradient(90deg,#6366f1,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.industries-head p{
+  font-size:18px;
+  color:#475569;
+  line-height:1.75;
+}
+
+/* GRID */
+.industries-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+
+/* CARD */
+.industry-card{
+  background:#f8fafc;
+  padding:42px 32px;
+  border-radius:30px;
+  border:1px solid #e2e8f0;
+  text-align:center;
+  transition:.35s;
+}
+
+.industry-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 30px 70px rgba(0,0,0,.12);
+}
+
+/* ICON */
+.industry-icon{
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color:#fff;
+  margin:0 auto 24px;
+}
+
+/* ICON COLORS */
+.industry-icon.fashion{
+  background:linear-gradient(135deg,#ec4899,#f472b6);
+}
+.industry-icon.health{
+  background:linear-gradient(135deg,#22c55e,#4ade80);
+}
+.industry-icon.beauty{
+  background:linear-gradient(135deg,#a855f7,#d8b4fe);
+}
+.industry-icon.tech{
+  background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+}
+.industry-icon.food{
+  background:linear-gradient(135deg,#f59e0b,#facc15);
+}
+.industry-icon.b2b{
+  background:linear-gradient(135deg,#6366f1,#818cf8);
+}
+
+/* TEXT */
+.industry-card h3{
+  font-size:22px;
+  margin-bottom:12px;
+  color:#0f172a;
+}
+
+.industry-card p{
+  font-size:15.5px;
+  line-height:1.6;
+  color:#334155;
+}
+
+/* ---------- TABLET ---------- */
+@media (max-width:1024px){
+  .industries-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:640px){
+  .industries-head h2{
+    font-size:30px;
+  }
+
+  .industries-grid{
+    grid-template-columns:1fr;
+  }
+
+  .industry-card{
+    padding:36px 26px;
+  }
+
+  .industry-icon{
+    width:60px;
+    height:60px;
+    font-size:24px;
+  }
+}
+
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
    ================================================= */
@@ -1026,8 +1158,6 @@
   </div>
 </section>
 
-
-<!-- WHY -->
 <!-- WHY -->
 <section class="why" style="background:linear-gradient(180deg,#f1f5f9 0%,#f8fafc 100%);color:#0f172a">
   <h2 data-aos="fade-up" style="color:#0f172a">Why Brands Choose Us</h2>
@@ -1085,62 +1215,70 @@
 </section>
 
 <!-- INDUSTRIES -->
-<section>
-  <h2 data-aos="fade-up">Industries We Work With</h2>
-  <p class="lead" data-aos="fade-up" data-aos-delay="100">
-    Our Shopify expertise spans across multiple industries, allowing us to adapt strategies based on audience behavior and market dynamics.
-  </p>
+<section class="industries">
 
-  <div class="grid">
-    <div class="card" data-aos="fade-up" style="text-align:center">
-      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
-        <img src="https://cdn-icons-png.flaticon.com/512/892/892458.png" style="width:36px" />
+  <div class="industries-head" data-aos="fade-up">
+    <h2>
+      <span>Industries</span> We Work With
+    </h2>
+    <p>
+      We partner with brands across diverse industries, adapting our Shopify
+      strategies based on audience behavior, market trends and business goals.
+    </p>
+  </div>
+
+  <div class="industries-grid">
+
+    <div class="industry-card" data-aos="fade-up">
+      <div class="industry-icon fashion">
+        <i class="fa-solid fa-shirt"></i>
       </div>
       <h3>Fashion & Apparel</h3>
       <p>D2C fashion brands, clothing labels and lifestyle products.</p>
     </div>
 
-    <div class="card" data-aos="fade-up" data-aos-delay="100" style="text-align:center">
-      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
-        <img src="https://cdn-icons-png.flaticon.com/512/2966/2966486.png" style="width:36px" />
+    <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="industry-icon health">
+        <i class="fa-solid fa-heart-pulse"></i>
       </div>
       <h3>Health & Wellness</h3>
-      <p>Supplements, fitness brands and wellness‑focused ecommerce.</p>
+      <p>Supplements, fitness brands and wellness-focused ecommerce.</p>
     </div>
 
-    <div class="card" data-aos="fade-up" data-aos-delay="200" style="text-align:center">
-      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
-        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" style="width:36px" />
+    <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="industry-icon beauty">
+        <i class="fa-solid fa-spa"></i>
       </div>
       <h3>Beauty & Cosmetics</h3>
-      <p>Skincare, beauty products and personal care brands.</p>
+      <p>Skincare, cosmetics and personal care brands.</p>
     </div>
 
-    <div class="card" data-aos="fade-up" style="text-align:center">
-      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
-        <img src="https://cdn-icons-png.flaticon.com/512/2777/2777142.png" style="width:36px" />
+    <div class="industry-card" data-aos="fade-up">
+      <div class="industry-icon tech">
+        <i class="fa-solid fa-microchip"></i>
       </div>
       <h3>Electronics & Gadgets</h3>
-      <p>Consumer electronics, accessories and tech products.</p>
+      <p>Consumer electronics, accessories and smart devices.</p>
     </div>
 
-    <div class="card" data-aos="fade-up" data-aos-delay="100" style="text-align:center">
-      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
-        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" style="width:36px" />
+    <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="industry-icon food">
+        <i class="fa-solid fa-burger"></i>
       </div>
       <h3>Food & Beverages</h3>
-      <p>Packaged food brands, beverages and subscription‑based products.</p>
+      <p>Packaged food brands, beverages and subscription models.</p>
     </div>
 
-    <div class="card" data-aos="fade-up" data-aos-delay="200" style="text-align:center">
-      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" style="width:36px" />
+    <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="industry-icon b2b">
+        <i class="fa-solid fa-building"></i>
       </div>
       <h3>B2B & Wholesale</h3>
-      <p>Manufacturers, distributors and B2B ecommerce solutions.</p>
+      <p>Manufacturers, distributors and wholesale ecommerce solutions.</p>
     </div>
   </div>
 </section>
+
 
 <!-- CONTACT & INQUIRY -->
 <section style="background:#f8fafc">
