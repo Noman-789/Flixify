@@ -7,12 +7,108 @@
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- MAIN CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:#f1f5f9;color:#0f172a;overflow-x:hidden}
+    a{text-decoration:none}
+
+    /* HERO (FIXED HEIGHT & CLEAN BG) */
+    .hero{
+      min-height:70vh; /* reduced height */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px 20px;
+      background:linear-gradient(180deg,#e0f2fe,#f8fafc);
+    }
+    .hero h1{
+      font-size:52px;
+      font-weight:700;
+      background:linear-gradient(90deg,#1e40af,#2563eb,#22c55e);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      letter-spacing:-0.5px;
+    }
+    .hero p{
+      max-width:780px;
+      margin:22px auto;
+      font-size:19px;
+      color:#334155
+    }
+    .btn{
+      display:inline-block;
+      margin-top:26px;
+      padding:15px 36px;
+      border-radius:40px;
+      background:linear-gradient(90deg,#6366f1,#0ea5e9);
+      color:#fff;
+      font-weight:500;
+      transition:.3s
+    }
+    .btn:hover{transform:translateY(-3px)}
+
+    /* SECTION BASE */
+    section{padding:90px 20px;max-width:1200px;margin:auto}
+    section h2{text-align:center;font-size:40px;margin-bottom:18px}
+    section p.lead{text-align:center;max-width:880px;margin:0 auto 60px;color:#475569}
+
+    /* TRUST */
+    .trust{background:#ffffff;padding:70px 20px}
+    .trust-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;text-align:center}
+    .trust-box{font-size:20px;font-weight:600;color:#6366f1}
+
+    /* SERVICES (COLOR SEPARATION) */
+    .services{background:#f8fafc}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+    .card{
+      background:#ffffff;
+      padding:38px;
+      border-radius:24px;
+      border:1px solid #e2e8f0;
+      transition:.35s
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+    .card h3{margin-bottom:12px;font-size:21px;color:#0f172a}
+    .card p{color:#475569}
+
+    /* PROCESS */
+    .process{background:linear-gradient(180deg,#f8fafc,#eef2ff)}
+    .step{display:grid;grid-template-columns:80px 1fr;gap:24px;margin-bottom:45px}
+    .step span{
+      width:60px;height:60px;border-radius:50%;
+      background:linear-gradient(135deg,#6366f1,#22c55e);
+      color:#fff;display:flex;align-items:center;justify-content:center;
+      font-weight:600;font-size:18px
+    }
+
+    /* WHY */
+    .why{
+      background:#020617;
+      color:#fff;
+      padding:110px 20px
+    }
+    .why h2{color:#fff}
+    .why ul{max-width:900px;margin:40px auto 0}
+    .why li{margin-bottom:14px;font-size:18px;color:#cbd5f5}
+
+    /* FOOTER */
+    footer{background:#020617;color:#94a3b8;padding:70px 20px}
+    .footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:35px}
+    footer h4{color:#fff;margin-bottom:16px}
+    footer p{font-size:15px;line-height:1.8}
+
+    /* WHATSAPP */
+    .whatsapp{
+      position:fixed;right:24px;bottom:24px;width:58px;height:58px;
+      border-radius:50%;background:#22c55e;color:#fff;font-size:28px;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 25px rgba(0,0,0,.35);
+    }
+  </style>
 </head>
 <body>
 
@@ -20,26 +116,10 @@
 <div class="hero">
   <div data-aos="fade-up">
     <h1>Advanced Shopify Experiences</h1>
-
-    <p style="font-size:20px;color:#1e293b">
-      We design modern, conversion-focused Shopify stores with clean UI,
-      strong branding and scalable performance.
-    </p>
-
-    <p style="margin-top:18px;font-size:18px;font-weight:600;
-      background:linear-gradient(90deg,#6366f1,#22c55e);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent">
-      Get a free 15-minute consultation
-    </p>
-
+    <p style="font-size:20px;color:#1e293b">We design modern, conversion‑focused Shopify stores with clean UI, strong branding and scalable performance.</p>
+    <p style="margin-top:18px;font-size:18px;font-weight:600;background:linear-gradient(90deg,#6366f1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Get a free 15‑minute consultation</p>
     <div style="margin-top:26px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-      <a href="https://wa.me/919000000000"
-         target="_blank"
-         class="btn"
-         style="background:linear-gradient(90deg,#22c55e,#16a34a)">
-        Get Free Consultation
-      </a>
+      <a href="https://wa.me/919000000000?text=Hi%20I%20would%20like%20to%20book%20a%20free%2015-minute%20consultation" target="_blank" class="btn" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Get Free Consultation</a>
       <a href="#contact" class="btn">Start Your Project</a>
     </div>
   </div>
@@ -55,66 +135,282 @@
   </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT / DETAILS BOXES -->
 <section>
-  <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start">
+  <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start" class="about-split">
 
+    <!-- LEFT CONTENT -->
     <div data-aos="fade-right">
       <h2 style="text-align:center">What We Actually Do</h2>
       <p class="lead" style="text-align:left;margin-left:0">
-        We are a Shopify-focused digital studio helping brands plan, design,
-        build and scale high-converting ecommerce experiences.
+        We are a Shopify‑focused digital studio helping brands plan, design, build and scale high‑converting ecommerce experiences. Everything we do is structured, measurable and growth‑oriented.
       </p>
       <p style="color:#475569;font-size:17px;line-height:1.8">
-        Our role goes beyond just development. We work as a strategic partner.
+        Our role goes beyond just development. We work as a strategic partner — aligning design, technology and performance to support long‑term ecommerce success.
       </p>
     </div>
 
+    <!-- RIGHT BOXES -->
     <div class="grid">
       <div class="card" data-aos="fade-up" style="position:relative">
-        <span class="number-badge">01</span>
-        <h3>Business-First Approach</h3>
-        <p>Every decision supports growth.</p>
+        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">01</span>
+        <h3>Business‑First Approach</h3>
+        <p>Before design or development, we understand your business model, audience and revenue goals to ensure every decision supports growth.</p>
       </div>
-
       <div class="card" data-aos="fade-up" data-aos-delay="100" style="position:relative">
-        <span class="number-badge">02</span>
-        <h3>Conversion-Focused UI</h3>
-        <p>UX built for results.</p>
+        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">02</span>
+        <h3>Conversion‑Focused UI</h3>
+        <p>Layouts are designed to guide users smoothly from landing to checkout using proven UX and CRO principles.</p>
       </div>
-
       <div class="card" data-aos="fade-up" data-aos-delay="200" style="position:relative">
-        <span class="number-badge">03</span>
+        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">03</span>
         <h3>Scalable Architecture</h3>
-        <p>Future-ready Shopify builds.</p>
+        <p>Our Shopify builds are clean, maintainable and ready for future features, traffic spikes and integrations.</p>
       </div>
-
       <div class="card" data-aos="fade-up" data-aos-delay="300" style="position:relative">
-        <span class="number-badge">04</span>
-        <h3>Data & Growth</h3>
-        <p>Insights that improve revenue.</p>
+        <span style="position:absolute;top:24px;left:-18px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#22c55e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.15)">04</span>
+        <h3>Data & Growth Insights</h3>
+        <p>We use analytics, user behavior and performance data to continuously improve conversion and revenue.</p>
       </div>
     </div>
 
   </div>
 </section>
 
+<!-- SERVICES -->
+<section class="services">
+  <h2 data-aos="fade-up">Our Core Services</h2>
+  <p class="lead" data-aos="fade-up" data-aos-delay="100">End‑to‑end Shopify services delivered in a clear, structured and transparent way.</p>
+
+  <div class="grid">
+    <div class="card" data-aos="fade-up">
+      <h3>Shopify Store Design</h3>
+      <p>Modern, brand‑aligned UI designs focused on trust, clarity and conversions across all devices.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <h3>Custom Shopify Development</h3>
+      <p>Theme customization, custom sections and performance‑optimized Shopify development.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <h3>Speed & Performance</h3>
+      <p>Page speed optimization, code cleanup and performance best practices for better rankings.</p>
+    </div>
+    <div class="card" data-aos="fade-up">
+      <h3>Mobile Optimization</h3>
+      <p>Mobile‑first layouts ensuring smooth browsing and checkout experiences.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <h3>Platform Migration</h3>
+      <p>Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <h3>Ongoing Support</h3>
+      <p>Post‑launch maintenance, improvements, new features and store monitoring.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <h2 data-aos="fade-up">How We Work</h2>
+  <p class="lead" data-aos="fade-up" data-aos-delay="100">A clear step‑by‑step process that keeps projects transparent and results focused.</p>
+
+  <div class="grid">
+    <div class="card" data-aos="fade-up">
+      <h3>01. Discovery & Strategy</h3>
+      <p>Understanding your brand, competitors, customers and defining clear ecommerce goals.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <h3>02. Design System</h3>
+      <p>Wireframes and visual systems designed for clarity, consistency and conversion.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <h3>03. Development</h3>
+      <p>Clean Shopify development with performance, scalability and best practices.</p>
+    </div>
+    <div class="card" data-aos="fade-up">
+      <h3>04. Testing & Optimization</h3>
+      <p>Speed, usability and cross‑device testing before launch.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <h3>05. Launch & Support</h3>
+      <p>Go‑live support with continuous improvements after launch.</p>
+    </div>
+    <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <h3>06. Continuous Growth</h3>
+      <p>Post‑launch analysis, CRO experiments and data‑driven scaling strategies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<!-- WHY -->
+<section class="why" style="background:linear-gradient(180deg,#f1f5f9 0%,#f8fafc 100%);color:#0f172a">
+  <h2 data-aos="fade-up" style="color:#0f172a">Why Brands Choose Us</h2>
+  <p class="lead" style="color:#475569" data-aos="fade-up" data-aos-delay="100">
+    Brands choose us because we combine strategy, design and engineering to deliver measurable ecommerce growth — not just good‑looking websites.
+  </p>
+
+  <!-- STACKED BLOCKS -->
+  <div style="max-width:900px;margin:70px auto 0;display:flex;flex-direction:column;gap:24px">
+
+    <div class="card" data-aos="fade-up" style="background:#ffffff;border:1px solid #e2e8f0">
+      <h3>Strategy‑Led Decisions</h3>
+      <p>Every build starts with business goals, user intent and data‑backed planning.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="100" style="background:#ffffff;border:1px solid #e2e8f0">
+      <h3>Senior Shopify Expertise</h3>
+      <p>You work directly with experienced Shopify designers and developers — no hand‑offs.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="200" style="background:#ffffff;border:1px solid #e2e8f0">
+      <h3>Performance & Scalability</h3>
+      <p>Fast load times, clean code and architectures that scale with traffic and sales.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="300" style="background:#ffffff;border:1px solid #e2e8f0">
+      <h3>Clear Communication</h3>
+      <p>Transparent timelines, predictable delivery and honest progress updates.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section>
+  <h2 data-aos="fade-up">Industries We Work With</h2>
+  <p class="lead" data-aos="fade-up" data-aos-delay="100">
+    Our Shopify expertise spans across multiple industries, allowing us to adapt strategies based on audience behavior and market dynamics.
+  </p>
+
+  <div class="grid">
+    <div class="card" data-aos="fade-up" style="text-align:center">
+      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
+        <img src="https://cdn-icons-png.flaticon.com/512/892/892458.png" style="width:36px" />
+      </div>
+      <h3>Fashion & Apparel</h3>
+      <p>D2C fashion brands, clothing labels and lifestyle products.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="100" style="text-align:center">
+      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
+        <img src="https://cdn-icons-png.flaticon.com/512/2966/2966486.png" style="width:36px" />
+      </div>
+      <h3>Health & Wellness</h3>
+      <p>Supplements, fitness brands and wellness‑focused ecommerce.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="200" style="text-align:center">
+      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" style="width:36px" />
+      </div>
+      <h3>Beauty & Cosmetics</h3>
+      <p>Skincare, beauty products and personal care brands.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" style="text-align:center">
+      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
+        <img src="https://cdn-icons-png.flaticon.com/512/2777/2777142.png" style="width:36px" />
+      </div>
+      <h3>Electronics & Gadgets</h3>
+      <p>Consumer electronics, accessories and tech products.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="100" style="text-align:center">
+      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" style="width:36px" />
+      </div>
+      <h3>Food & Beverages</h3>
+      <p>Packaged food brands, beverages and subscription‑based products.</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="200" style="text-align:center">
+      <div style="width:64px;height:64px;margin:0 auto 20px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" style="width:36px" />
+      </div>
+      <h3>B2B & Wholesale</h3>
+      <p>Manufacturers, distributors and B2B ecommerce solutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & INQUIRY -->
+<section style="background:#f8fafc">
+  <h2 data-aos="fade-up">Contact & Inquiry</h2>
+  <p class="lead" data-aos="fade-up" data-aos-delay="100">Have a project in mind or need expert guidance? Let’s discuss how we can help your brand grow on Shopify.</p>
+
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px" data-aos="fade-up">
+    <div class="card">
+      <h3>Email Us</h3>
+      <p>Reach out for detailed inquiries or proposals.</p>
+      <p><strong>Email:</strong> hello@yourbrand.com</p>
+    </div>
+    <div class="card">
+      <h3>Call / WhatsApp</h3>
+      <p>Quick questions or consultations? We’re just a message away.</p>
+      <p><strong>Phone:</strong> +91 9XXXX XXXXX</p>
+      <a href="https://wa.me/919000000000" target="_blank" class="btn" style="margin-top:10px;background:linear-gradient(90deg,#22c55e,#16a34a)">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h4>About Us</h4>
+      <p>We are a Shopify‑focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
+      <div style="display:flex;gap:14px;margin-top:14px">
+        <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube" style="width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;transition:.3s">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M23.5 6.2s-.2-1.7-.8-2.5c-.8-.8-1.7-.8-2.1-.9C17.7 2.5 12 2.5 12 2.5h0s-5.7 0-8.6.3c-.4.1-1.3.1-2.1.9C.7 4.5.5 6.2.5 6.2S.2 8.1.2 10v1.8c0 1.9.3 3.8.3 3.8s.2 1.7.8 2.5c.8.8 1.9.8 2.4.9 1.7.2 7.3.3 7.3.3s5.7 0 8.6-.3c.4-.1 1.3-.1 2.1-.9.6-.8.8-2.5.8-2.5s.3-1.9.3-3.8V10c0-1.9-.3-3.8-.3-3.8zM9.8 14.5V7.9l6.2 3.3-6.2 3.3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);display:flex;align-items:center;justify-content:center;transition:.3s">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.5.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.5 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.3.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.5-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.5-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.3-.5 1.3-.1 1.7-.1 4.9-.1zm0 3.4a6.4 6.4 0 100 12.8 6.4 6.4 0 000-12.8zm0 10.6a4.2 4.2 0 110-8.4 4.2 4.2 0 010 8.4zm6.6-10.9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Our Services</h4>
+      <p>
+        Shopify Design & Development<br>
+        Conversion Optimization<br>
+        Performance & SEO<br>
+        Platform Migration<br>
+        Ongoing Support
+      </p>
+    </div>
+    <div>
+      <h4>Company Working Time</h4>
+      <p>
+        <strong>Monday – Friday:</strong><br>
+        10:00 AM – 7:00 PM (IST)
+      </p>
+      <p>
+        <strong>Saturday:</strong><br>
+        11:00 AM – 4:00 PM (IST)
+      </p>
+      <p>
+        <strong>Sunday:</strong><br>
+        Closed
+      </p>
+      <a href="https://wa.me/919000000000" target="_blank" class="btn" style="margin-top:12px;background:linear-gradient(90deg,#22c55e,#16a34a)">Chat on WhatsApp</a>
+    </div>
+  </div>
+
   <p style="text-align:center;margin-top:40px;font-size:14px;color:#64748b">
     © 2025 Shopify Agency. All rights reserved.
   </p>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<a class="whatsapp" href="https://wa.me/919000000000" target="_blank">
-  💬
+<a class="whatsapp" href="https://wa.me/919000000000" target="_blank" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white">
+    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.82.736 5.464 2.021 7.756L0 32l8.438-1.98A15.93 15.93 0 0016 32c8.837 0 16-7.164 16-16C32 7.163 24.837 0 16 0zm0 29.09c-2.515 0-4.859-.657-6.894-1.799l-.493-.29-5.01 1.176 1.17-4.887-.32-.505A13.03 13.03 0 012.91 16C2.91 8.74 8.74 2.91 16 2.91S29.09 8.74 29.09 16 23.26 29.09 16 29.09zm7.11-9.694c-.389-.194-2.303-1.136-2.66-1.265-.356-.13-.616-.194-.876.194-.259.389-1.005 1.265-1.232 1.525-.227.259-.454.292-.843.097-.389-.194-1.643-.605-3.13-1.93-1.158-1.034-1.94-2.31-2.167-2.699-.227-.389-.024-.599.17-.793.174-.173.389-.454.583-.68.194-.227.259-.389.389-.648.13-.259.065-.486-.032-.68-.097-.194-.876-2.115-1.2-2.892-.316-.758-.638-.655-.876-.667l-.746-.013c-.259 0-.68.097-1.037.486-.357.389-1.362 1.33-1.362 3.243s1.394 3.762 1.588 4.022c.194.259 2.744 4.193 6.651 5.88.93.4 1.654.64 2.218.818.932.297 1.78.255 2.45.155.748-.111 2.303-.94 2.627-1.85.324-.91.324-1.689.227-1.85-.097-.162-.356-.259-.746-.454z"/>
+  </svg>
 </a>
 
-<!-- AOS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({duration:900,once:true});</script>
 
-<!-- MAIN JS -->
-<script src="js/main.js"></script>
 </body>
 </html>
