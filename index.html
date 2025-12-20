@@ -344,7 +344,106 @@
     padding:28px;
   }
 }
+/* ===============================
+   OUR CORE SERVICES – PREMIUM
+   =============================== */
 
+.services-new{
+  background:linear-gradient(180deg,#f8fafc,#eef2ff);
+  padding:120px 20px;
+}
+
+/* HEADER */
+.services-head{
+  text-align:center;
+  max-width:720px;
+  margin:0 auto 70px;
+}
+
+.services-head h2{
+  font-size:40px;
+  margin-bottom:16px;
+}
+
+.services-head p{
+  font-size:18px;
+  color:#475569;
+  line-height:1.7;
+}
+
+/* GRID */
+.services-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+/* CARD */
+.service-card{
+  background:#ffffff;
+  padding:42px 34px;
+  border-radius:28px;
+  border:1px solid #e2e8f0;
+  transition:.35s;
+  position:relative;
+}
+
+.service-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 30px 70px rgba(0,0,0,.12);
+}
+
+/* ICON */
+.service-icon{
+  display:inline-flex;
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  margin-bottom:20px;
+  background:linear-gradient(135deg,#6366f1,#22c55e);
+  color:#fff;
+}
+
+/* TEXT */
+.service-card h3{
+  font-size:21px;
+  margin-bottom:12px;
+  color:#0f172a;
+}
+
+.service-card p{
+  font-size:15.5px;
+  line-height:1.65;
+  color:#334155;
+}
+
+/* --------- TABLET --------- */
+@media (max-width:1024px){
+  .services-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* --------- MOBILE --------- */
+@media (max-width:640px){
+
+  .services-head h2{
+    font-size:30px;
+  }
+
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+  .service-card{
+    padding:34px 26px;
+  }
+}
 
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
@@ -598,34 +697,69 @@
 
 
 <!-- SERVICES -->
-<section class="services">
-  <h2 data-aos="fade-up">Our Core Services</h2>
-  <p class="lead" data-aos="fade-up" data-aos-delay="100">End‑to‑end Shopify services delivered in a clear, structured and transparent way.</p>
+<section class="services-new">
 
-  <div class="grid">
-    <div class="card" data-aos="fade-up">
+  <div class="services-head" data-aos="fade-up">
+    <h2>Our Core Services</h2>
+    <p>
+      End-to-end Shopify services delivered with clarity, performance and
+      long-term scalability in mind.
+    </p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card" data-aos="fade-up">
+      <span class="service-icon">🛍️</span>
       <h3>Shopify Store Design</h3>
-      <p>Modern, brand‑aligned UI designs focused on trust, clarity and conversions across all devices.</p>
+      <p>
+        Modern, brand-aligned UI designs focused on trust, clarity and
+        conversions across all devices.
+      </p>
     </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+      <span class="service-icon">⚙️</span>
       <h3>Custom Shopify Development</h3>
-      <p>Theme customization, custom sections and performance‑optimized Shopify development.</p>
+      <p>
+        Theme customization, custom sections and performance-optimized Shopify
+        development.
+      </p>
     </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="200">
+
+    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+      <span class="service-icon">🚀</span>
       <h3>Speed & Performance</h3>
-      <p>Page speed optimization, code cleanup and performance best practices for better rankings.</p>
+      <p>
+        Page speed optimization, clean code and performance best practices for
+        better rankings.
+      </p>
     </div>
-    <div class="card" data-aos="fade-up">
+
+    <div class="service-card" data-aos="fade-up">
+      <span class="service-icon">📱</span>
       <h3>Mobile Optimization</h3>
-      <p>Mobile‑first layouts ensuring smooth browsing and checkout experiences.</p>
+      <p>
+        Mobile-first layouts ensuring smooth browsing and checkout experiences.
+      </p>
     </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+      <span class="service-icon">🔄</span>
       <h3>Platform Migration</h3>
-      <p>Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.</p>
+      <p>
+        Safe and structured migration from WooCommerce, Magento or custom
+        platforms to Shopify.
+      </p>
     </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="200">
+
+    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+      <span class="service-icon">🛠️</span>
       <h3>Ongoing Support</h3>
-      <p>Post‑launch maintenance, improvements, new features and store monitoring.</p>
+      <p>
+        Post-launch maintenance, improvements, new features and continuous
+        store monitoring.
+      </p>
     </div>
   </div>
 </section>
