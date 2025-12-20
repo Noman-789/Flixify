@@ -108,6 +108,59 @@
       display:flex;align-items:center;justify-content:center;
       box-shadow:0 10px 25px rgba(0,0,0,.35);
     }
+    /* =========================
+   WHY ZIG-ZAG LAYOUT
+   ========================= */
+.why-zigzag{
+  max-width:1000px;
+  margin:70px auto 0;
+  display:flex;
+  flex-direction:column;
+  gap:50px;
+}
+
+.why-item{
+  display:flex;
+  justify-content:flex-start;
+}
+
+.why-item.reverse{
+  justify-content:flex-end;
+}
+
+.why-content{
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:22px;
+  padding:36px;
+  max-width:520px;
+  box-shadow:0 16px 40px rgba(0,0,0,.06);
+}
+
+.why-content h3{
+  font-size:22px;
+  margin-bottom:12px;
+  color:#0f172a;
+}
+
+.why-content p{
+  font-size:16px;
+  color:#475569;
+  line-height:1.7;
+}
+
+/* Mobile fix */
+@media (max-width:768px){
+  .why-item,
+  .why-item.reverse{
+    justify-content:center;
+  }
+
+  .why-content{
+    max-width:100%;
+  }
+}
+
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
    ================================================= */
