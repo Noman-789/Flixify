@@ -484,6 +484,129 @@
   }
 }
 
+  /* ===============================
+   HOW WE WORK – PREMIUM STYLE
+   =============================== */
+
+.how-we-work{
+  background:linear-gradient(180deg,#f8fafc,#eef2ff);
+  padding:120px 20px;
+}
+
+/* HEADER */
+.work-head{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 90px;
+}
+
+.work-head h2{
+  font-size:42px;
+  margin-bottom:18px;
+  font-weight:700;
+}
+
+.work-head h2 span{
+  background:linear-gradient(90deg,#6366f1,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.work-head p{
+  font-size:18px;
+  color:#475569;
+  line-height:1.75;
+}
+
+/* STEPS WRAPPER */
+.work-steps{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:60px;
+}
+
+/* SINGLE STEP */
+.work-step{
+  display:flex;
+  align-items:center;
+  gap:40px;
+}
+
+.work-step.reverse{
+  flex-direction:row-reverse;
+}
+
+/* ICON */
+.work-icon{
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  colgap:40px;
+}
+
+.work-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color:#fff;
+  flex-shrink:0;
+}
+
+/* ICON COLORS */
+.work-icon.strategy{
+  background:linear-gradient(135deg,#6366f1,#818cf8);
+}
+.work-icon.design{
+  background:linear-gradient(135deg,#0ea5e9,#22d3ee);
+}
+.work-icon.dev{
+  background:linear-gradient(135deg,#22c55e,#4ade80);
+}
+.work-icon.test{
+  background:linear-gradient(135deg,#f59e0b,#facc15);
+}
+.work-icon.launch{
+  background:linear-gradient(135deg,#ec4899,#f472b6);
+}
+
+/* CONTENT */
+.work-content{
+  background:#ffffff;
+  padding:32px 36px;
+  border-radius:26px;
+  border:1px solid #e2e8f0;
+}
+
+.work-content h3{
+  font-size:22px;
+  margin-bottom:10px;
+  color:#0f172a;
+}
+
+.work-content p{
+  font-size:16px;
+  line-height:1.65;
+  color:#334155;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:768px){
+
+  .work-step,
+  .work-step.reverse{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .work-content{
+    padding:28px;
+  }
+}
 
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
@@ -822,37 +945,87 @@
 
 
 <!-- PROCESS -->
-<section class="process">
-  <h2 data-aos="fade-up">How We Work</h2>
-  <p class="lead" data-aos="fade-up" data-aos-delay="100">A clear step‑by‑step process that keeps projects transparent and results focused.</p>
+<section class="how-we-work">
 
-  <div class="grid">
-    <div class="card" data-aos="fade-up">
-      <h3>01. Discovery & Strategy</h3>
-      <p>Understanding your brand, competitors, customers and defining clear ecommerce goals.</p>
+  <div class="work-head" data-aos="fade-up">
+    <h2>
+      <span>How</span> We Work
+    </h2>
+    <p>
+      A structured, transparent and result-driven process that keeps projects
+      aligned, efficient and focused on growth.
+    </p>
+  </div>
+
+  <div class="work-steps">
+
+    <div class="work-step" data-aos="fade-right">
+      <div class="work-icon strategy">
+        <i class="fa-solid fa-lightbulb"></i>
+      </div>
+      <div class="work-content">
+        <h3>Discovery & Strategy</h3>
+        <p>
+          We understand your brand, audience, competitors and business goals to
+          define a clear ecommerce roadmap.
+        </p>
+      </div>
     </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
-      <h3>02. Design System</h3>
-      <p>Wireframes and visual systems designed for clarity, consistency and conversion.</p>
+
+    <div class="work-step reverse" data-aos="fade-left">
+      <div class="work-icon design">
+        <i class="fa-solid fa-pen-ruler"></i>
+      </div>
+      <div class="work-content">
+        <h3>Design System</h3>
+        <p>
+          Wireframes and UI systems are crafted for clarity, consistency and
+          conversion-focused user experience.
+        </p>
+      </div>
     </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="200">
-      <h3>03. Development</h3>
-      <p>Clean Shopify development with performance, scalability and best practices.</p>
+
+    <div class="work-step" data-aos="fade-right">
+      <div class="work-icon dev">
+        <i class="fa-solid fa-code"></i>
+      </div>
+      <div class="work-content">
+        <h3>Development</h3>
+        <p>
+          Clean, scalable Shopify development with performance, SEO and best
+          practices in mind.
+        </p>
+      </div>
     </div>
-    <div class="card" data-aos="fade-up">
-      <h3>04. Testing & Optimization</h3>
-      <p>Speed, usability and cross‑device testing before launch.</p>
+
+    <div class="work-step reverse" data-aos="fade-left">
+      <div class="work-icon test">
+        <i class="fa-solid fa-vial-circle-check"></i>
+      </div>
+      <div class="work-content">
+        <h3>Testing & Optimization</h3>
+        <p>
+          Cross-device testing, speed optimization and UX refinements before
+          going live.
+        </p>
+      </div>
     </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
-      <h3>05. Launch & Support</h3>
-      <p>Go‑live support with continuous improvements after launch.</p>
-    </div>
-    <div class="card" data-aos="fade-up" data-aos-delay="200">
-      <h3>06. Continuous Growth</h3>
-      <p>Post‑launch analysis, CRO experiments and data‑driven scaling strategies.</p>
+
+    <div class="work-step" data-aos="fade-right">
+      <div class="work-icon launch">
+        <i class="fa-solid fa-rocket"></i>
+      </div>
+      <div class="work-content">
+        <h3>Launch & Growth</h3>
+        <p>
+          Smooth launch followed by ongoing support, improvements and
+          data-driven growth strategies.
+        </p>
+      </div>
     </div>
   </div>
 </section>
+
 
 <!-- WHY -->
 <!-- WHY -->
