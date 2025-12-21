@@ -806,12 +806,12 @@
 }
 
 /* ===============================
-   CONTACT & INQUIRY – PREMIUM
+   CONTACT & INQUIRY – PREMIUM (FIXED)
    =============================== */
 
 .contact-section{
-  background:linear-gradient(180deg,#eef2ff);
-  padding:50px 20px;
+  background:linear-gradient(180deg,#eef2ff,#f8fafc);
+  padding:80px 20px;
 }
 
 /* HEADER */
@@ -897,9 +897,9 @@
 .contact-icon.whatsapp{
   background:linear-gradient(135deg,#22c55e,#4ade80);
   color:#ffffff;
-  visibility: hidden;
+  visibility: visible; /* ❗ FIXED */
 }
-    
+
 /* TEXT */
 .contact-card h3{
   font-size:22px;
@@ -914,6 +914,29 @@
   margin-bottom:18px;
 }
 
+/* EMAIL FORM */
+.contact-form{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid #e2e8f0;
+  font-size:15px;
+  outline:none;
+  width:100%;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:#6366f1;
+}
+
 /* LINKS */
 .contact-link{
   font-weight:600;
@@ -921,6 +944,7 @@
   font-size:16px;
 }
 
+/* BUTTON */
 .contact-btn{
   display:inline-block;
   margin-top:12px;
@@ -952,6 +976,7 @@
     padding:36px 28px;
   }
 }
+
 
     /* =================================================
    RESPONSIVE FIX : MOBILE + TABLET
