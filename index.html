@@ -953,6 +953,17 @@
   transform:translateY(-2px);
   box-shadow:0 10px 22px rgba(0,0,0,.18);
 }
+.contact-actions{
+  display:flex;
+  flex-direction:column;   /* ⬅️ vertical stack */
+  gap:12px;
+  margin-top:14px;
+}
+
+.contact-actions .contact-btn{
+  width:100%;
+  text-align:center;
+}
 
 /* ---------- MOBILE ---------- */
 @media (max-width:768px){
@@ -1584,7 +1595,9 @@
         Quick questions or free consultation?
         Chat directly with our Shopify experts.
       </p>
-
+       
+      <!-- BUTTON WRAPPER -->
+      <div class="contact-actions">
       <a href="https://wa.me/919000000000" target="_blank" class="contact-btn">
         Chat on WhatsApp
       </a>
