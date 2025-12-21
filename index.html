@@ -1515,18 +1515,32 @@
 
   <div class="contact-grid">
 
-    <!-- EMAIL -->
+    <!-- EMAIL FORM -->
     <div class="contact-card" data-aos="fade-up">
       <div class="contact-icon email">
         <i class="fa-solid fa-envelope"></i>
       </div>
+
       <h3>Email Us</h3>
       <p>
         Reach out for detailed inquiries, proposals or project discussions.
       </p>
-      <a href="mailto:hello@yourbrand.com" class="contact-link">
-        hello@yourbrand.com
-      </a>
+
+      <form
+        class="contact-form"
+        action="mailto:hello@yourbrand.com"
+        method="POST"
+        enctype="text/plain"
+      >
+        <input type="text" name="Name" placeholder="Your Name" required>
+        <input type="email" name="Email" placeholder="Your Email" required>
+        <textarea name="Message" rows="4"
+          placeholder="Tell us about your inquiry..." required></textarea>
+
+        <button type="submit" class="contact-btn email-btn">
+          Send Inquiry
+        </button>
+      </form>
     </div>
 
     <!-- WHATSAPP -->
@@ -1534,14 +1548,13 @@
       <div class="contact-icon whatsapp">
         <i class="fa-brands fa-whatsapp"></i>
       </div>
+
       <h3>WhatsApp / Call</h3>
       <p>
         Quick questions or free consultation?
         Chat directly with our Shopify experts.
       </p>
-      <a href="https://wa.me/919000000000" target="_blank" class="contact-btn">
-        Chat on WhatsApp
-      </a>
+
       <a href="https://wa.me/919000000000" target="_blank" class="contact-btn">
         Chat on WhatsApp
       </a>
@@ -1550,6 +1563,7 @@
   </div>
 
 </section>
+
 
 
 
