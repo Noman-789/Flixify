@@ -804,27 +804,26 @@
     font-size:24px;
   }
 }
-
 /* ===============================
-   CONTACT & INQUIRY – PREMIUM (FIXED)
+   CONTACT & INQUIRY – COMPACT
    =============================== */
 
 .contact-section{
   background:linear-gradient(180deg,#eef2ff,#f8fafc);
-  padding:80px 20px;
+  padding:40px 20px; /* ⬅️ section height kam */
 }
 
 /* HEADER */
 .contact-head{
   text-align:center;
-  max-width:760px;
-  margin:0 auto 80px;
+  max-width:720px;
+  margin:0 auto 50px; /* ⬅️ gap kam */
 }
 
 .contact-head h2{
-  font-size:42px;
+  font-size:36px;
   font-weight:700;
-  margin-bottom:18px;
+  margin-bottom:12px;
 }
 
 .contact-head h2 span{
@@ -834,33 +833,33 @@
 }
 
 .contact-head p{
-  font-size:18px;
+  font-size:16px;
   color:#475569;
-  line-height:1.75;
+  line-height:1.6;
 }
 
 /* GRID */
 .contact-grid{
-  max-width:900px;
+  max-width:1100px;
   margin:auto;
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:40px;
+  gap:26px; /* ⬅️ tighter */
 }
 
 /* CARD */
 .contact-card{
   background:#ffffff;
-  padding:48px 36px;
-  border-radius:32px;
-  border:1px solid #e2e8f0;
+  padding:26px 30px; /* ⬅️ height reduced */
+  border-radius:22px;
+  border:1px solid #e5e7eb;
   text-align:center;
-  transition:.35s;
+  transition:.3s ease;
 }
 
 .contact-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 30px 70px rgba(0,0,0,.12);
+  transform:translateY(-5px);
+  box-shadow:0 18px 40px rgba(0,0,0,.1);
 }
 
 /* HIGHLIGHT CARD */
@@ -870,99 +869,89 @@
   border:none;
 }
 
-.contact-card.highlight p,
-.contact-card.highlight h3{
+.contact-card.highlight h3,
+.contact-card.highlight p{
   color:#ffffff;
 }
 
 /* ICON */
-.contact-icon i{
-  width:70px;
-  height:70px;
-  border-radius:22px;
+.contact-icon{
+  width:56px;
+  height:56px;
+  border-radius:16px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:28px;
-  line height:1;
-  margin:0 auto 24px;
+  font-size:24px;
+  margin:0 auto 14px; /* ⬅️ tighter */
   color:#ffffff;
 }
 
-/* EMAIL ICON */
 .contact-icon.email{
   background:linear-gradient(135deg,#6366f1,#818cf8);
 }
 
-/* WHATSAPP ICON – FIXED */
 .contact-icon.whatsapp{
   background:linear-gradient(135deg,#22c55e,#4ade80);
-  color:#ffffff;
-  visibility: visible;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 /* TEXT */
 .contact-card h3{
-  font-size:22px;
-  margin-bottom:14px;
-  color:#0f172a;
+  font-size:19px;
+  font-weight:600;
+  margin-bottom:6px;
 }
 
 .contact-card p{
-  font-size:16px;
-  line-height:1.65;
-  color:#334155;
-  margin-bottom:18px;
+  font-size:14.5px;
+  line-height:1.55;
+  color:#475569;
+  margin-bottom:12px;
 }
 
-/* EMAIL FORM */
+/* FORM */
 .contact-form{
-  margin-top:20px;
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:10px; /* ⬅️ compact */
 }
 
 .contact-form input,
 .contact-form textarea{
-  padding:14px 16px;
-  border-radius:14px;
-  border:1px solid #e2e8f0;
-  font-size:15px;
-  outline:none;
   width:100%;
+  padding:10px 14px;
+  font-size:14px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  outline:none;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus{
-  border-color:#6366f1;
-}
-
-/* LINKS */
-.contact-link{
-  font-weight:600;
-  color:#6366f1;
-  font-size:16px;
+.contact-form textarea{
+  resize:none;
 }
 
 /* BUTTON */
 .contact-btn{
   display:inline-block;
-  margin-top:12px;
-  padding:14px 32px;
+  padding:11px 26px; /* ⬅️ height kam */
   border-radius:40px;
   background:#ffffff;
   color:#16a34a;
   font-weight:600;
-  transition:.3s;
+  font-size:14.5px;
+  transition:.25s;
+  border:none;
+  cursor:pointer;
+}
+
+.email-btn{
+  background:linear-gradient(90deg,#6366f1,#818cf8);
+  color:#ffffff;
 }
 
 .contact-btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.18);
 }
 
 /* ---------- MOBILE ---------- */
@@ -970,15 +959,25 @@
 
   .contact-grid{
     grid-template-columns:1fr;
+    gap:20px;
   }
 
   .contact-head h2{
-    font-size:30px;
+    font-size:26px;
+  }
+
+  .contact-head p{
+    font-size:15px;
   }
 
   .contact-card{
-    padding:30px 22px;
-    border-raius:20px;
+    padding:22px 20px;
+    border-radius:18px;
+  }
+
+  .contact-btn{
+    width:100%;
+    padding:13px;
   }
 }
 
@@ -1593,9 +1592,6 @@
   </div>
 
 </section>
-
-
-
 
 <!-- FOOTER -->
 <footer id="contact">
