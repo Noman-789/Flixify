@@ -1859,5 +1859,24 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init({duration:900,once:true});</script>
 
+  <!-- MOBILE dRAWER -->
+  <script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileDrawer = document.getElementById("mobileDrawer");
+const closeDrawer = document.getElementById("closeDrawer");
+const overlay = document.getElementById("drawerOverlay");
+
+menuToggle.onclick = () => {
+  mobileDrawer.classList.add("active");
+  overlay.classList.add("active");
+};
+
+closeDrawer.onclick = overlay.onclick = () => {
+  mobileDrawer.classList.remove("active");
+  overlay.classList.remove("active");
+};
+</script>
+
+
 </body>
 </html>
