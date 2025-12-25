@@ -110,7 +110,7 @@
       text-decoration:none;
     }
 /* ===============================
-   ABOUT VALUES – FINAL FIX
+   ABOUT VALUES – CENTER TEXT FIX
 =============================== */
 
 .about-values{
@@ -128,8 +128,9 @@
   padding:46px;
   border-radius:34px;
   box-shadow:0 25px 55px rgba(0,0,0,.12);
-  margin-bottom:46px;   /* 👈 vertical spacing */
+  margin-bottom:46px;
   background:#ffffff;
+  text-align:center;
 }
 
 /* COLOR VARIATIONS */
@@ -145,10 +146,11 @@
   background:linear-gradient(135deg,#f0fdf4,#dcfce7);
 }
 
-/* HEADER WITH ICON */
+/* HEADER */
 .value-header{
   display:flex;
   align-items:center;
+  justify-content:center; /* 👈 CENTER ICON + TITLE */
   gap:14px;
   margin-bottom:18px;
 }
@@ -160,6 +162,7 @@
 .value-card h3{
   font-size:28px;
   color:#0f172a;
+  text-align:center;
 }
 
 .value-card p{
@@ -167,6 +170,7 @@
   line-height:1.9;
   color:#334155;
   margin-bottom:14px;
+  text-align:center;   /* 👈 TEXT CENTER */
 }
 
 /* ---------- MOBILE ---------- */
@@ -187,6 +191,7 @@
     font-size:15.5px;
   }
 }
+
 
     footer{
       background:#020617;
