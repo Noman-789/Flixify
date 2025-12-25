@@ -2,40 +2,363 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About Us | YourBrand</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>About Us | Flixify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:#f1f5f9;color:#0f172a;line-height:1.75}
+    img{max-width:100%;border-radius:26px}
+    section{padding:110px 20px}
+    .container{max-width:1200px;margin:auto}
+    h2{font-size:38px;margin-bottom:20px}
+    p{color:#475569;font-size:17px}
+
+    /* HERO */
+    .about-hero{
+      min-height:80vh;
+      background:
+        linear-gradient(rgba(15,23,42,.65),rgba(15,23,42,.65)),
+        url("https://images.unsplash.com/photo-1556761175-4b46a572b786");
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:60px 20px;
+      color:#fff;
+    }
+    .about-hero h1{
+      font-size:52px;
+      max-width:900px;
+    }
+    .about-hero p{
+      max-width:800px;
+      margin:22px auto 0;
+      color:#e5e7eb;
+      font-size:19px;
+    }
+
+    /* SPLIT */
+    .split{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    /* CARDS */
+    .card{
+      background:#fff;
+      padding:40px;
+      border-radius:28px;
+      box-shadow:0 20px 45px rgba(0,0,0,.08);
+    }
+    .card h3{
+      font-size:24px;
+      margin-bottom:14px;
+    }
+
+    /* VALUES */
+    .value-grid{
+      margin-top:70px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    /* STATS */
+    .stats{
+      background:#f8fafc;
+    }
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:30px;
+      text-align:center;
+    }
+    .stat{
+      background:#fff;
+      padding:36px;
+      border-radius:26px;
+      box-shadow:0 18px 45px rgba(0,0,0,.08);
+    }
+    .stat h3{
+      font-size:42px;
+      color:#6366f1;
+    }
+
+    /* CTA */
+    .about-cta{
+      background:linear-gradient(135deg,#6366f1,#22c55e);
+      color:#fff;
+      text-align:center;
+      padding:100px 20px;
+    }
+    .about-cta h2{font-size:38px;margin-bottom:16px}
+    .about-cta p{max-width:700px;margin:0 auto 28px;color:#ecfeff}
+    .about-cta a{
+      display:inline-block;
+      padding:16px 42px;
+      border-radius:40px;
+      background:#fff;
+      color:#0f172a;
+      font-weight:600;
+      text-decoration:none;
+    }
+/* ===============================
+   ABOUT VALUES – FINAL FIX
+=============================== */
+
+.about-values{
+  padding:110px 20px;
+  background:#f8fafc;
+}
+
+.about-values .container{
+  max-width:900px;
+  margin:auto;
+}
+
+/* ONE BY ONE STACK */
+.value-card{
+  padding:46px;
+  border-radius:34px;
+  box-shadow:0 25px 55px rgba(0,0,0,.12);
+  margin-bottom:46px;   /* 👈 vertical spacing */
+  background:#ffffff;
+}
+
+/* COLOR VARIATIONS */
+.value-card.mission{
+  background:linear-gradient(135deg,#e0f2fe,#dbeafe);
+}
+
+.value-card.story{
+  background:linear-gradient(135deg,#ecfeff,#cffafe);
+}
+
+.value-card.belief{
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+}
+
+/* HEADER WITH ICON */
+.value-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.value-icon{
+  font-size:34px;
+}
+
+.value-card h3{
+  font-size:28px;
+  color:#0f172a;
+}
+
+.value-card p{
+  font-size:17px;
+  line-height:1.9;
+  color:#334155;
+  margin-bottom:14px;
+}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:768px){
+  .about-values{
+    padding:80px 18px;
+  }
+
+  .value-card{
+    padding:32px;
+  }
+
+  .value-card h3{
+    font-size:22px;
+  }
+
+  .value-card p{
+    font-size:15.5px;
+  }
+}
+
+    footer{
+      background:#020617;
+      color:#94a3b8;
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    @media(max-width:768px){
+      .about-hero h1{font-size:34px}
+      section{padding:80px 20px}
+      .split{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr 1fr}
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
-<!-- same header code paste here -->
-
-<section class="page-hero">
-  <h1>About Us</h1>
-  <p>We are a results-driven digital agency focused on growth.</p>
+<!-- HERO -->
+<section class="about-hero">
+  <div>
+    <h1>We Build Ecommerce Brands That Scale</h1>
+    <p>
+      Flixify is a performance-driven Shopify agency helping ambitious brands
+      turn visitors into loyal customers through strategy, design and technology.
+    </p>
+  </div>
 </section>
 
-<section class="content">
-  <h2>Who We Are</h2>
-  <p>
-    We are a Shopify-focused digital studio helping brands design,
-    build and scale high-converting ecommerce experiences.
-  </p>
+<!-- WHO WE ARE -->
+<section>
+  <div class="container split">
 
-  <h2>Our Mission</h2>
-  <p>
-    To create scalable, performance-driven ecommerce solutions
-    that deliver real business results.
-  </p>
+    <div>
+      <h2>Who We Are</h2>
+      <p>
+        Flixify is a Shopify-focused digital studio built for brands that are serious
+        about growth. We partner with founders and ecommerce teams to design,
+        build and scale high-converting online stores.
+      </p>
+      <p>
+        We go beyond visuals and code. Every decision we make is tied to
+        performance, scalability and long-term business success.
+      </p>
+    </div>
 
-  <h2>Why Choose Us</h2>
-  <ul>
-    <li>Business-first approach</li>
-    <li>Conversion-focused design</li>
-    <li>Clean & scalable code</li>
-    <li>Transparent communication</li>
-  </ul>
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Team Work">
+
+  </div>
+
+<!-- ABOUT VALUES -->
+<section class="about-values">
+
+  <div class="container">
+
+    <!-- OUR MISSION -->
+    <div class="value-card mission">
+      <div class="value-header">
+        <span class="value-icon">🚀</span>
+        <h3>Our Mission</h3>
+      </div>
+      <p>
+        To create scalable, performance-driven ecommerce solutions that deliver
+        real business results — not just visually appealing websites.
+      </p>
+      <p>
+        At Flixify, our mission is to help brands grow with clarity and confidence.
+        We focus on conversion, speed and long-term scalability so businesses can
+        build predictable and sustainable revenue.
+      </p>
+      <p>
+        Every Shopify store we create is designed to convert visitors into
+        customers and support future growth without technical limitations.
+      </p>
+    </div>
+
+    <!-- OUR STORY -->
+    <div class="value-card story">
+      <div class="value-header">
+        <span class="value-icon">📖</span>
+        <h3>Our Story</h3>
+      </div>
+      <p>
+        Flixify was founded by ecommerce specialists who noticed a common problem:
+        brands investing in Shopify stores that looked good but didn’t perform.
+      </p>
+      <p>
+        Slow load times, poor user experience and lack of strategy were holding
+        businesses back. We started Flixify to solve these problems with a
+        structured, results-driven approach.
+      </p>
+      <p>
+        Today, we work with ambitious startups and growing D2C brands across
+        multiple industries, helping them scale confidently.
+      </p>
+    </div>
+
+    <!-- WHAT WE BELIEVE -->
+    <div class="value-card belief">
+      <div class="value-header">
+        <span class="value-icon">💡</span>
+        <h3>What We Believe</h3>
+      </div>
+      <p>
+        We believe design should guide users, technology should remove friction
+        and performance should drive revenue.
+      </p>
+      <p>
+        Data-driven decisions, honest communication and long-term partnerships
+        are at the core of how we work.
+      </p>
+      <p>
+        When we partner with a brand, we work as an extension of their team —
+        fully aligned with their business goals.
+      </p>
+    </div>
+
+  </div>
+
 </section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><h3>120+</h3><p>Shopify Stores Delivered</p></div>
+    <div class="stat"><h3>4.9★</h3><p>Client Satisfaction</p></div>
+    <div class="stat"><h3>3x</h3><p>Average Revenue Growth</p></div>
+    <div class="stat"><h3>6+</h3><p>Industries Served</p></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section>
+  <div class="container value-grid">
+    <div class="card">
+      <h3>Strategy-First Approach</h3>
+      <p>
+        We understand your business model, audience and goals
+        before touching design or development.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Conversion-Focused UX</h3>
+      <p>
+        Our layouts guide users smoothly from landing to checkout
+        using proven UX and CRO principles.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Built for Scale</h3>
+      <p>
+        Clean Shopify architecture that’s ready for traffic spikes,
+        integrations and future growth.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <h2>Let’s Build Something That Grows</h2>
+  <p>
+    Looking for a long-term Shopify partner who understands business,
+    performance and growth? Let’s talk.
+  </p>
+  <a href="contact.html">Start Your Project</a>
+</section>
+
+<footer>
+  © 2025 Flixify. All rights reserved.
+</footer>
 
 </body>
 </html>
