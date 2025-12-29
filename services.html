@@ -13,7 +13,7 @@
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-<style>
+ <style>
     *{
       margin:0;
       padding:0;
@@ -29,10 +29,10 @@
 
     /* HERO */
     .services-hero{
-      min-height:70vh;
+      min-height:60vh;
       background:
-        linear-gradient(rgba(15,23,42,.75),rgba(15,23,42,.75)),
-        url("https://images.unsplash.com/photo-1529333166437-7750a6dd5a70");
+        linear-gradient(rgba(15,23,42,.82),rgba(15,23,42,.82)),
+        url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f");
       background-size:cover;
       background-position:center;
       display:flex;
@@ -49,7 +49,7 @@
     }
 
     .services-hero p{
-      max-width:700px;
+      max-width:750px;
       margin:auto;
       font-size:1.1rem;
       color:#cbd5f5;
@@ -61,7 +61,7 @@
     }
 
     .container{
-      max-width:1100px;
+      max-width:1200px;
       margin:auto;
     }
 
@@ -79,78 +79,100 @@
     }
 
     .section-title p{
-      max-width:750px;
+      max-width:800px;
       margin:auto;
       color:#475569;
       font-size:1.05rem;
     }
 
-    /* SERVICE CARD */
+    /* GRID */
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:40px;
+    }
+
+    /* CARD */
     .service-card{
-      display:flex;
-      gap:30px;
       background:#ffffff;
       border-radius:28px;
-      padding:40px;
-      margin-bottom:40px;
+      overflow:hidden;
       border:1px solid #e2e8f0;
       transition:.35s;
+      display:flex;
+      flex-direction:column;
     }
 
     .service-card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 25px 60px rgba(0,0,0,.1);
+      transform:translateY(-10px);
+      box-shadow:0 30px 70px rgba(0,0,0,.12);
     }
 
-    /* ICON */
-    .service-icon{
-      min-width:70px;
-      height:70px;
-      border-radius:22px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:30px;
-      color:#fff;
-      flex-shrink:0;
+    /* IMAGE */
+    .service-image{
+      height:220px;
+      background-size:cover;
+      background-position:center;
     }
-
-    .shopify{background:linear-gradient(135deg,#22c55e,#16a34a);}
-    .revamp{background:linear-gradient(135deg,#6366f1,#818cf8);}
-    .maintenance{background:linear-gradient(135deg,#f59e0b,#fbbf24);}
-    .app{background:linear-gradient(135deg,#0ea5e9,#38bdf8);}
-    .seo{background:linear-gradient(135deg,#ec4899,#f472b6);}
 
     /* CONTENT */
+    .service-content{
+      padding:34px;
+      flex:1;
+    }
+
+    .service-tag{
+      display:inline-block;
+      font-size:0.8rem;
+      font-weight:600;
+      padding:6px 14px;
+      border-radius:30px;
+      margin-bottom:14px;
+      background:#eef2ff;
+      color:#4f46e5;
+    }
+
     .service-content h3{
-      font-size:1.5rem;
-      margin-bottom:10px;
+      font-size:1.4rem;
+      margin-bottom:12px;
     }
 
     .service-content p{
       color:#475569;
-      margin-bottom:15px;
-    }
-
-    .service-list{
-      list-style:none;
+      font-size:0.95rem;
       margin-bottom:18px;
     }
 
-    .service-list li{
-      font-size:0.95rem;
-      margin-bottom:6px;
-      color:#334155;
+    /* LIST */
+    .service-list{
+      list-style:none;
+      margin-bottom:22px;
     }
 
+    .service-list li{
+      font-size:0.9rem;
+      color:#334155;
+      margin-bottom:8px;
+    }
+
+    /* PRICE */
     .price{
       font-weight:600;
-      color:#0f172a;
-      background:#f1f5f9;
+      color:#16a34a;
+      margin-bottom:20px;
+    }
+
+    /* BUTTON */
+    .service-btn{
       display:inline-block;
-      padding:8px 18px;
-      border-radius:30px;
+      text-decoration:none;
+      padding:12px 26px;
+      border-radius:40px;
+      background:linear-gradient(90deg,#6366f1,#22c55e);
+      color:#fff;
+      font-weight:500;
       font-size:0.9rem;
+      width:max-content;
     }
 
     /* CTA */
@@ -158,16 +180,16 @@
       background:linear-gradient(135deg,#6366f1,#22c55e);
       color:#fff;
       text-align:center;
-      padding:80px 20px;
+      padding:90px 20px;
     }
 
     .cta h2{
-      font-size:2.3rem;
+      font-size:2.4rem;
       margin-bottom:15px;
     }
 
     .cta p{
-      max-width:600px;
+      max-width:650px;
       margin:auto;
       margin-bottom:25px;
       color:#ecfeff;
@@ -177,437 +199,28 @@
       display:inline-block;
       background:#020617;
       color:#fff;
-      padding:14px 36px;
+      padding:14px 38px;
       border-radius:50px;
       text-decoration:none;
       font-weight:500;
     }
 
-  /* ===============================
-   CONTACT & INQUIRY – COMPACT
-   =============================== */
-
-.contact-section{
-  background:linear-gradient(180deg,#eef2ff);
-  padding:40px 20px; 
-}
-
-/* HEADER */
-.contact-head{
-  text-align:center;
-  max-width:720px;
-  margin:0 auto 50px;
-}
-
-.contact-head h2{
-  font-size:36px;
-  font-weight:700;
-  margin-bottom:12px;
-}
-
-.contact-head h2 span{
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.contact-head p{
-  font-size:16px;
-  color:#475569;
-  line-height:1.6;
-}
-
-/* GRID */
-.contact-grid{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:26px; 
-}
-
-/* CARD */
-.contact-card{
-  background:#ffffff;
-  padding:26px 30px;
-  border-radius:22px;
-  border:1px solid #e5e7eb;
-  text-align:center;
-  transition:.3s ease;
-}
-
-.contact-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 18px 40px rgba(0,0,0,.1);
-}
-
-/* HIGHLIGHT CARD */
-.contact-card.highlight{
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#ffffff;
-  border:none;
-}
-
-.contact-card.highlight h3,
-.contact-card.highlight p{
-  color:#ffffff;
-}
-
-/* ICON */
-.contact-icon{
-  width:56px;
-  height:56px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  margin:0 auto 14px;
-  color:#ffffff;
-}
-
-.contact-icon.email{
-  background:linear-gradient(135deg,#6366f1,#818cf8);
-}
-
-.contact-icon.whatsapp-icon{
-  background:linear-gradient(135deg,#22c55e,#4ade80);
-}
-
-/* TEXT */
-.contact-card h3{
-  font-size:19px;
-  font-weight:600;
-  margin-bottom:6px;
-}
-
-.contact-card p{
-  font-size:14.5px;
-  line-height:1.55;
-  color:#475569;
-  margin-bottom:12px;
-}
-
-/* FORM */
-.contact-form{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.contact-form input,
-.contact-form textarea{
-  width:100%;
-  padding:10px 14px;
-  font-size:14px;
-  border-radius:12px;
-  border:1px solid #e5e7eb;
-  outline:none;
-}
-
-.contact-form textarea{
-  resize:none;
-}
-
-/* BUTTON */
-.contact-btn{
-  display:inline-block;
-  padding:11px 26px;
-  border-radius:40px;
-  background:#ffffff;
-  color:#16a34a;
-  font-weight:600;
-  font-size:14.5px;
-  transition:.25s;
-  border:none;
-  cursor:pointer;
-}
-
-.email-btn{
-  background:linear-gradient(90deg,#6366f1,#818cf8);
-  color:#ffffff;
-}
-
-.contact-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 22px rgba(0,0,0,.18);
-}
-.contact-actions{
-  display:flex;
-  flex-direction:column;   /* ⬅️ vertical stack */
-  gap:12px;
-  margin-top:14px;
-}
-
-.contact-actions .contact-btn{
-  width:100%;
-  text-align:center;
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width:768px){
-
-  .contact-grid{
-    grid-template-columns:1fr;
-    gap:20px;
-  }
-
-  .contact-head h2{
-    font-size:26px;
-  }
-
-  .contact-head p{
-    font-size:15px;
-  }
-
-  .contact-card{
-    padding:22px 20px;
-    border-radius:18px;
-  }
-
-  .contact-btn{
-    width:100%;
-    padding:13px;
-  }
-}
-
-/* =========================
-   HEADER / NAVBAR
-========================= */
-
-.site-header{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:1000;
-  background: linear-gradient(180deg, #e0f2fe, #f8fafc);
-}
-
-.header-container{
-  max-width:1200px;
-  margin:auto;
-  padding:22px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background: linear-gradient(180deg, #e0f2fe, #f8fafc);
-}
-
-/* LOGO */
-.logo a{
-  font-size:22px;
-  font-weight:700;
-  color:#0f172a;
-  letter-spacing:.3px;
-}
-
-/* DESKTOP NAV */
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:28px;
-}
-
-.nav-links a{
-  font-size:15px;
-  font-weight:500;
-  color:#334155;
-  transition:.3s;
-}
-
-.nav-links a:hover{
-  color:#6366f1;
-}
-
-/* CONTACT BUTTON */
-.nav-btn{
-  padding:10px 22px;
-  border-radius:30px;
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  color:#fff !important;
-  font-weight:600;
-}
-
-/* MOBILE TOGGLE */
-.menu-toggle{
-  display:none;
-  font-size:26px;
-  cursor:pointer;
-  color:#0f172a;
-}
-
-/* =========================
-   MOBILE DRAWER
-========================= */
-
-.mobile-drawer{
-  position:fixed;
-  top:0;
-  right:-280px;
-  width:260px;
-  height:100vh;
-  background:#ffffff;
-  padding:26px 22px;
-  box-shadow:-10px 0 40px rgba(0,0,0,.15);
-  transition:.35s ease;
-  z-index:2000;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.mobile-drawer.active{
-  right:0;
-}
-
-.drawer-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  font-size:16px;
-  font-weight:600;
-  margin-bottom:10px;
-}
-
-.drawer-header button{
-  background:none;
-  border:none;
-  font-size:22px;
-  cursor:pointer;
-}
-
-/* DRAWER LINKS */
-.mobile-drawer a{
-  font-size:16px;
-  font-weight:500;
-  color:#0f172a;
-}
-
-/* DRAWER BUTTON */
-.drawer-btn{
-  margin-top:14px;
-  padding:12px;
-  text-align:center;
-  border-radius:30px;
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  color:#fff !important;
-  font-weight:600;
-}
-
-/* OVERLAY */
-.drawer-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  z-index:1500;
-}
-
-.drawer-overlay.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width:768px){
-
-  .nav-links{
-    display:none;
-  }
-
-  .menu-toggle{
-    display:block;
-  }
-
-  .hero{
-    padding-top:120px; /* header space */
-  }
-}
-
-  /* FOOTER */
-    footer{background:#020617;color:#94a3b8;padding:70px 20px}
-    .footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:35px}
-    footer h4{color:#fff;margin-bottom:16px}
-    footer p{font-size:15px;line-height:1.8}
-
-    /* WHATSAPP */
-    .whatsapp{
-      position:fixed;right:24px;bottom:24px;width:50px;height:50px;
-      border-radius:50%;background:#22c55e;color:#fff;font-size:28px;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 10px 25px rgba(0,0,0,.35);
-    }
-  
-  /* MOBILE */
+    /* MOBILE */
     @media(max-width:768px){
       .services-hero h1{font-size:2.2rem;}
-      .service-card{
-        flex-direction:column;
-        text-align:center;
-      }
-      .service-icon{
-        margin:auto;
-      }
     }
   </style>
 </head>
 
 <body>
 
- <!-- HEADER -->
-  <header class="site-header">
-  <div class="header-container">
-
-    <div class="logo">
-      <a href="index.html">Flixify</a>
-    </div>
-
-    <!-- DESKTOP NAV -->
-    <nav class="nav-links">
-      <a href="about-us.html">About Us</a>
-      <a href="services.html">Services</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="contact-us.html" class="nav-btn">Contact Us</a>
-    </nav>
-
-    <!-- MOBILE TOGGLE -->
-    <div class="menu-toggle" id="menuToggle">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-
-  </div>
-</header>
-
-<!-- MOBILE DRAWER -->
-<div class="mobile-drawer" id="mobileDrawer">
-  <div class="drawer-header">
-    <span>Menu</span>
-    <button id="closeDrawer">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-  </div>
-
-  <a href="about.html">About Us</a>
-  <a href="services.html">Services</a>
-  <a href="case-studies.html">Case Studies</a>
-  <a href="contact.html" class="drawer-btn">Contact</a>
-</div>
-
-<div class="drawer-overlay" id="drawerOverlay"></div>
-  
-  <!-- HERO -->
+<!-- HERO -->
 <section class="services-hero">
   <div>
     <h1>Our Services</h1>
     <p>
-      We deliver performance-driven digital services designed to help ecommerce
-      brands scale faster, convert better and grow sustainably.
+      We provide end-to-end ecommerce services designed to build, scale and
+      optimize high-performing digital stores.
     </p>
   </div>
 </section>
@@ -619,107 +232,110 @@
     <div class="section-title">
       <h2>What We Offer</h2>
       <p>
-        From Shopify development to SEO and app solutions, we provide everything
-        you need to build and grow a successful online business.
+        Each service is carefully designed to support business growth,
+        performance and long-term scalability.
       </p>
     </div>
 
-    <!-- Shopify -->
-    <div class="service-card">
-      <div class="service-icon shopify">
-        <i class="fa-brands fa-shopify"></i>
-      </div>
-      <div class="service-content">
-        <h3>Shopify Website Development</h3>
-        <p>
-          High-performance Shopify stores built for conversions, scalability and
-          long-term growth.
-        </p>
-        <ul class="service-list">
-          <li>• Custom themes & advanced sections</li>
-          <li>• Mobile-first, fast & secure builds</li>
-          <li>• Clean, scalable Shopify architecture</li>
-        </ul>
-        <span class="price">Starting from $1,200</span>
-      </div>
-    </div>
+    <div class="service-grid">
 
-    <!-- Revamp -->
-    <div class="service-card">
-      <div class="service-icon revamp">
-        <i class="fa-solid fa-pen-ruler"></i>
+      <!-- Shopify Development -->
+      <div class="service-card">
+        <div class="service-image" style="background-image:url('https://images.unsplash.com/photo-1519337265831-281ec6cc8514');"></div>
+        <div class="service-content">
+          <span class="service-tag">Shopify Development</span>
+          <h3>Shopify Website Development</h3>
+          <p>
+            Custom-built Shopify stores focused on conversions, speed and
+            scalability.
+          </p>
+          <ul class="service-list">
+            <li>• Custom themes & advanced sections</li>
+            <li>• Mobile-first, responsive layouts</li>
+            <li>• Clean, scalable Shopify architecture</li>
+          </ul>
+          <div class="price">Starting from $1,200</div>
+          <a href="#" class="service-btn">Learn More</a>
+        </div>
       </div>
-      <div class="service-content">
-        <h3>Website Revamp</h3>
-        <p>
-          Redesign your existing website into a modern, conversion-optimized
-          experience.
-        </p>
-        <ul class="service-list">
-          <li>• Complete UI/UX redesign</li>
-          <li>• Conversion optimization</li>
-          <li>• Speed & performance improvement</li>
-        </ul>
-        <span class="price">Starting from $800</span>
-      </div>
-    </div>
 
-    <!-- Maintenance -->
-    <div class="service-card">
-      <div class="service-icon maintenance">
-        <i class="fa-solid fa-screwdriver-wrench"></i>
+      <!-- Website Revamp -->
+      <div class="service-card">
+        <div class="service-image" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');"></div>
+        <div class="service-content">
+          <span class="service-tag">UI / UX</span>
+          <h3>Website Revamp</h3>
+          <p>
+            Modern redesigns that improve trust, usability and conversion rates.
+          </p>
+          <ul class="service-list">
+            <li>• Complete UI/UX redesign</li>
+            <li>• CRO-focused improvements</li>
+            <li>• Speed & usability upgrades</li>
+          </ul>
+          <div class="price">Starting from $800</div>
+          <a href="#" class="service-btn">Learn More</a>
+        </div>
       </div>
-      <div class="service-content">
-        <h3>Website Maintenance</h3>
-        <p>
-          Keep your website secure, updated and running smoothly without worry.
-        </p>
-        <ul class="service-list">
-          <li>• Updates & backups</li>
-          <li>• Bug fixing & monitoring</li>
-          <li>• Performance optimization</li>
-        </ul>
-        <span class="price">From $99 / month</span>
-      </div>
-    </div>
 
-    <!-- App -->
-    <div class="service-card">
-      <div class="service-icon app">
-        <i class="fa-solid fa-mobile-screen"></i>
+      <!-- Maintenance -->
+      <div class="service-card">
+        <div class="service-image" style="background-image:url('https://images.unsplash.com/photo-1581092919535-7146fcbf47e2');"></div>
+        <div class="service-content">
+          <span class="service-tag">Support</span>
+          <h3>Website Maintenance</h3>
+          <p>
+            Ongoing support to keep your website secure, updated and optimized.
+          </p>
+          <ul class="service-list">
+            <li>• Updates, backups & monitoring</li>
+            <li>• Bug fixes & performance tuning</li>
+            <li>• Security & uptime checks</li>
+          </ul>
+          <div class="price">From $99 / month</div>
+          <a href="#" class="service-btn">Learn More</a>
+        </div>
       </div>
-      <div class="service-content">
-        <h3>App Development</h3>
-        <p>
-          Custom Shopify & web applications that extend functionality and automate
-          workflows.
-        </p>
-        <ul class="service-list">
-          <li>• Custom Shopify apps</li>
-          <li>• API & third-party integrations</li>
-          <li>• Secure & scalable architecture</li>
-        </ul>
-        <span class="price">Starting from $1,500</span>
-      </div>
-    </div>
 
-    <!-- SEO -->
-    <div class="service-card">
-      <div class="service-icon seo">
-        <i class="fa-solid fa-chart-line"></i>
+      <!-- App Development -->
+      <div class="service-card">
+        <div class="service-image" style="background-image:url('https://images.unsplash.com/photo-1551650975-87deedd944c3');"></div>
+        <div class="service-content">
+          <span class="service-tag">Apps</span>
+          <h3>App Development</h3>
+          <p>
+            Custom Shopify and web apps that automate workflows and enhance
+            functionality.
+          </p>
+          <ul class="service-list">
+            <li>• Custom Shopify applications</li>
+            <li>• API & third-party integrations</li>
+            <li>• Secure, scalable solutions</li>
+          </ul>
+          <div class="price">Starting from $1,500</div>
+          <a href="#" class="service-btn">Learn More</a>
+        </div>
       </div>
-      <div class="service-content">
-        <h3>SEO Optimization</h3>
-        <p>
-          Improve visibility, traffic and rankings with data-driven SEO strategies.
-        </p>
-        <ul class="service-list">
-          <li>• Technical SEO audits</li>
-          <li>• On-page optimization</li>
-          <li>• Core Web Vitals improvement</li>
-        </ul>
-        <span class="price">From $399 / month</span>
+
+      <!-- SEO -->
+      <div class="service-card">
+        <div class="service-image" style="background-image:url('https://images.unsplash.com/photo-1557804506-669a67965ba0');"></div>
+        <div class="service-content">
+          <span class="service-tag">SEO</span>
+          <h3>SEO Optimization</h3>
+          <p>
+            Data-driven SEO strategies that improve rankings and organic traffic.
+          </p>
+          <ul class="service-list">
+            <li>• Technical & on-page SEO</li>
+            <li>• Core Web Vitals optimization</li>
+            <li>• Content & keyword strategy</li>
+          </ul>
+          <div class="price">From $399 / month</div>
+          <a href="#" class="service-btn">Learn More</a>
+        </div>
       </div>
+
     </div>
 
   </div>
@@ -727,151 +343,13 @@
 
 <!-- CTA -->
 <section class="cta">
-  <h2>Ready to Start Your Project?</h2>
+  <h2>Ready to Scale Your Business?</h2>
   <p>
-    Let’s discuss your goals and build something powerful together.
+    Let’s build a high-performing ecommerce experience tailored to your goals.
   </p>
   <a href="#">Get a Free Consultation</a>
 </section>
 
-  <!-- CONTACT & INQUIRY -->
-<section class="contact-section">
-
-  <div class="contact-head" data-aos="fade-up">
-    <h2>
-      <span>Contact</span> & Inquiry
-    </h2>
-    <p>
-      Have a project in mind or need expert guidance?
-      Let’s discuss how we can help your brand grow on Shopify.
-    </p>
-  </div>
-
-  <div class="contact-grid">
-
-    <!-- EMAIL FORM -->
-    <div class="contact-card" data-aos="fade-up">
-      <div class="contact-icon email">
-        <i class="fa-solid fa-envelope"></i>
-      </div>
-
-      <h3>Email Us</h3>
-      <p>
-        Reach out for detailed inquiries, proposals or project discussions.
-      </p>
-
-      <form
-        class="contact-form"
-        action="mailto:hello@yourbrand.com"
-        method="POST"
-        enctype="text/plain"
-      >
-        <input type="text" name="Name" placeholder="Your Name" required>
-        <input type="email" name="Email" placeholder="Your Email" required>
-        <textarea name="Message" rows="4"
-          placeholder="Tell us about your inquiry..." required></textarea>
-
-        <button type="submit" class="contact-btn email-btn">
-          Send Inquiry
-        </button>
-      </form>
-    </div>
-
-    <!-- WHATSAPP -->
-    <div class="contact-card highlight" data-aos="fade-up" data-aos-delay="100">
-      <div class="contact-icon whatsapp-icon">
-        <i class="fa-brands fa-whatsapp"></i>
-      </div>
-
-      <h3>WhatsApp / Call</h3>
-      <p>
-        Quick questions or free consultation?
-        Chat directly with our Shopify experts.
-      </p>
-       
-      <!-- BUTTON WRAPPER -->
-      <div class="contact-actions">
-      <a href="https://wa.me/919000000000" target="_blank" class="contact-btn">
-        Chat on WhatsApp
-      </a>
-      <a href="tel:+919000000000" class="contact-btn">
-        Direct Call
-      </a>
-      </a>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-<footer id="contact">
-  <div class="footer-grid">
-    <div>
-      <h4>About Us</h4>
-      <p>We are a Shopify‑focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
-      <div style="display:flex;gap:14px;margin-top:14px">
-        <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube" style="width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;transition:.3s">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M23.5 6.2s-.2-1.7-.8-2.5c-.8-.8-1.7-.8-2.1-.9C17.7 2.5 12 2.5 12 2.5h0s-5.7 0-8.6.3c-.4.1-1.3.1-2.1.9C.7 4.5.5 6.2.5 6.2S.2 8.1.2 10v1.8c0 1.9.3 3.8.3 3.8s.2 1.7.8 2.5c.8.8 1.9.8 2.4.9 1.7.2 7.3.3 7.3.3s5.7 0 8.6-.3c.4-.1 1.3-.1 2.1-.9.6-.8.8-2.5.8-2.5s.3-1.9.3-3.8V10c0-1.9-.3-3.8-.3-3.8zM9.8 14.5V7.9l6.2 3.3-6.2 3.3z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);display:flex;align-items:center;justify-content:center;transition:.3s">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.5.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.5 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.3.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.5-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.5-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.3-.5 1.3-.1 1.7-.1 4.9-.1zm0 3.4a6.4 6.4 0 100 12.8 6.4 6.4 0 000-12.8zm0 10.6a4.2 4.2 0 110-8.4 4.2 4.2 0 010 8.4zm6.6-10.9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div>
-      <h4>Our Services</h4>
-      <p>
-        Shopify Design & Development<br>
-        Conversion Optimization<br>
-        Performance & SEO<br>
-        Platform Migration<br>
-        Ongoing Support
-      </p>
-    </div>
-    <div>
-      <h4>Working Time</h4>
-      <p>
-        <strong>Monday – Friday</strong><br>
-        7:30 PM – 9:00 AM (IST)
-        <p>
-          <strong>Saturday – Sunday</strong><br>
-          9:00 AM – 9:00 PM (IST)
-        </p>
-      </p>
-    </div>
-  </div>
-
-  <p style="text-align:center;margin-top:40px;font-size:14px;color:#64748b">
-    © 2025 Shopify Agency. All rights reserved.
-  </p>
-</footer>
-  <a class="whatsapp" href="https://wa.me/919000000000" target="_blank" aria-label="Chat on WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white">
-    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.82.736 5.464 2.021 7.756L0 32l8.438-1.98A15.93 15.93 0 0016 32c8.837 0 16-7.164 16-16C32 7.163 24.837 0 16 0zm0 29.09c-2.515 0-4.859-.657-6.894-1.799l-.493-.29-5.01 1.176 1.17-4.887-.32-.505A13.03 13.03 0 012.91 16C2.91 8.74 8.74 2.91 16 2.91S29.09 8.74 29.09 16 23.26 29.09 16 29.09zm7.11-9.694c-.389-.194-2.303-1.136-2.66-1.265-.356-.13-.616-.194-.876.194-.259.389-1.005 1.265-1.232 1.525-.227.259-.454.292-.843.097-.389-.194-1.643-.605-3.13-1.93-1.158-1.034-1.94-2.31-2.167-2.699-.227-.389-.024-.599.17-.793.174-.173.389-.454.583-.68.194-.227.259-.389.389-.648.13-.259.065-.486-.032-.68-.097-.194-.876-2.115-1.2-2.892-.316-.758-.638-.655-.876-.667l-.746-.013c-.259 0-.68.097-1.037.486-.357.389-1.362 1.33-1.362 3.243s1.394 3.762 1.588 4.022c.194.259 2.744 4.193 6.651 5.88.93.4 1.654.64 2.218.818.932.297 1.78.255 2.45.155.748-.111 2.303-.94 2.627-1.85.324-.91.324-1.689.227-1.85-.097-.162-.356-.259-.746-.454z"/>
-  </svg>
-</a>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init({duration:900,once:true});</script>
-
-  <!-- MOBILE dRAWER -->
-  <script>
-const menuToggle = document.getElementById("menuToggle");
-const mobileDrawer = document.getElementById("mobileDrawer");
-const closeDrawer = document.getElementById("closeDrawer");
-const overlay = document.getElementById("drawerOverlay");
-
-menuToggle.onclick = () => {
-  mobileDrawer.classList.add("active");
-  overlay.classList.add("active");
-};
-
-closeDrawer.onclick = overlay.onclick = () => {
-  mobileDrawer.classList.remove("active");
-  overlay.classList.remove("active");
-};
-</script>
-
 </body>
 </html>
+
