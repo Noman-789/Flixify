@@ -209,7 +209,164 @@
     @media(max-width:768px){
       .services-hero h1{font-size:2.2rem;}
     }
-  </style>
+  
+ /* =========================
+   HEADER / NAVBAR
+========================= */
+
+.site-header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+}
+
+.header-container{
+  max-width:1200px;
+  margin:auto;
+  padding:22px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* LOGO */
+.logo a{
+  font-size:22px;
+  font-weight:700;
+  color:#0f172a;
+  letter-spacing:.3px;
+}
+
+/* DESKTOP NAV */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.nav-links a{
+  font-size:15px;
+  font-weight:500;
+  color:#334155;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:#6366f1;
+}
+
+/* CONTACT BUTTON */
+.nav-btn{
+  padding:10px 22px;
+  border-radius:30px;
+  background:linear-gradient(90deg,#6366f1,#22c55e);
+  color:#fff !important;
+  font-weight:600;
+}
+
+/* MOBILE TOGGLE */
+.menu-toggle{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+  color:#0f172a;
+}
+
+/* =========================
+   MOBILE DRAWER
+========================= */
+
+.mobile-drawer{
+  position:fixed;
+  top:0;
+  right:-280px;
+  width:260px;
+  height:100vh;
+  background:#ffffff;
+  padding:26px 22px;
+  box-shadow:-10px 0 40px rgba(0,0,0,.15);
+  transition:.35s ease;
+  z-index:2000;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.mobile-drawer.active{
+  right:0;
+}
+
+.drawer-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.drawer-header button{
+  background:none;
+  border:none;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* DRAWER LINKS */
+.mobile-drawer a{
+  font-size:16px;
+  font-weight:500;
+  color:#0f172a;
+}
+
+/* DRAWER BUTTON */
+.drawer-btn{
+  margin-top:14px;
+  padding:12px;
+  text-align:center;
+  border-radius:30px;
+  background:linear-gradient(90deg,#6366f1,#22c55e);
+  color:#fff !important;
+  font-weight:600;
+}
+
+/* OVERLAY */
+.drawer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:1500;
+}
+
+.drawer-overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .hero{
+    padding-top:120px; /* header space */
+  }
+}
+ </style>
 </head>
 
 <body>
