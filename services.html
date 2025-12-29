@@ -214,7 +214,48 @@
 
 <body>
 
-<!-- HERO -->
+  <!-- HEADER -->
+  <header class="site-header">
+  <div class="header-container">
+
+    <div class="logo">
+      <a href="index.html">Flixify</a>
+    </div>
+
+    <!-- DESKTOP NAV -->
+    <nav class="nav-links">
+      <a href="about-us.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="contact-us.html" class="nav-btn">Contact Us</a>
+    </nav>
+
+    <!-- MOBILE TOGGLE -->
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <span>Menu</span>
+    <button id="closeDrawer">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <a href="about.html">About Us</a>
+  <a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="contact.html" class="drawer-btn">Contact</a>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+  
+  <!-- HERO -->
 <section class="services-hero">
   <div>
     <h1>Our Services</h1>
