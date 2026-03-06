@@ -34,14 +34,79 @@
     .about-hero h1{font-size:52px;max-width:1250px;}
     .about-hero p{max-width:800px;margin:22px auto 0;color:#e5e7eb;font-size:19px;}
 
-    /* SPLIT */
-    .split{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center;padding:50px 20px;}
-    .split.reverse{grid-template-columns:1.1fr .9fr;}
+    .about{
+padding:60px 0;
+}
 
-    .split.reverse > div:first-child{order:2;}
-    .split.reverse .img{order:1;}
-    /* image fix */
-    .image img{width:600px;height:400px;object-fit:cover;border-radius:26px;display:block;}
+/* container */
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+}
+
+/* split layout */
+.split{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:70px;
+align-items:center;
+margin-bottom:80px;
+}
+
+/* reverse layout */
+.split.reverse .text{
+order:2;
+}
+
+.split.reverse .image{
+order:1;
+}
+
+/* text */
+.text h2{
+font-size:34px;
+margin-bottom:15px;
+}
+
+.text p{
+line-height:1.7;
+color:#555;
+}
+
+/* image */
+.image img{
+width:100%;
+max-width:600px;
+height:400px;
+object-fit:cover;
+border-radius:26px;
+display:block;
+}
+
+/* responsive */
+@media (max-width:768px){
+
+.split{
+grid-template-columns:1fr;
+gap:40px;
+}
+
+.split.reverse .text{
+order:1;
+}
+
+.split.reverse .image{
+order:2;
+}
+
+.image img{
+max-width:100%;
+height:auto;
+}
+
+}
+
     
 
     /* CARDS */
