@@ -25,43 +25,47 @@
     a{text-decoration: none}
 
     /* Main Bannes Css */
-    .hero-section{
+  /* HERO */
+.hero{
+    min-height:85vh;
     background:#050505;
-    padding:100px 7%;
-    overflow:hidden;
-}
-
-.hero-container{
-    max-width:1400px;
-    margin:auto;
+    padding:100px 20px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:60px;
+}
+
+.hero-inner{
+    max-width:1400px;
+    margin:auto;
+    width:100%;
+    display:grid;
+    grid-template-columns:40% 60%;
+    align-items:center;
+    gap:40px;
 }
 
 .hero-content{
-    flex:1;
-    max-width:620px;
+    text-align:left;
 }
 
 .hero-badge{
     display:inline-block;
-    background:#101010;
-    border:1px solid rgba(255,255,255,.08);
+    padding:8px 16px;
+    border-radius:30px;
+    background:#111;
     color:#fff;
-    padding:10px 18px;
-    border-radius:40px;
     font-size:13px;
-    margin-bottom:25px;
+    margin-bottom:20px;
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .hero-content h1{
-    color:#fff;
     font-size:72px;
     line-height:1.05;
+    color:#fff;
     font-weight:800;
-    margin-bottom:25px;
+    margin-bottom:20px;
+    letter-spacing:-2px;
 }
 
 .hero-content h1 span{
@@ -69,82 +73,68 @@
 }
 
 .hero-content p{
-    color:#b4b4b4;
+    color:#a1a1aa;
     font-size:20px;
     line-height:1.8;
-    margin-bottom:35px;
+    margin-bottom:30px;
+    max-width:520px;
 }
 
-.hero-buttons{
+.hero-btns{
     display:flex;
     gap:15px;
-    margin-bottom:40px;
 }
 
-.btn-primary{
+.hero-btn{
+    padding:15px 28px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.hero-btn.primary{
     background:#8b5cf6;
     color:#fff;
-    text-decoration:none;
-    padding:16px 28px;
-    border-radius:12px;
-    font-weight:600;
 }
 
-.btn-secondary{
+.hero-btn.secondary{
     border:1px solid #8b5cf6;
     color:#fff;
-    text-decoration:none;
-    padding:16px 28px;
-    border-radius:12px;
-    font-weight:600;
-}
-
-.trust-bar{
-    display:flex;
-    flex-wrap:wrap;
-    gap:25px;
-    color:#fff;
-    font-size:15px;
 }
 
 .hero-image{
-    flex:1;
     position:relative;
     display:flex;
     justify-content:center;
 }
 
-.glow{
-    width:500px;
-    height:500px;
+.hero-image img{
+    width:100%;
+    max-width:900px;
+    display:block;
+}
+
+.hero-glow{
+    position:absolute;
+    width:550px;
+    height:550px;
     background:#7c3aed;
     filter:blur(150px);
     opacity:.35;
-    position:absolute;
+    border-radius:50%;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
 }
 
-.laptop{
-    width:100%;
-    max-width:780px;
-    position:relative;
-    z-index:2;
-}
-
-.mobile{
-    position:absolute;
-    width:180px;
-    right:40px;
-    bottom:30px;
-    z-index:3;
-}
-
 @media(max-width:991px){
 
-.hero-container{
-    flex-direction:column;
+.hero-inner{
+    grid-template-columns:1fr;
+    text-align:center;
+}
+
+.hero-content{
     text-align:center;
 }
 
@@ -152,20 +142,14 @@
     font-size:48px;
 }
 
-.hero-buttons{
+.hero-content p{
+    margin:auto auto 25px;
+}
+
+.hero-btns{
     justify-content:center;
 }
-
-.trust-bar{
-    justify-content:center;
 }
-
-.mobile{
-    width:130px;
-    right:0;
-}
-}
-
     /* HERO (FIXED HEIGHT & CLEAN BG) */
     /*.hero{
       min-height:58vh;
@@ -1555,68 +1539,48 @@
 <div class="drawer-overlay" id="drawerOverlay"></div>
 
   <!-- Main Banner -->
-  <section class="hero-section">
-  <div class="hero-container">
+<div class="hero">
+    <div class="hero-inner">
 
-    <!-- LEFT CONTENT -->
-    <div class="hero-content">
+        <div class="hero-content">
 
-      <span class="hero-badge">
-        🟢 SHOPIFY EXPERTS
-      </span>
+            <div class="hero-badge">
+                SHOPIFY EXPERTS
+            </div>
 
-      <h1>
-        We Build Shopify Stores
-        That <span>Convert Visitors</span>
-        Into Customers.
-      </h1>
+            <h1>
+                We Build Shopify Stores
+                That <span>Convert Visitors</span>
+                Into Customers.
+            </h1>
 
-      <p>
-        Design, develop and optimize high-performing Shopify
-        stores that drive traffic, increase conversions and
-        scale your revenue.
-      </p>
+            <p>
+                Design, develop and optimize high-performing Shopify stores that drive traffic, increase conversions and scale your revenue.
+            </p>
 
-      <div class="hero-buttons">
-        <a href="#contact" class="btn-primary">
-          Book Free Consultation →
-        </a>
+            <div class="hero-btns">
+                <a href="#" class="hero-btn primary">
+                    Book Free Consultation
+                </a>
 
-        <a href="#case-studies" class="btn-secondary">
-          View Case Studies →
-        </a>
-      </div>
+                <a href="#" class="hero-btn secondary">
+                    View Case Studies
+                </a>
+            </div>
 
-      <div class="trust-bar">
-        <div>✓ Shopify Experts</div>
-        <div>✓ Fast Turnaround</div>
-        <div>✓ Conversion Focused</div>
-        <div>✓ Ongoing Support</div>
-      </div>
+        </div>
 
-    </div>
+        <div class="hero-image">
 
-    <!-- RIGHT IMAGE -->
-    <div class="hero-image">
+            <div class="hero-glow"></div>
 
-      <div class="glow"></div>
+            <!-- Yahan apni uploaded hero image lagao -->
+            <img src="hero-image.png" alt="Shopify Store">
 
-      <img
-        src="laptop-mockup.png"
-        alt="Shopify Store"
-        class="laptop"
-      >
-
-      <img
-        src="mobile-mockup.png"
-        alt="Mobile Preview"
-        class="mobile"
-      >
+        </div>
 
     </div>
-
-  </div>
-</section>
+</div>
 
 <!-- HERO -->
 <!-- <div class="hero">
