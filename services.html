@@ -457,8 +457,7 @@
 
   /* Mobile Logo Centre */  
   .logo {
-    position: relative;
-    transform: translateX(65px);
+    transform: none;
   }
 
   .contact-grid{
@@ -508,7 +507,7 @@
 .nav-btn{padding:10px 22px;border-radius:30px;background:linear-gradient(90deg,#6366f1,#22c55e);color:#fff !important;font-weight:600;}
 
 /* MOBILE TOGGLE */
-.menu-toggle{display:none;font-size:26px;cursor:pointer;color:#0f172a;}
+.menu-toggle{display:none;font-size:26px;cursor:pointer;color:#fff;}
 
 /* =========================
       MOBILE DRAWER
@@ -538,6 +537,13 @@
 @media (max-width:768px){
       
   .nav-links{display:none;}
+  .header-container{
+    position: relative;}
+.logo{
+    position: absolute;
+    left:50%;
+    transform:translateX(-50%);
+}
   .menu-toggle{display:block;}
   .hero{padding-top:120px;}
 }
