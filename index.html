@@ -6,7 +6,7 @@
   <title>Flixifys</title>
 
     <!-- Logo / Favicon -->
-  <link rel="icon" type="image/png" size="48*48"href="Favicon.png">
+  <link rel="icon" type="image/png" sizes="48*48"href="Favicon.png">
 
   <!-- Icon Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -101,19 +101,21 @@
 .hero-image img{
     width:100%;
     max-width:900px;
-    display:block;
+    display: block;
 }
 
 .hero-glow{
-    position:absolute;
+    position: absolute;
     width:550px;
     height:550px;
     filter:blur(150px);
+    background: #8b5cf6;
     opacity:.35;
     border-radius:50%;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
+  
 }
 
 @media(max-width:991px){
@@ -366,7 +368,7 @@
 }
 
 /* Decorative accent */
-  position:absolute;
+  position: absolute;
   top:-18px;
   left:30px;
   width:60px;
@@ -1127,8 +1129,7 @@
 
   /* Mobile Logo Centre */  
   .logo {
-    position: relative;
-    transform: translateX(65px);
+    transform: none;
   }
 
   .contact-grid{
@@ -1213,6 +1214,22 @@
   font-weight:600;
 }
 
+/* Trust Bar CSS */
+  .trust-bar{
+  display:flex;
+  gap:20px;
+  flex-wrap: wrap;
+  margin-top:20px;
+  color:#fff;
+  font-size:14px;
+}
+
+@media(max-width:768px){
+  .trust-bar{
+    justify-content: center;
+  }
+}
+    
 /* MOBILE TOGGLE */
 .menu-toggle{
   display:none;
@@ -2012,7 +2029,6 @@
       <a href="tel:+919000000000" class="contact-btn">
         Direct Call
       </a>
-      </a>
     </div>
 
   </div>
@@ -2053,7 +2069,6 @@
           <strong>Saturday – Sunday</strong><br>
           9:00 AM – 9:00 PM (IST)
         </p>
-      </p>
     </div>
   </div>
 
