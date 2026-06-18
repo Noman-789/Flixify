@@ -172,14 +172,12 @@ height:auto;
   .value-card p{font-size:15.5px;}
 }
 
-    /* Main Bannes Css */
-  /* HERO */
+/* HERO */
 .hero{
     min-height:85vh;
-    background:black;
-    padding:20px;
+    background:#000;
+    padding:135px 20px 40px;
     display:flex;
-    padding-top: 135px;
     align-items:center;
 }
 
@@ -218,16 +216,19 @@ height:auto;
     max-width:520px;
 }
 
+/* BUTTONS */
 .hero-btns{
     display:flex;
     gap:15px;
+    flex-wrap:wrap;
 }
 
 .hero-btn{
     padding:15px 28px;
     border-radius:12px;
-    text-decoration:none;
     font-weight:600;
+    text-decoration:none;
+    transition:.3s;
 }
 
 .hero-btn.primary{
@@ -240,54 +241,139 @@ height:auto;
     color:#fff;
 }
 
+.hero-btn:hover{
+    transform:translateY(-3px);
+}
+
+/* TRUST BAR */
+.trust-bar{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:25px;
+    color:#fff;
+    font-size:14px;
+}
+
+/* IMAGE */
 .hero-image{
     position:relative;
     display:flex;
     justify-content:center;
+    align-items:center;
+    overflow:hidden;
 }
 
 .hero-image img{
     width:100%;
-    max-width:900px;
+    max-width:650px;
+    height:auto;
     display:block;
+    position:relative;
+    z-index:2;
 }
 
 .hero-glow{
     position:absolute;
     width:550px;
     height:550px;
+    background:#8b5cf6;
     filter:blur(150px);
     opacity:.35;
     border-radius:50%;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
+    z-index:1;
+}
+/* =========================
+   TABLET
+========================= */
+@media (max-width:991px){
+
+    .hero{
+        min-height:auto;
+        padding:120px 20px 50px;
+    }
+
+    .hero-inner{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:50px;
+    }
+
+    .hero-content{
+        text-align:center;
+    }
+
+    .hero-content h1{
+        font-size:48px;
+    }
+
+    .hero-content p{
+        margin:0 auto 25px;
+    }
+
+    .hero-btns{
+        justify-content:center;
+    }
+
+    .trust-bar{
+        justify-content:center;
+    }
+
+    .hero-image img{
+        max-width:500px;
+    }
 }
 
-@media(max-width:991px){
+/* =========================
+   MOBILE
+========================= */
+@media (max-width:768px){
 
-.hero-inner{
-    grid-template-columns:1fr;
-    text-align:center;
-}
+    .hero{
+        padding:110px 16px 40px;
+    }
 
-.hero-content{
-    text-align:center;
-}
+    .hero-content h1{
+        font-size:36px;
+        line-height:1.15;
+        letter-spacing:-1px;
+    }
 
-.hero-content h1{
-    font-size:48px;
-}
+    .hero-content p{
+        font-size:16px;
+        line-height:1.7;
+    }
 
-.hero-content p{
-    margin:auto auto 25px;
-}
+    .hero-btns{
+        flex-direction:column;
+        align-items:center;
+        width:100%;
+    }
 
-.hero-btns{
-    justify-content:center;
+    .hero-btn{
+        width:100%;
+        max-width:320px;
+        text-align:center;
+    }
+
+    .trust-bar{
+        gap:12px;
+        font-size:13px;
+        justify-content:center;
+    }
+
+    .hero-image img{
+        max-width:320px;
+    }
+
+    .hero-glow{
+        width:300px;
+        height:300px;
+    }
 }
-}
-  
     
   /* ===============================
       CONTACT & INQUIRY – COMPACT
@@ -350,8 +436,7 @@ height:auto;
 
   /* Mobile Logo Centre */  
   .logo {
-    position: relative;
-    transform: translateX(65px);
+    transform: none;
   }
 
   .contact-grid{
@@ -385,7 +470,7 @@ height:auto;
 .site-header{position:absolute;top:0;left:0;width:100%;z-index:1000;
   background: black;}
 .header-container{max-width:1400px;margin:auto;padding: 0px 20px;display:flex;align-items:center;
-  justify-content:space-between;background: black;
+  justify-content:space-between;background: black;}
 
 /* LOGO */
 .logo a{font-size:22px;font-weight:700;color:#0f172a;letter-spacing:.3px;}
@@ -401,7 +486,7 @@ height:auto;
 .nav-btn{padding:10px 22px;border-radius:30px;background:linear-gradient(90deg,#6366f1,#22c55e);color:#fff !important;font-weight:600;}
 
 /* MOBILE TOGGLE */
-.menu-toggle{display:none;font-size:26px;cursor:pointer;color:#0f172a;}
+.menu-toggle{display:none;font-size:26px;cursor:pointer;color:#fff;}
 
 /* =========================
       MOBILE DRAWER
@@ -674,7 +759,6 @@ height:auto;
       <a href="tel:+919000000000" class="contact-btn">
         Direct Call
       </a>
-      </a>
     </div>
 
   </div>
@@ -711,7 +795,8 @@ height:auto;
       <p>
         <strong>Monday – Friday</strong><br>
         7:30 PM – 9:00 AM (IST)
-        <p>
+        </p>
+         <p>
           <strong>Saturday – Sunday</strong><br>
           9:00 AM – 9:00 PM (IST)
         </p>
