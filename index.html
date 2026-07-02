@@ -3,2199 +3,641 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flixifys</title>
-
-    <!-- Logo / Favicon -->
-  <link rel="icon" type="image/png" sizes="48x48"href="Favicon.png">
-
-  <!-- Icon Library -->
+  <title>Flixifys — Shopify Studio</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="Favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- AOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-    body{
-  background:linear-gradient(180deg,#eef2ff);
-  overflow-x: hidden;
-}
-    a{text-decoration: none}
-
-/* HERO */
-.hero{
-    min-height:85vh;
-    background:#000;
-    padding:135px 20px 40px;
-    display:flex;
-    align-items:center;
-}
-
-.hero-inner{
-    max-width:1400px;
-    margin:auto;
-    width:100%;
-    display:grid;
-    grid-template-columns:60% 40%;
-    align-items:center;
-    gap:40px;
-}
-
-.hero-content{
-    text-align:left;
-}
-
-.hero-content h1{
-    font-size:60px;
-    line-height:1.05;
-    color:#fff;
-    font-weight:800;
-    margin-bottom:20px;
-    letter-spacing:-2px;
-}
-
-.hero-content h1 span{
-    color:#8b5cf6;
-}
-
-.hero-content p{
-    color:#a1a1aa;
-    font-size:20px;
-    line-height:1.8;
-    margin-bottom:30px;
-    max-width:520px;
-}
-
-/* BUTTONS */
-.hero-btns{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.hero-btn{
-    padding:15px 28px;
-    border-radius:12px;
-    font-weight:600;
-    text-decoration:none;
-    transition:.3s;
-}
-
-.hero-btn.primary{
-    background:#8b5cf6;
-    color:#fff;
-}
-
-.hero-btn.secondary{
-    border:1px solid #8b5cf6;
-    color:#fff;
-}
-
-.hero-btn:hover{
-    transform:translateY(-3px);
-}
-
-/* TRUST BAR */
-.trust-bar{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:25px;
-    color:#fff;
-    font-size:14px;
-}
-
-/* IMAGE */
-.hero-image{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-}
-
-.hero-image img{
-    width:100%;
-    max-width:650px;
-    height:auto;
-    display:block;
-    position:relative;
-    z-index:2;
-}
-
-.hero-glow{
-    position:absolute;
-    width:550px;
-    height:550px;
-    background:#8b5cf6;
-    filter:blur(150px);
-    opacity:.35;
-    border-radius:50%;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    z-index:1;
-}
-/* =========================
-   TABLET
-========================= */
-@media (max-width:991px){
-
-    .hero{
-        min-height:auto;
-        padding:120px 20px 50px;
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#050510;--surface:#0a0a1a;--card:rgba(255,255,255,0.04);
+      --border:rgba(255,255,255,0.08);--text:#e2e8f0;--muted:#64748b;
+      --accent:#8b5cf6;--accent2:#22c55e;--glow:rgba(139,92,246,0.15);
     }
-
-    .hero-inner{
-        grid-template-columns:1fr;
-        text-align:center;
-        gap:50px;
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    body::before{
+      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity:.4;
     }
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1280px;margin:0 auto;padding:0 24px}
 
-    .hero-content{
-        text-align:center;
+    .page-loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+    .page-loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 0;transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 0}
+    .header-inner{display:flex;align-items:center;justify-content:space-between}
+    .logo img{height:38px;width:auto;transition:.3s}
+    .header.scrolled .logo img{height:32px}
+    .nav{display:flex;align-items:center;gap:32px}
+    .nav a{font-size:14px;font-weight:500;color:var(--muted);position:relative;transition:color .3s}
+    .nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);border-radius:2px;transition:width .3s}
+    .nav a:hover{color:#fff}
+    .nav a:hover::after{width:100%}
+    .nav-cta{padding:10px 24px;border-radius:100px;font-size:14px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;transition:.3s}
+    .nav a.nav-cta::after{display:none}
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}
+    .menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0}
+    .hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;animation:orbFloat 10s ease-in-out infinite}
+    .hero-orb.o1{width:600px;height:600px;background:var(--accent);top:-10%;right:-5%}
+    .hero-orb.o2{width:400px;height:400px;background:var(--accent2);bottom:-10%;left:-5%;animation-delay:3s}
+    .hero-orb.o3{width:250px;height:250px;background:#ec4899;top:50%;left:35%;animation-delay:6s;opacity:.15}
+    @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
+    .hero-grid-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;z-index:1}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--muted);margin-bottom:24px}
+    .hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:blink 2s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden}
+    .hero h1 .line{display:block;overflow:hidden}
+    .hero h1 .line-inner{display:block;transform:translateY(110%);animation:textReveal .8s cubic-bezier(.16,1,.3,1) forwards}
+    .hero h1 .line:nth-child(2) .line-inner{animation-delay:.15s}
+    .hero h1 .line:nth-child(3) .line-inner{animation-delay:.3s}
+    @keyframes textReveal{to{transform:translateY(0)}}
+    .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{font-size:18px;line-height:1.8;color:var(--muted);max-width:500px;margin-bottom:32px;opacity:0;animation:fadeUp .8s .5s ease forwards;transform:translateY(20px)}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .65s ease forwards;transform:translateY(20px)}
+    .btn-primary{padding:16px 32px;border-radius:14px;font-weight:600;font-size:15px;background:var(--accent);color:#fff;border:none;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(139,92,246,.35)}
+    .btn-outline{padding:16px 32px;border-radius:14px;font-weight:600;font-size:15px;background:transparent;color:#fff;border:1px solid var(--border);cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+    .hero-trust{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .8s ease forwards;transform:translateY(20px)}
+    .hero-trust span{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+    .hero-trust span i{color:var(--accent2);font-size:10px}
+    .hero-visual{position:relative;display:flex;justify-content:center;opacity:0;animation:fadeUp 1s .4s ease forwards;transform:translateY(30px)}
+    .hero-visual img{width:100%;max-width:580px;border-radius:24px;position:relative;z-index:2;animation:heroImgFloat 6s ease-in-out infinite}
+    @keyframes heroImgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+    .hero-visual::before{content:'';position:absolute;width:70%;height:70%;top:15%;left:15%;background:var(--accent);filter:blur(100px);opacity:.2;border-radius:50%;z-index:1;animation:glowPulse 4s ease-in-out infinite}
+    @keyframes glowPulse{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:.35;transform:scale(1.1)}}
+
+    .marquee-section{padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;position:relative;z-index:1}
+    .marquee-track{display:flex;gap:60px;animation:marquee 25s linear infinite;width:max-content}
+    .marquee-item{font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:10px}
+    .marquee-item .sep{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.4}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    section{position:relative;z-index:1}
+    .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
+    .section-label .line{width:24px;height:2px;background:var(--accent);border-radius:2px}
+    .section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.15}
+    .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .section-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px}
+    .section-head{text-align:center;margin-bottom:64px}
+    .section-head .section-desc{margin:0 auto}
+
+    .glass{background:var(--card);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .glass:hover{border-color:rgba(139,92,246,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px var(--glow)}
+
+    .what-section{padding:100px 0}
+    .what-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:center}
+    .what-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .what-card{padding:32px;position:relative;overflow:hidden}
+    .what-card .num{position:absolute;top:16px;right:16px;font-size:13px;font-weight:700;color:var(--accent);opacity:.4}
+    .what-card h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:8px}
+    .what-card p{font-size:14px;color:var(--muted);line-height:1.65}
+
+    .services-section{padding:100px 0}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .service-card{padding:40px 32px;text-align:center;position:relative;overflow:hidden}
+    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transition:.4s;transform-origin:left}
+    .service-card:hover::before{transform:scaleX(1)}
+    .s-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 20px;transition:.3s}
+    .service-card:hover .s-icon{transform:scale(1.1) rotate(5deg)}
+    .s-icon.c1{background:linear-gradient(135deg,#6366f1,#818cf8)}
+    .s-icon.c2{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
+    .s-icon.c3{background:linear-gradient(135deg,#f59e0b,#facc15)}
+    .s-icon.c4{background:linear-gradient(135deg,#22c55e,#4ade80)}
+    .s-icon.c5{background:linear-gradient(135deg,#8b5cf6,#a78bfa)}
+    .s-icon.c6{background:linear-gradient(135deg,#ec4899,#f472b6)}
+    .service-card h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:10px}
+    .service-card p{font-size:14px;color:var(--muted);line-height:1.65}
+
+    .process-section{padding:100px 0}
+    .process-timeline{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+    .process-item{display:flex;align-items:center;gap:24px}
+    .process-item.rev{flex-direction:row-reverse}
+    .p-dot{width:56px;height:56px;min-width:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;transition:.3s}
+    .process-item:hover .p-dot{transform:rotate(10deg) scale(1.05)}
+    .p-dot.c1{background:linear-gradient(135deg,#6366f1,#818cf8)}
+    .p-dot.c2{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
+    .p-dot.c3{background:linear-gradient(135deg,#22c55e,#4ade80)}
+    .p-dot.c4{background:linear-gradient(135deg,#f59e0b,#facc15)}
+    .p-dot.c5{background:linear-gradient(135deg,#ec4899,#f472b6)}
+    .p-body{padding:28px 32px;flex:1;transition:.3s}
+    .process-item:hover .p-body{transform:translateX(4px)}
+    .process-item.rev:hover .p-body{transform:translateX(-4px)}
+    .p-body h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;white-space:nowrap}
+    .p-body p{font-size:14.5px;color:var(--muted);line-height:1.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .why-section{padding:100px 0;position:relative;overflow:hidden}
+    .why-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 70%);pointer-events:none}
+    .why-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:56px}
+    .stat-card{text-align:center;padding:32px 16px;position:relative;overflow:hidden}
+    .stat-card::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:.4s}
+    .stat-card:hover::after{opacity:1}
+    .stat-number{font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px}
+    .stat-label{font-size:13px;color:var(--muted);font-weight:500}
+    .why-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px;margin:0 auto}
+    .why-card{padding:36px 32px;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:22px;backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .why-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.06),transparent 60%);opacity:0;transition:opacity .4s}
+    .why-card:hover::before{opacity:1}
+    .why-card:hover{transform:translateY(-8px);border-color:rgba(139,92,246,.2);box-shadow:0 24px 60px rgba(0,0,0,.3)}
+    .why-card-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;position:relative;z-index:1}
+    .why-card-icon{width:44px;height:44px;min-width:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff}
+    .why-card:nth-child(1) .why-card-icon{background:linear-gradient(135deg,#6366f1,#818cf8)}
+    .why-card:nth-child(2) .why-card-icon{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
+    .why-card:nth-child(3) .why-card-icon{background:linear-gradient(135deg,#22c55e,#4ade80)}
+    .why-card:nth-child(4) .why-card-icon{background:linear-gradient(135deg,#f59e0b,#facc15)}
+    .why-card-num{font-size:13px;font-weight:800;color:rgba(255,255,255,.12);margin-left:auto}
+    .why-card h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;position:relative;z-index:1}
+    .why-card p{font-size:14.5px;color:var(--muted);line-height:1.7;position:relative;z-index:1}
+
+    .tech-section{padding:60px 0;overflow:hidden;position:relative}
+    .tech-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+    .tech-section::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+    .tech-marquee{display:flex;gap:20px;width:max-content;animation:techScroll 40s linear infinite}
+    .tech-marquee:hover{animation-play-state:paused}
+    @keyframes techScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .tech-pill{display:flex;align-items:center;gap:14px;padding:20px 36px;border-radius:100px;white-space:nowrap;background:var(--card);border:1px solid var(--border);transition:all .3s;cursor:default;flex-shrink:0}
+    .tech-pill:hover{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.08);transform:scale(1.06)}
+    .tech-pill-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+    .tech-pill:nth-child(1) .tech-pill-icon,.tech-pill:nth-child(10) .tech-pill-icon{background:linear-gradient(135deg,#6366f1,#818cf8)}
+    .tech-pill:nth-child(2) .tech-pill-icon,.tech-pill:nth-child(11) .tech-pill-icon{background:linear-gradient(135deg,#635bff,#8b5cf6)}
+    .tech-pill:nth-child(3) .tech-pill-icon,.tech-pill:nth-child(12) .tech-pill-icon{background:linear-gradient(135deg,#22c55e,#4ade80)}
+    .tech-pill:nth-child(4) .tech-pill-icon,.tech-pill:nth-child(13) .tech-pill-icon{background:linear-gradient(135deg,#f59e0b,#facc15)}
+    .tech-pill:nth-child(5) .tech-pill-icon,.tech-pill:nth-child(14) .tech-pill-icon{background:linear-gradient(135deg,#0ea5e9,#38bdf8)}
+    .tech-pill:nth-child(6) .tech-pill-icon,.tech-pill:nth-child(15) .tech-pill-icon{background:linear-gradient(135deg,#ec4899,#f472b6)}
+    .tech-pill:nth-child(7) .tech-pill-icon,.tech-pill:nth-child(16) .tech-pill-icon{background:linear-gradient(135deg,#a855f7,#d8b4fe)}
+    .tech-pill:nth-child(8) .tech-pill-icon,.tech-pill:nth-child(17) .tech-pill-icon{background:linear-gradient(135deg,#14b8a6,#5eead4)}
+    .tech-pill:nth-child(9) .tech-pill-icon,.tech-pill:nth-child(18) .tech-pill-icon{background:linear-gradient(135deg,#f97316,#fb923c)}
+    .tech-pill span{font-size:15px;font-weight:600;color:var(--text)}
+
+    .industries-section{padding:100px 0}
+    .ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .ind-card{padding:36px 28px;text-align:center}
+    .ind-icon{width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;margin:0 auto 20px;transition:.3s}
+    .ind-card:hover .ind-icon{transform:scale(1.1) rotate(5deg)}
+    .ind-icon.c1{background:linear-gradient(135deg,#ec4899,#f472b6)}
+    .ind-icon.c2{background:linear-gradient(135deg,#22c55e,#4ade80)}
+    .ind-icon.c3{background:linear-gradient(135deg,#a855f7,#d8b4fe)}
+    .ind-icon.c4{background:linear-gradient(135deg,#0ea5e9,#38bdf8)}
+    .ind-icon.c5{background:linear-gradient(135deg,#f59e0b,#facc15)}
+    .ind-icon.c6{background:linear-gradient(135deg,#6366f1,#818cf8)}
+    .ind-card h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:8px}
+    .ind-card p{font-size:14px;color:var(--muted);line-height:1.6}
+
+    .contact-section{padding:100px 0;position:relative}
+    .contact-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(34,197,94,.04) 0%,transparent 70%);pointer-events:none}
+    .contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:0;align-items:stretch}
+    .contact-form-card{padding:44px 40px;border-radius:20px 0 0 20px;background:var(--card);border:1px solid var(--border);border-right:none;backdrop-filter:blur(10px);display:flex;flex-direction:column}
+    .contact-form-card h3{font-size:24px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.5px}
+    .contact-form-card .sub{font-size:14px;color:var(--muted);margin-bottom:28px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group.full{grid-column:1/-1}
+    .form-group label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+    .form-group input,.form-group select,.form-group textarea{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:all .3s;-webkit-appearance:none}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,92,246,.15)}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.2)}
+    .form-group select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+    .form-group select option{background:var(--surface);color:var(--text)}
+    .form-group textarea{resize:none;min-height:100px}
+    .form-submit{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;margin-top:auto;font-family:'Inter',sans-serif}
+    .form-submit:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(139,92,246,.3)}
+
+    .contact-wa-card{padding:44px 36px;border-radius:0 20px 20px 0;background:var(--card);border:1px solid var(--border);border-left:none;backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+    .contact-wa-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:rgba(34,197,94,.06);border-radius:50%;filter:blur(50px)}
+    .contact-wa-card::after{content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;background:rgba(34,197,94,.04);border-radius:50%;filter:blur(50px)}
+    .contact-wa-card h4{font-size:22px;font-weight:800;color:#fff;margin-bottom:10px;position:relative;z-index:1}
+    .contact-wa-card p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px;max-width:280px;position:relative;z-index:1}
+    .wa-chat-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:100px;background:#22c55e;color:#fff;font-weight:700;font-size:15px;transition:all .3s;position:relative;z-index:1}
+    .wa-chat-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(34,197,94,.35)}
+    .wa-or-text{margin-top:20px;font-size:13px;color:var(--muted);position:relative;z-index:1}
+    .wa-or-text span{color:var(--accent);font-weight:600}
+
+    .footer{padding:80px 0 40px;border-top:1px solid var(--border);position:relative;z-index:1}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px}
+    .footer h4{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px}
+    .footer p{font-size:14px;color:var(--muted);line-height:1.8}
+    .footer-socials{display:flex;gap:10px;margin-top:16px}
+    .footer-socials a{width:36px;height:36px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:.3s}
+    .footer-socials a:hover{color:#fff;border-color:var(--accent);background:var(--glow)}
+    .footer-bottom{text-align:center;font-size:13px;color:var(--muted);padding-top:32px;border-top:1px solid var(--border)}
+
+    /* ===== WHATSAPP FLOAT — MINIMAL ===== */
+    .wa-float{position:fixed;right:24px;bottom:24px;z-index:90}
+    .wa-btn{
+      width:56px;height:56px;border-radius:50%;background:#22c55e;color:#fff;
+      font-size:26px;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 20px rgba(34,197,94,.35);
+      transition:transform .3s;position:relative;z-index:2;
     }
+    .wa-btn:hover{transform:scale(1.08)}
 
-    .hero-content h1{
-        font-size:48px;
+    /* Tooltip — appears on hover, not popup */
+    .wa-tip{
+      position:absolute;bottom:68px;right:0;
+      padding:10px 16px;border-radius:10px;
+      background:var(--surface);border:1px solid var(--border);
+      color:var(--text);font-size:13px;font-weight:500;
+      white-space:nowrap;pointer-events:none;
+      opacity:0;transform:translateY(6px);
+      transition:all .25s ease;
     }
-
-    .hero-content p{
-        margin:0 auto 25px;
+    .wa-tip::after{
+      content:'';position:absolute;top:100%;right:20px;
+      border:6px solid transparent;border-top-color:var(--surface);
     }
+    .wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
 
-    .hero-btns{
-        justify-content:center;
+    /* DRAWER */
+    .drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px}
+    .drawer.open{right:0}
+    .drawer-head{display:flex;justify-content:space-between;align-items:center}
+    .drawer-head span{font-size:15px;font-weight:700;color:#fff}
+    .drawer-head button{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;transition:.2s}
+    .drawer-head button:hover{color:#fff}
+    .drawer a{font-size:15px;color:var(--muted);font-weight:500;transition:.2s;padding:4px 0}
+    .drawer a:hover{color:#fff}
+    .drawer-cta{margin-top:auto;padding:14px;text-align:center;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;font-weight:600;font-size:15px}
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.3s;z-index:150}
+    .overlay.open{opacity:1;pointer-events:auto}
+
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr;text-align:center}
+      .hero-desc{margin:0 auto 32px}
+      .hero-btns{justify-content:center}
+      .hero-trust{justify-content:center}
+      .what-grid{grid-template-columns:1fr}
+      .services-grid,.ind-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .why-stats{grid-template-columns:repeat(2,1fr)}
+      .why-cards-grid{grid-template-columns:1fr}
     }
-
-    .trust-bar{
-        justify-content:center;
-    }
-
-    .hero-image img{
-        max-width:500px;
-    }
-}
-
-/* =========================
-   MOBILE
-========================= */
-@media (max-width:768px){
-
-    .hero{
-        padding:110px 16px 40px;
-    }
-
-    .hero-content h1{
-        font-size:36px;
-        line-height:1.15;
-        letter-spacing:-1px;
-    }
-
-    .hero-content p{
-        font-size:16px;
-        line-height:1.7;
-    }
-
-    .hero-btns{
-        flex-direction:column;
-        align-items:center;
-        width:100%;
-    }
-
-    .hero-btn{
-        width:100%;
-        max-width:320px;
-        text-align:center;
-    }
-
-    .trust-bar{
-        gap:12px;
-        font-size:13px;
-        justify-content:center;
-    }
-
-    .hero-image img{
-        max-width:320px;
-    }
-
-    .hero-glow{
-        width:300px;
-        height:300px;
-    }
-}
-    /* HERO (FIXED HEIGHT & CLEAN BG) */
-    /*.hero{
-      min-height:58vh;
-      display: flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      /* padding:50px 20px; */
-      /*background:linear-gradient(180deg,#e0f2fe,#f8fafc);
-      padding-top: 80px;
-    }
-    .hero h1{
-      font-size:52px;
-      font-weight:700;
-      background:linear-gradient(90deg,#1e40af,#2563eb,#22c55e);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      letter-spacing:-0.5px;
-    }
-    .hero p{
-      max-width:780px;
-      margin:22px auto;
-      font-size:19px;
-      color:#334155
-    }
-    .btn{
-      display:inline-block;
-      margin-top:26px;
-      padding:15px 36px;
-      border-radius:40px;
-      background:linear-gradient(90deg,#6366f1,#0ea5e9);
-      color:#fff;
-      font-weight:500;
-      transition:.3s
-    }
-    .btn:hover{transform:translateY(-3px)} */
-
-    /* SECTION BASE */
-    /* section{padding:90px 20px;max-width:1200px;margin:auto}
-    section h2{text-align:center;font-size:42px;margin-bottom:18px}
-    section p.lead{text-align:center;max-width:880px;margin:0 auto 60px;color:#475569} */
-
-/* TRUST SECTION */
-.trust{
-  background:linear-gradient(180deg,#f8fafc,#eef2ff);
-  padding:50px 20px;
-}
-
-/* GRID */
-.trust-grid{
-  max-width:1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:28px;
-}
-
-/* TRUST BOX */
-.trust-box{
-  padding:34px 26px;
-  border-radius:22px;
-  font-size:17px;
-  font-weight:600;
-  text-align:center;
-  color:#0f172a;
-  transition:.35s;
-  box-shadow:0 10px 26px rgba(0,0,0,.08);
-}
-
-/* LIGHT COLOR VARIANTS */
-.trust-box.purple{
-  background:linear-gradient(135deg,#eef2ff,#e0e7ff);
-}
-
-.trust-box.green{
-  background:linear-gradient(135deg,#ecfdf5,#dcfce7);
-}
-
-.trust-box.blue{
-  background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
-}
-
-.trust-box.orange{
-  background:linear-gradient(135deg,#fffbeb,#fef3c7);
-}
-
-/* HOVER – SUBTLE */
-.trust-box:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(0,0,0,.12);
-}
-
-/* TABLET */
-@media (max-width:1024px){
-  .trust-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-/* MOBILE */
-@media (max-width:640px){
-  .trust-grid{
-    grid-template-columns:1fr;
-  }
-  .trust-box{
-    font-size:16px;
-    padding:26px 22px;
-  }
-}
-
-
-    /* SERVICES (COLOR SEPARATION) */
-    .services{background:#f8fafc}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
-    .card{
-      background:#ffffff;
-      padding:38px;
-      border-radius:24px;
-      border:1px solid #e2e8f0;
-      transition:.35s
-    }
-    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
-    .card h3{margin-bottom:12px;font-size:22px;color:#0f172a}
-    .card p{color:#475569}
-
-    /* PROCESS */
-    .process{background:linear-gradient(180deg,#f8fafc,#eef2ff)}
-    .step{display:grid;grid-template-columns:80px 1fr;gap:24px;margin-bottom:45px}
-    .step span{
-      width:60px;height:60px;border-radius:50%;
-      background:linear-gradient(135deg,#6366f1,#22c55e);
-      color:#fff;display:flex;align-items:center;justify-content:center;
-      font-weight:600;font-size:18px
-    }
-
-    /* WHY */
-    .why{
-      background:#020617;
-      color:#fff;
-      padding:50px 20px
-    }
-    .why h2{color:#fff}
-    .why ul{max-width:900px;margin:42px auto 0}
-    .why li{margin-bottom:14px;font-size:18px;color:#cbd5f5}
-
-    /* FOOTER */
-    footer{background:#020617;color:#94a3b8;padding:70px 20px}
-    .footer-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:35px}
-    footer h4{color:#fff;margin-bottom:16px}
-    footer p{font-size:15px;line-height:1.8}
-
-    /* WHATSAPP */
-    .whatsapp{
-      position:fixed;right:24px;bottom:24px;width:50px;height:50px;
-      border-radius:50%;background:#22c55e;color:#fff;font-size:28px;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 10px 25px rgba(0,0,0,.35);
-    }
-  /* =========================
-   WHY ZIG-ZAG – COLORFUL + OVERLAP
-   ========================= */
-
-.why-zigzag{
-  max-width:1000px;
-  margin:80px auto 0;
-  display:flex;
-  flex-direction:column;
-}
-
-/* Each item */
-.why-item{
-  display:flex;
-  justify-content:flex-start;
-  margin-top:-50px; 
-  position:relative;
-  z-index:1;
-}
-
-.why-item:first-child{
-  margin-top:0;
-}
-
-.why-item.reverse{
-  justify-content:flex-end;
-}
-
-/* Card */
-.why-content{
-  max-width:540px;
-  padding:38px;
-  border-radius:26px;
-  color:#0f172a;
-  box-shadow:0 25px 60px rgba(0,0,0,.12);
-  position:relative;
-}
-
-/* COLOR VARIATIONS */
-.why-item:nth-child(1) .why-content{
-  background:linear-gradient(135deg,#e0f2fe,#dbeafe);
-}
-
-.why-item:nth-child(2) .why-content{
-  background:linear-gradient(135deg,#ecfeff,#cffafe);
-}
-
-.why-item:nth-child(3) .why-content{
-  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
-}
-
-.why-item:nth-child(4) .why-content{
-  background:linear-gradient(135deg,#fefce8,#fef3c7);
-}
-
-/* Text */
-.why-content h3{
-  font-size:22px;
-  margin-bottom:12px;
-  font-weight:600;
-}
-
-.why-content p{
-  font-size:16px;
-  line-height:1.7;
-  color:#334155;
-}
-
-/* Decorative accent */
-/* Decorative accent */
-.why-content::before{
-  content:"";
-  position:absolute;
-  top:-18px;
-  left:30px;
-  width:60px;
-  height:6px;
-  border-radius:6px;
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-}
     @media(max-width:768px){
-  .why-content::before{
-    left:20px;
-  }
-}
-
-/* Logo Css 
-  .logo img{
-  height:50px;
-  width:auto;
-}
-    */
-
-/* ---------- MOBILE FIX ---------- */
-@media (max-width:768px){
-
-  .why-item,
-  .why-item.reverse{
-    justify-content:center;
-    margin-top:20px; /* overlap off */
-  }
-
-  .why-content{
-    max-width:100%;
-    padding:28px;
-  }
-}
-/* ===============================
-   WHAT WE ACTUALLY DO – FINAL
-   =============================== */
-
-.what-we-do{
-  background:linear-gradient(180deg,#eef2ff);
-  padding:50px 20px;
-}
-
-.what-wrapper{
-  max-width:1400px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1.3fr;
-  gap:60px;
-  align-items:center;
-}
-
-/* LEFT CONTENT */
-.what-left{
-  max-width:520px;
-}
-
-.what-left h2{
-  font-size:38px;
-  margin-bottom:24px;
-}
-
-.what-left .lead{
-  font-size:18px;
-  line-height:1.75;
-  margin-bottom:20px;
-  color:#334155;
-}
-
-.what-left .desc{
-  font-size:18px;
-  line-height:1.75;
-  color:#475569;
-}
-  .what-left h2{
-  font-size:38px;
-  margin-bottom:20px;
-}
-
-.what-left .lead{
-  font-size:18px;
-  color:#334155;
-  line-height:1.75;
-  margin-bottom:18px;
-}
-
-.what-left .desc{
-  font-size:18px;
-  color:#475569;
-  line-height:1.75;
-}
-
-/* RIGHT GRID */
-.what-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:28px;
-}
-
-/* CARDS */
-.what-card{
-  position:relative;
-  padding:36px;
-  border-radius:26px;
-  border:none;
-  transition:.35s;
-}
-
-.what-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 25px 60px rgba(0,0,0,.15);
-}
-
-/* COLORS */
-.what-card:nth-child(1){
-  background:linear-gradient(135deg,#e0f2fe,#dbeafe);
-}
-.what-card:nth-child(2){
-  background:linear-gradient(135deg,#ecfeff,#cffafe);
-}
-.what-card:nth-child(3){
-  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
-}
-.what-card:nth-child(4){
-  background:linear-gradient(135deg,#fefce8,#fef3c7);
-}
-
-/* TEXT */
-.what-card h3{
-  font-size:21px;
-  margin-bottom:10px;
-}
-
-.what-card p{
-  font-size:15.5px;
-  line-height:1.6;
-  color:#334155;
-}
-
-/* NUMBER */
-.what-number{
-  position:absolute;
-  top:-18px;
-  right:24px;
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  background:#020617;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
-  box-shadow:0 12px 28px rgba(0,0,0,.25);
-}
-
-/* ---------- MOBILE FIX ---------- */
-@media (max-width:768px){
-
-  .what-wrapper{
-    grid-template-columns:1fr;
-    gap:40px;
-  }
-
-  .what-left h2{
-    font-size:30px;
-  }
-
-  .what-grid{
-    grid-template-columns:1fr;
-  }
-
-  .what-card{
-    padding:28px;
-  }
-}
-    /* ===============================
-   OUR CORE SERVICES – FINAL
-   =============================== */
-
-.services-new{
-  background:linear-gradient(180deg,#eef2ff);
-  padding:50px 20px;
-}
-
-/* HEADER */
-.services-head{
-  text-align:center;
-  max-width:760px;
-  margin:0 auto 80px;
-}
-
-.services-head h2{
-  font-size:42px;
-  margin-bottom:18px;
-  font-weight:700;
-}
-
-.services-head h2 span{
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.services-head p{
-  font-size:18px;
-  color:#475569;
-  line-height:1.75;
-}
-
-/* GRID */
-.services-grid{
-  max-width:1400px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:32px;
-}
-
-/* CARD */
-.service-card{
-  background:#ffffff;
-  padding:48px 34px 38px;
-  border-radius:30px;
-  border:1px solid #e2e8f0;
-  transition:.35s;
-  position:relative;
-  text-align:center;
-}
-
-.service-card:hover{
-  transform:translateY(-14px);
-  box-shadow:0 35px 80px rgba(0,0,0,.15);
-}
-
-/* ICON BASE */
-.service-icon{
-  width:64px;
-  height:64px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  color:#fff;
-  margin:0 auto 26px;
-}
-.service-card:hover .service-icon{
-  transform:scale(1.1);
-}
-    
-/* ICON COLORS */
-.service-icon.design{
-  background:linear-gradient(135deg,#6366f1,#818cf8);
-}
-.service-icon.dev{
-  background:linear-gradient(135deg,#0ea5e9,#22d3ee);
-}
-.service-icon.speed{
-  background:linear-gradient(135deg,#f59e0b,#facc15);
-}
-.service-icon.mobile{
-  background:linear-gradient(135deg,#22c55e,#4ade80);
-}
-.service-icon.migrate{
-  background:linear-gradient(135deg,#8b5cf6,#a78bfa);
-}
-.service-icon.support{
-  background:linear-gradient(135deg,#ec4899,#f472b6);
-}
-
-/* TEXT */
-.service-card h3{
-  font-size:22px;
-  margin-bottom:14px;
-  color:#0f172a;
-}
-
-.service-card p{
-  font-size:15.5px;
-  line-height:1.65;
-  color:#334155;
-}
-
-/* ---------- TABLET ---------- */
-@media (max-width:1024px){
-  .services-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width:640px){
-
-  .services-head h2{
-    font-size:30px;
-  }
-
-  .services-grid{
-    grid-template-columns:1fr;
-  }
-
-  .service-card{
-    padding:36px 26px;
-  }
-
-  .service-icon{
-    width:56px;
-    height:56px;
-    font-size:22px;
-  }
-}
-
-  /* ===============================
-   HOW WE WORK – PREMIUM STYLE
-   =============================== */
-
-.how-we-work{
-  background:linear-gradient(180deg,#eef2ff);
-  padding:50px 20px;
-}
-
-/* HEADER */
-.work-head{
-  text-align:center;
-  max-width:760px;
-  margin:0 auto 90px;
-}
-
-.work-head h2{
-  font-size:42px;
-  margin-bottom:18px;
-  font-weight:700;
-}
-
-.work-head h2 span{
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.work-head p{
-  font-size:18px;
-  color:#475569;
-  line-height:1.75;
-}
-
-/* STEPS WRAPPER */
-.work-steps{
-  max-width:1000px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
-
-/* SINGLE STEP */
-.work-step{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.work-step.reverse{
-  flex-direction:row-reverse;
-}
-
-/* ICON */
-.work-icon{
-  width:70px;
-  height:70px;
-  border-radius:22px;
-  display:flex;
-  align-items:center;
-  colgap:40px;
-}
-
-.work-icon{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
-  color:#fff;
-  flex-shrink:0;
-}
-
-/* ICON COLORS */
-.work-icon.strategy{
-  background:linear-gradient(135deg,#6366f1,#818cf8);
-}
-.work-icon.design{
-  background:linear-gradient(135deg,#0ea5e9,#22d3ee);
-}
-.work-icon.dev{
-  background:linear-gradient(135deg,#22c55e,#4ade80);
-}
-.work-icon.test{
-  background:linear-gradient(135deg,#f59e0b,#facc15);
-}
-.work-icon.launch{
-  background:linear-gradient(135deg,#ec4899,#f472b6);
-}
-
-/* CONTENT */
-.work-content{
-  background:#ffffff;
-  padding:32px 36px;
-  border-radius:26px;
-  border:1px solid #e2e8f0;
-}
-
-.work-content h3{
-  font-size:22px;
-  margin-bottom:10px;
-  color:#0f172a;
-}
-
-.work-content p{
-  font-size:16px;
-  line-height:1.65;
-  color:#334155;
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width:768px){
-
-  .work-step,
-  .work-step.reverse{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .work-content{
-    padding:28px;
-  }
-}
-
-/* ===============================
-   INDUSTRIES – PREMIUM DESIGN
-   =============================== */
-
-.industries{
-  background:linear-gradient(180deg,#eef2ff);
-  padding:50px 20px;
-}
-
-/* HEADER */
-.industries-head{
-  text-align:center;
-  max-width:760px;
-  margin:0 auto 80px;
-}
-
-.industries-head h2{
-  font-size:42px;
-  font-weight:700;
-  margin-bottom:18px;
-}
-
-.industries-head h2 span{
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.industries-head p{
-  font-size:18px;
-  color:#475569;
-  line-height:1.75;
-}
-
-/* GRID */
-.industries-grid{
-  max-width:1400px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:32px;
-}
-
-/* CARD */
-.industry-card{
-  background:#f8fafc;
-  padding:42px 32px;
-  border-radius:30px;
-  border:1px solid #e2e8f0;
-  text-align:center;
-  transition:.35s;
-}
-
-.industry-card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 30px 70px rgba(0,0,0,.12);
-}
-
-/* ICON */
-.industry-icon{
-  width:70px;
-  height:70px;
-  border-radius:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
-  color:#fff;
-  margin:0 auto 24px;
-}
-
-/* ICON COLORS */
-.industry-icon.fashion{
-  background:linear-gradient(135deg,#ec4899,#f472b6);
-}
-.industry-icon.health{
-  background:linear-gradient(135deg,#22c55e,#4ade80);
-}
-.industry-icon.beauty{
-  background:linear-gradient(135deg,#a855f7,#d8b4fe);
-}
-.industry-icon.tech{
-  background:linear-gradient(135deg,#0ea5e9,#38bdf8);
-}
-.industry-icon.food{
-  background:linear-gradient(135deg,#f59e0b,#facc15);
-}
-.industry-icon.b2b{
-  background:linear-gradient(135deg,#6366f1,#818cf8);
-}
-
-/* TEXT */
-.industry-card h3{
-  font-size:22px;
-  margin-bottom:12px;
-  color:#0f172a;
-}
-
-.industry-card p{
-  font-size:15.5px;
-  line-height:1.6;
-  color:#334155;
-}
-
-/* ---------- TABLET ---------- */
-@media (max-width:1024px){
-  .industries-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width:640px){
-  .industries-head h2{
-    font-size:30px;
-  }
-
-  .industries-grid{
-    grid-template-columns:1fr;
-  }
-
-  .industry-card{
-    padding:36px 26px;
-  }
-
-  .industry-icon{
-    width:60px;
-    height:60px;
-    font-size:24px;
-  }
-}
-/* ===============================
-   CONTACT & INQUIRY – COMPACT
-   =============================== */
-
-.contact-section{
-  background:linear-gradient(180deg,#eef2ff);
-  padding:50px 20px; 
-}
-
-/* HEADER */
-.contact-head{
-  text-align:center;
-  max-width:720px;
-  margin:0 auto 50px;
-}
-
-.contact-head h2{
-  font-size:36px;
-  font-weight:700;
-  margin-bottom:12px;
-}
-
-.contact-head h2 span{
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.contact-head p{
-  font-size:16px;
-  color:#475569;
-  line-height:1.6;
-}
-
-/* GRID */
-.contact-grid{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:26px; 
-}
-
-/* CARD */
-.contact-card{
-  background:#ffffff;
-  padding:26px 30px;
-  border-radius:22px;
-  border:1px solid #e5e7eb;
-  text-align:center;
-  transition:.3s ease;
-}
-
-.contact-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 18px 40px rgba(0,0,0,.1);
-}
-
-/* HIGHLIGHT CARD */
-.contact-card.highlight{
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#ffffff;
-  border:none;
-}
-
-.contact-card.highlight h3,
-.contact-card.highlight p{
-  color:#ffffff;
-}
-
-/* ICON */
-.contact-icon{
-  width:56px;
-  height:56px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  margin:0 auto 14px;
-  color:#ffffff;
-}
-
-.contact-icon.email{
-  background:linear-gradient(135deg,#6366f1,#818cf8);
-}
-
-.contact-icon.whatsapp-icon{
-  background:linear-gradient(135deg,#22c55e,#4ade80);
-}
-
-/* TEXT */
-.contact-card h3{
-  font-size:19px;
-  font-weight:600;
-  margin-bottom:6px;
-}
-
-.contact-card p{
-  font-size:14.5px;
-  line-height:1.55;
-  color:#475569;
-  margin-bottom:12px;
-}
-
-/* FORM */
-.contact-form{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.contact-form input,
-.contact-form textarea{
-  width:100%;
-  padding:10px 14px;
-  font-size:14px;
-  border-radius:12px;
-  border:1px solid #e5e7eb;
-  outline:none;
-}
-
-.contact-form textarea{
-  resize:none;
-}
-
-/* BUTTON */
-.contact-btn{
-  display:inline-block;
-  padding:11px 26px;
-  border-radius:40px;
-  background:#ffffff;
-  color:#16a34a;
-  font-weight:600;
-  font-size:14.5px;
-  transition:.25s;
-  border:none;
-  cursor:pointer;
-}
-
-.email-btn{
-  background:linear-gradient(90deg,#6366f1,#818cf8);
-  color:#ffffff;
-}
-
-.contact-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 22px rgba(0,0,0,.18);
-}
-.contact-actions{
-  display:flex;
-  flex-direction:column;   /* ⬅️ vertical stack */
-  gap:12px;
-  margin-top:14px;
-}
-
-.contact-actions .contact-btn{
-  width:100%;
-  text-align:center;
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width:768px){
-
-  .contact-grid{
-    grid-template-columns:1fr;
-    gap:20px;
-  }
-
-  .contact-head h2{
-    font-size:26px;
-  }
-
-  .contact-head p{
-    font-size:15px;
-  }
-
-  .contact-card{
-    padding:22px 20px;
-    border-radius:18px;
-  }
-
-  /* Mobile Logo Centre */
-  .header-container{
-  justify-content: center;
-}
-  
-  .contact-btn{
-    width:100%;
-    padding:13px;
-  }
-}
-
-@media (max-width:768px){
-
-  /* Mobile Logo Centre */  
-  .logo {
-    transform: none;
-  }
-
-  .contact-grid{
-    grid-template-columns:1fr;
-    gap:20px;
-  }
-
-  .contact-head h2{
-    font-size:26px;
-  }
-
-  .contact-head p{
-    font-size:15px;
-  }
-
-  .contact-card{
-    padding:22px 20px;
-    border-radius:18px;
-  }
-
-  .contact-btn{
-    width:100%;
-    padding:13px;
-  }
-}
-
-    
-/* =========================
-   HEADER / NAVBAR
-========================= */
-
-.site-header{
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:1000;
-  border-bottom:1px solid rgba(255,255,255,.12);;
-}
-
-.header-container{
-  max-width:1400px;
-  margin: auto;
-  padding: 0px 20px;
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
-}
-
-/* LOGO */
-.logo a{
-  font-size:22px;
-  font-weight:700;
-  color:#0f172a;
-  letter-spacing:.3px;
-}
-
-/* DESKTOP NAV */
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:28px;
-}
-
-.nav-links a{
-  font-size:15px;
-  font-weight:500;
-  color:#fff;
-  transition:.3s;
-}
-
-.nav-links a:hover{
-  color:#6366f1;
-}
-
-/* CONTACT BUTTON */
-.nav-btn{
-  padding:10px 22px;
-  border-radius:30px;
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  color:#fff !important;
-  font-weight:600;
-}
-
-/* Trust Bar CSS */
-  .trust-bar{
-  display:flex;
-  gap:20px;
-  flex-wrap: wrap;
-  margin-top:20px;
-  color:#fff;
-  font-size:14px;
-}
-
-@media(max-width:768px){
-  .trust-bar{
-    justify-content: center;
-  }
-}
-    
-/* MOBILE TOGGLE */
-.menu-toggle{
-  display: none;
-  font-size:26px;
-  cursor: pointer;
-  color:#fff;
-}
-
-/* =========================
-   MOBILE DRAWER
-========================= */
-
-.mobile-drawer{
-  position:fixed;
-  top:0;
-  right:-280px;
-  width:260px;
-  height:100vh;
-  background: linear-gradient(180deg, #e0f2fe, #f8fafc);
-  padding:26px 22px;
-  box-shadow:-10px 0 40px rgba(0,0,0,.15);
-  transition:.35s ease;
-  z-index:2000;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.mobile-drawer.active{
-  right:0;
-}
-
-.drawer-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  font-size:16px;
-  font-weight:600;
-  margin-bottom:10px;
-}
-
-.drawer-header button{
-  background:none;
-  border:none;
-  font-size:22px;
-  cursor:pointer;
-}
-
-/* DRAWER LINKS */
-.mobile-drawer a{
-  font-size:16px;
-  font-weight:500;
-  color:#0f172a;
-}
-
-/* DRAWER BUTTON */
-.drawer-btn{
-  margin-top:14px;
-  padding:12px;
-  text-align:center;
-  border-radius:30px;
-  background:linear-gradient(90deg,#6366f1,#22c55e);
-  color:#fff !important;
-  font-weight:600;
-}
-
-/* OVERLAY */
-.drawer-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  z-index:1500;
-}
-
-.drawer-overlay.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width:768px){
-
-  .nav-links{
-    display:none;
-  }
-
-  .menu-toggle{
-    display:block;
-  }
-
-  .hero{
-    padding-top:120px; /* header space */
-  }
-}
-
-    /* =================================================
-   RESPONSIVE FIX : MOBILE + TABLET
-   ================================================= */
-
-/* ---------- MOBILE (phones) ---------- */
-@media (max-width: 768px) {
-
-  /* HERO */
-.hero{
-  min-height:auto;
-  padding:100px 16px 40px;
-}
-
-.header-container{
-  justify-content:space-between;
-}
-
-.logo img{
-  width:150px;
-  height:auto;
-}
-
-  .hero h1{
-    font-size:32px;
-    line-height:1.25;
-  }
-
-  .hero p{
-    font-size:16px;
-    margin:14px auto;
-  }
-
-  /* BUTTONS */
-  .btn{
-    padding:14px 26px;
-    font-size:15px;
-    margin-top:18px;
-  }
-
-  /* SECTIONS */
-  section{
-    padding:60px 16px;
-  }
-
-  section h2{
-    font-size:28px;
-  }
-
-  section p.lead{
-    font-size:16px;
-    margin-bottom:36px;
-  }
-
-  /* GRID → SINGLE COLUMN */
-  .grid{
-    grid-template-columns:1fr;
-    gap:20px;
-  }
-
-  /* CARDS */
-  .card{
-    padding:26px;
-  }
-
-  .card h3{
-    font-size:19px;
-  }
-
-  .card p{
-    font-size:15px;
-  }
-
-  /* NUMBER BADGE FIX */
-  .card span{
-    left:16px;
-    top:-18px;
-  }
-
-  /* TRUST */
-  .trust{
-    padding:50px 16px;
-  }
-
-  .trust-box{
-    font-size:17px;
-  }
-
-  /* WHY */
-  .why{
-    padding:70px 16px;
-  }
-
-  /* FOOTER */
-  footer{
-    padding:60px 16px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:28px;
-  }
-
-  footer h4{
-    font-size:18px;
-  }
-
-  footer p{
-    font-size:14px;
-  }
-
-  /* WHATSAPP */
-  .whatsapp{
-    position:fixed;
-    width:52px;
-    height:52px;
-    right:16px;
-    bottom:16px;
-  }
-}
-
-/* ---------- TABLET (iPad etc.) ---------- */
-@media (min-width: 769px) and (max-width: 1024px) {
-
-  /* HERO */
-  .hero{
-    min-height:60vh;
-    padding:80px 24px;
-  }
-
-  .hero h1{
-    font-size:42px;
-  }
-
-  /* SECTIONS */
-  section{
-    padding:80px 24px;
-  }
-
-  section h2{
-    font-size:34px;
-  }
-
-  /* GRID → 2 COLUMN */
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:24px;
-  }
-
-  /* ABOUT SPLIT */
-  .about-split{
-    grid-template-columns:1fr;
-    gap:40px;
-  }
-
-  /* CARDS */
-  .card{
-    padding:32px;
-  }
-
-  /* FOOTER */
-  .footer-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:30px;
-  }
-}
-
+      .nav{display:none}
+      .menu-btn{display:block}
+      .header-inner{justify-content:center;position:relative}
+      .menu-btn{position:absolute;right:24px}
+      .hero{padding:100px 0 60px;min-height:auto}
+      .hero h1{letter-spacing:-1px}
+      .hero-visual{display:none}
+      .what-cards,.services-grid,.ind-grid{grid-template-columns:1fr}
+      .process-item,.process-item.rev{flex-direction:column;align-items:flex-start;gap:16px}
+      .process-item.rev:hover .p-body{transform:translateX(4px)}
+      .p-body h3,.p-body p{white-space:normal;overflow:visible;text-overflow:unset}
+      .footer-grid{grid-template-columns:1fr}
+      .wa-float{right:16px;bottom:16px}
+      .wa-btn{width:52px;height:52px;font-size:22px}
+      .form-row{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .contact-form-card{border-radius:20px;border-right:1px solid var(--border);border-bottom:none}
+      .contact-wa-card{border-radius:0 0 20px 20px;border-left:1px solid var(--border);border-top:none;padding:36px 24px}
+      .tech-pill{padding:16px 24px}
+      .tech-pill-icon{width:34px;height:34px;font-size:15px;border-radius:10px}
+      .tech-pill span{font-size:13px}
+    }
+    @media(max-width:400px){
+      .hero-btns{flex-direction:column;align-items:stretch}
+      .btn-primary,.btn-outline{justify-content:center}
+      .hero-trust{flex-direction:column;align-items:center;gap:8px}
+    }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-  <div class="header-container">
+  <div class="page-loader" id="pageLoader"><div class="loader-ring"></div></div>
 
-    <div class="logo">
-        <a href="index.html">
-          <img src="FFLOGO-WHITE.png" width="200" alt="Flixifys Logo" height="auto">
-        </a>
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <div class="logo"><a href="index.html"><img src="FFLOGO-WHITE.png" alt="Flixifys"></a></div>
+      <nav class="nav">
+        <a href="about-us.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="case-studies.html">Blog</a>
+        <a href="contact-us.html">Contact Us</a>
+        <a class="nav-cta" href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank">Book a Free Call</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
     </div>
+  </header>
 
-    <!-- DESKTOP NAV -->
-    <nav class="nav-links">
-      <a href="about-us.html">About Us</a>
-      <a href="services.html">Services</a>
-      <a href="case-studies.html">Blog</a>
-      <a href="contact-us.html">Contact Us</a>
-      <a class="hero-btn primary"
-      href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank">
-        Book a Free Call
+  <div class="drawer" id="drawer">
+    <div class="drawer-head"><span>Menu</span><button id="closeDrawer"><i class="fa-solid fa-xmark"></i></button></div>
+    <a href="about-us.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="contact-us.html">Contact Us</a>
+    <a class="drawer-cta" href="https://wa.me/919876543210" target="_blank">Book a Free Call</a>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <section class="hero">
+    <div class="hero-bg"><div class="hero-orb o1"></div><div class="hero-orb o2"></div><div class="hero-orb o3"></div></div>
+    <div class="hero-grid-lines"></div>
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-tag"><span class="dot"></span> Shopify Expert Studio</div>
+        <h1>
+          <span class="line"><span class="line-inner">We Build Shopify Stores</span></span>
+          <span class="line"><span class="line-inner">That <span class="grad">Convert Visitors</span></span></span>
+          <span class="line"><span class="line-inner">Into Customers.</span></span>
+        </h1>
+        <p class="hero-desc">Design, develop and optimize high-performing Shopify stores that drive traffic, increase conversions and scale your revenue.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-primary">Book Free Consultation <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="btn-outline">View Case Studies <i class="fa-solid fa-eye"></i></a>
+        </div>
+        <div class="hero-trust">
+          <span><i class="fa-solid fa-circle-check"></i> Shopify Experts</span>
+          <span><i class="fa-solid fa-circle-check"></i> Fast Turnaround</span>
+          <span><i class="fa-solid fa-circle-check"></i> Conversion Focused</span>
+          <span><i class="fa-solid fa-circle-check"></i> Ongoing Support</span>
+        </div>
+      </div>
+      <div class="hero-visual"><img src="main-banner.png" alt="Flixifys Dashboard"></div>
+    </div>
+  </section>
+
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="sep"></span>Shopify Experts</span>
+      <span class="marquee-item"><span class="sep"></span>Custom Development</span>
+      <span class="marquee-item"><span class="sep"></span>Conversion Optimization</span>
+      <span class="marquee-item"><span class="sep"></span>Speed Performance</span>
+      <span class="marquee-item"><span class="sep"></span>Mobile First</span>
+      <span class="marquee-item"><span class="sep"></span>Platform Migration</span>
+      <span class="marquee-item"><span class="sep"></span>Shopify Experts</span>
+      <span class="marquee-item"><span class="sep"></span>Custom Development</span>
+      <span class="marquee-item"><span class="sep"></span>Conversion Optimization</span>
+      <span class="marquee-item"><span class="sep"></span>Speed Performance</span>
+      <span class="marquee-item"><span class="sep"></span>Mobile First</span>
+      <span class="marquee-item"><span class="sep"></span>Platform Migration</span>
+    </div>
+  </div>
+
+  <section class="what-section">
+    <div class="container what-grid">
+      <div data-aos="fade-right">
+        <div class="section-label"><span class="line"></span> What We Do</div>
+        <h2 class="section-title">What We <span class="grad">Actually</span> Do</h2>
+        <p class="section-desc" style="margin-bottom:16px">We are a Shopify-focused digital studio helping brands plan, design, build and scale high-converting ecommerce experiences.</p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.75">Our role goes beyond just development. We work as a strategic partner — aligning design, technology and performance to support long-term ecommerce success.</p>
+      </div>
+      <div class="what-cards">
+        <div class="glass what-card" data-aos="fade-up"><span class="num">01</span><h3>Business-First Approach</h3><p>We deeply understand your business model, audience and revenue goals before starting design or development.</p></div>
+        <div class="glass what-card" data-aos="fade-up" data-aos-delay="100"><span class="num">02</span><h3>Conversion-Focused UI</h3><p>Layouts crafted using UX & CRO principles that guide users smoothly from landing to checkout.</p></div>
+        <div class="glass what-card" data-aos="fade-up" data-aos-delay="200"><span class="num">03</span><h3>Scalable Architecture</h3><p>Clean, maintainable Shopify builds ready for future features, traffic spikes and integrations.</p></div>
+        <div class="glass what-card" data-aos="fade-up" data-aos-delay="300"><span class="num">04</span><h3>Data & Growth Insights</h3><p>Analytics-driven decisions help continuously improve conversion and revenue over time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Services <span class="line"></span></div>
+        <h2 class="section-title">Our <span class="grad">Core</span> Services</h2>
+        <p class="section-desc">End-to-end Shopify services designed to build, optimize and scale high-performing ecommerce brands.</p>
+      </div>
+      <div class="services-grid">
+        <div class="glass service-card" data-aos="fade-up"><div class="s-icon c1"><i class="fa-solid fa-palette"></i></div><h3>Shopify Store Design</h3><p>Modern, brand-aligned UI designs focused on trust, clarity and conversions across all devices.</p></div>
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="100"><div class="s-icon c2"><i class="fa-solid fa-code"></i></div><h3>Custom Shopify Development</h3><p>Theme customization, custom sections and performance-optimized Shopify development.</p></div>
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="200"><div class="s-icon c3"><i class="fa-solid fa-bolt"></i></div><h3>Speed & Performance</h3><p>Page speed optimization, clean code and performance best practices for better rankings.</p></div>
+        <div class="glass service-card" data-aos="fade-up"><div class="s-icon c4"><i class="fa-solid fa-mobile-screen-button"></i></div><h3>Mobile Optimization</h3><p>Mobile-first layouts ensuring smooth browsing and checkout experiences.</p></div>
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="100"><div class="s-icon c5"><i class="fa-solid fa-right-left"></i></div><h3>Platform Migration</h3><p>Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.</p></div>
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="200"><div class="s-icon c6"><i class="fa-solid fa-headset"></i></div><h3>Ongoing Support</h3><p>Post-launch maintenance, improvements, new features and continuous store monitoring.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Process <span class="line"></span></div>
+        <h2 class="section-title">How <span class="grad">We</span> Work</h2>
+        <p class="section-desc">A structured, transparent and result-driven process that keeps projects aligned and focused on growth.</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-item" data-aos="fade-right"><div class="p-dot c1"><i class="fa-solid fa-lightbulb"></i></div><div class="glass p-body"><h3>Discovery & Strategy</h3><p>We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.</p></div></div>
+        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c2"><i class="fa-solid fa-pen-ruler"></i></div><div class="glass p-body"><h3>Design System</h3><p>Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.</p></div></div>
+        <div class="process-item" data-aos="fade-right"><div class="p-dot c3"><i class="fa-solid fa-code"></i></div><div class="glass p-body"><h3>Development</h3><p>Clean, scalable Shopify development with performance, SEO and best practices in mind.</p></div></div>
+        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c4"><i class="fa-solid fa-vial-circle-check"></i></div><div class="glass p-body"><h3>Testing & Optimization</h3><p>Cross-device testing, speed optimization and UX refinements before going live.</p></div></div>
+        <div class="process-item" data-aos="fade-right"><div class="p-dot c5"><i class="fa-solid fa-rocket"></i></div><div class="glass p-body"><h3>Launch & Growth</h3><p>Smooth launch followed by ongoing support, improvements and data-driven growth strategies.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2 class="section-title">Why Brands <span class="grad">Choose</span> Us</h2>
+        <p class="section-desc">Numbers don't lie. Here's what our partnerships have delivered so far.</p>
+      </div>
+      <div class="why-stats">
+        <div class="glass stat-card" data-aos="zoom-in"><div class="stat-number" data-target="150" data-suffix="+">0</div><div class="stat-label">Stores Launched</div></div>
+        <div class="glass stat-card" data-aos="zoom-in" data-aos-delay="100"><div class="stat-number" data-target="98" data-suffix="%">0</div><div class="stat-label">Client Satisfaction</div></div>
+        <div class="glass stat-card" data-aos="zoom-in" data-aos-delay="200"><div class="stat-number" data-target="3" data-suffix="x">0</div><div class="stat-label">Avg. Revenue Boost</div></div>
+        <div class="glass stat-card" data-aos="zoom-in" data-aos-delay="300"><div class="stat-number" data-target="24" data-suffix="/7">0</div><div class="stat-label">Dedicated Support</div></div>
+      </div>
+      <div class="why-cards-grid">
+        <div class="why-card" data-aos="fade-up">
+          <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-chess-queen"></i></div><span class="why-card-num">01</span></div>
+          <h3>Strategy-Led Decisions</h3>
+          <p>Every project at Flixify begins with business goals, target audience analysis and competitive research — ensuring design decisions are driven by growth, not assumptions.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-user-tie"></i></div><span class="why-card-num">02</span></div>
+          <h3>Senior Shopify Expertise</h3>
+          <p>Clients work directly with experienced Shopify designers and developers. No outsourcing, no juniors — just focused expertise from start to launch.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-gauge-high"></i></div><span class="why-card-num">03</span></div>
+          <h3>Performance & Scalability</h3>
+          <p>We build stores optimized for speed, scalability and future growth — ensuring smooth performance during traffic spikes and sales campaigns.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-handshake"></i></div><span class="why-card-num">04</span></div>
+          <h3>Clear Communication & Transparency</h3>
+          <p>Clear timelines, honest feedback and consistent updates keep clients informed at every stage — no confusion, no surprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tech-section">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2 class="section-title">Technology <span class="grad">Partners</span></h2>
+        <p class="section-desc">We integrate with industry-leading platforms to power your Shopify store with seamless functionality.</p>
+      </div>
+    </div>
+    <div class="tech-marquee">
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-credit-card"></i></div><span>Razorpay</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-brands fa-stripe-s"></i></div><span>Stripe</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-truck-fast"></i></div><span>Shiprocket</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-envelope-open-text"></i></div><span>Klaviyo</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-chart-line"></i></div><span>Google Analytics</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-headset"></i></div><span>Gorgias</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-star"></i></div><span>Loox</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-comments"></i></div><span>Judge.me</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-rotate"></i></div><span>Recharge</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-credit-card"></i></div><span>Razorpay</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-brands fa-stripe-s"></i></div><span>Stripe</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-truck-fast"></i></div><span>Shiprocket</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-envelope-open-text"></i></div><span>Klaviyo</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-chart-line"></i></div><span>Google Analytics</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-headset"></i></div><span>Gorgias</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-star"></i></div><span>Loox</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-comments"></i></div><span>Judge.me</span></div>
+      <div class="tech-pill"><div class="tech-pill-icon"><i class="fa-solid fa-rotate"></i></div><span>Recharge</span></div>
+    </div>
+  </section>
+
+  <section class="industries-section">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Industries <span class="line"></span></div>
+        <h2 class="section-title"><span class="grad">Industries</span> We Work With</h2>
+        <p class="section-desc">We partner with brands across diverse industries, adapting our Shopify strategies based on audience behavior and market trends.</p>
+      </div>
+      <div class="ind-grid">
+        <div class="glass ind-card" data-aos="fade-up"><div class="ind-icon c1"><i class="fa-solid fa-shirt"></i></div><h3>Fashion & Apparel</h3><p>D2C fashion brands, clothing labels and lifestyle products.</p></div>
+        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="100"><div class="ind-icon c2"><i class="fa-solid fa-heart-pulse"></i></div><h3>Health & Wellness</h3><p>Supplements, fitness brands and wellness-focused ecommerce.</p></div>
+        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="200"><div class="ind-icon c3"><i class="fa-solid fa-spa"></i></div><h3>Beauty & Cosmetics</h3><p>Skincare, cosmetics and personal care brands.</p></div>
+        <div class="glass ind-card" data-aos="fade-up"><div class="ind-icon c4"><i class="fa-solid fa-microchip"></i></div><h3>Electronics & Gadgets</h3><p>Consumer electronics, accessories and smart devices.</p></div>
+        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="100"><div class="ind-icon c5"><i class="fa-solid fa-burger"></i></div><h3>Food & Beverages</h3><p>Packaged food brands, beverages and subscription models.</p></div>
+        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="200"><div class="ind-icon c6"><i class="fa-solid fa-building"></i></div><h3>B2B & Wholesale</h3><p>Manufacturers, distributors and wholesale ecommerce solutions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Contact <span class="line"></span></div>
+        <h2 class="section-title">Let's Get In <span class="grad">Touch</span></h2>
+        <p class="section-desc">Have a project in mind? Drop us a message and we'll get back to you within 24 hours.</p>
+      </div>
+      <div class="contact-grid" data-aos="fade-up">
+        <div class="contact-form-card">
+          <h3>Send Us a Message</h3>
+          <p class="sub">Fill out the form and we'll reach out shortly.</p>
+          <form id="contactForm" onsubmit="return handleFormSubmit(event)" style="flex:1;display:flex;flex-direction:column">
+            <div class="form-row">
+              <div class="form-group"><label>Your Name</label><input type="text" name="name" placeholder="John Doe" required></div>
+              <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="john@example.com" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+91 98765 43210" required></div>
+              <div class="form-group">
+                <label>Select Service</label>
+                <select name="service" required>
+                  <option value="" disabled selected>Choose a service</option>
+                  <option value="Shopify Store Design">Shopify Store Design</option>
+                  <option value="Custom Development">Custom Shopify Development</option>
+                  <option value="Speed & Performance">Speed & Performance</option>
+                  <option value="Mobile Optimization">Mobile Optimization</option>
+                  <option value="Platform Migration">Platform Migration</option>
+                  <option value="Ongoing Support">Ongoing Support</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group full" style="margin-bottom:16px;flex:1">
+              <label>Your Message</label>
+              <textarea name="message" placeholder="Tell us about your project, goals, and timeline..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="formBtn">Send Message <i class="fa-solid fa-paper-plane" style="margin-left:6px"></i></button>
+          </form>
+        </div>
+        <div class="contact-wa-card">
+          <h4>Prefer a Quick Chat?</h4>
+          <p>Skip the form — connect with us directly on WhatsApp for instant responses and faster project kick-off.</p>
+          <a href="https://wa.me/919000000000?text=Hi%20Flixifys,%20I%20need%20help%20with%20my%20Shopify%20store." target="_blank" class="wa-chat-btn">Chat on WhatsApp</a>
+          <div class="wa-or-text">or fill the <span>form</span> on the left</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>About Us</h4>
+          <p>We are a Shopify-focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
+          <div class="footer-socials">
+            <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Our Services</h4>
+          <p>Shopify Design & Development<br>Conversion Optimization<br>Performance & SEO<br>Platform Migration<br>Ongoing Support</p>
+        </div>
+        <div>
+          <h4>Working Time</h4>
+          <p><strong style="color:#fff">Monday – Friday</strong><br>7:30 PM – 9:00 AM (IST)</p>
+          <p style="margin-top:12px"><strong style="color:#fff">Saturday – Sunday</strong><br>9:00 AM – 9:00 PM (IST)</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 Shopify Agency. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT — MINIMAL, NO POPUP -->
+  <div class="wa-float">
+    <div class="wa-tip">Chat with us</div>
+    <a href="https://wa.me/919000000000" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
     </a>
-    </nav>
-
-    <!-- MOBILE TOGGLE -->
-    <div class="menu-toggle" id="menuToggle">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-
-  </div>
-</header>
-
-<!-- MOBILE DRAWER -->
-<div class="mobile-drawer" id="mobileDrawer">
-  <div class="drawer-header">
-    <span>Menu</span>
-    <button id="closeDrawer">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
   </div>
 
-  <a href="about-us.html">About Us</a>
-  <a href="services.html">Services</a>
-  <a href="case-studies.html">Case Studies</a>
-  <a href="contact-us.html">Contact Us</a>
-</div>
-
-<div class="drawer-overlay" id="drawerOverlay"></div>
-
-  <!-- Main Banner -->
-<div class="hero">
-    <div class="hero-inner">
-
-        <div class="hero-content">
-
-            <div class="hero-badge">
-            </div>
-
-            <h1>
-                We Build Shopify Stores
-                That <span>Convert Visitors</span>
-                Into Customers.
-            </h1>
-
-            <p>
-                Design, develop and optimize high-performing Shopify stores that drive traffic, increase conversions and scale your revenue.
-            </p>
-
-            <div class="hero-btns">
-                <a href="#" class="hero-btn primary">
-                    Book Free Consultation →
-                </a>
-
-                <a href="#" class="hero-btn secondary">
-                    View Case Studies →
-                </a>
-            </div>
-          
-          <div class="trust-bar">
-        <div>✓ Shopify Experts</div>
-        <div>✓ Fast Turnaround</div>
-        <div>✓ Conversion Focused</div>
-        <div>✓ Ongoing Support</div>
-      </div>
-          
-        </div>
-
-        <div class="hero-image">
-
-            <div class="hero-glow"></div>
-
-            <!-- Yahan apni uploaded hero image lagao -->
-            <img src="main-banner.png" alt="">
-
-        </div>
-
-    </div>
-</div>
-
-<!-- HERO -->
-<!-- <div class="hero">
-  <div data-aos="fade-up">
-    <h1>Advanced Shopify Experiences</h1>
-    <p style="font-size:20px;color:#1e293b">We design modern, conversion‑focused Shopify stores with clean UI, strong branding and scalable performance.</p>
-    <p style="margin-top:18px;font-size:18px;font-weight:600;background:linear-gradient(90deg,#6366f1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Get a free 15‑minute consultation</p>
-    <div style="margin-top:26px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-      <a href="https://wa.me/919000000000?text=Hi%20I%20would%20like%20to%20book%20a%20free%2015-minute%20consultation" target="_blank" class="btn" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Get Free Consultation</a>
-      <a href="#contact" class="btn">Start Your Project</a>
-    </div>
-  </div>
-</div> -->
-
-<!-- ABOUT / DETAILS BOXES -->
-<section class="what-we-do">
-
-  <div class="what-wrapper">
-
-    <!-- LEFT CONTENT (NOT MISSED NOW) -->
-    <div class="what-left" data-aos="fade-right">
-      <h2>What We Actually Do</h2>
-
-      <p class="lead">
-        We are a Shopify-focused digital studio helping brands plan, design,
-        build and scale high-converting ecommerce experiences. Everything we do
-        is structured, measurable and growth-oriented.
-      </p>
-
-      <p class="desc">
-        Our role goes beyond just development. We work as a strategic partner —
-        aligning design, technology and performance to support long-term
-        ecommerce success.
-      </p>
-    </div>
-
-    <!-- RIGHT BLOCKS -->
-    <div class="what-grid">
-
-      <div class="card what-card" data-aos="fade-up">
-        <span class="what-number">01</span>
-        <h3>Business-First Approach</h3>
-        <p>
-          We deeply understand your business model, audience and revenue goals
-          before starting design or development.
-        </p>
-      </div>
-
-      <div class="card what-card" data-aos="fade-up" data-aos-delay="100">
-        <span class="what-number">02</span>
-        <h3>Conversion-Focused UI</h3>
-        <p>
-          Layouts are crafted using UX & CRO principles that guide users smoothly
-          from landing to checkout.
-        </p>
-      </div>
-
-      <div class="card what-card" data-aos="fade-up" data-aos-delay="200">
-        <span class="what-number">03</span>
-        <h3>Scalable Architecture</h3>
-        <p>
-          Clean, maintainable Shopify builds ready for future features, traffic
-          spikes and integrations.
-        </p>
-      </div>
-
-      <div class="card what-card" data-aos="fade-up" data-aos-delay="300">
-        <span class="what-number">04</span>
-        <h3>Data & Growth Insights</h3>
-        <p>
-          Analytics-driven decisions help continuously improve conversion and
-          revenue over time.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SERVICES -->
-<section class="services-new">
-
-  <div class="services-head" data-aos="fade-up">
-    <h2>
-      <span>Our</span> Core Services
-    </h2>
-    <p>
-      End-to-end Shopify services designed to build, optimize and scale
-      high-performing ecommerce brands.
-    </p>
-  </div>
-
-  <div class="services-grid">
-
-    <div class="service-card" data-aos="fade-up">
-      <div class="service-icon design">
-        <i class="fa-solid fa-palette"></i>
-      </div>
-      <h3>Shopify Store Design</h3>
-      <p>
-        Modern, brand-aligned UI designs focused on trust, clarity and conversions
-        across all devices.
-      </p>
-    </div>
-
-    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="service-icon dev">
-        <i class="fa-solid fa-code"></i>
-      </div>
-      <h3>Custom Shopify Development</h3>
-      <p>
-        Theme customization, custom sections and performance-optimized Shopify
-        development.
-      </p>
-    </div>
-
-    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-      <div class="service-icon speed">
-        <i class="fa-solid fa-bolt"></i>
-      </div>
-      <h3>Speed & Performance</h3>
-      <p>
-        Page speed optimization, clean code and performance best practices for
-        better rankings.
-      </p>
-    </div>
-
-    <div class="service-card" data-aos="fade-up">
-      <div class="service-icon mobile">
-        <i class="fa-solid fa-mobile-screen-button"></i>
-      </div>
-      <h3>Mobile Optimization</h3>
-      <p>
-        Mobile-first layouts ensuring smooth browsing and checkout experiences.
-      </p>
-    </div>
-
-    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="service-icon migrate">
-        <i class="fa-solid fa-right-left"></i>
-      </div>
-      <h3>Platform Migration</h3>
-      <p>
-        Safe and structured migration from WooCommerce, Magento or custom
-        platforms to Shopify.
-      </p>
-    </div>
-
-    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-      <div class="service-icon support">
-        <i class="fa-solid fa-headset"></i>
-      </div>
-      <h3>Ongoing Support</h3>
-      <p>
-        Post-launch maintenance, improvements, new features and continuous
-        store monitoring.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PROCESS -->
-<section class="how-we-work">
-
-  <div class="work-head" data-aos="fade-up">
-    <h2>
-      <span>How</span> We Work
-    </h2>
-    <p>
-      A structured, transparent and result-driven process that keeps projects
-      aligned, efficient and focused on growth.
-    </p>
-  </div>
-
-  <div class="work-steps">
-
-    <div class="work-step" data-aos="fade-right">
-      <div class="work-icon strategy">
-        <i class="fa-solid fa-lightbulb"></i>
-      </div>
-      <div class="work-content">
-        <h3>Discovery & Strategy</h3>
-        <p>
-          We understand your brand, audience, competitors and business goals to
-          define a clear ecommerce roadmap.
-        </p>
-      </div>
-    </div>
-
-    <div class="work-step reverse" data-aos="fade-left">
-      <div class="work-icon design">
-        <i class="fa-solid fa-pen-ruler"></i>
-      </div>
-      <div class="work-content">
-        <h3>Design System</h3>
-        <p>
-          Wireframes and UI systems are crafted for clarity, consistency and
-          conversion-focused user experience.
-        </p>
-      </div>
-    </div>
-
-    <div class="work-step" data-aos="fade-right">
-      <div class="work-icon dev">
-        <i class="fa-solid fa-code"></i>
-      </div>
-      <div class="work-content">
-        <h3>Development</h3>
-        <p>
-          Clean, scalable Shopify development with performance, SEO and best
-          practices in mind.
-        </p>
-      </div>
-    </div>
-
-    <div class="work-step reverse" data-aos="fade-left">
-      <div class="work-icon test">
-        <i class="fa-solid fa-vial-circle-check"></i>
-      </div>
-      <div class="work-content">
-        <h3>Testing & Optimization</h3>
-        <p>
-          Cross-device testing, speed optimization and UX refinements before
-          going live.
-        </p>
-      </div>
-    </div>
-
-    <div class="work-step" data-aos="fade-right">
-      <div class="work-icon launch">
-        <i class="fa-solid fa-rocket"></i>
-      </div>
-      <div class="work-content">
-        <h3>Launch & Growth</h3>
-        <p>
-          Smooth launch followed by ongoing support, improvements and
-          data-driven growth strategies.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY -->
-<section class="why" style="background:linear-gradient(180deg,#eef2ff);color:#0f172a">
-  <h2 data-aos="fade-up" style="color:#0f172a">Why Brands Choose Us</h2>
-  <p class="lead" style="color:#475569" data-aos="fade-up" data-aos-delay="100">
-    Brands choose us because we combine strategy, design and engineering to deliver measurable ecommerce growth — not just good‑looking websites.
-  </p>
-
-  <div class="why-zigzag">
-
-  <div class="why-item">
-    <div class="why-content">
-      <h3>Strategy-Led Decisions</h3>
-      <p>
-        Every project at Flixify begins with business goals, target audience
-        analysis and competitive research — ensuring design decisions are
-        driven by growth, not assumptions.
-      </p>
-    </div>
-  </div>
-
-  <div class="why-item reverse">
-    <div class="why-content">
-      <h3>Senior Shopify Expertise</h3>
-      <p>
-        Clients work directly with experienced Shopify designers and developers.
-        No outsourcing, no juniors — just focused expertise from start to launch.
-      </p>
-    </div>
-  </div>
-
-  <div class="why-item">
-    <div class="why-content">
-      <h3>Performance & Scalability</h3>
-      <p>
-        We build stores optimized for speed, scalability and future growth —
-        ensuring smooth performance during traffic spikes and sales campaigns.
-      </p>
-    </div>
-  </div>
-
-  <div class="why-item reverse">
-    <div class="why-content">
-      <h3>Clear Communication & Transparency</h3>
-      <p>
-        Clear timelines, honest feedback and consistent updates keep clients
-        informed at every stage — no confusion, no surprises.
-      </p>
-    </div>
-  </div>
-</div>
-  
-</section>
-
-<!-- INDUSTRIES -->
-<section class="industries">
-
-  <div class="industries-head" data-aos="fade-up">
-    <h2>
-      <span>Industries</span> We Work With
-    </h2>
-    <p>
-      We partner with brands across diverse industries, adapting our Shopify
-      strategies based on audience behavior, market trends and business goals.
-    </p>
-  </div>
-
-  <div class="industries-grid">
-
-    <div class="industry-card" data-aos="fade-up">
-      <div class="industry-icon fashion">
-        <i class="fa-solid fa-shirt"></i>
-      </div>
-      <h3>Fashion & Apparel</h3>
-      <p>D2C fashion brands, clothing labels and lifestyle products.</p>
-    </div>
-
-    <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="industry-icon health">
-        <i class="fa-solid fa-heart-pulse"></i>
-      </div>
-      <h3>Health & Wellness</h3>
-      <p>Supplements, fitness brands and wellness-focused ecommerce.</p>
-    </div>
-
-    <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
-      <div class="industry-icon beauty">
-        <i class="fa-solid fa-spa"></i>
-      </div>
-      <h3>Beauty & Cosmetics</h3>
-      <p>Skincare, cosmetics and personal care brands.</p>
-    </div>
-
-    <div class="industry-card" data-aos="fade-up">
-      <div class="industry-icon tech">
-        <i class="fa-solid fa-microchip"></i>
-      </div>
-      <h3>Electronics & Gadgets</h3>
-      <p>Consumer electronics, accessories and smart devices.</p>
-    </div>
-
-    <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="industry-icon food">
-        <i class="fa-solid fa-burger"></i>
-      </div>
-      <h3>Food & Beverages</h3>
-      <p>Packaged food brands, beverages and subscription models.</p>
-    </div>
-
-    <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
-      <div class="industry-icon b2b">
-        <i class="fa-solid fa-building"></i>
-      </div>
-      <h3>B2B & Wholesale</h3>
-      <p>Manufacturers, distributors and wholesale ecommerce solutions.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- CONTACT & INQUIRY -->
-<section class="contact-section">
-
-  <div class="contact-head" data-aos="fade-up">
-    <h2>
-      <span>Contact</span> & Inquiry
-    </h2>
-    <p>
-      Have a project in mind or need expert guidance?
-      Let’s discuss how we can help your brand grow on Shopify.
-    </p>
-  </div>
-
-  <div class="contact-grid">
-
-    <!-- EMAIL FORM -->
-    <div class="contact-card" data-aos="fade-up">
-      <div class="contact-icon email">
-        <i class="fa-solid fa-envelope"></i>
-      </div>
-
-      <h3>Email Us</h3>
-      <p>
-        Reach out for detailed inquiries, proposals or project discussions.
-      </p>
-
-      <form
-        class="contact-form"
-        action="mailto:hello@yourbrand.com"
-        method="POST"
-        enctype="text/plain"
-      >
-        <input type="text" name="Name" placeholder="Your Name" required>
-        <input type="email" name="Email" placeholder="Your Email" required>
-        <textarea name="Message" rows="4"
-          placeholder="Tell us about your inquiry..." required></textarea>
-
-        <button type="submit" class="contact-btn email-btn">
-          Send Inquiry
-        </button>
-      </form>
-    </div>
-
-    <!-- WHATSAPP -->
-    <div class="contact-card highlight" data-aos="fade-up" data-aos-delay="100">
-      <div class="contact-icon whatsapp-icon">
-        <i class="fa-brands fa-whatsapp"></i>
-      </div>
-
-      <h3>WhatsApp / Call</h3>
-      <p>
-        Quick questions or free consultation?
-        Chat directly with our Shopify experts.
-      </p>
-       
-      <!-- BUTTON WRAPPER -->
-      <div class="contact-actions">
-      <a href="https://wa.me/919000000000" target="_blank" class="contact-btn">
-        Chat on WhatsApp
-      </a>
-      <a href="tel:+919000000000" class="contact-btn">
-        Direct Call
-      </a>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-<footer id="contact">
-  <div class="footer-grid">
-    <div>
-      <h4>About Us</h4>
-      <p>We are a Shopify‑focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
-      <div style="display:flex;gap:14px;margin-top:14px">
-        <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube" style="width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;transition:.3s">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M23.5 6.2s-.2-1.7-.8-2.5c-.8-.8-1.7-.8-2.1-.9C17.7 2.5 12 2.5 12 2.5h0s-5.7 0-8.6.3c-.4.1-1.3.1-2.1.9C.7 4.5.5 6.2.5 6.2S.2 8.1.2 10v1.8c0 1.9.3 3.8.3 3.8s.2 1.7.8 2.5c.8.8 1.9.8 2.4.9 1.7.2 7.3.3 7.3.3s5.7 0 8.6-.3c.4-.1 1.3-.1 2.1-.9.6-.8.8-2.5.8-2.5s.3-1.9.3-3.8V10c0-1.9-.3-3.8-.3-3.8zM9.8 14.5V7.9l6.2 3.3-6.2 3.3z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);display:flex;align-items:center;justify-content:center;transition:.3s">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.5.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.5 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.3.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.5-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.5-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.3-.5 1.3-.1 1.7-.1 4.9-.1zm0 3.4a6.4 6.4 0 100 12.8 6.4 6.4 0 000-12.8zm0 10.6a4.2 4.2 0 110-8.4 4.2 4.2 0 010 8.4zm6.6-10.9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div>
-      <h4>Our Services</h4>
-      <p>
-        Shopify Design & Development<br>
-        Conversion Optimization<br>
-        Performance & SEO<br>
-        Platform Migration<br>
-        Ongoing Support
-      </p>
-    </div>
-    <div>
-      <h4>Working Time</h4>
-      <p>
-        <strong>Monday – Friday</strong><br>
-        7:30 PM – 9:00 AM (IST)
-      </p>
-      <p>
-          <strong>Saturday – Sunday</strong><br>
-          9:00 AM – 9:00 PM (IST)
-        </p>
-    </div>
-  </div>
-
-  <p style="text-align:center;margin-top:40px;font-size:14px;color:#64748b">
-    © 2025 Shopify Agency. All rights reserved.
-  </p>
-</footer>
-  <a class="whatsapp" href="https://wa.me/919000000000" target="_blank" aria-label="Chat on WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white">
-    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.82.736 5.464 2.021 7.756L0 32l8.438-1.98A15.93 15.93 0 0016 32c8.837 0 16-7.164 16-16C32 7.163 24.837 0 16 0zm0 29.09c-2.515 0-4.859-.657-6.894-1.799l-.493-.29-5.01 1.176 1.17-4.887-.32-.505A13.03 13.03 0 012.91 16C2.91 8.74 8.74 2.91 16 2.91S29.09 8.74 29.09 16 23.26 29.09 16 29.09zm7.11-9.694c-.389-.194-2.303-1.136-2.66-1.265-.356-.13-.616-.194-.876.194-.259.389-1.005 1.265-1.232 1.525-.227.259-.454.292-.843.097-.389-.194-1.643-.605-3.13-1.93-1.158-1.034-1.94-2.31-2.167-2.699-.227-.389-.024-.599.17-.793.174-.173.389-.454.583-.68.194-.227.259-.389.389-.648.13-.259.065-.486-.032-.68-.097-.194-.876-2.115-1.2-2.892-.316-.758-.638-.655-.876-.667l-.746-.013c-.259 0-.68.097-1.037.486-.357.389-1.362 1.33-1.362 3.243s1.394 3.762 1.588 4.022c.194.259 2.744 4.193 6.651 5.88.93.4 1.654.64 2.218.818.932.297 1.78.255 2.45.155.748-.111 2.303-.94 2.627-1.85.324-.91.324-1.689.227-1.85-.097-.162-.356-.259-.746-.454z"/>
-  </svg>
-</a>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init({duration:900,once:true});</script>
-
-  <!-- MOBILE dRAWER -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-const menuToggle = document.getElementById("menuToggle");
-const mobileDrawer = document.getElementById("mobileDrawer");
-const closeDrawer = document.getElementById("closeDrawer");
-const overlay = document.getElementById("drawerOverlay");
+    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pageLoader').classList.add('hide'),500)});
+    AOS.init({duration:800,once:true,easing:'ease-out-cubic'});
+    const header=document.getElementById('header');
+    window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+    const menuBtn=document.getElementById('menuBtn'),drawer=document.getElementById('drawer'),closeBtn=document.getElementById('closeDrawer'),overlayEl=document.getElementById('overlay');
+    function openDrawer(){drawer.classList.add('open');overlayEl.classList.add('open')}
+    function closeDrawerFn(){drawer.classList.remove('open');overlayEl.classList.remove('open')}
+    menuBtn.addEventListener('click',openDrawer);closeBtn.addEventListener('click',closeDrawerFn);overlayEl.addEventListener('click',closeDrawerFn);
 
-menuToggle.onclick = () => {
-  mobileDrawer.classList.add("active");
-  overlay.classList.add("active");
-};
+    function animateCounters(){
+      document.querySelectorAll('.stat-number[data-target]').forEach(c=>{
+        if(c.dataset.animated)return;const r=c.getBoundingClientRect();
+        if(r.top<window.innerHeight*.9&&r.bottom>0){
+          c.dataset.animated='true';const t=parseInt(c.dataset.target),s=c.dataset.suffix||'',d=2000,st=performance.now();
+          function up(ct){const e=ct-st,p=Math.min(e/d,1),v=1-Math.pow(1-p,3);c.textContent=Math.round(v*t)+s;if(p<1)requestAnimationFrame(up)}
+          requestAnimationFrame(up);
+        }
+      });
+    }
+    window.addEventListener('scroll',animateCounters);window.addEventListener('load',()=>setTimeout(animateCounters,800));
 
-closeDrawer.onclick = overlay.onclick = () => {
-  mobileDrawer.classList.remove("active");
-  overlay.classList.remove("active");
-};
-</script>
+    function handleFormSubmit(e){
+      e.preventDefault();const f=e.target,btn=document.getElementById('formBtn');
+      const n=f.name.value,em=f.email.value,ph=f.phone.value,srv=f.service.value,msg=f.message.value;
+      const wt=`Hi Flixifys,%0A%0A*New Inquiry*%0AName: ${encodeURIComponent(n)}%0AEmail: ${encodeURIComponent(em)}%0APhone: ${encodeURIComponent(ph)}%0AService: ${encodeURIComponent(srv)}%0AMessage: ${encodeURIComponent(msg)}`;
+      btn.textContent='Sending...';btn.disabled=true;
+      setTimeout(()=>{window.open(`https://wa.me/919000000000?text=${wt}`,'_blank');btn.innerHTML='Sent! <i class="fa-solid fa-check" style="margin-left:6px"></i>';f.reset();setTimeout(()=>{btn.innerHTML='Send Message <i class="fa-solid fa-paper-plane" style="margin-left:6px"></i>';btn.disabled=false},3000)},800);
+      return false;
+    }
 
-
+    const gObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.05,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.glass').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.7s ease, transform 0.7s ease, border-color 0.4s ease, box-shadow 0.4s ease';gObs.observe(el)});
+  </script>
 </body>
 </html>
