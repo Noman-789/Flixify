@@ -74,6 +74,7 @@
 
     section{position:relative;z-index:1}
     .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
+    .section-label .line{width:24px;height:2px;background:var(--accent);border-radius:2px}
     .section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.15}
     .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .section-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px}
@@ -82,14 +83,12 @@
 
     .ref-section{padding:100px 0}
 
-    /* Stats */
     .ref-stats{position:relative;z-index:1;padding:60px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(139,92,246,.02)}
     .ref-stats-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
     .ref-stat-item{text-align:center}
     .ref-stat-number{font-size:48px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2}
     .ref-stat-label{font-size:15px;color:var(--muted);margin-top:6px}
 
-    /* Steps */
     .steps-grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative}
     .steps-grid::before{content:'';position:absolute;top:44px;left:12%;right:12%;height:2px;background:var(--border);z-index:0}
     .step-card{text-align:center;position:relative;z-index:1}
@@ -103,7 +102,6 @@
     .step-card h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:10px}
     .step-card p{font-size:14px;color:var(--muted);line-height:1.65}
 
-    /* Tiers */
     .tiers-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
     .tier-card{background:var(--card);border-radius:28px;border:1px solid var(--border);padding:44px 32px;text-align:center;position:relative;overflow:hidden;transition:all .4s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(10px)}
     .tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--border);transition:background .4s}
@@ -126,7 +124,6 @@
     .tier-perks li:last-child{border-bottom:none}
     .tier-perks li i{color:var(--accent2);font-size:12px;flex-shrink:0}
 
-    /* Dashboard */
     .dashboard-preview{max-width:900px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:28px;overflow:hidden;backdrop-filter:blur(10px)}
     .dash-header{padding:28px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
     .dash-header h3{font-size:20px;font-weight:700;color:#fff}
@@ -150,7 +147,6 @@
     .status-pending{background:rgba(245,158,11,.12);color:#f59e0b}
     .status-clicked{background:rgba(139,92,246,.12);color:var(--accent)}
 
-    /* FAQ */
     .faq-list{max-width:760px;margin:auto}
     .faq-item{border:1px solid var(--border);border-radius:20px;margin-bottom:16px;overflow:hidden;transition:border-color .3s}
     .faq-item:hover{border-color:rgba(255,255,255,.12)}
@@ -164,7 +160,6 @@
     .faq-item.active .faq-answer{max-height:300px;padding:0 28px 24px}
     .faq-answer p{font-size:15px;color:var(--muted);line-height:1.75}
 
-    /* Quote */
     .quote-section{padding:100px 0;position:relative;overflow:hidden}
     .quote-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.04),rgba(34,197,94,.04));z-index:0}
     .quote-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:var(--accent);filter:blur(150px);opacity:.08;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
@@ -189,7 +184,6 @@
     .quote-value h4{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
     .quote-value p{font-size:13px;color:var(--muted);line-height:1.5}
 
-    /* CTA */
     .cta-section{padding:120px 0;position:relative;overflow:hidden}
     .cta-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,197,94,.08));z-index:0}
     .cta-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:var(--accent);filter:blur(150px);opacity:.12;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
@@ -319,8 +313,8 @@
       <nav class="nav">
         <a href="about-us.html">About Us</a>
         <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="referral-program.html">Referral Program</a>
+        <a href="case-studies.html">Blog</a>
+        <a href="referral-program.html" class="active">Referral Program</a>
         <a href="contact-us.html">Contact Us</a>
         <a class="nav-cta" href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank">Book a Free Call</a>
       </nav>
@@ -332,14 +326,13 @@
     <div class="drawer-head"><span>Menu</span><button id="closeDrawer"><i class="fa-solid fa-xmark"></i></button></div>
     <a href="about-us.html">About Us</a>
     <a href="services.html">Services</a>
-    <a href="blog.html">Blog</a>
+    <a href="case-studies.html">Blog</a>
     <a href="referral-program.html">Referral Program</a>
     <a href="contact-us.html">Contact Us</a>
     <a class="drawer-cta" href="https://wa.me/919876543210" target="_blank">Book a Free Call</a>
   </div>
   <div class="overlay" id="overlay"></div>
 
-  <!-- Hero — 100vh -->
   <section class="hero">
     <div class="hero-bg">
       <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=80" alt="Referral Background">
@@ -361,7 +354,6 @@
     </div>
   </section>
 
-  <!-- Stats -->
   <section class="ref-stats reveal">
     <div class="container">
       <div class="ref-stats-grid">
@@ -373,11 +365,10 @@
     </div>
   </section>
 
-  <!-- How It Works -->
   <section class="ref-section" id="how-it-works">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span> Process <span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Process <span class="line"></span></div>
         <h2 class="section-title">How It <span class="grad">Works</span></h2>
         <p class="section-desc">Four simple steps from sharing your code to getting paid. No complicated tracking, no hidden terms.</p>
       </div>
@@ -406,11 +397,10 @@
     </div>
   </section>
 
-  <!-- Reward Tiers -->
   <section class="ref-section" id="rewards">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span> Earnings <span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Earnings <span class="line"></span></div>
         <h2 class="section-title">Reward <span class="grad">Tiers</span></h2>
         <p class="section-desc">The more you refer, the more you earn per referral. Tier upgrades happen automatically.</p>
       </div>
@@ -462,11 +452,10 @@
     </div>
   </section>
 
-  <!-- Dashboard Preview -->
   <section class="ref-section" id="dashboard">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span> Tracking <span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Tracking <span class="line"></span></div>
         <h2 class="section-title">Your <span class="grad">Dashboard</span></h2>
         <p class="section-desc">Track every referral in real time. See who clicked, who signed up, and when your reward is coming.</p>
       </div>
@@ -495,7 +484,6 @@
     </div>
   </section>
 
-  <!-- Quote -->
   <section class="quote-section">
     <div class="quote-glow"></div>
     <div class="container">
@@ -514,7 +502,7 @@
         <div class="quote-divider"></div>
         <div class="quote-values">
           <div class="quote-value">
-            <div class="quote-value-icon qv1"><i class="fa-solid fa-shield-check"></i></div>
+            <div class="quote-value-icon qv1"><i class="fa-solid fa-shield-halved"></i></div>
             <h4>Transparent Tracking</h4>
             <p>See every click, sign-up and payout in real time.</p>
           </div>
@@ -533,11 +521,10 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="ref-section" id="faq">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span> FAQ <span class="line" style="width:24px;height:2px;background:var(--accent);border-radius:2px;display:inline-block"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> FAQ <span class="line"></span></div>
         <h2 class="section-title">Frequently Asked <span class="grad">Questions</span></h2>
         <p class="section-desc">Everything you need to know about our referral program. Can't find an answer? Reach out to us directly.</p>
       </div>
@@ -574,7 +561,6 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section reveal">
     <div class="cta-glow"></div>
     <div class="container">
@@ -591,29 +577,27 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h4>About Us</h4>
-          <p>We are a Shopify-focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
-          <div class="footer-socials">
-            <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4>Our Services</h4>
-          <p>Shopify Design & Development<br>Conversion Optimization<br>Performance & SEO<br>Platform Migration<br>Ongoing Support</p>
-        </div>
-        <div>
-          <h4>Working Time</h4>
-          <p><strong style="color:#fff">Monday – Friday</strong><br>7:30 PM – 9:00 AM (IST)</p>
-          <p style="margin-top:12px"><strong style="color:#fff">Saturday – Sunday</strong><br>9:00 AM – 9:00 PM (IST)</p>
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:20px"><a href="index.html"><img src="FFLOGO-WHITE.png" alt="Flixifys" style="height:32px"></a></div>
+        <p>We are a Shopify-focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
+        <div class="footer-socials">
+          <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
-      <div class="footer-bottom">© 2025 Shopify Agency. All rights reserved.</div>
+      <div>
+        <h4>Quick Links</h4>
+        <p><a href="about-us.html" style="display:block;margin-bottom:8px;color:var(--muted)">About Us</a><a href="services.html" style="display:block;margin-bottom:8px;color:var(--muted)">Services</a><a href="case-studies.html" style="display:block;margin-bottom:8px;color:var(--muted)">Blog</a><a href="referral-program.html" style="display:block;margin-bottom:8px;color:var(--muted)">Referral Program</a><a href="contact-us.html" style="display:block;color:var(--muted)">Contact Us</a></p>
+      </div>
+      <div>
+        <h4>Working Time</h4>
+        <p><strong style="color:#fff">Monday – Friday</strong><br>7:30 PM – 9:00 AM (IST)</p>
+        <p style="margin-top:12px"><strong style="color:#fff">Saturday – Sunday</strong><br>9:00 AM – 9:00 PM (IST)</p>
+      </div>
     </div>
+    <div class="footer-bottom">© 2025 Shopify Agency. All rights reserved.</div>
   </footer>
 
   <div class="wa-float">
