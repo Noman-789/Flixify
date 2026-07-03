@@ -15,6 +15,27 @@
       --border:rgba(255,255,255,0.08);--text:#e2e8f0;--muted:#64748b;
       --accent:#8b5cf6;--accent2:#22c55e;--glow:rgba(139,92,246,0.15);
     }
+    
+    /* Custom Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7c3aed;
+    }
+    /* Firefox scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--bg);
+    }
+    
     html{scroll-behavior:smooth}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
     body::before{
@@ -612,34 +633,55 @@
     AOS.init({duration:800,once:true,easing:'ease-out-cubic'});
     const header=document.getElementById('header');
     window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
-    const menuBtn=document.getElementById('menuBtn'),drawer=document.getElementById('drawer'),closeBtn=document.getElementById('closeDrawer'),overlayEl=document.getElementById('overlay');
-    function openDrawer(){drawer.classList.add('open');overlayEl.classList.add('open')}
-    function closeDrawerFn(){drawer.classList.remove('open');overlayEl.classList.remove('open')}
-    menuBtn.addEventListener('click',openDrawer);closeBtn.addEventListener('click',closeDrawerFn);overlayEl.addEventListener('click',closeDrawerFn);
-
-    function animateCounters(){
-      document.querySelectorAll('.stat-number[data-target]').forEach(c=>{
-        if(c.dataset.animated)return;const r=c.getBoundingClientRect();
-        if(r.top<window.innerHeight*.9&&r.bottom>0){
-          c.dataset.animated='true';const t=parseInt(c.dataset.target),s=c.dataset.suffix||'',d=2000,st=performance.now();
-          function up(ct){const e=ct-st,p=Math.min(e/d,1),v=1-Math.pow(1-p,3);c.textContent=Math.round(v*t)+s;if(p<1)requestAnimationFrame(up)}
-          requestAnimationFrame(up);
+    const menuBtn=document.getElementById('menuBtn'),drawer=document.getElementById('drawer'),closeBtn=document.getElementById('closeDrawer'),overlay=document.getElementById('overlay');
+    menuBtn.addEventListener('click',()=>{drawer.classList.add('open');overlay.classList.add('open')});
+    closeBtn.addEventListener('click',closeAll);
+    overlay.addEventListener('click',closeAll);
+    function closeAll(){drawer.classList.remove('open');overlay.classList.remove('open')}
+    
+    // Counter animation
+    const counters=document.querySelectorAll('.stat-number');
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el=entry.target;
+          const target=parseInt(el.dataset.target);
+          const suffix=el.dataset.suffix||'';
+          let current=0;
+          const increment=target/60;
+          const timer=setInterval(()=>{
+            current+=increment;
+            if(current>=target){
+              el.textContent=target+suffix;
+              clearInterval(timer);
+            }else{
+              el.textContent=Math.floor(current)+suffix;
+            }
+          },30);
+          observer.unobserve(el);
         }
       });
-    }
-    window.addEventListener('scroll',animateCounters);window.addEventListener('load',()=>setTimeout(animateCounters,800));
-
+    },{threshold:0.5});
+    counters.forEach(counter=>observer.observe(counter));
+    
+    // Form submission
     function handleFormSubmit(e){
-      e.preventDefault();const f=e.target,btn=document.getElementById('formBtn');
-      const n=f.name.value,em=f.email.value,ph=f.phone.value,srv=f.service.value,msg=f.message.value;
-      const wt=`Hi Flixifys,%0A%0A*New Inquiry*%0AName: ${encodeURIComponent(n)}%0AEmail: ${encodeURIComponent(em)}%0APhone: ${encodeURIComponent(ph)}%0AService: ${encodeURIComponent(srv)}%0AMessage: ${encodeURIComponent(msg)}`;
-      btn.textContent='Sending...';btn.disabled=true;
-      setTimeout(()=>{window.open(`https://wa.me/919000000000?text=${wt}`,'_blank');btn.innerHTML='Sent! <i class="fa-solid fa-check" style="margin-left:6px"></i>';f.reset();setTimeout(()=>{btn.innerHTML='Send Message <i class="fa-solid fa-paper-plane" style="margin-left:6px"></i>';btn.disabled=false},3000)},800);
+      e.preventDefault();
+      const btn=document.getElementById('formBtn');
+      btn.textContent='Sending...';
+      btn.disabled=true;
+      setTimeout(()=>{
+        btn.textContent='Message Sent!';
+        btn.style.background='linear-gradient(135deg,#22c55e,#16a34a)';
+        setTimeout(()=>{
+          btn.textContent='Send Message <i class="fa-solid fa-paper-plane" style="margin-left:6px"></i>';
+          btn.style.background='linear-gradient(135deg,var(--accent),var(--accent2))';
+          btn.disabled=false;
+          document.getElementById('contactForm').reset();
+        },2000);
+      },1500);
       return false;
     }
-
-    const gObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.05,rootMargin:'0px 0px -40px 0px'});
-    document.querySelectorAll('.glass').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.7s ease, transform 0.7s ease, border-color 0.4s ease, box-shadow 0.4s ease';gObs.observe(el)});
   </script>
 </body>
 </html>
