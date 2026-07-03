@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Flixifys</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="Favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#050510;--surface:#0a0a1a;--card:rgba(255,255,255,0.04);
+      --border:rgba(255,255,255,0.08);--text:#e2e8f0;--muted:#64748b;
+      --accent:#8b5cf6;--accent2:#22c55e;--glow:rgba(139,92,246,0.15);
+    }
+
+    /* Custom Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7c3aed;
+    }
+    /* Firefox scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--bg);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    body::before{
+      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity:.4;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1280px;margin:0 auto;padding:0 24px}
+
+    .page-loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+    .page-loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 0;transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 0}
+    .header-inner{display:flex;align-items:center;justify-content:space-between}
+    .logo img{height:38px;width:auto;transition:.3s}
+    .header.scrolled .logo img{height:32px}
+    .nav{display:flex;align-items:center;gap:32px}
+    .nav a{font-size:14px;font-weight:500;color:var(--muted);position:relative;transition:color .3s}
+    .nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);border-radius:2px;transition:width .3s}
+    .nav a:hover{color:#fff}
+    .nav a:hover::after{width:100%}
+    .nav a.active{color:#fff}
+    .nav a.active::after{width:100%}
+    .nav-cta{padding:10px 24px;border-radius:100px;font-size:14px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;transition:.3s}
+    .nav a.nav-cta::after{display:none}
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}
+    .menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.2) saturate(1.3)}
+    .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,16,0.4) 0%,rgba(5,5,16,0.2) 40%,rgba(5,5,16,0.6) 80%,rgba(5,5,16,1) 100%)}
+    .hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.3;animation:orbFloat 10s ease-in-out infinite;z-index:1}
+    .hero-orb.o1{width:500px;height:500px;background:var(--accent);top:-10%;right:-5%}
+    .hero-orb.o2{width:400px;height:400px;background:var(--accent2);bottom:-10%;left:-5%;animation-delay:3s}
+    @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
+    .hero-grid-lines{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}
+    .hero-content{position:relative;z-index:2;text-align:center;max-width:900px;margin:0 auto}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp .8s .3s forwards;transform:translateY(20px)}
+    .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden}
+    .hero h1 .line{display:block;overflow:hidden}
+    .hero h1 .line-inner{display:block;transform:translateY(110%);animation:textReveal .8s cubic-bezier(.16,1,.3,1) forwards}
+    .hero h1 .line:nth-child(2) .line-inner{animation-delay:.15s}
+    @keyframes textReveal{to{transform:translateY(0)}}
+    .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{font-size:18px;line-height:1.8;color:var(--muted);max-width:700px;margin:0 auto 32px;opacity:0;animation:fadeUp .8s .5s forwards;transform:translateY(20px)}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+    section{position:relative;z-index:1}
+    .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
+    .section-label .line{width:24px;height:2px;background:var(--accent);border-radius:2px}
+    .section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.15}
+    .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .section-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px}
+    .section-head{text-align:center;margin-bottom:64px}
+    .section-head .section-desc{margin:0 auto}
+
+    .glass{background:var(--card);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .glass:hover{border-color:rgba(139,92,246,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px var(--glow)}
+
+    .services-section{padding:100px 0}
+    .services-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+    .service-card{background:var(--card);border-radius:28px;border:1px solid var(--border);overflow:hidden;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;display:flex;flex-direction:column}
+    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .4s;z-index:2}
+    .service-card:hover{transform:translateY(-12px);border-color:rgba(139,92,246,.25);box-shadow:0 30px 70px rgba(0,0,0,.3)}
+    .service-card:hover::before{opacity:1}
+    .service-image{height:200px;overflow:hidden;position:relative}
+    .service-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+    .service-card:hover .service-image img{transform:scale(1.05)}
+    .service-content{padding:28px;flex:1;display:flex;flex-direction:column}
+    .service-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:6px 14px;border-radius:50px;margin-bottom:16px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:var(--accent);width:fit-content;text-transform:uppercase;letter-spacing:.5px}
+    .service-content h3{font-size:21px;font-weight:700;color:#fff;margin-bottom:12px}
+    .service-content>p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+    .service-list{list-style:none;margin-bottom:20px;flex:1}
+    .service-list li{font-size:13px;color:var(--muted);margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+    .service-list li i{color:var(--accent2);font-size:11px;margin-top:5px;flex-shrink:0}
+    .price{font-weight:600;color:var(--accent2);margin-bottom:20px;font-size:16px}
+    .service-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:50px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:600;font-size:14px;transition:all .3s;width:fit-content;box-shadow:0 4px 16px var(--glow)}
+    .service-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--glow)}
+
+    .quote-section{padding:100px 0;position:relative;overflow:hidden}
+    .quote-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.04),rgba(34,197,94,.04));z-index:0}
+    .quote-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:var(--accent);filter:blur(150px);opacity:.08;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
+    .quote-wrapper{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center}
+    .quote-icon{font-size:48px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:32px;line-height:1}
+    .quote-text{font-size:clamp(22px,3vw,32px);font-weight:300;color:#fff;line-height:1.6;letter-spacing:-.5px;margin-bottom:32px;position:relative}
+    .quote-text::before{content:'\201C';position:absolute;top:-30px;left:-10px;font-size:120px;font-weight:900;color:rgba(139,92,246,.08);font-family:Georgia,serif;line-height:1}
+    .quote-text::after{content:'\201D';position:absolute;bottom:-50px;right:-10px;font-size:120px;font-weight:900;color:rgba(34,197,94,.08);font-family:Georgia,serif;line-height:1}
+    .quote-author{display:flex;align-items:center;justify-content:center;gap:16px}
+    .quote-author-img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+    .quote-author-info{text-align:left}
+    .quote-author-name{font-size:16px;font-weight:700;color:#fff}
+    .quote-author-role{font-size:13px;color:var(--muted)}
+    .quote-divider{width:60px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));margin:0 auto 40px}
+    .quote-values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+    .quote-value{padding:28px 24px;border-radius:20px;background:var(--card);border:1px solid var(--border);backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .quote-value:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.25);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+    .quote-value-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;margin:0 auto 14px}
+    .qv1{background:linear-gradient(135deg,#6366f1,#818cf8)}
+    .qv2{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
+    .qv3{background:linear-gradient(135deg,#22c55e,#4ade80)}
+    .quote-value h4{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+    .quote-value p{font-size:13px;color:var(--muted);line-height:1.5}
+
+    .cta-section{padding:120px 0;position:relative;overflow:hidden}
+    .cta-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,197,94,.08));z-index:0}
+    .cta-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:var(--accent);filter:blur(150px);opacity:.12;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
+    .cta-content{position:relative;z-index:1;text-align:center;max-width:700px;margin:0 auto}
+    .cta-content h2{font-size:clamp(30px,4vw,48px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:20px;line-height:1.15}
+    .cta-content h2 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .cta-content p{font-size:18px;color:var(--muted);line-height:1.8;margin-bottom:36px}
+    .cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 42px;border-radius:100px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:16px;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 24px var(--glow);position:relative;overflow:hidden}
+    .cta-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:.5s}
+    .cta-btn:hover::after{transform:translateX(100%)}
+    .cta-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px var(--glow)}
+    .cta-stats{display:flex;justify-content:center;gap:40px;margin-top:48px;flex-wrap:wrap}
+    .cta-stat{text-align:center}
+    .cta-stat-num{font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+    .cta-stat-label{font-size:14px;color:var(--muted);margin-top:6px}
+
+    .footer{padding:70px 20px 40px;border-top:1px solid var(--border);position:relative;z-index:1}
+    .footer-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px;margin-bottom:48px}
+    .footer h4{color:#fff;margin-bottom:16px}
+    .footer p{font-size:15px;line-height:1.8}
+    .footer-socials{display:flex;gap:14px;margin-top:14px}
+    .footer-socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;transition:.3s}
+    .footer-socials a:hover{background:var(--accent);transform:translateY(-3px)}
+    .footer-bottom{text-align:center;margin-top:40px;font-size:14px;color:#64748b;padding-top:32px;border-top:1px solid var(--border)}
+
+    .wa-float{position:fixed;right:24px;bottom:24px;z-index:90}
+    .wa-btn{width:56px;height:56px;border-radius:50%;background:#22c55e;color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(34,197,94,.35);transition:transform .3s;position:relative;z-index:2}
+    .wa-btn:hover{transform:scale(1.08)}
+    .wa-tip{position:absolute;bottom:68px;right:0;padding:10px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:13px;font-weight:500;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(6px);transition:all .25s ease}
+    .wa-tip::after{content:'';position:absolute;top:100%;right:20px;border:6px solid transparent;border-top-color:var(--surface)}
+    .wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
+
+    .drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px}
+    .drawer.open{right:0}
+    .drawer-head{display:flex;justify-content:space-between;align-items:center}
+    .drawer-head span{font-size:15px;font-weight:700;color:#fff}
+    .drawer-head button{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;transition:.2s}
+    .drawer-head button:hover{color:#fff}
+    .drawer a{font-size:15px;color:var(--muted);font-weight:500;transition:.2s;padding:4px 0}
+    .drawer a:hover{color:#fff}
+    .drawer-cta{margin-top:auto;padding:14px;text-align:center;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;font-weight:600;font-size:15px}
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.3s;z-index:150}
+    .overlay.open{opacity:1;pointer-events:auto}
+
+    @media(max-width:1024px){
+      .services-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+      .service-image{height:180px}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-grid>div:first-child{grid-column:1/-1}
+      .quote-values{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .nav{display:none}
+      .menu-btn{display:block}
+      .header-inner{justify-content:center;position:relative}
+      .menu-btn{position:absolute;right:24px}
+      .hero{padding:100px 0 60px;min-height:auto}
+      .hero h1{letter-spacing:-1px}
+      .services-section{padding:70px 0}
+      .services-grid{grid-template-columns:1fr;gap:20px}
+      .service-image{height:180px}
+      .service-content{padding:24px 20px}
+      .service-content h3{font-size:19px}
+      .service-btn{width:100%;justify-content:center}
+      .quote-section{padding:70px 0}
+      .quote-text{font-size:20px}
+      .quote-text::before{font-size:80px;top:-20px;left:0}
+      .quote-text::after{font-size:80px;bottom:-35px;right:0}
+      .quote-author{flex-direction:column;gap:10px}
+      .quote-author-info{text-align:center}
+      .cta-section{padding:80px 0}
+      .cta-stats{gap:24px}
+      .cta-stat-num{font-size:28px}
+      .footer{padding:60px 16px 24px}
+      .footer-grid{grid-template-columns:1fr;gap:28px}
+      .footer-grid>div:first-child{grid-column:auto}
+      .wa-float{right:16px;bottom:16px}
+      .wa-btn{width:52px;height:52px;font-size:22px}
+    }
+    @media(max-width:400px){
+      .hero h1{font-size:32px}
+      .service-image{height:160px}
+      .service-content{padding:20px 18px}
+      .service-tag{font-size:11px;padding:5px 12px}
+      .service-content h3{font-size:17px}
+      .service-content p{font-size:13px}
+      .service-list li{font-size:12px}
+      .price{font-size:14px}
+      .service-btn{padding:12px 20px;font-size:13px}
+      .cta-btn{padding:15px 32px;font-size:14px;width:100%;justify-content:center}
+      .cta-stats{flex-direction:column;align-items:center;gap:16px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-loader" id="pageLoader"><div class="loader-ring"></div></div>
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <div class="logo"><a href="index.html"><img src="FFLOGO-WHITE.png" alt="Flixifys"></a></div>
+      <nav class="nav">
+        <a href="about-us.html">About Us</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="referral-program.html">Referral Program</a>
+        <a href="contact-us.html">Contact Us</a>
+        <a class="nav-cta" href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank">Book a Free Call</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <div class="drawer-head"><span>Menu</span><button id="closeDrawer"><i class="fa-solid fa-xmark"></i></button></div>
+    <a href="about-us.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="blog.html">Blog</a>
+    <a href="referral-program.html">Referral Program</a>
+    <a href="contact-us.html">Contact Us</a>
+    <a class="drawer-cta" href="https://wa.me/919876543210" target="_blank">Book a Free Call</a>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=80" alt="Services Background">
+    </div>
+    <div class="hero-orb o1"></div>
+    <div class="hero-orb o2"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-cubes"></i> Expertise That Delivers</div>
+      <h1>
+        <span class="line"><span class="line-inner">Tailored <span class="grad">Solutions</span></span></span>
+      </h1>
+      <p class="hero-desc">From concept to conversion — we craft Shopify experiences that turn visitors into loyal customers and browsers into buyers.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="section-label" style="justify-content:center"><span class="line"></span> Our Capabilities <span class="line"></span></div>
+        <h2>Solutions That <span class="grad">Scale</span></h2>
+        <p class="section-desc">Strategic, execution-ready services built to fuel your ecommerce growth at every stage.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="glass service-card" data-aos="fade-up">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Shopify Development">
+          </div>
+          <div class="service-content">
+            <span class="service-tag"><i class="fa-solid fa-code"></i> Development</span>
+            <h3>Shopify Website Development</h3>
+            <p>Bespoke Shopify stores engineered for speed, conversions and seamless user journeys.</p>
+            <ul class="service-list">
+              <li><i class="fa-solid fa-check"></i> Hand-coded custom themes</li>
+              <li><i class="fa-solid fa-check"></i> Responsive across every device</li>
+              <li><i class="fa-solid fa-check"></i> Future-proof, modular codebase</li>
+            </ul>
+            <div class="price">Starting from ₹50,000</div>
+            <a href="#" class="service-btn">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="Website Revamp">
+          </div>
+          <div class="service-content">
+            <span class="service-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> UI / UX</span>
+            <h3>Website Revamp</h3>
+            <p>Strategic redesigns that elevate brand perception and maximize every visitor's potential.</p>
+            <ul class="service-list">
+              <li><i class="fa-solid fa-check"></i> Full visual & UX overhaul</li>
+              <li><i class="fa-solid fa-check"></i> Conversion rate optimization</li>
+              <li><i class="fa-solid fa-check"></i> Loading speed enhancements</li>
+              <li><i class="fa-solid fa-check"></i> A/B-tested design decisions</li>
+            </ul>
+            <div class="price">Starting from ₹35,000</div>
+            <a href="#" class="service-btn">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Website Maintenance">
+          </div>
+          <div class="service-content">
+            <span class="service-tag"><i class="fa-solid fa-shield-halved"></i> Support</span>
+            <h3>Website Maintenance</h3>
+            <p>Proactive monitoring and maintenance so your store never misses a beat.</p>
+            <ul class="service-list">
+              <li><i class="fa-solid fa-check"></i> Regular updates & automated backups</li>
+              <li><i class="fa-solid fa-check"></i> Rapid bug resolution</li>
+              <li><i class="fa-solid fa-check"></i> Uptime & security monitoring</li>
+              <li><i class="fa-solid fa-check"></i> Monthly health audits</li>
+            </ul>
+            <div class="price">From ₹10,000 / month</div>
+            <a href="#" class="service-btn">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="App Development">
+          </div>
+          <div class="service-content">
+            <span class="service-tag"><i class="fa-solid fa-puzzle-piece"></i> Apps</span>
+            <h3>App Development</h3>
+            <p>Powerful custom apps and integrations that extend your store's capabilities beyond limits.</p>
+            <ul class="service-list">
+              <li><i class="fa-solid fa-check"></i> Tailored Shopify app builds</li>
+              <li><i class="fa-solid fa-check"></i> Third-party API connections</li>
+              <li><i class="fa-solid fa-check"></i> Scalable, secure architecture</li>
+            </ul>
+            <div class="price">Starting from ₹50,000</div>
+            <a href="#" class="service-btn">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="SEO Optimization">
+          </div>
+          <div class="service-content">
+            <span class="service-tag"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO</span>
+            <h3>SEO Optimization</h3>
+            <p>Revenue-focused search strategies that put your store in front of the right buyers.</p>
+            <ul class="service-list">
+              <li><i class="fa-solid fa-check"></i> Deep technical SEO audits</li>
+              <li><i class="fa-solid fa-check"></i> Core Web Vitals tuning</li>
+              <li><i class="fa-solid fa-check"></i> Strategic content & keyword mapping</li>
+              <li><i class="fa-solid fa-check"></i> Competitive gap analysis</li>
+            </ul>
+            <div class="price">From ₹25,000 / month</div>
+            <a href="#" class="service-btn">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="glass service-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="Ecommerce Listing">
+          </div>
+          <div class="service-content">
+            <span class="service-tag"><i class="fa-solid fa-store"></i> Operations</span>
+            <h3>Ecommerce Listing & Management</h3>
+            <p>End-to-end catalogue management that keeps your product front and center, always.</p>
+            <ul class="service-list">
+              <li><i class="fa-solid fa-check"></i> SEO-optimized product listings</li>
+              <li><i class="fa-solid fa-check"></i> Real-time inventory tracking</li>
+              <li><i class="fa-solid fa-check"></i> Platform policy compliance</li>
+            </ul>
+            <div class="price">Starting from ₹5,000 / month</div>
+            <a href="#" class="service-btn">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE SECTION -->
+  <section class="quote-section">
+    <div class="quote-glow"></div>
+    <div class="container">
+      <div class="quote-wrapper" data-aos="fade-up">
+        <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+        <div class="quote-text">
+          A beautiful store that doesn't convert is just an expensive portfolio piece. We obsess over the details that actually move the needle — faster load times, smoother checkout flows, and experiences that make people want to buy, not just browse.
+        </div>
+        <div class="quote-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&q=80" alt="Founder" class="quote-author-img">
+          <div class="quote-author-info">
+            <div class="quote-author-name">Founder, Flixifys</div>
+            <div class="quote-author-role">Head of Strategy</div>
+          </div>
+        </div>
+        <div class="quote-divider"></div>
+        <div class="quote-values">
+          <div class="quote-value" data-aos="fade-up">
+            <div class="quote-value-icon qv1"><i class="fa-solid fa-bullseye"></i></div>
+            <h4>Conversion-First Thinking</h4>
+            <p>Design decisions are backed by data, not guesswork.</p>
+          </div>
+          <div class="quote-value" data-aos="fade-up" data-aos-delay="100">
+            <div class="quote-value-icon qv2"><i class="fa-solid fa-handshake"></i></div>
+            <h4>True Collaborators</h4>
+            <p>We embed into your team, not just your project.</p>
+          </div>
+          <div class="quote-value" data-aos="fade-up" data-aos-delay="200">
+            <div class="quote-value-icon qv3"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Performance Obsessed</h4>
+            <p>Slower stores lose sales — we never let that happen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2>Ready to <span class="grad">Level Up</span> Your Store?</h2>
+        <p>Whether you're launching fresh or scaling up, we bring the expertise, process and passion to make it happen.</p>
+        <a href="contact-us.html" class="cta-btn">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="cta-stats">
+          <div class="cta-stat">
+            <div class="cta-stat-num">150+</div>
+            <div class="cta-stat-label">Stores Launched</div>
+          </div>
+          <div class="cta-stat">
+            <div class="cta-stat-num">98%</div>
+            <div class="cta-stat-label">Client Satisfaction</div>
+          </div>
+          <div class="cta-stat">
+            <div class="cta-stat-num">3x</div>
+            <div class="cta-stat-label">Revenue Boost</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>About Us</h4>
+          <p>We are a Shopify-focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
+          <div class="footer-socials">
+            <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Our Services</h4>
+          <p>Shopify Design & Development<br>Conversion Optimization<br>Performance & SEO<br>Platform Migration<br>Ongoing Support</p>
+        </div>
+        <div>
+          <h4>Working Time</h4>
+          <p><strong style="color:#fff">Monday – Friday</strong><br>7:30 PM – 9:00 AM (IST)</p>
+          <p style="margin-top:12px"><strong style="color:#fff">Saturday – Sunday</strong><br>9:00 AM – 9:00 PM (IST)</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 Shopify Agency. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <div class="wa-float">
+    <div class="wa-tip">Chat with us</div>
+    <a href="https://wa.me/919000000000" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pageLoader').classList.add('hide'),500)});
+    AOS.init({duration:800,once:true,easing:'ease-out-cubic'});
+    const header=document.getElementById('header');
+    window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+    const menuBtn=document.getElementById('menuBtn'),drawer=document.getElementById('drawer'),closeBtn=document.getElementById('closeDrawer'),overlayEl=document.getElementById('overlay');
+    function openDrawer(){drawer.classList.add('open');overlayEl.classList.add('open')}
+    function closeDrawerFn(){drawer.classList.remove('open');overlayEl.classList.remove('open')}
+    menuBtn.addEventListener('click',openDrawer);closeBtn.addEventListener('click',closeDrawerFn);overlayEl.addEventListener('click',closeDrawerFn);
+    drawer.querySelectorAll('a').forEach(l=>l.addEventListener('click',closeDrawerFn));
+    const gObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.05,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.glass').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.7s ease, transform 0.7s ease, border-color 0.4s ease, box-shadow 0.4s ease';gObs.observe(el)});
+  </script>
+</body>
+</html>
