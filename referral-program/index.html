@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Referral Program | Flixifys</title>
   <link rel="icon" type="image/png" sizes="48x48" href="/Favicon.png">
-  <link rel="stylesheet" href="https://cdnjs.c`udflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -73,8 +73,40 @@
     .hero-code .copy-code-btn:hover{transform:scale(1.1);box-shadow:0 4px 16px var(--glow)}
 
     section{position:relative;z-index:1}
-    .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
-    .section-label .line{width:24px;height:2px;background:var(--accent);border-radius:2px}
+
+    /* ✅ FIXED: Section label — template-style badge with background, border, icon support */
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:2.5px;
+      color:var(--accent);
+      margin-bottom:20px;
+      padding:10px 22px;
+      background:rgba(139,92,246,.08);
+      border:1px solid rgba(139,92,246,.2);
+      border-radius:100px;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      position:relative;
+      white-space:nowrap;
+    }
+    .section-label .line{
+      width:20px;
+      height:2px;
+      background:var(--accent);
+      border-radius:2px;
+      flex-shrink:0;
+    }
+    .section-label .label-icon{
+      font-size:13px;
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+    }
     .section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.15}
     .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .section-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px}
@@ -278,6 +310,15 @@
       .wa-btn{width:52px;height:52px;font-size:22px}
       .ref-stat-number{font-size:36px}
       .hero-code{flex-direction:column;gap:8px;border-radius:20px;padding:16px 20px}
+      /* ✅ FIXED: Section label mobile adjustments */
+      .section-label{
+        font-size:10px;
+        letter-spacing:2px;
+        padding:8px 16px;
+        gap:8px;
+      }
+      .section-label .line{width:16px}
+      .section-head{margin-bottom:48px}
     }
     @media(max-width:400px){
       .hero h1{font-size:32px}
@@ -289,6 +330,14 @@
       .wa-float{right:12px;bottom:12px}
       .wa-btn{width:48px;height:48px;font-size:22px}
       .tier-reward{font-size:34px}
+      /* ✅ Section label for very small screens */
+      .section-label{
+        font-size:9px;
+        letter-spacing:1.5px;
+        padding:7px 14px;
+        gap:6px;
+      }
+      .section-label .line{width:14px}
     }
     @media(hover:none) and (pointer:coarse){
       .tier-card:hover{transform:none}
@@ -368,7 +417,7 @@
   <section class="ref-section" id="how-it-works">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line"></span> Process <span class="line"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> <span class="label-icon"><i class="fa-solid fa-list-check"></i></span> Process <span class="line"></span></div>
         <h2 class="section-title">How It <span class="grad">Works</span></h2>
         <p class="section-desc">Four simple steps from sharing your code to getting paid. No complicated tracking, no hidden terms.</p>
       </div>
@@ -400,7 +449,7 @@
   <section class="ref-section" id="rewards">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line"></span> Earnings <span class="line"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> <span class="label-icon"><i class="fa-solid fa-trophy"></i></span> Earnings <span class="line"></span></div>
         <h2 class="section-title">Reward <span class="grad">Tiers</span></h2>
         <p class="section-desc">The more you refer, the more you earn per referral. Tier upgrades happen automatically.</p>
       </div>
@@ -455,7 +504,7 @@
   <section class="ref-section" id="dashboard">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line"></span> Tracking <span class="line"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> <span class="label-icon"><i class="fa-solid fa-chart-pie"></i></span> Tracking <span class="line"></span></div>
         <h2 class="section-title">Your <span class="grad">Dashboard</span></h2>
         <p class="section-desc">Track every referral in real time. See who clicked, who signed up, and when your reward is coming.</p>
       </div>
@@ -524,7 +573,7 @@
   <section class="ref-section" id="faq">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-label" style="justify-content:center"><span class="line"></span> FAQ <span class="line"></span></div>
+        <div class="section-label" style="justify-content:center"><span class="line"></span> <span class="label-icon"><i class="fa-solid fa-circle-question"></i></span> FAQ <span class="line"></span></div>
         <h2 class="section-title">Frequently Asked <span class="grad">Questions</span></h2>
         <p class="section-desc">Everything you need to know about our referral program. Can't find an answer? Reach out to us directly.</p>
       </div>
