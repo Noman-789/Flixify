@@ -16,13 +16,13 @@
       --accent:#8b5cf6;--accent2:#22c55e;--glow:rgba(139,92,246,0.15);
       --vh:1vh;
     }
-
+    
     ::-webkit-scrollbar{width:8px}
     ::-webkit-scrollbar-track{background:var(--bg)}
     ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
     ::-webkit-scrollbar-thumb:hover{background:#7c3aed}
     *{scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
-
+    
     html{
       scroll-behavior:smooth;
       -webkit-overflow-scrolling:touch;
@@ -143,6 +143,7 @@
     .service-card h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:10px}
     .service-card p{font-size:14px;color:var(--muted);line-height:1.65}
 
+    /* ===== PROCESS SECTION - DESKTOP ===== */
     .process-section{padding:100px 0}
     .process-timeline{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
     .process-item{display:flex;align-items:center;gap:24px}
@@ -159,6 +160,73 @@
     .process-item.rev:hover .p-body{transform:translateX(-4px)}
     .p-body h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;white-space:nowrap}
     .p-body p{font-size:14.5px;color:var(--muted);line-height:1.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    /* ===== PROCESS SECTION - MOBILE (NEW CENTERED DESIGN) ===== */
+    @media(max-width:768px){
+      .process-timeline{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:20px;
+        max-width:400px;
+        margin:0 auto;
+      }
+      
+      .process-item,
+      .process-item.rev{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:0;
+      }
+      
+      .p-body{
+        padding:24px 20px 28px;
+        text-align:center;
+        border-radius:20px;
+        margin-top:-12px;
+        position:relative;
+        z-index:1;
+      }
+      
+      .p-body h3,
+      .p-body p{
+        white-space:normal;
+        overflow:visible;
+        text-overflow:unset;
+      }
+      
+      .p-dot{
+        width:64px;
+        height:64px;
+        min-width:64px;
+        border-radius:50%;
+        font-size:22px;
+        position:relative;
+        z-index:2;
+        box-shadow:0 8px 30px rgba(0,0,0,.3);
+      }
+      
+      .process-item:hover .p-dot,
+      .process-item.rev:hover .p-dot{
+        transform:scale(1.05);
+      }
+      
+      .process-item:hover .p-body,
+      .process-item.rev:hover .p-body{
+        transform:none;
+      }
+      
+      /* Step number badge on mobile */
+      .process-item .p-step-num{
+        display:block;
+      }
+    }
+    
+    @media(min-width:769px){
+      .process-item .p-step-num{
+        display:none;
+      }
+    }
 
     .why-section{padding:100px 0;position:relative;overflow:hidden}
     .why-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 70%);pointer-events:none}
@@ -321,9 +389,6 @@
       .hero-desc{font-size:16px}
       .hero-visual{display:none}
       .what-cards,.services-grid,.ind-grid{grid-template-columns:1fr}
-      .process-item,.process-item.rev{flex-direction:column;align-items:flex-start;gap:16px}
-      .process-item.rev:hover .p-body{transform:translateX(4px)}
-      .p-body h3,.p-body p{white-space:normal;overflow:visible;text-overflow:unset}
       .footer-grid{grid-template-columns:1fr}
       .wa-float{right:16px;bottom:20px}
       .wa-btn{width:52px;height:52px;font-size:22px}
@@ -343,9 +408,6 @@
       .service-card:hover::before{transform:scaleX(0)}
       .service-card:hover .s-icon{transform:none}
       .ind-card:hover .ind-icon{transform:none}
-      .process-item:hover .p-dot{transform:none}
-      .process-item:hover .p-body{transform:none}
-      .process-item.rev:hover .p-body{transform:none}
       .tech-pill:hover{transform:none}
 
       .section-head{margin-bottom:40px}
@@ -367,6 +429,8 @@
       .container{padding:0 16px}
       .what-card,.service-card,.ind-card{padding:28px 20px}
       .contact-form-card{padding:28px 20px}
+      .process-timeline{max-width:100%}
+      .p-body{padding:20px 16px 24px}
     }
 
     /* ===== iOS SAFE AREA ===== */
@@ -497,11 +561,31 @@
         <p class="section-desc">A structured, transparent and result-driven process that keeps projects aligned and focused on growth.</p>
       </div>
       <div class="process-timeline">
-        <div class="process-item" data-aos="fade-right"><div class="p-dot c1"><i class="fa-solid fa-lightbulb"></i></div><div class="glass p-body"><h3>Discovery & Strategy</h3><p>We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.</p></div></div>
-        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c2"><i class="fa-solid fa-pen-ruler"></i></div><div class="glass p-body"><h3>Design System</h3><p>Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.</p></div></div>
-        <div class="process-item" data-aos="fade-right"><div class="p-dot c3"><i class="fa-solid fa-code"></i></div><div class="glass p-body"><h3>Development</h3><p>Clean, scalable Shopify development with performance, SEO and best practices in mind.</p></div></div>
-        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c4"><i class="fa-solid fa-vial-circle-check"></i></div><div class="glass p-body"><h3>Testing & Optimization</h3><p>Cross-device testing, speed optimization and UX refinements before going live.</p></div></div>
-        <div class="process-item" data-aos="fade-right"><div class="p-dot c5"><i class="fa-solid fa-rocket"></i></div><div class="glass p-body"><h3>Launch & Growth</h3><p>Smooth launch followed by ongoing support, improvements and data-driven growth strategies.</p></div></div>
+        <div class="process-item" data-aos="fade-right">
+          <span class="p-step-num">01</span>
+          <div class="p-dot c1"><i class="fa-solid fa-lightbulb"></i></div>
+          <div class="glass p-body"><h3>Discovery & Strategy</h3><p>We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.</p></div>
+        </div>
+        <div class="process-item rev" data-aos="fade-left">
+          <span class="p-step-num">02</span>
+          <div class="p-dot c2"><i class="fa-solid fa-pen-ruler"></i></div>
+          <div class="glass p-body"><h3>Design System</h3><p>Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.</p></div>
+        </div>
+        <div class="process-item" data-aos="fade-right">
+          <span class="p-step-num">03</span>
+          <div class="p-dot c3"><i class="fa-solid fa-code"></i></div>
+          <div class="glass p-body"><h3>Development</h3><p>Clean, scalable Shopify development with performance, SEO and best practices in mind.</p></div>
+        </div>
+        <div class="process-item rev" data-aos="fade-left">
+          <span class="p-step-num">04</span>
+          <div class="p-dot c4"><i class="fa-solid fa-vial-circle-check"></i></div>
+          <div class="glass p-body"><h3>Testing & Optimization</h3><p>Cross-device testing, speed optimization and UX refinements before going live.</p></div>
+        </div>
+        <div class="process-item" data-aos="fade-right">
+          <span class="p-step-num">05</span>
+          <div class="p-dot c5"><i class="fa-solid fa-rocket"></i></div>
+          <div class="glass p-body"><h3>Launch & Growth</h3><p>Smooth launch followed by ongoing support, improvements and data-driven growth strategies.</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -730,7 +814,6 @@
       if (e.key === 'Escape') closeDrawerFn();
     });
 
-    // Close drawer when clicking nav links inside drawer
     var drawerLinks = drawer.querySelectorAll('a');
     for (var i = 0; i < drawerLinks.length; i++) {
       drawerLinks[i].addEventListener('click', closeDrawerFn);
@@ -762,30 +845,22 @@
       e.preventDefault();
 
       var originalText = formBtn.innerHTML;
-
-      // Disable button and show loading
       formBtn.disabled = true;
       formBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:6px"></i> Sending...';
 
-      // Get form data
       var formData = new FormData(contactForm);
       var data = {};
       formData.forEach(function(value, key) {
         data[key] = value;
       });
 
-      // Log data (replace with actual API call)
       console.log('Form Data:', data);
 
-      // Simulate submission
       setTimeout(function() {
         formBtn.innerHTML = '<i class="fa-solid fa-check" style="margin-right:6px"></i> Message Sent!';
         formBtn.style.background = 'linear-gradient(135deg, #22c55e, #4ade80)';
-
-        // Reset form
         contactForm.reset();
 
-        // Reset button after 3 seconds
         setTimeout(function() {
           formBtn.disabled = false;
           formBtn.innerHTML = originalText;
@@ -808,8 +883,6 @@
           function updateCounter(currentTime) {
             var elapsed = currentTime - startTime;
             var progress = Math.min(elapsed / duration, 1);
-
-            // Ease out cubic
             var easeOut = 1 - Math.pow(1 - progress, 3);
             var current = Math.floor(easeOut * target);
 
@@ -827,7 +900,6 @@
       }
     }
 
-    // ============ INTERSECTION OBSERVER FOR COUNTERS ============
     var statsSection = document.querySelector('.why-stats');
     var countersAnimated = false;
 
@@ -847,7 +919,6 @@
 
       statsObserver.observe(statsSection);
     } else if (statsSection) {
-      // Fallback: animate immediately if no IntersectionObserver
       setTimeout(animateCounters, 1000);
     }
 
