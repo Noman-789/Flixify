@@ -16,25 +16,11 @@
       --accent:#8b5cf6;--accent2:#22c55e;--glow:rgba(139,92,246,0.15);
     }
 
-    /* Custom Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #7c3aed;
-    }
-    /* Firefox scrollbar */
-    * {
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent) var(--bg);
-    }
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:#7c3aed}
+    *{scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
 
     html{scroll-behavior:smooth}
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -89,8 +75,32 @@
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
     section{position:relative;z-index:1}
-    .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
-    .section-label .line{width:24px;height:2px;background:var(--accent);border-radius:2px}
+
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:2.5px;
+      color:var(--accent);
+      margin-bottom:20px;
+      padding:10px 22px;
+      background:rgba(139,92,246,.08);
+      border:1px solid rgba(139,92,246,.2);
+      border-radius:100px;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      white-space:nowrap;
+    }
+    .section-label .label-icon{
+      font-size:13px;
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+    }
+
     .section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.15}
     .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .section-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px}
@@ -163,11 +173,11 @@
     .footer{padding:70px 20px 40px;border-top:1px solid var(--border);position:relative;z-index:1}
     .footer-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px;margin-bottom:48px}
     .footer h4{color:#fff;margin-bottom:16px}
-    .footer p{font-size:15px;line-height:1.8}
+    .footer p{font-size:15px;line-height:1.8;color:var(--muted)}
     .footer-socials{display:flex;gap:14px;margin-top:14px}
-    .footer-socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;transition:.3s}
+    .footer-socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;transition:.3s;color:#fff;font-size:14px}
     .footer-socials a:hover{background:var(--accent);transform:translateY(-3px)}
-    .footer-bottom{text-align:center;margin-top:40px;font-size:14px;color:#64748b;padding-top:32px;border-top:1px solid var(--border)}
+    .footer-bottom{text-align:center;margin-top:40px;font-size:14px;color:var(--muted);padding-top:32px;border-top:1px solid var(--border)}
 
     .wa-float{position:fixed;right:24px;bottom:24px;z-index:90}
     .wa-btn{width:56px;height:56px;border-radius:50%;background:#22c55e;color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(34,197,94,.35);transition:transform .3s;position:relative;z-index:2}
@@ -222,6 +232,8 @@
       .footer-grid>div:first-child{grid-column:auto}
       .wa-float{right:16px;bottom:16px}
       .wa-btn{width:52px;height:52px;font-size:22px}
+      .section-label{font-size:10px;letter-spacing:2px;padding:8px 16px;gap:8px}
+      .section-head{margin-bottom:48px}
     }
     @media(max-width:400px){
       .hero h1{font-size:32px}
@@ -235,6 +247,7 @@
       .service-btn{padding:12px 20px;font-size:13px}
       .cta-btn{padding:15px 32px;font-size:14px;width:100%;justify-content:center}
       .cta-stats{flex-direction:column;align-items:center;gap:16px}
+      .section-label{font-size:9px;letter-spacing:1.5px;padding:7px 14px;gap:6px}
     }
   </style>
 </head>
@@ -277,7 +290,8 @@
     <div class="hero-orb o2"></div>
     <div class="hero-grid-lines"></div>
     <div class="hero-content">
-      <div class="hero-badge"><i class="fa-solid fa-cubes"></i> Expertise That Delivers</div>
+      <!-- ✅ fa-bolt → "Expertise That DELIVERS" — speed, impact, results -->
+      <div class="hero-badge"><i class="fa-solid fa-bolt"></i> Expertise That Delivers</div>
       <h1>
         <span class="line"><span class="line-inner">Tailored <span class="grad">Solutions</span></span></span>
       </h1>
@@ -289,8 +303,9 @@
   <section class="services-section">
     <div class="container">
       <div class="section-head" data-aos="fade-up">
-        <div class="section-label" style="justify-content:center"><span class="line"></span> Our Capabilities <span class="line"></span></div>
-        <h2>Solutions That <span class="grad">Scale</span></h2>
+        <!-- ✅ fa-layer-group → "Our CAPABILITIES" — multiple layers of skills/services -->
+        <div class="section-label" style="justify-content:center"><span class="label-icon"><i class="fa-solid fa-layer-group"></i></span> Our Capabilities</div>
+        <h2 class="section-title">Solutions That <span class="grad">Scale</span></h2>
         <p class="section-desc">Strategic, execution-ready services built to fuel your ecommerce growth at every stage.</p>
       </div>
 
@@ -476,7 +491,7 @@
   </section>
 
   <!-- FOOTER -->
-<footer class="footer">
+  <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
