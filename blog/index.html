@@ -60,7 +60,6 @@
     @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
     .hero-grid-lines{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}
     .hero-content{position:relative;z-index:2;text-align:center;max-width:900px;margin:0 auto}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp .8s .3s forwards;transform:translateY(20px)}
     .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden}
     .hero h1 .line{display:block;overflow:hidden}
     .hero h1 .line-inner{display:block;transform:translateY(110%);animation:textReveal .8s cubic-bezier(.16,1,.3,1) forwards}
@@ -71,8 +70,6 @@
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
     section{position:relative;z-index:1}
-    .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
-    .section-label .line{width:24px;height:2px;background:var(--accent);border-radius:2px}
     .section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.15}
     .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .section-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px}
@@ -170,7 +167,6 @@
     .newsletter-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:var(--accent);filter:blur(150px);opacity:.1;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
     .newsletter-glow-2{position:absolute;width:350px;height:350px;border-radius:50%;background:var(--accent2);filter:blur(130px);opacity:.06;top:20%;right:10%;z-index:0}
     .newsletter-content{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto}
-    .newsletter-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:var(--accent);margin-bottom:24px}
     .newsletter-content h2{font-size:clamp(30px,4vw,46px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.1}
     .newsletter-content h2 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .newsletter-content>p{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:32px}
@@ -332,7 +328,7 @@
     }
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
-      .hero-badge,.hero h1 .line-inner,.hero-desc{opacity:1;transform:none}
+      .hero h1 .line-inner,.hero-desc{opacity:1;transform:none}
       .reveal{opacity:1;transform:none}
     }
   </style>
@@ -377,7 +373,6 @@
     <div class="hero-orb o2"></div>
     <div class="hero-grid-lines"></div>
     <div class="hero-content">
-      <div class="hero-badge"><i class="fa-solid fa-pen-nib"></i> Insights & Resources</div>
       <h1>
         <span class="line"><span class="line-inner">Our <span class="grad">Blog</span></span></span>
       </h1>
@@ -469,7 +464,6 @@
     <div class="newsletter-glow-2"></div>
     <div class="container">
       <div class="newsletter-content">
-        <div class="newsletter-badge"><i class="fa-solid fa-bell"></i> Newsletter</div>
         <h2>Stay <span class="grad">Updated</span></h2>
         <p>Join 2,000+ ecommerce founders who get our best insights, teardowns and Shopify strategies delivered every week.</p>
         <div class="newsletter-perks">
@@ -573,6 +567,8 @@
       post6: "Most stores are built for today. If you plan to grow, build with scale in mind from day one."
     };
 
+    var currentFilter = "all", currentSearch = "";
+
     function renderGrid(filter, search) {
       var grid = document.getElementById("blogGrid");
       var noRes = document.getElementById("noResults");
@@ -582,103 +578,142 @@
         var id = cardIds[i], d = blogData[id];
         if (!d) continue;
         if ((f !== "all" && d.category !== f) || (s && d.title.toLowerCase().indexOf(s) === -1 && d.tagLabel.toLowerCase().indexOf(s) === -1)) continue;
-        html += '<article class="blog-card" data-article-id="' + id + '"><div class="blog-card-image"><img src="https://picsum.photos/seed/' + d.img + '/600/400.jpg" alt="' + d.title + '" loading="lazy"><span class="blog-card-tag ' + d.tag + '">' + d.tagLabel + '</span></div><div class="blog-card-body"><h3>' + d.title + '</h3><p>' + (cardExcerpts[id] || "") + '</p><div class="blog-card-footer"><div class="blog-card-author"><img src="https://picsum.photos/seed/' + d.authorImg + '/80/80.jpg" alt="' + d.author + '" loading="lazy"><span>' + d.author + '</span></div><span class="blog-card-date"><i class="fa-regular fa-calendar"></i> ' + d.date.split(",")[0] + '</span></div></div></article>';
+        html += '<article class="blog-card" data-article-id="' + id + '">' +
+          '<div class="blog-card-image"><img src="https://picsum.photos/seed/' + d.img + '/600/400.jpg" alt="' + d.title + '">' +
+          '<span class="blog-card-tag ' + d.tag + '">' + d.tagLabel + '</span></div>' +
+          '<div class="blog-card-body"><h3>' + d.title + '</h3><p>' + (cardExcerpts[id] || '') + '</p>' +
+          '<div class="blog-card-footer"><div class="blog-card-author"><img src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" alt="' + d.author + '"><span>' + d.author + '</span></div>' +
+          '<span class="blog-card-date"><i class="fa-regular fa-calendar"></i> ' + d.date + '</span></div></div></article>';
       }
       grid.innerHTML = html;
-      if (noRes) noRes.style.display = html ? "none" : "block";
+      noRes.className = html ? "no-results" : "no-results visible";
+      grid.querySelectorAll(".blog-card").forEach(function(card) {
+        card.addEventListener("click", function() { openArticle(this.getAttribute("data-article-id")); });
+      });
     }
 
     function openArticle(id) {
-      var d = blogData[id]; if (!d) return;
-      var modal = document.getElementById("articleModal"), content = document.getElementById("articleContent");
-      if (!modal || !content) return;
-      content.innerHTML = '<button class="article-back" id="articleBack"><i class="fa-solid fa-arrow-left"></i> Back to Blog</button><img class="article-hero-img" src="https://picsum.photos/seed/' + d.img + '/1200/600.jpg" alt="' + d.title + '"><span class="article-tag" style="background:' + d.tagColor + '">' + d.tagLabel + '</span><h1>' + d.title + '</h1><div class="article-meta-bar"><span><i class="fa-regular fa-calendar"></i> ' + d.date + '</span><span><i class="fa-regular fa-clock"></i> ' + d.readTime + '</span></div><div class="article-author-block"><img src="https://picsum.photos/seed/' + d.authorImg + '/120/120.jpg" alt="' + d.author + '"><div><strong>' + d.author + '</strong><span>' + d.authorRole + '</span></div></div><div class="article-body">' + d.body + '</div><div class="article-share"><span>Share this article</span><button class="share-btn" onclick="window.open(\'https://twitter.com/intent/tweet?text=\'+encodeURIComponent(\'' + d.title.replace(/'/g, "\\'") + '\'),\'_blank\')"><i class="fa-brands fa-x-twitter"></i></button><button class="share-btn" onclick="window.open(\'https://www.linkedin.com/sharing/share-offsite/?url=\'+encodeURIComponent(window.location.href),\'_blank\')"><i class="fa-brands fa-linkedin-in"></i></button><button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href);showToast(\'Link copied!\')"><i class="fa-solid fa-link"></i></button></div>';
+      var d = blogData[id];
+      if (!d) return;
+      var modal = document.getElementById("articleModal");
+      var container = document.getElementById("articleContent");
+      container.innerHTML =
+        '<button class="article-back" id="articleBack"><i class="fa-solid fa-arrow-left"></i> Back to Blog</button>' +
+        '<img class="article-hero-img" src="https://picsum.photos/seed/' + d.img + '/1200/600.jpg" alt="' + d.title + '">' +
+        '<span class="article-tag" style="background:' + d.tagColor + '">' + d.tagLabel + '</span>' +
+        '<h1>' + d.title + '</h1>' +
+        '<div class="article-meta-bar"><span><i class="fa-regular fa-calendar"></i> ' + d.date + '</span><span><i class="fa-regular fa-clock"></i> ' + d.readTime + '</span></div>' +
+        '<div class="article-author-block"><img src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" alt="' + d.author + '"><div><strong>' + d.author + '</strong><span>' + d.authorRole + '</span></div></div>' +
+        '<div class="article-body">' + d.body + '</div>' +
+        '<div class="article-share"><span>Share:</span><a class="share-btn" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(d.title) + '" target="_blank"><i class="fa-brands fa-x-twitter"></i></a><a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href) + '" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a><a class="share-btn" href="https://wa.me/?text=' + encodeURIComponent(d.title + ' ' + window.location.href) + '" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></div>';
       modal.classList.add("visible");
       document.body.style.overflow = "hidden";
-      modal.scrollTop = 0;
-      var backBtn = document.getElementById("articleBack");
-      if (backBtn) backBtn.addEventListener("click", closeArticle);
+      document.getElementById("articleBack").addEventListener("click", closeArticle);
     }
 
     function closeArticle() {
-      var modal = document.getElementById("articleModal");
-      if (modal) { modal.classList.remove("visible"); document.body.style.overflow = ""; }
+      document.getElementById("articleModal").classList.remove("visible");
+      document.body.style.overflow = "";
     }
+
+    // Category filter
+    document.getElementById("categoryBar").addEventListener("click", function(e) {
+      var pill = e.target.closest(".cat-pill");
+      if (!pill) return;
+      this.querySelectorAll(".cat-pill").forEach(function(p) { p.classList.remove("active"); });
+      pill.classList.add("active");
+      currentFilter = pill.getAttribute("data-cat");
+      renderGrid(currentFilter, currentSearch);
+    });
+
+    // Search
+    var searchTimer;
+    document.getElementById("blogSearch").addEventListener("input", function() {
+      var val = this.value;
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function() {
+        currentSearch = val;
+        renderGrid(currentFilter, currentSearch);
+      }, 300);
+    });
+
+    // Featured post click
+    document.querySelector('.read-btn[data-article-id="featured"]').addEventListener("click", function(e) {
+      e.preventDefault();
+      openArticle("featured");
+    });
+    document.querySelector(".featured-image").addEventListener("click", function() {
+      openArticle("featured");
+    });
+    document.querySelector(".featured-content h2").addEventListener("click", function() {
+      openArticle("featured");
+    });
+
+    // Close modal on overlay click
+    document.getElementById("articleModal").addEventListener("click", function(e) {
+      if (e.target === this) closeArticle();
+    });
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeArticle();
+    });
+
+    // Newsletter
+    document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      var emailInput = document.getElementById("newsletterEmail");
+      var errorEl = document.getElementById("newsletterError");
+      var email = emailInput.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput.classList.add("error");
+        errorEl.classList.add("visible");
+        return;
+      }
+      emailInput.classList.remove("error");
+      errorEl.classList.remove("visible");
+      emailInput.value = "";
+      showToast("You're subscribed! Welcome aboard.");
+    });
 
     function showToast(msg) {
       var container = document.getElementById("toastContainer");
-      if (!container) return;
-      var t = document.createElement("div");
-      t.className = "toast";
-      t.innerHTML = '<i class="fa-solid fa-circle-check" style="color:var(--accent2)"></i> ' + msg;
-      container.appendChild(t);
-      setTimeout(function() { t.classList.add("removing"); setTimeout(function() { t.remove(); }, 300); }, 3000);
+      var toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = '<i class="fa-solid fa-circle-check" style="color:var(--accent2)"></i> ' + msg;
+      container.appendChild(toast);
+      setTimeout(function() {
+        toast.classList.add("removing");
+        setTimeout(function() { toast.remove(); }, 300);
+      }, 3500);
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
+    // Init
+    renderGrid("all", "");
+
+    // Page loader
+    window.addEventListener("load", function() {
       setTimeout(function() { document.getElementById("pageLoader").classList.add("hide"); }, 500);
-
-      renderGrid();
-
-      document.getElementById("blogSearch").addEventListener("input", function() {
-        var activeCat = document.querySelector(".cat-pill.active");
-        renderGrid(activeCat ? activeCat.dataset.cat : "all", this.value);
-      });
-
-      document.getElementById("categoryBar").addEventListener("click", function(e) {
-        var pill = e.target.closest(".cat-pill");
-        if (!pill) return;
-        this.querySelectorAll(".cat-pill").forEach(function(p) { p.classList.remove("active"); });
-        pill.classList.add("active");
-        renderGrid(pill.dataset.cat, document.getElementById("blogSearch").value);
-      });
-
-      document.getElementById("blogGrid").addEventListener("click", function(e) {
-        var card = e.target.closest(".blog-card");
-        if (card) openArticle(card.dataset.articleId);
-      });
-
-      var featuredBtn = document.querySelector('.read-btn[data-article-id="featured"]');
-      if (featuredBtn) featuredBtn.addEventListener("click", function(e) { e.preventDefault(); openArticle("featured"); });
-      document.getElementById("featuredPost").addEventListener("click", function(e) {
-        if (e.target.closest(".read-btn")) return;
-        if (e.target.closest(".featured-content h2") || e.target.closest(".featured-image")) openArticle("featured");
-      });
-
-      document.getElementById("articleModal").addEventListener("click", function(e) { if (e.target === this) closeArticle(); });
-      document.addEventListener("keydown", function(e) { if (e.key === "Escape") closeArticle(); });
-
-      document.getElementById("newsletterForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        var input = document.getElementById("newsletterEmail"), err = document.getElementById("newsletterError");
-        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!re.test(input.value)) { input.classList.add("error"); err.classList.add("visible"); return; }
-        input.classList.remove("error"); err.classList.remove("visible");
-        showToast("Subscribed successfully! Welcome aboard.");
-        input.value = "";
-      });
-      document.getElementById("newsletterEmail").addEventListener("input", function() {
-        this.classList.remove("error");
-        document.getElementById("newsletterError").classList.remove("visible");
-      });
-
-      var header = document.getElementById("header");
-      window.addEventListener("scroll", function() { header.classList.toggle("scrolled", window.scrollY > 50); });
-
-      var menuBtn = document.getElementById("menuBtn"), drawer = document.getElementById("drawer"), closeBtn = document.getElementById("closeDrawer"), overlayEl = document.getElementById("overlay");
-      function openDrawer() { drawer.classList.add("open"); overlayEl.classList.add("open"); }
-      function closeDrawerFn() { drawer.classList.remove("open"); overlayEl.classList.remove("open"); }
-      menuBtn.addEventListener("click", openDrawer);
-      closeBtn.addEventListener("click", closeDrawerFn);
-      overlayEl.addEventListener("click", closeDrawerFn);
-      drawer.querySelectorAll("a").forEach(function(l) { l.addEventListener("click", closeDrawerFn); });
-
-      var revealEls = document.querySelectorAll(".reveal");
-      var rObs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add("visible"); });
-      }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
-      revealEls.forEach(function(el) { rObs.observe(el); });
     });
+
+    // Header scroll
+    var header = document.getElementById("header");
+    window.addEventListener("scroll", function() { header.classList.toggle("scrolled", window.scrollY > 50); });
+
+    // Drawer
+    var menuBtn = document.getElementById("menuBtn"), drawer = document.getElementById("drawer"), closeBtn = document.getElementById("closeDrawer"), overlayEl = document.getElementById("overlay");
+    function openDrawer() { drawer.classList.add("open"); overlayEl.classList.add("open"); }
+    function closeDrawerFn() { drawer.classList.remove("open"); overlayEl.classList.remove("open"); }
+    menuBtn.addEventListener("click", openDrawer);
+    closeBtn.addEventListener("click", closeDrawerFn);
+    overlayEl.addEventListener("click", closeDrawerFn);
+    drawer.querySelectorAll("a").forEach(function(l) { l.addEventListener("click", closeDrawerFn); });
+
+    // Reveal on scroll
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("visible"); revealObs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach(function(el) { revealObs.observe(el); });
   </script>
 </body>
 </html>
