@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flixifys — Shopify Studio</title>
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/images/Favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -22,18 +22,16 @@
     ::-webkit-scrollbar-thumb:hover{background:#7c3aed}
     *{scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
 
-    html{
-      scroll-behavior:smooth;
-      -webkit-overflow-scrolling:touch;
-      overscroll-behavior-y:contain;
-    }
+    html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
+    
+    /* ✅ FIXED: Removed touch-action and -webkit-tap-highlight-color (same as contact page) */
     body{
       font-family:'Inter',sans-serif;
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
+      line-height:1.75;
       -webkit-font-smoothing:antialiased;
-      -webkit-tap-highlight-color:transparent;
     }
     body::before{
       content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -41,6 +39,7 @@
       opacity:.4;
     }
     a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
     .container{max-width:1280px;margin:0 auto;padding:0 24px}
 
     .page-loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
@@ -48,9 +47,9 @@
     .loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* ===== HEADER - ORIGINAL STRUCTURE ===== */
+    /* ✅ EXACT SAME HEADER AS CONTACT PAGE */
     .header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 0;transition:all .4s cubic-bezier(.4,0,.2,1)}
-    .header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 0}
+    .header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 0}
     .header-inner{display:flex;align-items:center;justify-content:space-between}
     .logo img{height:38px;width:auto;transition:.3s}
     .header.scrolled .logo img{height:32px}
@@ -62,7 +61,7 @@
     .nav-cta{padding:10px 24px;border-radius:100px;font-size:14px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;transition:.3s}
     .nav a.nav-cta::after{display:none}
     .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}
-    .menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+    .menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
 
     .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
     .hero-bg{position:absolute;inset:0;z-index:0}
@@ -73,13 +72,13 @@
     @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
     .hero-grid-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}
     .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;z-index:1}
-    .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden;word-break:break-word;overflow-wrap:break-word}
+    .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden}
     .hero h1 .line{display:block;overflow:hidden}
     .hero h1 .line-inner{display:block;transform:translateY(110%);animation:textReveal .8s cubic-bezier(.16,1,.3,1) forwards}
     .hero h1 .line:nth-child(2) .line-inner{animation-delay:.15s}
     .hero h1 .line:nth-child(3) .line-inner{animation-delay:.3s}
     @keyframes textReveal{to{transform:translateY(0)}}
-    .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .hero-desc{font-size:18px;line-height:1.8;color:var(--muted);max-width:500px;margin-bottom:32px;opacity:0;animation:fadeUp .8s .5s ease forwards;transform:translateY(20px)}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
     .hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .65s ease forwards;transform:translateY(20px)}
@@ -104,12 +103,12 @@
 
     section{position:relative;z-index:1}
     .section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.15}
-    .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .section-title .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .section-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px}
     .section-head{text-align:center;margin-bottom:64px}
     .section-head .section-desc{margin:0 auto}
 
-    .glass{background:var(--card);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .glass{background:var(--card);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
     .glass:hover{border-color:rgba(139,92,246,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px var(--glow)}
 
     .what-section{padding:100px 0}
@@ -142,7 +141,6 @@
     .service-card h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:10px}
     .service-card p{font-size:14px;color:var(--muted);line-height:1.65}
 
-    /* ===== PROCESS SECTION ===== */
     .process-section{padding:100px 0}
     .process-timeline{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
     .process-item{display:flex;align-items:center;gap:24px}
@@ -166,10 +164,10 @@
     .stat-card{text-align:center;padding:32px 16px;position:relative;overflow:hidden}
     .stat-card::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:.4s}
     .stat-card:hover::after{opacity:1}
-    .stat-number{font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+    .stat-number{font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px}
     .stat-label{font-size:13px;color:var(--muted);font-weight:500}
     .why-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px;margin:0 auto}
-    .why-card{padding:36px 32px;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:22px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .why-card{padding:36px 32px;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:22px;backdrop-filter:blur(10px);transition:all .4s cubic-bezier(.4,0,.2,1)}
     .why-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.06),transparent 60%);opacity:0;transition:opacity .4s}
     .why-card:hover::before{opacity:1}
     .why-card:hover{transform:translateY(-8px);border-color:rgba(139,92,246,.2);box-shadow:0 24px 60px rgba(0,0,0,.3)}
@@ -226,24 +224,23 @@
     .contact-section{padding:100px 0;position:relative}
     .contact-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(34,197,94,.04) 0%,transparent 70%);pointer-events:none}
     .contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:0;align-items:stretch}
-    .contact-form-card{padding:44px 40px;border-radius:20px 0 0 20px;background:var(--card);border:1px solid var(--border);border-right:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;flex-direction:column}
+    .contact-form-card{padding:44px 40px;border-radius:20px 0 0 20px;background:var(--card);border:1px solid var(--border);border-right:none;backdrop-filter:blur(10px);display:flex;flex-direction:column}
     .contact-form-card h3{font-size:24px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.5px}
     .contact-form-card .sub{font-size:14px;color:var(--muted);margin-bottom:28px}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
     .form-group{display:flex;flex-direction:column;gap:6px}
     .form-group.full{grid-column:1/-1}
     .form-group label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
-    .form-group input,.form-group select,.form-group textarea{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff;font-size:16px;font-family:'Inter',sans-serif;outline:none;transition:all .3s;-webkit-appearance:none;appearance:none;min-height:48px}
+    .form-group input,.form-group select,.form-group textarea{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:all .3s;-webkit-appearance:none}
     .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,92,246,.15)}
     .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.2)}
     .form-group select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
     .form-group select option{background:var(--surface);color:var(--text)}
     .form-group textarea{resize:none;min-height:100px}
-    .form-submit{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;margin-top:auto;font-family:'Inter',sans-serif;min-height:52px}
+    .form-submit{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;margin-top:auto;font-family:'Inter',sans-serif}
     .form-submit:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(139,92,246,.3)}
-    .form-submit:disabled{opacity:.7;cursor:not-allowed;transform:none!important;box-shadow:none!important}
 
-    .contact-wa-card{padding:44px 36px;border-radius:0 20px 20px 0;background:var(--card);border:1px solid var(--border);border-left:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+    .contact-wa-card{padding:44px 36px;border-radius:0 20px 20px 0;background:var(--card);border:1px solid var(--border);border-left:none;backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
     .contact-wa-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:rgba(34,197,94,.06);border-radius:50%;filter:blur(50px)}
     .contact-wa-card::after{content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;background:rgba(34,197,94,.04);border-radius:50%;filter:blur(50px)}
     .contact-wa-card h4{font-size:22px;font-weight:800;color:#fff;margin-bottom:10px;position:relative;z-index:1}
@@ -269,19 +266,22 @@
     .wa-tip::after{content:'';position:absolute;top:100%;right:20px;border:6px solid transparent;border-top-color:var(--surface)}
     .wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
 
-    .drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px;-webkit-transform:translateZ(0);transform:translateZ(0)}
+    .drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px}
     .drawer.open{right:0}
     .drawer-head{display:flex;justify-content:space-between;align-items:center}
     .drawer-head span{font-size:15px;font-weight:700;color:#fff}
-    .drawer-head button{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;transition:.2s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+    .drawer-head button{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;transition:.2s}
     .drawer-head button:hover{color:#fff}
-    .drawer a{font-size:15px;color:var(--muted);font-weight:500;transition:.2s;padding:8px 0;min-height:44px;display:flex;align-items:center}
+    .drawer a{font-size:15px;color:var(--muted);font-weight:500;transition:.2s;padding:4px 0}
     .drawer a:hover{color:#fff}
-    .drawer-cta{margin-top:auto;padding:14px;text-align:center;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;font-weight:600;font-size:15px;min-height:48px;align-items:center;justify-content:center}
-    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s;z-index:150}
+    .drawer-cta{margin-top:auto;padding:14px;text-align:center;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;font-weight:600;font-size:15px}
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.3s;z-index:150}
     .overlay.open{opacity:1;pointer-events:auto}
 
-    /* ===== TABLET ===== */
+    .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ✅ EXACT SAME MEDIA QUERIES AS CONTACT PAGE */
     @media(max-width:1024px){
       .hero-grid{grid-template-columns:1fr;text-align:center}
       .hero-desc{margin:0 auto 32px}
@@ -293,57 +293,38 @@
       .why-stats{grid-template-columns:repeat(2,1fr)}
       .why-cards-grid{grid-template-columns:1fr}
     }
-
-    /* ===== MOBILE ===== */
     @media(max-width:768px){
       .nav{display:none}
-      .menu-btn{display:flex}
+      .menu-btn{display:block}
       .header-inner{justify-content:center;position:relative}
       .menu-btn{position:absolute;right:24px}
       .hero{padding:100px 0 60px;min-height:auto}
       .hero h1{letter-spacing:-1px}
-      .hero-desc{font-size:16px}
-      .hero-visual{display:none}
-      .what-cards,.services-grid,.ind-grid{grid-template-columns:1fr}
-      .footer-grid{grid-template-columns:1fr}
+      .contact-section{padding:70px 0}
+      .contact-form-card{padding:28px 24px}
+      .form-row{grid-template-columns:1fr}
+      .trust-section{padding:70px 0}
+      .trust-grid{grid-template-columns:1fr}
+      .process-section{padding:70px 0}
+      .process-timeline{grid-template-columns:1fr;gap:28px;padding-bottom:64px}
+      .process-item,.process-item.rev{flex-direction:column;align-items:center;gap:16px}
+      .process-item .p-dot{margin:0 auto}
+      .p-body h3,.p-body p{white-space:normal;overflow:visible;text-overflow:unset}
+      .quote-section{padding:70px 0}
+      .cta-section{padding:80px 0}
+      .footer{padding:60px 16px 24px}
+      .footer-grid{grid-template-columns:1fr;gap:28px}
       .wa-float{right:16px;bottom:16px}
       .wa-btn{width:52px;height:52px;font-size:22px}
-      .form-row{grid-template-columns:1fr}
+      .what-cards,.services-grid,.ind-grid{grid-template-columns:1fr}
       .contact-grid{grid-template-columns:1fr}
-      .contact-form-card{border-radius:20px;border-right:1px solid var(--border);border-bottom:none;padding:32px 24px}
+      .contact-form-card{border-radius:20px;border-right:1px solid var(--border);border-bottom:none}
       .contact-wa-card{border-radius:0 0 20px 20px;border-left:1px solid var(--border);border-top:none;padding:36px 24px}
       .tech-pill{padding:16px 24px}
       .tech-pill-icon{width:34px;height:34px;font-size:15px;border-radius:10px}
       .tech-pill span{font-size:13px}
       .what-card .num{font-size:10px;padding:5px 12px;border-radius:0 18px 0 10px}
       .why-card-num{font-size:10px;padding:6px 14px;border-radius:0 20px 0 12px}
-
-      /* Process - SAME icon, just centered */
-      .process-item,
-      .process-item.rev{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-        gap:16px;
-      }
-      .p-body{
-        padding:24px 20px;
-        text-align:center;
-      }
-      .p-body h3,
-      .p-body p{
-        white-space:normal;
-        overflow:visible;
-        text-overflow:unset;
-      }
-      .process-item:hover .p-dot,
-      .process-item.rev:hover .p-dot,
-      .process-item:hover .p-body,
-      .process-item.rev:hover .p-body{
-        transform:none;
-      }
-
-      /* Disable hover effects on touch */
       .glass:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover::before{opacity:0}
@@ -351,16 +332,21 @@
       .service-card:hover .s-icon{transform:none}
       .ind-card:hover .ind-icon{transform:none}
       .tech-pill:hover{transform:none}
-
+      .process-item:hover .p-dot{transform:none}
+      .process-item:hover .p-body{transform:none}
+      .process-item.rev:hover .p-body{transform:none}
       .section-head{margin-bottom:40px}
       .what-section,.services-section,.process-section,.why-section,.industries-section,.contact-section{padding:70px 0}
       .marquee-track{animation-duration:15s}
       .tech-marquee{animation-duration:25s}
       .btn-primary,.btn-outline{padding:14px 24px;font-size:14px;justify-content:center}
     }
-
-    /* ===== SMALL MOBILE ===== */
     @media(max-width:400px){
+      .hero h1{font-size:32px}
+      .contact-section{padding:50px 0}
+      .contact-form-card{padding:24px 18px}
+      .form-group input,.form-group select,.form-group textarea{padding:12px 16px;font-size:14px}
+      .form-submit{padding:14px 24px;font-size:14px}
       .hero-btns{flex-direction:column;align-items:stretch}
       .btn-primary,.btn-outline{justify-content:center}
       .hero-trust{flex-direction:column;align-items:center;gap:8px}
@@ -369,14 +355,24 @@
       .container{padding:0 16px}
       .what-card,.service-card,.ind-card{padding:28px 20px}
       .contact-form-card{padding:28px 20px}
-      .p-body{padding:20px 16px}
+      .footer{padding:40px 16px 20px}
+      .wa-float{right:12px;bottom:12px}
+      .wa-btn{width:48px;height:48px;font-size:22px}
     }
-
-    /* ===== LANDSCAPE MOBILE ===== */
-    @media(max-width:768px) and (orientation:landscape){
-      .hero{min-height:auto;padding:80px 0 40px}
-      .hero h1{font-size:28px}
-      .what-section,.services-section,.process-section,.why-section,.industries-section,.contact-section{padding:50px 0}
+    @media(hover:none) and (pointer:coarse){
+      .glass:hover{transform:none}
+      .why-card:hover{transform:none}
+      .service-card:hover .s-icon{transform:none}
+      .ind-card:hover .ind-icon{transform:none}
+      .tech-pill:hover{transform:none}
+      .process-item:hover .p-dot{transform:none}
+      .process-item:hover .p-body{transform:none}
+      .process-item.rev:hover .p-body{transform:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+      .hero h1 .line-inner,.hero-desc{opacity:1;transform:none}
+      .reveal{opacity:1;transform:none}
     }
   </style>
 </head>
@@ -395,12 +391,12 @@
         <a href="/contact-us/">Contact Us</a>
         <a class="nav-cta" href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank">Book a Free Call</a>
       </nav>
-      <button class="menu-btn" id="menuBtn" aria-label="Open Menu"><i class="fa-solid fa-bars"></i></button>
+      <button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
     </div>
   </header>
 
   <div class="drawer" id="drawer">
-    <div class="drawer-head"><span>Menu</span><button id="closeDrawer" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="drawer-head"><span>Menu</span><button id="closeDrawer"><i class="fa-solid fa-xmark"></i></button></div>
     <a href="/about-us/">About Us</a>
     <a href="/services/">Services</a>
     <a href="/blog/">Blog</a>
@@ -455,85 +451,85 @@
 
   <section class="what-section">
     <div class="container what-grid">
-      <div data-aos="fade-right">
+      <div class="reveal">
         <h2 class="section-title">What We <span class="grad">Actually</span> Do</h2>
         <p class="section-desc" style="margin-bottom:16px">We are a Shopify-focused digital studio helping brands plan, design, build and scale high-converting ecommerce experiences.</p>
         <p style="font-size:15px;color:var(--muted);line-height:1.75">Our role goes beyond just development. We work as a strategic partner — aligning design, technology and performance to support long-term ecommerce success.</p>
       </div>
       <div class="what-cards">
-        <div class="glass what-card" data-aos="fade-up"><span class="num">01</span><h3>Business-First Approach</h3><p>We deeply understand your business model, audience and revenue goals before starting design or development.</p></div>
-        <div class="glass what-card" data-aos="fade-up" data-aos-delay="100"><span class="num">02</span><h3>Conversion-Focused UI</h3><p>Layouts crafted using UX & CRO principles that guide users smoothly from landing to checkout.</p></div>
-        <div class="glass what-card" data-aos="fade-up" data-aos-delay="200"><span class="num">03</span><h3>Scalable Architecture</h3><p>Clean, maintainable Shopify builds ready for future features, traffic spikes and integrations.</p></div>
-        <div class="glass what-card" data-aos="fade-up" data-aos-delay="300"><span class="num">04</span><h3>Data & Growth Insights</h3><p>Analytics-driven decisions help continuously improve conversion and revenue over time.</p></div>
+        <div class="glass what-card reveal"><span class="num">01</span><h3>Business-First Approach</h3><p>We deeply understand your business model, audience and revenue goals before starting design or development.</p></div>
+        <div class="glass what-card reveal" style="transition-delay:.1s"><span class="num">02</span><h3>Conversion-Focused UI</h3><p>Layouts crafted using UX & CRO principles that guide users smoothly from landing to checkout.</p></div>
+        <div class="glass what-card reveal" style="transition-delay:.2s"><span class="num">03</span><h3>Scalable Architecture</h3><p>Clean, maintainable Shopify builds ready for future features, traffic spikes and integrations.</p></div>
+        <div class="glass what-card reveal" style="transition-delay:.3s"><span class="num">04</span><h3>Data & Growth Insights</h3><p>Analytics-driven decisions help continuously improve conversion and revenue over time.</p></div>
       </div>
     </div>
   </section>
 
   <section class="services-section">
     <div class="container">
-      <div class="section-head" data-aos="fade-up">
+      <div class="section-head reveal">
         <h2 class="section-title">Our <span class="grad">Core</span> Services</h2>
         <p class="section-desc">End-to-end Shopify services designed to build, optimize and scale high-performing ecommerce brands.</p>
       </div>
       <div class="services-grid">
-        <div class="glass service-card" data-aos="fade-up"><div class="s-icon c1"><i class="fa-solid fa-palette"></i></div><h3>Shopify Store Design</h3><p>Modern, brand-aligned UI designs focused on trust, clarity and conversions across all devices.</p></div>
-        <div class="glass service-card" data-aos="fade-up" data-aos-delay="100"><div class="s-icon c2"><i class="fa-solid fa-code"></i></div><h3>Custom Shopify Development</h3><p>Theme customization, custom sections and performance-optimized Shopify development.</p></div>
-        <div class="glass service-card" data-aos="fade-up" data-aos-delay="200"><div class="s-icon c3"><i class="fa-solid fa-bolt"></i></div><h3>Speed & Performance</h3><p>Page speed optimization, clean code and performance best practices for better rankings.</p></div>
-        <div class="glass service-card" data-aos="fade-up"><div class="s-icon c4"><i class="fa-solid fa-mobile-screen-button"></i></div><h3>Mobile Optimization</h3><p>Mobile-first layouts ensuring smooth browsing and checkout experiences.</p></div>
-        <div class="glass service-card" data-aos="fade-up" data-aos-delay="100"><div class="s-icon c5"><i class="fa-solid fa-right-left"></i></div><h3>Platform Migration</h3><p>Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.</p></div>
-        <div class="glass service-card" data-aos="fade-up" data-aos-delay="200"><div class="s-icon c6"><i class="fa-solid fa-headset"></i></div><h3>Ongoing Support</h3><p>Post-launch maintenance, improvements, new features and continuous store monitoring.</p></div>
+        <div class="glass service-card reveal"><div class="s-icon c1"><i class="fa-solid fa-palette"></i></div><h3>Shopify Store Design</h3><p>Modern, brand-aligned UI designs focused on trust, clarity and conversions across all devices.</p></div>
+        <div class="glass service-card reveal" style="transition-delay:.1s"><div class="s-icon c2"><i class="fa-solid fa-code"></i></div><h3>Custom Shopify Development</h3><p>Theme customization, custom sections and performance-optimized Shopify development.</p></div>
+        <div class="glass service-card reveal" style="transition-delay:.2s"><div class="s-icon c3"><i class="fa-solid fa-bolt"></i></div><h3>Speed & Performance</h3><p>Page speed optimization, clean code and performance best practices for better rankings.</p></div>
+        <div class="glass service-card reveal"><div class="s-icon c4"><i class="fa-solid fa-mobile-screen-button"></i></div><h3>Mobile Optimization</h3><p>Mobile-first layouts ensuring smooth browsing and checkout experiences.</p></div>
+        <div class="glass service-card reveal" style="transition-delay:.1s"><div class="s-icon c5"><i class="fa-solid fa-right-left"></i></div><h3>Platform Migration</h3><p>Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.</p></div>
+        <div class="glass service-card reveal" style="transition-delay:.2s"><div class="s-icon c6"><i class="fa-solid fa-headset"></i></div><h3>Ongoing Support</h3><p>Post-launch maintenance, improvements, new features and continuous store monitoring.</p></div>
       </div>
     </div>
   </section>
 
   <section class="process-section">
     <div class="container">
-      <div class="section-head" data-aos="fade-up">
+      <div class="section-head reveal">
         <h2 class="section-title">How <span class="grad">We</span> Work</h2>
         <p class="section-desc">A structured, transparent and result-driven process that keeps projects aligned and focused on growth.</p>
       </div>
       <div class="process-timeline">
-        <div class="process-item" data-aos="fade-right"><div class="p-dot c1"><i class="fa-solid fa-lightbulb"></i></div><div class="glass p-body"><h3>Discovery & Strategy</h3><p>We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.</p></div></div>
-        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c2"><i class="fa-solid fa-pen-ruler"></i></div><div class="glass p-body"><h3>Design System</h3><p>Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.</p></div></div>
-        <div class="process-item" data-aos="fade-right"><div class="p-dot c3"><i class="fa-solid fa-code"></i></div><div class="glass p-body"><h3>Development</h3><p>Clean, scalable Shopify development with performance, SEO and best practices in mind.</p></div></div>
-        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c4"><i class="fa-solid fa-vial-circle-check"></i></div><div class="glass p-body"><h3>Testing & Optimization</h3><p>Cross-device testing, speed optimization and UX refinements before going live.</p></div></div>
-        <div class="process-item" data-aos="fade-right"><div class="p-dot c5"><i class="fa-solid fa-rocket"></i></div><div class="glass p-body"><h3>Launch & Growth</h3><p>Smooth launch followed by ongoing support, improvements and data-driven growth strategies.</p></div></div>
+        <div class="process-item reveal"><div class="p-dot c1"><i class="fa-solid fa-lightbulb"></i></div><div class="glass p-body"><h3>Discovery & Strategy</h3><p>We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.</p></div></div>
+        <div class="process-item rev reveal" style="transition-delay:.1s"><div class="p-dot c2"><i class="fa-solid fa-pen-ruler"></i></div><div class="glass p-body"><h3>Design System</h3><p>Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.</p></div></div>
+        <div class="process-item reveal" style="transition-delay:.2s"><div class="p-dot c3"><i class="fa-solid fa-code"></i></div><div class="glass p-body"><h3>Development</h3><p>Clean, scalable Shopify development with performance, SEO and best practices in mind.</p></div></div>
+        <div class="process-item rev reveal" style="transition-delay:.3s"><div class="p-dot c4"><i class="fa-solid fa-vial-circle-check"></i></div><div class="glass p-body"><h3>Testing & Optimization</h3><p>Cross-device testing, speed optimization and UX refinements before going live.</p></div></div>
+        <div class="process-item reveal" style="transition-delay:.4s"><div class="p-dot c5"><i class="fa-solid fa-rocket"></i></div><div class="glass p-body"><h3>Launch & Growth</h3><p>Smooth launch followed by ongoing support, improvements and data-driven growth strategies.</p></div></div>
       </div>
     </div>
   </section>
 
   <section class="why-section">
     <div class="container">
-      <div class="section-head" data-aos="fade-up">
+      <div class="section-head reveal">
         <h2 class="section-title">Why Brands <span class="grad">Choose</span> Us</h2>
         <p class="section-desc">Numbers don't lie. Here's what our partnerships have delivered so far.</p>
       </div>
       <div class="why-stats">
-        <div class="glass stat-card" data-aos="zoom-in"><div class="stat-number" data-target="150" data-suffix="+">0</div><div class="stat-label">Stores Launched</div></div>
-        <div class="glass stat-card" data-aos="zoom-in" data-aos-delay="100"><div class="stat-number" data-target="98" data-suffix="%">0</div><div class="stat-label">Client Satisfaction</div></div>
-        <div class="glass stat-card" data-aos="zoom-in" data-aos-delay="200"><div class="stat-number" data-target="3" data-suffix="x">0</div><div class="stat-label">Avg. Revenue Boost</div></div>
-        <div class="glass stat-card" data-aos="zoom-in" data-aos-delay="300"><div class="stat-number" data-target="24" data-suffix="/7">0</div><div class="stat-label">Dedicated Support</div></div>
+        <div class="glass stat-card reveal"><div class="stat-number" data-target="150" data-suffix="+">0</div><div class="stat-label">Stores Launched</div></div>
+        <div class="glass stat-card reveal" style="transition-delay:.1s"><div class="stat-number" data-target="98" data-suffix="%">0</div><div class="stat-label">Client Satisfaction</div></div>
+        <div class="glass stat-card reveal" style="transition-delay:.2s"><div class="stat-number" data-target="3" data-suffix="x">0</div><div class="stat-label">Avg. Revenue Boost</div></div>
+        <div class="glass stat-card reveal" style="transition-delay:.3s"><div class="stat-number" data-target="24" data-suffix="/7">0</div><div class="stat-label">Dedicated Support</div></div>
       </div>
       <div class="why-cards-grid">
-        <div class="why-card" data-aos="fade-up">
+        <div class="why-card reveal">
           <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-chess-queen"></i></div></div>
           <span class="why-card-num">01</span>
           <h3>Strategy-Led Decisions</h3>
           <p>Every project at Flixify begins with business goals, target audience analysis and competitive research — ensuring design decisions are driven by growth, not assumptions.</p>
         </div>
-        <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-card reveal" style="transition-delay:.1s">
           <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-user-tie"></i></div></div>
           <span class="why-card-num">02</span>
           <h3>Senior Shopify Expertise</h3>
           <p>Clients work directly with experienced Shopify designers and developers. No outsourcing, no juniors — just focused expertise from start to launch.</p>
         </div>
-        <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="why-card reveal" style="transition-delay:.2s">
           <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-gauge-high"></i></div></div>
           <span class="why-card-num">03</span>
           <h3>Performance & Scalability</h3>
           <p>We build stores optimized for speed, scalability and future growth — ensuring smooth performance during traffic spikes and sales campaigns.</p>
         </div>
-        <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="why-card reveal" style="transition-delay:.3s">
           <div class="why-card-top"><div class="why-card-icon"><i class="fa-solid fa-handshake"></i></div></div>
           <span class="why-card-num">04</span>
           <h3>Clear Communication & Transparency</h3>
@@ -545,7 +541,7 @@
 
   <section class="tech-section">
     <div class="container">
-      <div class="section-head" data-aos="fade-up">
+      <div class="section-head reveal">
         <h2 class="section-title">Technology <span class="grad">Partners</span></h2>
         <p class="section-desc">We integrate with industry-leading platforms to power your Shopify store with seamless functionality.</p>
       </div>
@@ -574,28 +570,28 @@
 
   <section class="industries-section">
     <div class="container">
-      <div class="section-head" data-aos="fade-up">
+      <div class="section-head reveal">
         <h2 class="section-title"><span class="grad">Industries</span> We Work With</h2>
         <p class="section-desc">We partner with brands across diverse industries, adapting our Shopify strategies based on audience behavior and market trends.</p>
       </div>
       <div class="ind-grid">
-        <div class="glass ind-card" data-aos="fade-up"><div class="ind-icon c1"><i class="fa-solid fa-shirt"></i></div><h3>Fashion & Apparel</h3><p>D2C fashion brands, clothing labels and lifestyle products.</p></div>
-        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="100"><div class="ind-icon c2"><i class="fa-solid fa-heart-pulse"></i></div><h3>Health & Wellness</h3><p>Supplements, fitness brands and wellness-focused ecommerce.</p></div>
-        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="200"><div class="ind-icon c3"><i class="fa-solid fa-spa"></i></div><h3>Beauty & Cosmetics</h3><p>Skincare, cosmetics and personal care brands.</p></div>
-        <div class="glass ind-card" data-aos="fade-up"><div class="ind-icon c4"><i class="fa-solid fa-microchip"></i></div><h3>Electronics & Gadgets</h3><p>Consumer electronics, accessories and smart devices.</p></div>
-        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="100"><div class="ind-icon c5"><i class="fa-solid fa-burger"></i></div><h3>Food & Beverages</h3><p>Packaged food brands, beverages and subscription models.</p></div>
-        <div class="glass ind-card" data-aos="fade-up" data-aos-delay="200"><div class="ind-icon c6"><i class="fa-solid fa-building"></i></div><h3>B2B & Wholesale</h3><p>Manufacturers, distributors and wholesale ecommerce solutions.</p></div>
+        <div class="glass ind-card reveal"><div class="ind-icon c1"><i class="fa-solid fa-shirt"></i></div><h3>Fashion & Apparel</h3><p>D2C fashion brands, clothing labels and lifestyle products.</p></div>
+        <div class="glass ind-card reveal" style="transition-delay:.1s"><div class="ind-icon c2"><i class="fa-solid fa-heart-pulse"></i></div><h3>Health & Wellness</h3><p>Supplements, fitness brands and wellness-focused ecommerce.</p></div>
+        <div class="glass ind-card reveal" style="transition-delay:.2s"><div class="ind-icon c3"><i class="fa-solid fa-spa"></i></div><h3>Beauty & Cosmetics</h3><p>Skincare, cosmetics and personal care brands.</p></div>
+        <div class="glass ind-card reveal"><div class="ind-icon c4"><i class="fa-solid fa-microchip"></i></div><h3>Electronics & Gadgets</h3><p>Consumer electronics, accessories and smart devices.</p></div>
+        <div class="glass ind-card reveal" style="transition-delay:.1s"><div class="ind-icon c5"><i class="fa-solid fa-burger"></i></div><h3>Food & Beverages</h3><p>Packaged food brands, beverages and subscription models.</p></div>
+        <div class="glass ind-card reveal" style="transition-delay:.2s"><div class="ind-icon c6"><i class="fa-solid fa-building"></i></div><h3>B2B & Wholesale</h3><p>Manufacturers, distributors and wholesale ecommerce solutions.</p></div>
       </div>
     </div>
   </section>
 
   <section class="contact-section" id="contact">
     <div class="container">
-      <div class="section-head" data-aos="fade-up">
+      <div class="section-head reveal">
         <h2 class="section-title">Let's Get In <span class="grad">Touch</span></h2>
         <p class="section-desc">Have a project in mind? Drop us a message and we'll get back to you within 24 hours.</p>
       </div>
-      <div class="contact-grid" data-aos="fade-up">
+      <div class="contact-grid reveal">
         <div class="contact-form-card">
           <h3>Send Us a Message</h3>
           <p class="sub">Fill out the form and we'll reach out shortly.</p>
@@ -667,117 +663,69 @@
     <a href="https://wa.me/919000000000" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('pageLoader').classList.add('hide');
-      }, 500);
-    });
+    // ✅ EXACT SAME JS AS CONTACT PAGE
+    document.addEventListener("DOMContentLoaded",function(){
+      setTimeout(function(){document.getElementById("pageLoader").classList.add("hide")},500);
 
-    AOS.init({
-      duration: 800,
-      easing: 'ease-out-cubic',
-      once: true,
-      offset: 80,
-      disable: function() { return window.innerWidth < 768; }
-    });
+      var header=document.getElementById("header");
+      window.addEventListener("scroll",function(){header.classList.toggle("scrolled",window.scrollY>50)});
 
-    var header = document.getElementById('header');
-    window.addEventListener('scroll', function() {
-      header.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
+      var menuBtn=document.getElementById("menuBtn"),drawer=document.getElementById("drawer"),closeBtn=document.getElementById("closeDrawer"),overlayEl=document.getElementById("overlay");
+      function openDrawer(){drawer.classList.add("open");overlayEl.classList.add("open")}
+      function closeDrawerFn(){drawer.classList.remove("open");overlayEl.classList.remove("open")}
+      menuBtn.addEventListener("click",openDrawer);closeBtn.addEventListener("click",closeDrawerFn);overlayEl.addEventListener("click",closeDrawerFn);
+      drawer.querySelectorAll("a").forEach(function(l){l.addEventListener("click",closeDrawerFn)});
 
-    var menuBtn = document.getElementById('menuBtn');
-    var closeDrawerBtn = document.getElementById('closeDrawer');
-    var drawer = document.getElementById('drawer');
-    var overlay = document.getElementById('overlay');
+      var rObs=new IntersectionObserver(function(en){for(var i=0;i<en.length;i++){if(en[i].isIntersecting){en[i].target.classList.add("visible");rObs.unobserve(en[i].target)}}},{threshold:.05,rootMargin:"0px 0px -40px 0px"});
+      document.querySelectorAll(".reveal").forEach(function(el){rObs.observe(el)});
 
-    function openDrawer() {
-      drawer.classList.add('open');
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeDrawerFn() {
-      drawer.classList.remove('open');
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
+      var form=document.getElementById("contactForm");
+      if(form){
+        form.addEventListener("submit",function(e){
+          e.preventDefault();
+          var btn=document.getElementById("formBtn");
+          var originalText=btn.innerHTML;
+          btn.disabled=true;
+          btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+          setTimeout(function(){
+            btn.disabled=false;
+            btn.innerHTML=originalText;
+            form.reset();
+            alert("Message sent successfully! We'll get back to you soon.");
+          },1500);
+        });
+      }
 
-    menuBtn.addEventListener('click', openDrawer);
-    closeDrawerBtn.addEventListener('click', closeDrawerFn);
-    overlay.addEventListener('click', closeDrawerFn);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawerFn(); });
-
-    var drawerLinks = drawer.querySelectorAll('a');
-    for (var i = 0; i < drawerLinks.length; i++) {
-      drawerLinks[i].addEventListener('click', closeDrawerFn);
-    }
-
-    var anchorLinks = document.querySelectorAll('a[href^="#"]');
-    for (var j = 0; j < anchorLinks.length; j++) {
-      anchorLinks[j].addEventListener('click', function(e) {
-        e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 20,
-            behavior: 'smooth'
-          });
-        }
-      });
-    }
-
-    var contactForm = document.getElementById('contactForm');
-    var formBtn = document.getElementById('formBtn');
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var originalText = formBtn.innerHTML;
-      formBtn.disabled = true;
-      formBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:6px"></i> Sending...';
-      setTimeout(function() {
-        formBtn.innerHTML = '<i class="fa-solid fa-check" style="margin-right:6px"></i> Message Sent!';
-        formBtn.style.background = 'linear-gradient(135deg, #22c55e, #4ade80)';
-        contactForm.reset();
-        setTimeout(function() {
-          formBtn.disabled = false;
-          formBtn.innerHTML = originalText;
-          formBtn.style.background = '';
-        }, 3000);
-      }, 1500);
-    });
-
-    function animateCounters() {
-      var counters = document.querySelectorAll('.stat-number');
-      for (var k = 0; k < counters.length; k++) {
-        (function(counter) {
-          var target = parseInt(counter.getAttribute('data-target'));
-          var suffix = counter.getAttribute('data-suffix') || '';
-          var startTime = performance.now();
-          function update(now) {
-            var p = Math.min((now - startTime) / 2000, 1);
-            var ease = 1 - Math.pow(1 - p, 3);
-            counter.textContent = Math.floor(ease * target) + suffix;
-            if (p < 1) requestAnimationFrame(update);
-            else counter.textContent = target + suffix;
+      // Counter animation
+      function animateCounters(){
+        document.querySelectorAll('.stat-number').forEach(function(counter){
+          var target=parseInt(counter.getAttribute('data-target'));
+          var suffix=counter.getAttribute('data-suffix')||'';
+          var startTime=performance.now();
+          function update(now){
+            var p=Math.min((now-startTime)/2000,1);
+            counter.textContent=Math.floor((1-Math.pow(1-p,3))*target)+suffix;
+            if(p<1)requestAnimationFrame(update);
+            else counter.textContent=target+suffix;
           }
           requestAnimationFrame(update);
-        })(counters[k]);
+        });
       }
-    }
 
-    var statsSection = document.querySelector('.why-stats');
-    var countersAnimated = false;
-    if (statsSection && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting && !countersAnimated) {
-          countersAnimated = true;
-          animateCounters();
-        }
-      }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' }).observe(statsSection);
-    } else if (statsSection) {
-      setTimeout(animateCounters, 1000);
-    }
+      var statsSection=document.querySelector('.why-stats');
+      var countersAnimated=false;
+      if(statsSection&&'IntersectionObserver' in window){
+        new IntersectionObserver(function(entries){
+          if(entries[0].isIntersecting&&!countersAnimated){
+            countersAnimated=true;
+            animateCounters();
+          }
+        },{threshold:0.3}).observe(statsSection);
+      }else if(statsSection){
+        setTimeout(animateCounters,1000);
+      }
+    });
   </script>
 </body>
 </html>
