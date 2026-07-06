@@ -78,7 +78,6 @@
     @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
     .hero-grid-lines{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}
     .hero-content{position:relative;z-index:2;text-align:center;max-width:900px;margin:0 auto}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp .8s .3s forwards;transform:translateY(20px)}
     .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden}
     .hero h1 .line{display:block;overflow:hidden}
     .hero h1 .line-inner{display:block;transform:translateY(110%);animation:textReveal .8s cubic-bezier(.16,1,.3,1) forwards}
@@ -89,8 +88,6 @@
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
     section{position:relative;z-index:1}
-    .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
-    .section-label .line{width:24px;height:2px;background:var(--accent);border-radius:2px}
 
     .split-section{padding:100px 0}
     .split-wrapper{max-width:1280px;margin:0 auto}
@@ -244,7 +241,6 @@
       .split.reverse .split-text{order:1}
       .split.reverse .split-image{order:2}
       .split-text{max-width:100%}
-      .split-text .section-label{margin:0 auto 14px}
       .split-image img{max-width:340px;margin:0 auto}
       .split-glow{width:200px;height:200px}
       .quote-text{font-size:20px}
@@ -308,7 +304,6 @@
     <div class="hero-orb o2"></div>
     <div class="hero-grid-lines"></div>
     <div class="hero-content">
-      <div class="hero-badge"><i class="fa-solid fa-building"></i> About Flixifys</div>
       <h1>
         <span class="line"><span class="line-inner">We Build Ecommerce Brands</span></span>
         <span class="line"><span class="line-inner">That <span class="grad">Scale</span></span></span>
@@ -322,7 +317,6 @@
     <div class="container split-wrapper">
       <div class="split" data-aos="fade-up">
         <div class="split-text">
-          <div class="section-label"><span class="line"></span> Who We Are</div>
           <h3>A Shopify-Focused Digital Studio</h3>
           <p>Flixify is a Shopify-focused digital studio built for brands that are serious about growth. We partner with founders and ecommerce teams to design, build and scale high-converting online stores.</p>
           <p style="margin-top:16px">We go beyond visuals and code. Every decision we make is tied to performance, scalability and long-term business success.</p>
@@ -340,7 +334,6 @@
     <div class="container split-wrapper">
       <div class="split reverse" data-aos="fade-up">
         <div class="split-text">
-          <div class="section-label"><span class="line"></span> Our Mission</div>
           <h3>Real Business Results, Not Just Websites</h3>
           <p>To create scalable, performance-driven ecommerce solutions that deliver real business results — not just visually appealing websites.</p>
           <p style="margin-top:16px">We focus on conversion, speed and long-term scalability so businesses can build predictable and sustainable revenue.</p>
@@ -358,7 +351,6 @@
     <div class="container split-wrapper">
       <div class="split" data-aos="fade-up">
         <div class="split-text">
-          <div class="section-label"><span class="line"></span> Our Story</div>
           <h3>Born From a Real Problem</h3>
           <p>Flixify was founded by ecommerce specialists who noticed a common problem: brands investing in Shopify stores that looked good but didn't perform.</p>
           <p style="margin-top:16px">Slow load times, poor user experience and lack of strategy were holding businesses back. We started Flixify to solve these problems with a structured, results-driven approach.</p>
@@ -371,12 +363,11 @@
     </div>
   </section>
 
-  <!-- WHAT WE BELIEVE — IMPROVED WITH IMAGE -->
+  <!-- WHAT WE BELIEVE -->
   <section class="split-section" style="padding-top:0;padding-bottom:0">
     <div class="container split-wrapper">
       <div class="split reverse" data-aos="fade-up">
         <div class="split-text">
-          <div class="section-label"><span class="line"></span> What We Believe</div>
           <h3>Design, Technology & Performance United</h3>
           <p>We believe design should guide users, technology should remove friction and performance should drive revenue.</p>
           <p style="margin-top:16px">Data-driven decisions, honest communication and long-term partnerships are at the core of how we work. Every pixel, every line of code, every strategy is crafted with your growth in mind.</p>
@@ -389,7 +380,7 @@
     </div>
   </section>
 
-  <!-- FOUNDER QUOTE + VALUES — AGENCY STYLE -->
+  <!-- FOUNDER QUOTE + VALUES -->
   <section class="quote-section">
     <div class="quote-glow"></div>
     <div class="container">
