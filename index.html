@@ -14,15 +14,14 @@
       --bg:#050510;--surface:#0a0a1a;--card:rgba(255,255,255,0.04);
       --border:rgba(255,255,255,0.08);--text:#e2e8f0;--muted:#64748b;
       --accent:#8b5cf6;--accent2:#22c55e;--glow:rgba(139,92,246,0.15);
-      --vh:1vh;
     }
-    
+
     ::-webkit-scrollbar{width:8px}
     ::-webkit-scrollbar-track{background:var(--bg)}
     ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
     ::-webkit-scrollbar-thumb:hover{background:#7c3aed}
     *{scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
-    
+
     html{
       scroll-behavior:smooth;
       -webkit-overflow-scrolling:touch;
@@ -35,7 +34,6 @@
       overflow-x:hidden;
       -webkit-font-smoothing:antialiased;
       -webkit-tap-highlight-color:transparent;
-      touch-action:pan-y;
     }
     body::before{
       content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -50,9 +48,10 @@
     .loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    .header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
-    .header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 24px}
-    .header-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    /* ===== HEADER - ORIGINAL STRUCTURE ===== */
+    .header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 0;transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 0}
+    .header-inner{display:flex;align-items:center;justify-content:space-between}
     .logo img{height:38px;width:auto;transition:.3s}
     .header.scrolled .logo img{height:32px}
     .nav{display:flex;align-items:center;gap:32px}
@@ -65,7 +64,7 @@
     .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}
     .menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;min-width:44px;min-height:44px;align-items:center;justify-content:center}
 
-    .hero{min-height:100vh;min-height:calc(var(--vh,1vh) * 100);display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
     .hero-bg{position:absolute;inset:0;z-index:0}
     .hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;animation:orbFloat 10s ease-in-out infinite}
     .hero-orb.o1{width:600px;height:600px;background:var(--accent);top:-10%;right:-5%}
@@ -143,7 +142,7 @@
     .service-card h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:10px}
     .service-card p{font-size:14px;color:var(--muted);line-height:1.65}
 
-    /* ===== PROCESS SECTION - DESKTOP ===== */
+    /* ===== PROCESS SECTION ===== */
     .process-section{padding:100px 0}
     .process-timeline{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
     .process-item{display:flex;align-items:center;gap:24px}
@@ -160,73 +159,6 @@
     .process-item.rev:hover .p-body{transform:translateX(-4px)}
     .p-body h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;white-space:nowrap}
     .p-body p{font-size:14.5px;color:var(--muted);line-height:1.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-    /* ===== PROCESS SECTION - MOBILE (NEW CENTERED DESIGN) ===== */
-    @media(max-width:768px){
-      .process-timeline{
-        display:grid;
-        grid-template-columns:1fr;
-        gap:20px;
-        max-width:400px;
-        margin:0 auto;
-      }
-      
-      .process-item,
-      .process-item.rev{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-        gap:0;
-      }
-      
-      .p-body{
-        padding:24px 20px 28px;
-        text-align:center;
-        border-radius:20px;
-        margin-top:-12px;
-        position:relative;
-        z-index:1;
-      }
-      
-      .p-body h3,
-      .p-body p{
-        white-space:normal;
-        overflow:visible;
-        text-overflow:unset;
-      }
-      
-      .p-dot{
-        width:64px;
-        height:64px;
-        min-width:64px;
-        border-radius:50%;
-        font-size:22px;
-        position:relative;
-        z-index:2;
-        box-shadow:0 8px 30px rgba(0,0,0,.3);
-      }
-      
-      .process-item:hover .p-dot,
-      .process-item.rev:hover .p-dot{
-        transform:scale(1.05);
-      }
-      
-      .process-item:hover .p-body,
-      .process-item.rev:hover .p-body{
-        transform:none;
-      }
-      
-      /* Step number badge on mobile */
-      .process-item .p-step-num{
-        display:block;
-      }
-    }
-    
-    @media(min-width:769px){
-      .process-item .p-step-num{
-        display:none;
-      }
-    }
 
     .why-section{padding:100px 0;position:relative;overflow:hidden}
     .why-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 70%);pointer-events:none}
@@ -331,29 +263,13 @@
     .footer-bottom{text-align:center;font-size:13px;color:var(--muted);padding-top:32px;border-top:1px solid var(--border)}
 
     .wa-float{position:fixed;right:24px;bottom:24px;z-index:90}
-    .wa-btn{
-      width:56px;height:56px;border-radius:50%;background:#22c55e;color:#fff;
-      font-size:26px;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 20px rgba(34,197,94,.35);
-      transition:transform .3s;position:relative;z-index:2;
-    }
+    .wa-btn{width:56px;height:56px;border-radius:50%;background:#22c55e;color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(34,197,94,.35);transition:transform .3s;position:relative;z-index:2}
     .wa-btn:hover{transform:scale(1.08)}
-    .wa-tip{
-      position:absolute;bottom:68px;right:0;
-      padding:10px 16px;border-radius:10px;
-      background:var(--surface);border:1px solid var(--border);
-      color:var(--text);font-size:13px;font-weight:500;
-      white-space:nowrap;pointer-events:none;
-      opacity:0;transform:translateY(6px);
-      transition:all .25s ease;
-    }
-    .wa-tip::after{
-      content:'';position:absolute;top:100%;right:20px;
-      border:6px solid transparent;border-top-color:var(--surface);
-    }
+    .wa-tip{position:absolute;bottom:68px;right:0;padding:10px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:13px;font-weight:500;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(6px);transition:all .25s ease}
+    .wa-tip::after{content:'';position:absolute;top:100%;right:20px;border:6px solid transparent;border-top-color:var(--surface)}
     .wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
 
-    .drawer{position:fixed;top:0;right:-300px;width:280px;height:100%;height:calc(var(--vh,1vh) * 100);background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transition:right .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px;-webkit-transform:translateZ(0);transform:translateZ(0)}
+    .drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px;-webkit-transform:translateZ(0);transform:translateZ(0)}
     .drawer.open{right:0}
     .drawer-head{display:flex;justify-content:space-between;align-items:center}
     .drawer-head span{font-size:15px;font-weight:700;color:#fff}
@@ -383,14 +299,14 @@
       .nav{display:none}
       .menu-btn{display:flex}
       .header-inner{justify-content:center;position:relative}
-      .menu-btn{position:absolute;right:0}
-      .hero{padding:100px 0 60px;min-height:auto;min-height:calc(var(--vh,1vh) * 100)}
+      .menu-btn{position:absolute;right:24px}
+      .hero{padding:100px 0 60px;min-height:auto}
       .hero h1{letter-spacing:-1px}
       .hero-desc{font-size:16px}
       .hero-visual{display:none}
       .what-cards,.services-grid,.ind-grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr}
-      .wa-float{right:16px;bottom:20px}
+      .wa-float{right:16px;bottom:16px}
       .wa-btn{width:52px;height:52px;font-size:22px}
       .form-row{grid-template-columns:1fr}
       .contact-grid{grid-template-columns:1fr}
@@ -402,6 +318,32 @@
       .what-card .num{font-size:10px;padding:5px 12px;border-radius:0 18px 0 10px}
       .why-card-num{font-size:10px;padding:6px 14px;border-radius:0 20px 0 12px}
 
+      /* Process - SAME icon, just centered */
+      .process-item,
+      .process-item.rev{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:16px;
+      }
+      .p-body{
+        padding:24px 20px;
+        text-align:center;
+      }
+      .p-body h3,
+      .p-body p{
+        white-space:normal;
+        overflow:visible;
+        text-overflow:unset;
+      }
+      .process-item:hover .p-dot,
+      .process-item.rev:hover .p-dot,
+      .process-item:hover .p-body,
+      .process-item.rev:hover .p-body{
+        transform:none;
+      }
+
+      /* Disable hover effects on touch */
       .glass:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover::before{opacity:0}
@@ -415,8 +357,6 @@
       .marquee-track{animation-duration:15s}
       .tech-marquee{animation-duration:25s}
       .btn-primary,.btn-outline{padding:14px 24px;font-size:14px;justify-content:center}
-
-      .nav a,.drawer a{min-height:44px;display:flex;align-items:center}
     }
 
     /* ===== SMALL MOBILE ===== */
@@ -429,15 +369,7 @@
       .container{padding:0 16px}
       .what-card,.service-card,.ind-card{padding:28px 20px}
       .contact-form-card{padding:28px 20px}
-      .process-timeline{max-width:100%}
-      .p-body{padding:20px 16px 24px}
-    }
-
-    /* ===== iOS SAFE AREA ===== */
-    @supports(padding:max(0px)){
-      .header{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
-      .header.scrolled{padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
-      .wa-float{bottom:max(20px,env(safe-area-inset-bottom));right:max(16px,env(safe-area-inset-right))}
+      .p-body{padding:20px 16px}
     }
 
     /* ===== LANDSCAPE MOBILE ===== */
@@ -453,7 +385,7 @@
   <div class="page-loader" id="pageLoader"><div class="loader-ring"></div></div>
 
   <header class="header" id="header">
-    <div class="header-inner">
+    <div class="container header-inner">
       <div class="logo"><a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys"></a></div>
       <nav class="nav">
         <a href="/about-us/">About Us</a>
@@ -561,31 +493,11 @@
         <p class="section-desc">A structured, transparent and result-driven process that keeps projects aligned and focused on growth.</p>
       </div>
       <div class="process-timeline">
-        <div class="process-item" data-aos="fade-right">
-          <span class="p-step-num">01</span>
-          <div class="p-dot c1"><i class="fa-solid fa-lightbulb"></i></div>
-          <div class="glass p-body"><h3>Discovery & Strategy</h3><p>We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.</p></div>
-        </div>
-        <div class="process-item rev" data-aos="fade-left">
-          <span class="p-step-num">02</span>
-          <div class="p-dot c2"><i class="fa-solid fa-pen-ruler"></i></div>
-          <div class="glass p-body"><h3>Design System</h3><p>Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.</p></div>
-        </div>
-        <div class="process-item" data-aos="fade-right">
-          <span class="p-step-num">03</span>
-          <div class="p-dot c3"><i class="fa-solid fa-code"></i></div>
-          <div class="glass p-body"><h3>Development</h3><p>Clean, scalable Shopify development with performance, SEO and best practices in mind.</p></div>
-        </div>
-        <div class="process-item rev" data-aos="fade-left">
-          <span class="p-step-num">04</span>
-          <div class="p-dot c4"><i class="fa-solid fa-vial-circle-check"></i></div>
-          <div class="glass p-body"><h3>Testing & Optimization</h3><p>Cross-device testing, speed optimization and UX refinements before going live.</p></div>
-        </div>
-        <div class="process-item" data-aos="fade-right">
-          <span class="p-step-num">05</span>
-          <div class="p-dot c5"><i class="fa-solid fa-rocket"></i></div>
-          <div class="glass p-body"><h3>Launch & Growth</h3><p>Smooth launch followed by ongoing support, improvements and data-driven growth strategies.</p></div>
-        </div>
+        <div class="process-item" data-aos="fade-right"><div class="p-dot c1"><i class="fa-solid fa-lightbulb"></i></div><div class="glass p-body"><h3>Discovery & Strategy</h3><p>We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.</p></div></div>
+        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c2"><i class="fa-solid fa-pen-ruler"></i></div><div class="glass p-body"><h3>Design System</h3><p>Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.</p></div></div>
+        <div class="process-item" data-aos="fade-right"><div class="p-dot c3"><i class="fa-solid fa-code"></i></div><div class="glass p-body"><h3>Development</h3><p>Clean, scalable Shopify development with performance, SEO and best practices in mind.</p></div></div>
+        <div class="process-item rev" data-aos="fade-left"><div class="p-dot c4"><i class="fa-solid fa-vial-circle-check"></i></div><div class="glass p-body"><h3>Testing & Optimization</h3><p>Cross-device testing, speed optimization and UX refinements before going live.</p></div></div>
+        <div class="process-item" data-aos="fade-right"><div class="p-dot c5"><i class="fa-solid fa-rocket"></i></div><div class="glass p-body"><h3>Launch & Growth</h3><p>Smooth launch followed by ongoing support, improvements and data-driven growth strategies.</p></div></div>
       </div>
     </div>
   </section>
@@ -746,49 +658,36 @@
           <p style="margin-top:12px"><strong style="color:#fff">Saturday – Sunday</strong><br>9:00 AM – 9:00 PM (IST)</p>
         </div>
       </div>
-      <div class="footer-bottom">© 2025 Shopify Agency. All rights reserved.</div>
+      <div class="footer-bottom">&copy; 2025 Shopify Agency. All rights reserved.</div>
     </div>
   </footer>
 
   <div class="wa-float">
     <div class="wa-tip">Chat with us</div>
-    <a href="https://wa.me/919000000000" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp">
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/919000000000" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // ============ PAGE LOADER ============
     window.addEventListener('load', function() {
       setTimeout(function() {
         document.getElementById('pageLoader').classList.add('hide');
       }, 500);
     });
 
-    // ============ AOS INIT ============
     AOS.init({
       duration: 800,
       easing: 'ease-out-cubic',
       once: true,
       offset: 80,
-      disable: function() {
-        return window.innerWidth < 768;
-      }
+      disable: function() { return window.innerWidth < 768; }
     });
 
-    // ============ HEADER SCROLL EFFECT ============
     var header = document.getElementById('header');
-
     window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+      header.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
 
-    // ============ MOBILE DRAWER ============
     var menuBtn = document.getElementById('menuBtn');
     var closeDrawerBtn = document.getElementById('closeDrawer');
     var drawer = document.getElementById('drawer');
@@ -799,7 +698,6 @@
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-
     function closeDrawerFn() {
       drawer.classList.remove('open');
       overlay.classList.remove('open');
@@ -809,58 +707,38 @@
     menuBtn.addEventListener('click', openDrawer);
     closeDrawerBtn.addEventListener('click', closeDrawerFn);
     overlay.addEventListener('click', closeDrawerFn);
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeDrawerFn();
-    });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDrawerFn(); });
 
     var drawerLinks = drawer.querySelectorAll('a');
     for (var i = 0; i < drawerLinks.length; i++) {
       drawerLinks[i].addEventListener('click', closeDrawerFn);
     }
 
-    // ============ SMOOTH SCROLL ============
     var anchorLinks = document.querySelectorAll('a[href^="#"]');
     for (var j = 0; j < anchorLinks.length; j++) {
       anchorLinks[j].addEventListener('click', function(e) {
         e.preventDefault();
-        var targetId = this.getAttribute('href');
-        var target = document.querySelector(targetId);
+        var target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          var headerHeight = header.offsetHeight;
-          var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
           window.scrollTo({
-            top: targetPosition,
+            top: target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 20,
             behavior: 'smooth'
           });
         }
       });
     }
 
-    // ============ CONTACT FORM ============
     var contactForm = document.getElementById('contactForm');
     var formBtn = document.getElementById('formBtn');
-
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-
       var originalText = formBtn.innerHTML;
       formBtn.disabled = true;
       formBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:6px"></i> Sending...';
-
-      var formData = new FormData(contactForm);
-      var data = {};
-      formData.forEach(function(value, key) {
-        data[key] = value;
-      });
-
-      console.log('Form Data:', data);
-
       setTimeout(function() {
         formBtn.innerHTML = '<i class="fa-solid fa-check" style="margin-right:6px"></i> Message Sent!';
         formBtn.style.background = 'linear-gradient(135deg, #22c55e, #4ade80)';
         contactForm.reset();
-
         setTimeout(function() {
           formBtn.disabled = false;
           formBtn.innerHTML = originalText;
@@ -869,74 +747,37 @@
       }, 1500);
     });
 
-    // ============ COUNTER ANIMATION ============
     function animateCounters() {
       var counters = document.querySelectorAll('.stat-number');
-
       for (var k = 0; k < counters.length; k++) {
         (function(counter) {
           var target = parseInt(counter.getAttribute('data-target'));
           var suffix = counter.getAttribute('data-suffix') || '';
-          var duration = 2000;
           var startTime = performance.now();
-
-          function updateCounter(currentTime) {
-            var elapsed = currentTime - startTime;
-            var progress = Math.min(elapsed / duration, 1);
-            var easeOut = 1 - Math.pow(1 - progress, 3);
-            var current = Math.floor(easeOut * target);
-
-            counter.textContent = current + suffix;
-
-            if (progress < 1) {
-              requestAnimationFrame(updateCounter);
-            } else {
-              counter.textContent = target + suffix;
-            }
+          function update(now) {
+            var p = Math.min((now - startTime) / 2000, 1);
+            var ease = 1 - Math.pow(1 - p, 3);
+            counter.textContent = Math.floor(ease * target) + suffix;
+            if (p < 1) requestAnimationFrame(update);
+            else counter.textContent = target + suffix;
           }
-
-          requestAnimationFrame(updateCounter);
+          requestAnimationFrame(update);
         })(counters[k]);
       }
     }
 
     var statsSection = document.querySelector('.why-stats');
     var countersAnimated = false;
-
     if (statsSection && 'IntersectionObserver' in window) {
-      var statsObserver = new IntersectionObserver(function(entries) {
-        for (var m = 0; m < entries.length; m++) {
-          if (entries[m].isIntersecting && !countersAnimated) {
-            countersAnimated = true;
-            animateCounters();
-            statsObserver.unobserve(entries[m].target);
-          }
+      new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !countersAnimated) {
+          countersAnimated = true;
+          animateCounters();
         }
-      }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -50px 0px'
-      });
-
-      statsObserver.observe(statsSection);
+      }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' }).observe(statsSection);
     } else if (statsSection) {
       setTimeout(animateCounters, 1000);
     }
-
-    // ============ iOS VIEWPORT HEIGHT FIX ============
-    function setViewportHeight() {
-      var vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', vh + 'px');
-    }
-
-    setViewportHeight();
-    window.addEventListener('resize', setViewportHeight);
-    window.addEventListener('orientationchange', function() {
-      setTimeout(setViewportHeight, 100);
-    });
-
-    // ============ CONSOLE BRANDING ============
-    console.log('%c Flixifys ', 'background: #8b5cf6; color: white; font-size: 14px; padding: 8px 16px; border-radius: 4px; font-weight: bold;');
-    console.log('%c Shopify Studio ', 'color: #64748b; font-size: 12px; padding: 4px 0;');
   </script>
 </body>
 </html>
