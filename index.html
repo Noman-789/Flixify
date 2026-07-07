@@ -24,7 +24,6 @@
 
     html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
     
-    /* ✅ FIXED: Removed touch-action and -webkit-tap-highlight-color (same as contact page) */
     body{
       font-family:'Inter',sans-serif;
       background:var(--bg);
@@ -32,9 +31,12 @@
       overflow-x:hidden;
       line-height:1.75;
       -webkit-font-smoothing:antialiased;
+      position: relative;
+      z-index: 1;
     }
+    /* ✅ FIXED: Added z-index:-1 to body::before so text is visible */
     body::before{
-      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
       opacity:.4;
     }
@@ -47,7 +49,6 @@
     .loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* ✅ EXACT SAME HEADER AS CONTACT PAGE */
     .header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 0;transition:all .4s cubic-bezier(.4,0,.2,1)}
     .header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 0}
     .header-inner{display:flex;align-items:center;justify-content:space-between}
@@ -254,9 +255,12 @@
     .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px}
     .footer h4{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px}
     .footer p{font-size:14px;color:var(--muted);line-height:1.8}
-    .footer-socials{display:flex;gap:10px;margin-top:16px}
-    .footer-socials a{width:36px;height:36px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:.3s}
-    .footer-socials a:hover{color:#fff;border-color:var(--accent);background:var(--glow)}
+    
+    /* ✅ FIXED: Social Icons - Same as About Us Page (Circular + Purple hover + translateY) */
+    .footer-socials{display:flex;gap:14px;margin-top:16px}
+    .footer-socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:.3s}
+    .footer-socials a:hover{background:var(--accent);color:#fff;transform:translateY(-3px);box-shadow:0 8px 20px rgba(139,92,246,.3)}
+    
     .footer-bottom{text-align:center;font-size:13px;color:var(--muted);padding-top:32px;border-top:1px solid var(--border)}
 
     .wa-float{position:fixed;right:24px;bottom:24px;z-index:90}
@@ -266,13 +270,22 @@
     .wa-tip::after{content:'';position:absolute;top:100%;right:20px;border:6px solid transparent;border-top-color:var(--surface)}
     .wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
 
-    .drawer{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px}
-    .drawer.open{right:0}
+    /* ✅ FIXED: Drawer - Using transform for mobile performance */
+    .drawer{
+      position:fixed;top:0;right:0;bottom:0;width:280px;
+      background:var(--surface);border-left:1px solid var(--border);
+      padding:28px 24px;z-index:200;
+      transform:translateX(100%);
+      transition:transform .4s cubic-bezier(.4,0,.2,1);
+      display:flex;flex-direction:column;gap:20px;
+      overflow-y:auto;-webkit-overflow-scrolling:touch;will-change:transform;
+    }
+    .drawer.open{transform:translateX(0)}
     .drawer-head{display:flex;justify-content:space-between;align-items:center}
     .drawer-head span{font-size:15px;font-weight:700;color:#fff}
-    .drawer-head button{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;transition:.2s}
+    .drawer-head button{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;transition:.2s;padding:5px}
     .drawer-head button:hover{color:#fff}
-    .drawer a{font-size:15px;color:var(--muted);font-weight:500;transition:.2s;padding:4px 0}
+    .drawer a{font-size:15px;color:var(--muted);font-weight:500;transition:.2s;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
     .drawer a:hover{color:#fff}
     .drawer-cta{margin-top:auto;padding:14px;text-align:center;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;font-weight:600;font-size:15px}
     .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.3s;z-index:150}
@@ -281,7 +294,6 @@
     .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
     .reveal.visible{opacity:1;transform:translateY(0)}
 
-    /* ✅ EXACT SAME MEDIA QUERIES AS CONTACT PAGE */
     @media(max-width:1024px){
       .hero-grid{grid-template-columns:1fr;text-align:center}
       .hero-desc{margin:0 auto 32px}
@@ -303,14 +315,11 @@
       .contact-section{padding:70px 0}
       .contact-form-card{padding:28px 24px}
       .form-row{grid-template-columns:1fr}
-      .trust-section{padding:70px 0}
-      .trust-grid{grid-template-columns:1fr}
       .process-section{padding:70px 0}
       .process-timeline{grid-template-columns:1fr;gap:28px;padding-bottom:64px}
       .process-item,.process-item.rev{flex-direction:column;align-items:center;gap:16px}
       .process-item .p-dot{margin:0 auto}
       .p-body h3,.p-body p{white-space:normal;overflow:visible;text-overflow:unset}
-      .quote-section{padding:70px 0}
       .cta-section{padding:80px 0}
       .footer{padding:60px 16px 24px}
       .footer-grid{grid-template-columns:1fr;gap:28px}
@@ -368,6 +377,7 @@
       .process-item:hover .p-dot{transform:none}
       .process-item:hover .p-body{transform:none}
       .process-item.rev:hover .p-body{transform:none}
+      .footer-socials a:hover{transform:none}
     }
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -626,8 +636,8 @@
         <div class="contact-wa-card">
           <h4>Prefer a Quick Chat?</h4>
           <p>Skip the form — connect with us directly on WhatsApp for instant responses and faster project kick-off.</p>
-          <a href="https://wa.me/919000000000?text=Hi%20Flixifys,%20I%20need%20help%20with%20my%20Shopify%20store." target="_blank" class="wa-chat-btn">Chat on WhatsApp</a>
-          <div class="wa-or-text">or fill the <span>form</span> on the left</div>
+          <a href="https://wa.me/919876543210" target="_blank" class="wa-chat-btn"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+          <div class="wa-or-text">or email us at <span>hello@flixifys.com</span></div>
         </div>
       </div>
     </div>
@@ -654,7 +664,7 @@
           <p style="margin-top:12px"><strong style="color:#fff">Saturday – Sunday</strong><br>9:00 AM – 9:00 PM (IST)</p>
         </div>
       </div>
-      <div class="footer-bottom">&copy; 2025 Shopify Agency. All rights reserved.</div>
+      <div class="footer-bottom">© 2025 Shopify Agency. All rights reserved.</div>
     </div>
   </footer>
 
@@ -663,69 +673,152 @@
     <a href="https://wa.me/919000000000" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // ✅ EXACT SAME JS AS CONTACT PAGE
-    document.addEventListener("DOMContentLoaded",function(){
-      setTimeout(function(){document.getElementById("pageLoader").classList.add("hide")},500);
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('pageLoader').classList.add('hide');
+      }, 500);
+    });
 
-      var header=document.getElementById("header");
-      window.addEventListener("scroll",function(){header.classList.toggle("scrolled",window.scrollY>50)});
+    AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
 
-      var menuBtn=document.getElementById("menuBtn"),drawer=document.getElementById("drawer"),closeBtn=document.getElementById("closeDrawer"),overlayEl=document.getElementById("overlay");
-      function openDrawer(){drawer.classList.add("open");overlayEl.classList.add("open")}
-      function closeDrawerFn(){drawer.classList.remove("open");overlayEl.classList.remove("open")}
-      menuBtn.addEventListener("click",openDrawer);closeBtn.addEventListener("click",closeDrawerFn);overlayEl.addEventListener("click",closeDrawerFn);
-      drawer.querySelectorAll("a").forEach(function(l){l.addEventListener("click",closeDrawerFn)});
+    var header = document.getElementById('header');
+    window.addEventListener('scroll', function() {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
 
-      var rObs=new IntersectionObserver(function(en){for(var i=0;i<en.length;i++){if(en[i].isIntersecting){en[i].target.classList.add("visible");rObs.unobserve(en[i].target)}}},{threshold:.05,rootMargin:"0px 0px -40px 0px"});
-      document.querySelectorAll(".reveal").forEach(function(el){rObs.observe(el)});
+    var menuBtn = document.getElementById('menuBtn');
+    var drawer = document.getElementById('drawer');
+    var closeBtn = document.getElementById('closeDrawer');
+    var overlayEl = document.getElementById('overlay');
 
-      var form=document.getElementById("contactForm");
-      if(form){
-        form.addEventListener("submit",function(e){
-          e.preventDefault();
-          var btn=document.getElementById("formBtn");
-          var originalText=btn.innerHTML;
-          btn.disabled=true;
-          btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-          setTimeout(function(){
-            btn.disabled=false;
-            btn.innerHTML=originalText;
-            form.reset();
-            alert("Message sent successfully! We'll get back to you soon.");
-          },1500);
-        });
-      }
+    function openDrawer() {
+      drawer.classList.add('open');
+      overlayEl.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-      // Counter animation
-      function animateCounters(){
-        document.querySelectorAll('.stat-number').forEach(function(counter){
-          var target=parseInt(counter.getAttribute('data-target'));
-          var suffix=counter.getAttribute('data-suffix')||'';
-          var startTime=performance.now();
-          function update(now){
-            var p=Math.min((now-startTime)/2000,1);
-            counter.textContent=Math.floor((1-Math.pow(1-p,3))*target)+suffix;
-            if(p<1)requestAnimationFrame(update);
-            else counter.textContent=target+suffix;
-          }
-          requestAnimationFrame(update);
-        });
-      }
+    function closeDrawerFn() {
+      drawer.classList.remove('open');
+      overlayEl.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-      var statsSection=document.querySelector('.why-stats');
-      var countersAnimated=false;
-      if(statsSection&&'IntersectionObserver' in window){
-        new IntersectionObserver(function(entries){
-          if(entries[0].isIntersecting&&!countersAnimated){
-            countersAnimated=true;
-            animateCounters();
-          }
-        },{threshold:0.3}).observe(statsSection);
-      }else if(statsSection){
-        setTimeout(animateCounters,1000);
+    menuBtn.addEventListener('click', function() {
+      openDrawer();
+      history.pushState(null, '', location.href);
+    });
+
+    closeBtn.addEventListener('click', closeDrawerFn);
+    overlayEl.addEventListener('click', closeDrawerFn);
+
+    var drawerLinks = drawer.querySelectorAll('a');
+    for (var i = 0; i < drawerLinks.length; i++) {
+      drawerLinks[i].addEventListener('click', closeDrawerFn);
+    }
+
+    window.addEventListener('popstate', function() {
+      if (drawer.classList.contains('open')) {
+        closeDrawerFn();
       }
     });
+
+    // Scroll reveal - handles ALL .reveal elements (text, titles, cards)
+var scrollObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+// Observe all .reveal elements
+var revealEls = document.querySelectorAll('.reveal');
+for (var i = 0; i < revealEls.length; i++) {
+  scrollObs.observe(revealEls[i]);
+}
+
+// For .glass elements without .reveal (like .p-body), add .reveal class
+var glassOnlyEls = document.querySelectorAll('.glass:not(.reveal)');
+for (var j = 0; j < glassOnlyEls.length; j++) {
+  glassOnlyEls[j].classList.add('reveal');
+  scrollObs.observe(glassOnlyEls[j]);
+}
+// Stats Counter Animation
+var statsAnimated = false;
+var whySection = document.querySelector('.why-section');
+
+if (whySection) {
+  var statsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !statsAnimated) {
+        statsAnimated = true;
+        animateAllStats();
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  statsObserver.observe(whySection);
+}
+
+function animateAllStats() {
+  var statEls = document.querySelectorAll('.stat-number[data-target]');
+  
+  for (var i = 0; i < statEls.length; i++) {
+    (function(stat) {
+      var target = parseInt(stat.getAttribute('data-target'));
+      var suffix = stat.getAttribute('data-suffix') || '';
+      var duration = 2000;
+      var startTime = null;
+
+      function updateCount(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        
+        // Ease out cubic
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(target * ease);
+        
+        stat.textContent = current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCount);
+        } else {
+          stat.textContent = target + suffix;
+        }
+      }
+
+      requestAnimationFrame(updateCount);
+    })(statEls[i]);
+  }
+}
+
+// Contact Form Submit
+var contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('formBtn');
+    var originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    setTimeout(function() {
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+      btn.style.background = 'linear-gradient(135deg, #22c55e, #4ade80)';
+
+      setTimeout(function() {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+        contactForm.reset();
+      }, 2000);
+    }, 1500);
+  });
+}
   </script>
 </body>
 </html>
