@@ -22,17 +22,24 @@
     ::-webkit-scrollbar-thumb:hover{background:#7c3aed}
     *{scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
 
-    html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
+    /* ✅ FIX #1: html pe overflow-x hidden - BLACK SPACE HATAANE KE LIYE */
+    html{
+      scroll-behavior:smooth;
+      scrollbar-width:thin;
+      scrollbar-color:var(--accent) var(--bg);
+      overflow-x:hidden;
+    }
     
     body{
       font-family:'Inter',sans-serif;
       background:var(--bg);
       color:var(--text);
+      /* ✅ FIX #1: body pe bhi overflow-x hidden */
       overflow-x:hidden;
       line-height:1.75;
       -webkit-font-smoothing:antialiased;
-      position: relative;
-      z-index: 1;
+      position:relative;
+      z-index:1;
     }
     body::before{
       content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -63,18 +70,17 @@
     .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}
     .menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
 
+    /* ✅ FIX #2: Hero overflow hidden - orbs se black space na aaye */
     .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;z-index:0}
-    .hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;animation:orbFloat 10s ease-in-out infinite}
-    .hero-orb.o1{width:600px;height:600px;background:var(--accent);top:-10%;right:-5%}
-    .hero-orb.o2{width:400px;height:400px;background:var(--accent2);bottom:-10%;left:-5%;animation-delay:3s}
+    .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+    .hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;animation:orbFloat 10s ease-in-out infinite;will-change:transform}
+    /* ✅ FIX #2: Orbs ko clip karke bahar na jane dena */
+    .hero-orb.o1{width:600px;height:600px;background:var(--accent);top:-10%;right:-5%;right:calc(-5% - 40px)}
+    .hero-orb.o2{width:400px;height:400px;background:var(--accent2);bottom:-10%;left:-5%;left:calc(-5% - 20px);animation-delay:3s}
     .hero-orb.o3{width:250px;height:250px;background:#ec4899;top:50%;left:35%;animation-delay:6s;opacity:.15}
     @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
     .hero-grid-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}
-    
-    /* ✅ FIXED: Desktop - Text LEFT, Image RIGHT (original order) */
     .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;z-index:1}
-    
     .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden}
     .hero h1 .line{display:block;overflow:hidden}
     .hero h1 .line-inner{display:block;transform:translateY(110%);animation:textReveal .8s cubic-bezier(.16,1,.3,1) forwards}
@@ -98,6 +104,7 @@
     .hero-visual::before{content:'';position:absolute;width:70%;height:70%;top:15%;left:15%;background:var(--accent);filter:blur(100px);opacity:.2;border-radius:50%;z-index:1;animation:glowPulse 4s ease-in-out infinite}
     @keyframes glowPulse{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:.35;transform:scale(1.1)}}
 
+    /* ✅ FIX #2: Marquee overflow hidden */
     .marquee-section{padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;position:relative;z-index:1}
     .marquee-track{display:flex;gap:60px;animation:marquee 25s linear infinite;width:max-content}
     .marquee-item{font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:10px}
@@ -190,6 +197,7 @@
     .why-card h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;position:relative;z-index:1}
     .why-card p{font-size:14.5px;color:var(--muted);line-height:1.7;position:relative;z-index:1}
 
+    /* ✅ FIX #2: Tech section overflow hidden */
     .tech-section{padding:60px 0;overflow:hidden;position:relative}
     .tech-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
     .tech-section::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
@@ -269,6 +277,7 @@
     .wa-tip::after{content:'';position:absolute;top:100%;right:20px;border:6px solid transparent;border-top-color:var(--surface)}
     .wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
 
+    /* ✅ FIX #2: Drawer transform se jo black space aata tha wo fix */
     .drawer{
       position:fixed;top:0;right:0;bottom:0;width:280px;
       background:var(--surface);border-left:1px solid var(--border);
@@ -277,6 +286,9 @@
       transition:transform .4s cubic-bezier(.4,0,.2,1);
       display:flex;flex-direction:column;gap:20px;
       overflow-y:auto;-webkit-overflow-scrolling:touch;will-change:transform;
+      /* ✅ FIX: Drawer ko viewport se bahar na jane dena */
+      left:auto;right:0;
+      contain:layout;
     }
     .drawer.open{transform:translateX(0)}
     .drawer-head{display:flex;justify-content:space-between;align-items:center}
@@ -304,75 +316,82 @@
       .why-cards-grid{grid-template-columns:1fr}
     }
     
-    /* ✅ FIXED: Mobile - Image comes FIRST via CSS order only */
+    /* ✅ FIX #3: MOBILE - Logo center + all sections fix */
     @media(max-width:768px){
       .nav{display:none}
       .menu-btn{display:block}
-      .header-inner{justify-content:center;position:relative}
-      .menu-btn{position:absolute;right:24px}
       
-      /* ✅ FIXED: Hero - Desktop order preserved in HTML, only CSS reorders on mobile */
+      /* ✅ FIX #3: Logo perfectly centered on mobile */
+      .header-inner{
+        justify-content:center;
+        position:relative;
+      }
+      .header-inner .logo{
+        flex:1;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
+      .menu-btn{
+        position:absolute;
+        right:24px;
+        top:50%;
+        transform:translateY(-50%);
+        z-index:10;
+      }
+      
+      /* ✅ FIX: Hero mobile */
       .hero{padding:100px 0 60px;min-height:auto}
       .hero-grid{grid-template-columns:1fr;gap:32px}
-      .hero-visual{
-        order:-1;
-        max-width:320px;
-        margin:0 auto;
-      }
-      .hero-visual img{
-        max-width:280px;
-        margin:0 auto;
-      }
-      .hero-visual::before{
-        width:60%;
-        height:60%;
-        top:20%;
-        left:20%;
-      }
+      .hero-visual{order:-1;max-width:320px;margin:0 auto}
+      .hero-visual img{max-width:280px;margin:0 auto}
+      .hero-visual::before{width:60%;height:60%;top:20%;left:20%}
+      
+      /* ✅ FIX: Orbs smaller on mobile so no overflow */
+      .hero-orb.o1{width:300px;height:300px}
+      .hero-orb.o2{width:200px;height:200px}
+      .hero-orb.o3{width:150px;height:150px}
       
       .hero h1{letter-spacing:-1px}
       .hero-desc{font-size:16px;margin-bottom:24px}
       .section-title{margin-bottom:12px}
       .section-desc{font-size:15px}
       
+      /* ✅ FIX: Contact mobile */
       .contact-section{padding:70px 0}
       .contact-form-card{padding:28px 24px}
       .form-row{grid-template-columns:1fr}
       
+      /* ✅ FIX: Process mobile */
       .process-section{padding:70px 0}
-      .process-timeline{
-        display:flex;
-        flex-direction:column;
-        gap:24px;
-        max-width:100%;
-      }
-      .process-item,.process-item.rev{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:12px;
-      }
+      .process-timeline{display:flex;flex-direction:column;gap:24px;max-width:100%}
+      .process-item,.process-item.rev{flex-direction:column;align-items:flex-start;gap:12px}
       .process-item .p-dot{margin:0}
       .p-body{width:100%;padding:20px 24px}
-      .p-body h3,.p-body p{
-        white-space:normal;
-        overflow:visible;
-        text-overflow:unset;
-      }
+      .p-body h3,.p-body p{white-space:normal;overflow:visible;text-overflow:unset}
       
+      /* ✅ FIX: Footer mobile */
       .footer{padding:60px 16px 24px}
       .footer-grid{grid-template-columns:1fr;gap:28px}
       .wa-float{right:16px;bottom:16px}
       .wa-btn{width:52px;height:52px;font-size:22px}
+      
+      /* ✅ FIX: Grids single column */
       .what-cards,.services-grid,.ind-grid{grid-template-columns:1fr}
       .contact-grid{grid-template-columns:1fr}
       .contact-form-card{border-radius:20px;border-right:1px solid var(--border);border-bottom:none}
       .contact-wa-card{border-radius:0 0 20px 20px;border-left:1px solid var(--border);border-top:none;padding:36px 24px}
+      
+      /* ✅ FIX: Tech pills smaller */
       .tech-pill{padding:16px 24px}
       .tech-pill-icon{width:34px;height:34px;font-size:15px;border-radius:10px}
       .tech-pill span{font-size:13px}
+      
+      /* ✅ FIX: Card badges smaller */
       .what-card .num{font-size:10px;padding:5px 12px;border-radius:0 18px 0 10px}
       .why-card-num{font-size:10px;padding:6px 14px;border-radius:0 20px 0 12px}
       
+      /* ✅ FIX: Remove hover on mobile */
       .glass:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover::before{opacity:0}
@@ -384,6 +403,7 @@
       .process-item:hover .p-body{transform:none}
       .process-item.rev:hover .p-body{transform:none}
       
+      /* ✅ FIX: Section spacing */
       .section-head{margin-bottom:40px}
       .what-section,.services-section,.process-section,.why-section,.industries-section,.contact-section{padding:70px 0}
       .marquee-track{animation-duration:15s}
@@ -463,7 +483,6 @@
   </div>
   <div class="overlay" id="overlay"></div>
 
-  <!-- ✅ FIXED: HTML order is ORIGINAL - Text first, Image second (desktop: LEFT text, RIGHT image) -->
   <section class="hero">
     <div class="hero-bg"><div class="hero-orb o1"></div><div class="hero-orb o2"></div><div class="hero-orb o3"></div></div>
     <div class="hero-grid-lines"></div>
@@ -731,15 +750,12 @@
     });
 
     const header = document.getElementById('header');
-    let lastScroll = 0;
     window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > 50) {
+      if (window.pageYOffset > 50) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-      lastScroll = currentScroll;
     });
 
     const menuBtn = document.getElementById('menuBtn');
@@ -762,7 +778,6 @@
     menuBtn.addEventListener('click', openDrawer);
     closeDrawer.addEventListener('click', closeDrawerFn);
     overlay.addEventListener('click', closeDrawerFn);
-
     drawer.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeDrawerFn);
     });
@@ -783,7 +798,6 @@
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
     revealElements.forEach(el => revealObserver.observe(el));
 
     const statNumbers = document.querySelectorAll('.stat-number');
@@ -806,7 +820,6 @@
         }
       });
     }, { threshold: 0.5 });
-
     statNumbers.forEach(el => counterObserver.observe(el));
 
     const contactForm = document.getElementById('contactForm');
@@ -814,15 +827,12 @@
     
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      
       const btnText = formBtn.innerHTML;
       formBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
       formBtn.disabled = true;
-      
       setTimeout(() => {
         formBtn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
         formBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-        
         setTimeout(() => {
           formBtn.innerHTML = btnText;
           formBtn.style.background = '';
@@ -842,10 +852,7 @@
             const headerOffset = 80;
             const elementPosition = target.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           }
         }
       });
