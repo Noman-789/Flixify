@@ -34,7 +34,6 @@
       position: relative;
       z-index: 1;
     }
-    /* ✅ FIXED: Added z-index:-1 to body::before so text is visible */
     body::before{
       content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
@@ -72,7 +71,10 @@
     .hero-orb.o3{width:250px;height:250px;background:#ec4899;top:50%;left:35%;animation-delay:6s;opacity:.15}
     @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
     .hero-grid-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}
+    
+    /* ✅ FIXED: Desktop - Text LEFT, Image RIGHT (original order) */
     .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;z-index:1}
+    
     .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:24px;overflow:hidden}
     .hero h1 .line{display:block;overflow:hidden}
     .hero h1 .line-inner{display:block;transform:translateY(110%);animation:textReveal .8s cubic-bezier(.16,1,.3,1) forwards}
@@ -255,12 +257,9 @@
     .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px}
     .footer h4{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px}
     .footer p{font-size:14px;color:var(--muted);line-height:1.8}
-    
-    /* ✅ FIXED: Social Icons - Same as About Us Page (Circular + Purple hover + translateY) */
     .footer-socials{display:flex;gap:14px;margin-top:16px}
     .footer-socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:.3s}
     .footer-socials a:hover{background:var(--accent);color:#fff;transform:translateY(-3px);box-shadow:0 8px 20px rgba(139,92,246,.3)}
-    
     .footer-bottom{text-align:center;font-size:13px;color:var(--muted);padding-top:32px;border-top:1px solid var(--border)}
 
     .wa-float{position:fixed;right:24px;bottom:24px;z-index:90}
@@ -270,7 +269,6 @@
     .wa-tip::after{content:'';position:absolute;top:100%;right:20px;border:6px solid transparent;border-top-color:var(--surface)}
     .wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
 
-    /* ✅ FIXED: Drawer - Using transform for mobile performance */
     .drawer{
       position:fixed;top:0;right:0;bottom:0;width:280px;
       background:var(--surface);border-left:1px solid var(--border);
@@ -305,22 +303,62 @@
       .why-stats{grid-template-columns:repeat(2,1fr)}
       .why-cards-grid{grid-template-columns:1fr}
     }
+    
+    /* ✅ FIXED: Mobile - Image comes FIRST via CSS order only */
     @media(max-width:768px){
       .nav{display:none}
       .menu-btn{display:block}
       .header-inner{justify-content:center;position:relative}
       .menu-btn{position:absolute;right:24px}
+      
+      /* ✅ FIXED: Hero - Desktop order preserved in HTML, only CSS reorders on mobile */
       .hero{padding:100px 0 60px;min-height:auto}
+      .hero-grid{grid-template-columns:1fr;gap:32px}
+      .hero-visual{
+        order:-1;
+        max-width:320px;
+        margin:0 auto;
+      }
+      .hero-visual img{
+        max-width:280px;
+        margin:0 auto;
+      }
+      .hero-visual::before{
+        width:60%;
+        height:60%;
+        top:20%;
+        left:20%;
+      }
+      
       .hero h1{letter-spacing:-1px}
+      .hero-desc{font-size:16px;margin-bottom:24px}
+      .section-title{margin-bottom:12px}
+      .section-desc{font-size:15px}
+      
       .contact-section{padding:70px 0}
       .contact-form-card{padding:28px 24px}
       .form-row{grid-template-columns:1fr}
+      
       .process-section{padding:70px 0}
-      .process-timeline{grid-template-columns:1fr;gap:28px;padding-bottom:64px}
-      .process-item,.process-item.rev{flex-direction:column;align-items:center;gap:16px}
-      .process-item .p-dot{margin:0 auto}
-      .p-body h3,.p-body p{white-space:normal;overflow:visible;text-overflow:unset}
-      .cta-section{padding:80px 0}
+      .process-timeline{
+        display:flex;
+        flex-direction:column;
+        gap:24px;
+        max-width:100%;
+      }
+      .process-item,.process-item.rev{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+      }
+      .process-item .p-dot{margin:0}
+      .p-body{width:100%;padding:20px 24px}
+      .p-body h3,.p-body p{
+        white-space:normal;
+        overflow:visible;
+        text-overflow:unset;
+      }
+      
       .footer{padding:60px 16px 24px}
       .footer-grid{grid-template-columns:1fr;gap:28px}
       .wa-float{right:16px;bottom:16px}
@@ -334,6 +372,7 @@
       .tech-pill span{font-size:13px}
       .what-card .num{font-size:10px;padding:5px 12px;border-radius:0 18px 0 10px}
       .why-card-num{font-size:10px;padding:6px 14px;border-radius:0 20px 0 12px}
+      
       .glass:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
       .why-card:hover::before{opacity:0}
@@ -344,14 +383,18 @@
       .process-item:hover .p-dot{transform:none}
       .process-item:hover .p-body{transform:none}
       .process-item.rev:hover .p-body{transform:none}
+      
       .section-head{margin-bottom:40px}
       .what-section,.services-section,.process-section,.why-section,.industries-section,.contact-section{padding:70px 0}
       .marquee-track{animation-duration:15s}
       .tech-marquee{animation-duration:25s}
       .btn-primary,.btn-outline{padding:14px 24px;font-size:14px;justify-content:center}
     }
+    
     @media(max-width:400px){
       .hero h1{font-size:32px}
+      .hero-visual{max-width:260px}
+      .hero-visual img{max-width:240px}
       .contact-section{padding:50px 0}
       .contact-form-card{padding:24px 18px}
       .form-group input,.form-group select,.form-group textarea{padding:12px 16px;font-size:14px}
@@ -367,7 +410,10 @@
       .footer{padding:40px 16px 20px}
       .wa-float{right:12px;bottom:12px}
       .wa-btn{width:48px;height:48px;font-size:22px}
+      .p-dot{width:48px;height:48px;min-width:48px;font-size:18px}
+      .p-body{padding:16px 20px}
     }
+    
     @media(hover:none) and (pointer:coarse){
       .glass:hover{transform:none}
       .why-card:hover{transform:none}
@@ -379,6 +425,7 @@
       .process-item.rev:hover .p-body{transform:none}
       .footer-socials a:hover{transform:none}
     }
+    
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
       .hero h1 .line-inner,.hero-desc{opacity:1;transform:none}
@@ -416,6 +463,7 @@
   </div>
   <div class="overlay" id="overlay"></div>
 
+  <!-- ✅ FIXED: HTML order is ORIGINAL - Text first, Image second (desktop: LEFT text, RIGHT image) -->
   <section class="hero">
     <div class="hero-bg"><div class="hero-orb o1"></div><div class="hero-orb o2"></div><div class="hero-orb o3"></div></div>
     <div class="hero-grid-lines"></div>
@@ -630,14 +678,14 @@
               <label>Your Message</label>
               <textarea name="message" placeholder="Tell us about your project, goals, and timeline..." required></textarea>
             </div>
-            <button type="submit" class="form-submit" id="formBtn">Send Message <i class="fa-solid fa-paper-plane" style="margin-left:6px"></i></button>
+            <button type="submit" class="form-submit" id="formBtn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
           </form>
         </div>
         <div class="contact-wa-card">
-          <h4>Prefer a Quick Chat?</h4>
-          <p>Skip the form — connect with us directly on WhatsApp for instant responses and faster project kick-off.</p>
-          <a href="https://wa.me/919876543210" target="_blank" class="wa-chat-btn"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
-          <div class="wa-or-text">or email us at <span>hello@flixifys.com</span></div>
+          <h4>Prefer WhatsApp?</h4>
+          <p>Get instant replies and faster communication directly on WhatsApp.</p>
+          <a href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20have%20a%20project%20inquiry." target="_blank" class="wa-chat-btn"><i class="fa-brands fa-whatsapp" style="font-size:20px"></i> Chat on WhatsApp</a>
+          <p class="wa-or-text">or <span>email us</span> at hello@flixifys.com</p>
         </div>
       </div>
     </div>
@@ -647,178 +695,161 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4>About Us</h4>
-          <p>We are a Shopify-focused ecommerce studio helping brands design, build and scale modern online stores with clarity and performance.</p>
+          <div class="logo" style="margin-bottom:16px"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" style="height:32px"></div>
+          <p>A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.</p>
           <div class="footer-socials">
-            <a href="https://www.youtube.com/@yourchannel" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
           </div>
         </div>
         <div>
-          <h4>Our Services</h4>
-          <p>Shopify Design & Development<br>Conversion Optimization<br>Performance & SEO<br>Platform Migration<br>Ongoing Support</p>
+          <h4>Quick Links</h4>
+          <p><a href="/about-us/" style="color:var(--muted);transition:.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--muted)'">About Us</a><br><br><a href="/services/" style="color:var(--muted);transition:.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--muted)'">Services</a><br><br><a href="/blog/" style="color:var(--muted);transition:.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--muted)'">Blog</a><br><br><a href="/contact-us/" style="color:var(--muted);transition:.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--muted)'">Contact</a></p>
         </div>
         <div>
-          <h4>Working Time</h4>
-          <p><strong style="color:#fff">Monday – Friday</strong><br>7:30 PM – 9:00 AM (IST)</p>
-          <p style="margin-top:12px"><strong style="color:#fff">Saturday – Sunday</strong><br>9:00 AM – 9:00 PM (IST)</p>
+          <h4>Contact Info</h4>
+          <p><i class="fa-solid fa-envelope" style="color:var(--accent);margin-right:8px"></i> hello@flixifys.com<br><br><i class="fa-brands fa-whatsapp" style="color:#22c55e;margin-right:8px"></i> +91 98765 43210<br><br><i class="fa-solid fa-location-dot" style="color:var(--accent);margin-right:8px"></i> India</p>
         </div>
       </div>
-      <div class="footer-bottom">© 2025 Shopify Agency. All rights reserved.</div>
+      <div class="footer-bottom">© 2024 Flixifys. All rights reserved.</div>
     </div>
   </footer>
 
   <div class="wa-float">
-    <div class="wa-tip">Chat with us</div>
-    <a href="https://wa.me/919000000000" target="_blank" class="wa-btn" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <div class="wa-tip">Chat with us!</div>
+    <a href="https://wa.me/919876543210?text=Hi%20Flixifys" target="_blank" class="wa-btn"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
         document.getElementById('pageLoader').classList.add('hide');
-      }, 500);
+      }, 600);
     });
 
-    AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
-
-    var header = document.getElementById('header');
-    window.addEventListener('scroll', function() {
-      header.classList.toggle('scrolled', window.scrollY > 50);
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      lastScroll = currentScroll;
     });
 
-    var menuBtn = document.getElementById('menuBtn');
-    var drawer = document.getElementById('drawer');
-    var closeBtn = document.getElementById('closeDrawer');
-    var overlayEl = document.getElementById('overlay');
+    const menuBtn = document.getElementById('menuBtn');
+    const closeDrawer = document.getElementById('closeDrawer');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
 
     function openDrawer() {
       drawer.classList.add('open');
-      overlayEl.classList.add('open');
+      overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDrawerFn() {
       drawer.classList.remove('open');
-      overlayEl.classList.remove('open');
+      overlay.classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    menuBtn.addEventListener('click', function() {
-      openDrawer();
-      history.pushState(null, '', location.href);
+    menuBtn.addEventListener('click', openDrawer);
+    closeDrawer.addEventListener('click', closeDrawerFn);
+    overlay.addEventListener('click', closeDrawerFn);
+
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeDrawerFn);
     });
 
-    closeBtn.addEventListener('click', closeDrawerFn);
-    overlayEl.addEventListener('click', closeDrawerFn);
-
-    var drawerLinks = drawer.querySelectorAll('a');
-    for (var i = 0; i < drawerLinks.length; i++) {
-      drawerLinks[i].addEventListener('click', closeDrawerFn);
-    }
-
-    window.addEventListener('popstate', function() {
-      if (drawer.classList.contains('open')) {
-        closeDrawerFn();
-      }
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 50,
+      disable: function() { return window.innerWidth < 768; }
     });
 
-    // Scroll reveal - handles ALL .reveal elements (text, titles, cards)
-var scrollObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-
-// Observe all .reveal elements
-var revealEls = document.querySelectorAll('.reveal');
-for (var i = 0; i < revealEls.length; i++) {
-  scrollObs.observe(revealEls[i]);
-}
-
-// For .glass elements without .reveal (like .p-body), add .reveal class
-var glassOnlyEls = document.querySelectorAll('.glass:not(.reveal)');
-for (var j = 0; j < glassOnlyEls.length; j++) {
-  glassOnlyEls[j].classList.add('reveal');
-  scrollObs.observe(glassOnlyEls[j]);
-}
-// Stats Counter Animation
-var statsAnimated = false;
-var whySection = document.querySelector('.why-section');
-
-if (whySection) {
-  var statsObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting && !statsAnimated) {
-        statsAnimated = true;
-        animateAllStats();
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  statsObserver.observe(whySection);
-}
-
-function animateAllStats() {
-  var statEls = document.querySelectorAll('.stat-number[data-target]');
-  
-  for (var i = 0; i < statEls.length; i++) {
-    (function(stat) {
-      var target = parseInt(stat.getAttribute('data-target'));
-      var suffix = stat.getAttribute('data-suffix') || '';
-      var duration = 2000;
-      var startTime = null;
-
-      function updateCount(timestamp) {
-        if (!startTime) startTime = timestamp;
-        var elapsed = timestamp - startTime;
-        var progress = Math.min(elapsed / duration, 1);
-        
-        // Ease out cubic
-        var ease = 1 - Math.pow(1 - progress, 3);
-        var current = Math.round(target * ease);
-        
-        stat.textContent = current + suffix;
-
-        if (progress < 1) {
-          requestAnimationFrame(updateCount);
-        } else {
-          stat.textContent = target + suffix;
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-      }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-      requestAnimationFrame(updateCount);
-    })(statEls[i]);
-  }
-}
+    revealElements.forEach(el => revealObserver.observe(el));
 
-// Contact Form Submit
-var contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = document.getElementById('formBtn');
-    var originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-    btn.disabled = true;
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(entry.target.dataset.target);
+          const suffix = entry.target.dataset.suffix || '';
+          let current = 0;
+          const increment = target / 60;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            entry.target.textContent = Math.floor(current) + suffix;
+          }, 30);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
 
-    setTimeout(function() {
-      btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
-      btn.style.background = 'linear-gradient(135deg, #22c55e, #4ade80)';
+    statNumbers.forEach(el => counterObserver.observe(el));
 
-      setTimeout(function() {
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-        contactForm.reset();
-      }, 2000);
-    }, 1500);
-  });
-}
+    const contactForm = document.getElementById('contactForm');
+    const formBtn = document.getElementById('formBtn');
+    
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btnText = formBtn.innerHTML;
+      formBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+      formBtn.disabled = true;
+      
+      setTimeout(() => {
+        formBtn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+        formBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        
+        setTimeout(() => {
+          formBtn.innerHTML = btnText;
+          formBtn.style.background = '';
+          formBtn.disabled = false;
+          contactForm.reset();
+        }, 2000);
+      }, 1500);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>
