@@ -321,11 +321,11 @@
                   <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase block mb-2">Estimated Budget</label>
                   <select id="fbudget" class="form-input">
                     <option value="" disabled selected>Select budget range</option>
-                    <option value="under-5k">Under $5,000</option>
-                    <option value="5k-15k">$5,000 – $15,000</option>
-                    <option value="15k-30k">$15,000 – $30,000</option>
-                    <option value="30k-50k">$30,000 – $50,000</option>
-                    <option value="50k+">$50,000+</option>
+                    <option value="under-50k">Under ₹50,000</option>
+                    <option value="50k-1.5l">₹50,000 – ₹1,50,000</option>
+                    <option value="1.5l-3l">₹1,50,000 – ₹3,00,000</option>
+                    <option value="3l-5l">₹3,00,000 – ₹5,00,000</option>
+                    <option value="5l+">₹5,00,000+</option>
                     <option value="not-sure">Not Sure Yet</option>
                   </select>
                 </div>
@@ -348,6 +348,8 @@
         <!-- Sidebar -->
         <div class="lg:col-span-5 reveal" style="--delay: 0.2s;">
           <div class="space-y-6">
+            
+            <!-- Contact Methods Card -->
             <div class="info-card p-7">
               <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-2">/ Contact Methods</div>
               <h4 class="font-display text-2xl mb-5">REACH THE STUDIO</h4>
@@ -371,6 +373,7 @@
               </div>
             </div>
 
+            <!-- Working Hours Card -->
             <div class="info-card p-7">
               <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-2">/ Working Hours</div>
               <h4 class="font-display text-2xl mb-5">STUDIO HOURS</h4>
@@ -393,6 +396,40 @@
                 <span>We typically respond within 2-4 hours</span>
               </div>
             </div>
+
+            <!-- NEW: Free Discussion Card -->
+            <div class="info-card notch-corner p-7 bg-gradient-to-br from-[var(--bg-card)] to-[var(--bg-darker)]">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-[var(--accent)] flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-gift text-black text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase">/ No Charges</div>
+                  <h4 class="font-display text-2xl tracking-wider">FREE AUDIT CALL</h4>
+                </div>
+              </div>
+              <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-5">
+                Not sure where to start? Discuss your website with our experts for free. We'll review your store, identify roadblocks, and provide actionable growth insights—no strings attached.
+              </p>
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-check-circle text-[var(--accent)] mt-1 text-sm"></i>
+                  <span class="text-[var(--fg-dim)] text-sm">15-minute expert consultation</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-check-circle text-[var(--accent)] mt-1 text-sm"></i>
+                  <span class="text-[var(--fg-dim)] text-sm">Zero cost, zero obligations</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-check-circle text-[var(--accent)] mt-1 text-sm"></i>
+                  <span class="text-[var(--fg-dim)] text-sm">Actionable CRO & Speed tips</span>
+                </li>
+              </ul>
+              <a href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20would%20like%20to%20book%20a%20FREE%20consultation." target="_blank" class="block text-center w-full bg-transparent border border-[var(--accent)] text-[var(--accent)] py-3 font-heading text-sm tracking-[0.15em] uppercase hover:bg-[var(--accent)] hover:text-black transition-colors">
+                CLAIM YOUR FREE CALL
+              </a>
+            </div>
+
           </div>
         </div>
 
