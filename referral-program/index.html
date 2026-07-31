@@ -158,6 +158,13 @@
   .faq-item.active .faq-answer { max-height: 500px; }
   .faq-item.active .faq-chevron { transform: rotate(180deg); color: var(--accent); }
   .faq-chevron { transition: transform 0.3s, color 0.3s; }
+
+  /* Language Dropdown & Mobile Active */
+  .mobile-lang-btn.active-lang { background: var(--accent); color: #000; border-color: var(--accent) !important; font-weight: 600; }
+  
+  /* Button Fix */
+  .btn-book-call { background: #C8C8C8; color: #000; transition: opacity 0.3s; }
+  .btn-book-call:hover { opacity: 0.8; }
 </style>
 </head>
 <body class="bg-textured">
@@ -186,22 +193,76 @@
     </div>
   </header>
 
+ <!-- Header Fixed -->
+  <header class="header fixed top-0 left-0 right-0 z-[100] backdrop-blur-lg bg-black/90 border-b border-white/5" id="header">
+    <div class="container header-inner max-w-[1600px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
+      <div class="logo flex-shrink-0">
+        <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
+      </div>
+      <nav class="nav hidden lg:flex items-center gap-8 xl:gap-10 flex-shrink-0">
+        <a href="/about-us/" class="nav-link" data-i18n="nav_about">About Us</a>
+        <a href="/services/" class="nav-link" data-i18n="nav_services">Services</a>
+        <a href="/blog/" class="nav-link" data-i18n="nav_blog">Blog</a>
+        <a href="/referral-program/" class="nav-link" data-i18n="nav_referral">Referral Program</a>
+        <a href="/contact-us/" class="nav-link" data-i18n="nav_contact">Contact Us</a>
+      </nav>
+      
+      <div class="flex items-center gap-4 md:gap-6 flex-shrink-0">
+        <div class="relative hidden lg:block" id="langContainer">
+          <button id="langBtnDesktop" class="flex items-center justify-center gap-2 font-heading text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors py-2 px-3 border border-transparent hover:border-gray-600 w-[140px]">
+            <i class="fas fa-globe"></i>
+            <span id="currentLangDesktop">English</span>
+            <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
+          </button>
+          <div id="langDropdownDesktop" class="absolute right-0 mt-2 w-44 bg-black border border-gray-800 shadow-2xl hidden z-[110]">
+            <ul class="py-2">
+              <li><a href="#" data-lang="en" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">English</a></li>
+              <li><a href="#" data-lang="zh" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Chinese</a></li>
+              <li><a href="#" data-lang="hi" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Hindi</a></li>
+              <li><a href="#" data-lang="es" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Spanish</a></li>
+              <li><a href="#" data-lang="fr" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">French</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="https://wa.me/919876543210" target="_blank" class="hidden lg:inline-flex items-center font-heading text-xs tracking-[0.2em] uppercase px-5 py-2.5 btn-book-call" data-i18n="btn_call">
+          Book a Free Call
+        </a>
+        <button id="menuBtn" class="lg:hidden text-white text-2xl z-[120]"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
   <!-- Mobile Drawer -->
   <div class="mobile-drawer lg:hidden" id="mobileDrawer">
-    <div class="flex justify-between items-center mb-12">
+    <div class="flex justify-between items-center mb-10">
       <div class="logo">
         <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
       </div>
-      <button id="closeDrawer" class="text-2xl text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+      <div class="flex items-center gap-4">
+        <button id="closeDrawer" class="text-2xl text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </div>
     </div>
+
+    <div class="mb-8">
+      <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-3">Language</div>
+      <div class="grid grid-cols-2 gap-2" id="mobileLangGrid">
+        <button data-lang="en" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)] active-lang">English</button>
+        <button data-lang="zh" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Chinese</button>
+        <button data-lang="hi" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Hindi</button>
+        <button data-lang="es" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Spanish</button>
+        <button data-lang="fr" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">French</button>
+      </div>
+    </div>
+
     <nav class="flex flex-col gap-6">
-      <a href="/about-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">About Us</a>
-      <a href="/services/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">Services</a>
-      <a href="/blog/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">Blog</a>
-      <a href="/referral-program/" class="text-xl font-heading tracking-wider text-[var(--accent)]">Referral Program</a>
-      <a href="/contact-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">Contact Us</a>
+      <a href="/about-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_about">About Us</a>
+      <a href="/services/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_services">Services</a>
+      <a href="/blog/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_blog">Blog</a>
+      <a href="/referral-program/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_referral">Referral Program</a>
+      <a href="/contact-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_contact">Contact Us</a>
     </nav>
-    <a href="https://wa.me/919876543210" target="_blank" class="mt-auto bg-[var(--accent)] text-black text-center py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors">
+    <a href="https://wa.me/919876543210" target="_blank" class="mt-auto bg-[var(--accent)] text-black text-center py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors" data-i18n="btn_call">
       Book Free Call
     </a>
   </div>
@@ -590,8 +651,8 @@
     </div>
   </section>
   
-  <!-- FOOTER -->
-  <footer class="border-t border-[var(--border)] bg-black py-16 relative overflow-hidden">
+ <!-- FOOTER -->
+  <footer class="border-t border-white/5 bg-black py-16 relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
       <div class="font-display text-[18vw] md:text-[14vw] leading-none text-stroke opacity-30 absolute bottom-0 left-0 right-0 text-center pointer-events-none select-none">
         FLIXIFYS
@@ -600,59 +661,56 @@
       <div class="relative grid md:grid-cols-12 gap-10 mb-12">
         <div class="md:col-span-5">
           <div class="flex items-center gap-3 mb-5">
-            <div class="w-10 h-10 bg-[var(--accent)] flex items-center justify-center">
-              <i class="fas fa-store text-black"></i>
-            </div>
             <div>
-              <div class="font-display text-2xl leading-none tracking-wider">FLIXIFYS</div>
-              <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.3em] mt-0.5">SHOPIFY · STUDIO</div>
+              <div class="font-display text-2xl leading-none tracking-wider text-white">FLIXIFYS</div>
+              <div class="font-mono text-[10px] text-gray-400 tracking-[0.3em] mt-0.5">SHOPIFY · STUDIO</div>
             </div>
           </div>
-          <p class="text-[var(--fg-dim)] text-sm leading-relaxed max-w-md mb-6">
+          <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6" data-i18n="footer_about">
             A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.
           </p>
           <div class="flex gap-3">
-            <a href="https://instagram.com" target="_blank" class="w-12 h-12 border border-[var(--border-light)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-[var(--fg-dim)] text-lg">
+            <a href="https://instagram.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://linkedin.com" target="_blank" class="w-12 h-12 border border-[var(--border-light)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-[var(--fg-dim)] text-lg">
+            <a href="https://linkedin.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="https://twitter.com" target="_blank" class="w-12 h-12 border border-[var(--border-light)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-[var(--fg-dim)] text-lg">
+            <a href="https://twitter.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
               <i class="fab fa-x-twitter"></i>
             </a>
-            <a href="https://youtube.com" target="_blank" class="w-12 h-12 border border-[var(--border-light)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-[var(--fg-dim)] text-lg">
+            <a href="https://youtube.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
               <i class="fab fa-youtube"></i>
             </a>
           </div>
         </div>
         
         <div class="md:col-span-2">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Quick Links</h5>
+          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_links">Quick Links</h5>
           <ul class="space-y-2 text-sm">
-            <li><a href="/about-us/" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">About Us</a></li>
-            <li><a href="/services/" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Services</a></li>
-            <li><a href="/blog/" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Blog</a></li>
-            <li><a href="/referral-program/" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Referral Program</a></li>
-            <li><a href="/contact-us/" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Contact Us</a></li>
+            <li><a href="/about-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_about">About Us</a></li>
+            <li><a href="/services/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_services">Services</a></li>
+            <li><a href="/blog/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_blog">Blog</a></li>
+            <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_referral">Referral Program</a></li>
+            <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Contact Us</a></li>
           </ul>
         </div>
         
         <div class="md:col-span-2">
           <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Tech Partners</h5>
           <ul class="space-y-2 text-sm">
-            <li><a href="#tech-partners" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Razorpay</a></li>
-            <li><a href="#tech-partners" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Stripe</a></li>
-            <li><a href="#tech-partners" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Klaviyo</a></li>
-            <li><a href="#tech-partners" class="text-[var(--fg-dim)] hover:text-[var(--fg)] link-underline">Gorgias</a></li>
+            <li><a href="#tech-partners" class="text-gray-400 hover:text-white link-underline">Razorpay</a></li>
+            <li><a href="#tech-partners" class="text-gray-400 hover:text-white link-underline">Stripe</a></li>
+            <li><a href="#tech-partners" class="text-gray-400 hover:text-white link-underline">Klaviyo</a></li>
+            <li><a href="#tech-partners" class="text-gray-400 hover:text-white link-underline">Gorgias</a></li>
           </ul>
         </div>
         
         <div class="md:col-span-3">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Newsletter</h5>
-          <p class="text-[var(--fg-dim)] text-xs mb-4 leading-relaxed">Weekly Shopify insights, case studies, and studio updates.</p>
-          <form class="flex border border-[var(--border-light)] focus-within:border-[var(--accent)] transition-colors">
-            <input type="email" placeholder="email@address.com" class="flex-1 bg-transparent px-3 py-2.5 text-sm text-[var(--fg)] outline-none placeholder:text-[var(--muted)]">
+          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_news">Newsletter</h5>
+          <p class="text-gray-400 text-xs mb-4 leading-relaxed" data-i18n="footer_news_desc">Weekly Shopify insights, case studies, and studio updates.</p>
+          <form class="flex border border-gray-800 focus-within:border-[var(--accent)] transition-colors">
+            <input type="email" placeholder="email@address.com" class="flex-1 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-gray-500">
             <button type="submit" class="px-4 bg-[var(--accent)] text-black hover:bg-[var(--accent-bright)] transition-colors">
               <i class="fas fa-arrow-right text-xs"></i>
             </button>
@@ -660,12 +718,8 @@
         </div>
       </div>
       
-      <div class="relative border-t border-[var(--border)] pt-6 flex flex-col md:flex-row justify-between gap-4 text-[var(--muted)] font-mono text-[11px] tracking-[0.15em] uppercase">
+      <div class="relative border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-center gap-4 text-gray-400 font-mono text-[11px] tracking-[0.15em] uppercase">
         <div>© 2024 FLIXIFYS SHOPIFY STUDIO. ALL RIGHTS RESERVED.</div>
-        <div class="flex gap-6">
-          <a href="#" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-          <a href="#" class="hover:text-[var(--accent)] transition-colors">Terms</a>
-        </div>
       </div>
     </div>
   </footer>
@@ -688,7 +742,7 @@
   </div>
 
   <script>
-    // Mobile Drawer
+      // Mobile Drawer
     const menuBtn = document.getElementById('menuBtn');
     const closeDrawer = document.getElementById('closeDrawer');
     const mobileDrawer = document.getElementById('mobileDrawer');
@@ -714,9 +768,9 @@
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -8; 
+        const rotateX = ((y - centerY) / centerY) * -8;
         const rotateY = ((x - centerX) / centerX) * 8;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)`;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
@@ -744,49 +798,6 @@
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // Copy Code Logic
-    function copyCode(btnId, codeId) {
-      const btn = document.getElementById(btnId);
-      const code = document.getElementById(codeId);
-      if (!btn || !code) return;
-      btn.addEventListener('click', () => {
-        const text = code.textContent;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(() => showToast("Code copied: " + text));
-        } else {
-          const ta = document.createElement('textarea');
-          ta.value = text;
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          showToast("Code copied: " + text);
-        }
-      });
-    }
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMsg');
-      toastMsg.textContent = msg;
-      toast.classList.remove('hidden');
-      setTimeout(() => toast.style.transform = 'translateX(0)', 10);
-      setTimeout(() => {
-        toast.style.transform = 'translateX(120%)';
-        setTimeout(() => toast.classList.add('hidden'), 500);
-      }, 3000);
-    }
-    copyCode("heroCopyBtn", "heroCode");
-    copyCode("dashCopyBtn", "dashCode");
-
-    // FAQ Accordion
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-        if (!isActive) item.classList.add('active');
-      });
-    });
-
     // Grain Parallax
     const grain = document.getElementById('grain');
     let targetGrainY = 0; let currentGrainY = 0;
@@ -810,6 +821,88 @@
     }
     window.addEventListener('scroll', updateScrollProgress, { passive: true });
     updateScrollProgress();
+
+    // Language Translations Dictionary (Trimmed for Header/Footer)
+    const translations = {
+      en: {
+        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", btn_call: "Book a Free Call",
+        footer_about: "A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.", footer_links: "Quick Links", footer_news: "Newsletter", footer_news_desc: "Weekly Shopify insights, case studies, and studio updates."
+      },
+      hi: {
+        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", btn_call: "निःशुल्क कॉल बुक करें",
+        footer_about: "एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो जो ब्रांड्स को बनाने, अनुकूलित करने और स्केल करने में मदद करता है।", footer_links: "त्वरित लिंक", footer_news: "न्यूज़लेटर", footer_news_desc: "साप्ताहिक शॉपिफाई इनसाइट्स, केस स्टडीज़ और स्टूडियो अपडेट।"
+      },
+      zh: {
+        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", btn_call: "预约免费通话",
+        footer_about: "一家专注于 Shopify 的工作室，帮助品牌构建和扩展。", footer_links: "快速链接", footer_news: "订阅", footer_news_desc: "每周 Shopify 洞察和更新。"
+      },
+      es: {
+        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", btn_call: "Reservar Llamada Gratis",
+        footer_about: "Un estudio digital enfocado en Shopify que ayuda a las marcas a crecer.", footer_links: "Enlaces", footer_news: "Boletín", footer_news_desc: "Información semanal de Shopify."
+      },
+      fr: {
+        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", btn_call: "Réserver Appel",
+        footer_about: "Un studio numérique axé sur Shopify aidant les marques à croître.", footer_links: "Liens", footer_news: "Newsletter", footer_news_desc: "Infos Shopify hebdomadaires."
+      }
+    };
+
+    // Language Dropdown Logic
+    const langBtn = document.getElementById('langBtnDesktop');
+    const langDropdown = document.getElementById('langDropdownDesktop');
+    const currentLangSpan = document.getElementById('currentLangDesktop');
+    
+    if(langBtn && langDropdown) {
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if(!langDropdown.contains(e.target) && !langBtn.contains(e.target)) {
+                langDropdown.classList.add('hidden');
+            }
+        });
+
+        document.querySelectorAll('.lang-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = item.getAttribute('data-lang');
+                currentLangSpan.textContent = item.textContent;
+                langDropdown.classList.add('hidden');
+                
+                document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+                    btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
+                });
+
+                setLanguage(lang);
+            });
+        });
+    }
+
+    document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            document.querySelectorAll('.mobile-lang-btn').forEach(b => b.classList.remove('active-lang'));
+            btn.classList.add('active-lang');
+            
+            if(currentLangSpan) {
+                const selectedLangItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
+                if(selectedLangItem) currentLangSpan.textContent = selectedLangItem.textContent;
+            }
+
+            setLanguage(lang);
+        });
+    });
+
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+    }
   </script>
 </body>
 </html>
