@@ -377,10 +377,6 @@
           </div>
         </div>
 
-        <button id="themeToggleDesktop" class="hidden lg:flex w-10 h-10 items-center justify-center text-xl text-gray-300 hover:text-[var(--accent)] transition-colors">
-          <i class="fas fa-moon"></i>
-        </button>
-
         <a href="https://wa.me/919876543210" target="_blank" class="hidden lg:inline-flex items-center font-heading text-xs tracking-[0.2em] uppercase px-5 py-2.5 btn-book-call" data-i18n="btn_call">
           Book a Free Call
         </a>
@@ -396,9 +392,6 @@
         <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
       </div>
       <div class="flex items-center gap-4">
-        <button id="themeToggleMobile" class="text-2xl text-gray-400 hover:text-[var(--accent)] transition-colors">
-          <i class="fas fa-moon"></i>
-        </button>
         <button id="closeDrawer" class="text-2xl text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
       </div>
     </div>
@@ -1717,36 +1710,12 @@
     // THEME (DARK/LIGHT MODE) & LANGUAGE LOGIC
     // ==========================================
 
-    const themeToggles = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')].filter(Boolean);
-
     function updateThemeIcons(theme) {
         const iconClass = theme === 'light' ? 'fa-sun' : 'fa-moon';
         themeToggles.forEach(btn => {
             if (btn) btn.innerHTML = `<i class="fas ${iconClass}"></i>`;
         });
     }
-
-    if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('light-mode');
-        updateThemeIcons('light');
-    } else {
-        updateThemeIcons('dark');
-    }
-
-    themeToggles.forEach(btn => {
-        if (btn) {
-            btn.addEventListener('click', () => {
-                document.body.classList.toggle('light-mode');
-                if (document.body.classList.contains('light-mode')) {
-                    localStorage.setItem('theme', 'light');
-                    updateThemeIcons('light');
-                } else {
-                    localStorage.setItem('theme', 'dark');
-                    updateThemeIcons('dark');
-                }
-            });
-        }
-    });
 
     // Language Translations Dictionary
     const translations = {
