@@ -1706,17 +1706,6 @@
     window.addEventListener('scroll', updateScrollProgress, { passive: true });
     updateScrollProgress();
 
-    // ==========================================
-    // THEME (DARK/LIGHT MODE) & LANGUAGE LOGIC
-    // ==========================================
-
-    function updateThemeIcons(theme) {
-        const iconClass = theme === 'light' ? 'fa-sun' : 'fa-moon';
-        themeToggles.forEach(btn => {
-            if (btn) btn.innerHTML = `<i class="fas ${iconClass}"></i>`;
-        });
-    }
-
     // Language Translations Dictionary
     const translations = {
       en: {
