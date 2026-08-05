@@ -148,11 +148,6 @@
   .wa-btn-center:hover { transform: scale(1.1); color: white; }
   
   /* Custom Styles for Terms Content */
-  .toc-link { display: block; font-family: 'Oswald', sans-serif; font-size: 0.9rem; color: var(--fg-dim); padding: 0.5rem 1rem; border-left: 2px solid transparent; transition: all 0.3s; cursor: pointer; letter-spacing: 0.05em; }
-  .toc-link:hover { color: var(--fg); background: rgba(255,255,255,0.03); }
-  .toc-link.active { color: var(--accent); border-left-color: var(--accent); background: rgba(0,230,118,0.05); font-weight: 600; }
-  
-  .content-section { scroll-margin-top: 120px; }
   .warning-box { background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; }
   .highlight-box { background: rgba(0,230,118,0.05); border: 1px solid rgba(0,230,118,0.2); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; }
   .warning-box p, .highlight-box p { color: var(--fg-dim); font-size: 0.95rem; margin: 0; }
@@ -165,10 +160,6 @@
   /* Button Fix */
   .btn-book-call { background: #C8C8C8; color: #000; transition: opacity 0.3s; }
   .btn-book-call:hover { opacity: 0.8; }
-  
-  @media (max-width: 1024px) {
-    .toc-sidebar { display: none; }
-  }
 </style>
 </head>
 <body class="bg-textured">
@@ -272,188 +263,139 @@
 
   <!-- TERMS CONTENT -->
   <section class="relative py-28 lg:py-36" id="terms-content">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
-        
-        <!-- TOC Sidebar -->
-        <div class="lg:col-span-3 toc-sidebar">
-          <div class="sticky top-28">
-            <div class="info-card p-6">
-              <h4 class="font-mono text-xs text-[var(--muted)] tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-                <i class="fas fa-list text-[var(--accent)]"></i> <span data-i18n="t_toc_title">On This Page</span>
-              </h4>
-              <div class="flex flex-col gap-1 border-l border-[var(--border-light)]">
-                <div class="toc-link active" data-target="t-1"><span class="text-[var(--accent)] mr-2">01</span><span data-i18n="t_toc_1">Agreement to Terms</span></div>
-                <div class="toc-link" data-target="t-2"><span class="text-[var(--accent)] mr-2">02</span><span data-i18n="t_toc_2">Services Description</span></div>
-                <div class="toc-link" data-target="t-3"><span class="text-[var(--accent)] mr-2">03</span><span data-i18n="t_toc_3">Project Process & Timeline</span></div>
-                <div class="toc-link" data-target="t-4"><span class="text-[var(--accent)] mr-2">04</span><span data-i18n="t_toc_4">Payments & Refunds</span></div>
-                <div class="toc-link" data-target="t-5"><span class="text-[var(--accent)] mr-2">05</span><span data-i18n="t_toc_5">Intellectual Property</span></div>
-                <div class="toc-link" data-target="t-6"><span class="text-[var(--accent)] mr-2">06</span><span data-i18n="t_toc_6">Client Responsibilities</span></div>
-                <div class="toc-link" data-target="t-7"><span class="text-[var(--accent)] mr-2">07</span><span data-i18n="t_toc_7">Limitation of Liability</span></div>
-                <div class="toc-link" data-target="t-8"><span class="text-[var(--accent)] mr-2">08</span><span data-i18n="t_toc_8">Confidentiality</span></div>
-                <div class="toc-link" data-target="t-9"><span class="text-[var(--accent)] mr-2">09</span><span data-i18n="t_toc_9">Termination</span></div>
-                <div class="toc-link" data-target="t-10"><span class="text-[var(--accent)] mr-2">10</span><span data-i18n="t_toc_10">Governing Law</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="lg:col-span-9 space-y-8">
-          
-          <div class="content-section" id="t-1">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">01</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-handshake text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_1">Agreement to Terms</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_1_1">By accessing our website <a href="https://flixifys.com" class="text-[var(--accent)] link-underline">flixifys.com</a> and engaging our services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our services or website.</p>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_1_2">These terms constitute a legally binding agreement between you ("Client") and Flixifys ("Company," "We," "Us," or "Our"). We reserve the right to update these terms at any time, and continued use of our services after changes constitutes acceptance of the revised terms.</p>
-              <div class="highlight-box"><p><i class="fas fa-info-circle"></i><span data-i18n="t_box_1"><strong>Last Updated:</strong> January 15, 2025. We recommend reviewing this page periodically for any changes.</span></p></div>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-2">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">02</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-briefcase text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_2">Services Description</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_2_1">Flixifys provides Shopify-based ecommerce services including but not limited to:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_2">
-                <li>Shopify store design and theme customization</li>
-                <li>Custom Shopify development (Liquid, HTML, CSS, JavaScript)</li>
-                <li>Page speed optimization and performance auditing</li>
-                <li>Mobile-first responsive design and optimization</li>
-                <li>Platform migration (WooCommerce, Magento, Custom to Shopify)</li>
-                <li>Third-party app integration and configuration</li>
-                <li>Ongoing maintenance, support, and store management</li>
-                <li>Conversion rate optimization and UX consulting</li>
-              </ul>
-              <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_2_2">The specific scope of services for each project will be outlined in a separate proposal or Statement of Work (SOW) agreed upon by both parties before work commences.</p>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-3">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">03</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-timeline text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_3">Project Process & Timeline</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_3_1">Our standard project workflow includes Discovery, Design, Development, Testing, and Launch phases. Timelines for each project are estimated based on scope complexity and will be communicated in the project proposal.</p>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_3_2">Timelines are estimates and may be affected by:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_3">
-                <li>Delays in providing required assets, content, or feedback from the Client</li>
-                <li>Scope changes requested after project commencement</li>
-                <li>Third-party service outages or API limitations</li>
-                <li>Unforeseen technical complexities</li>
-              </ul>
-              <div class="warning-box"><p><i class="fas fa-clock"></i><span data-i18n="t_box_3"><strong>Important:</strong> Timeline extensions caused by Client delays do not constitute a breach of service on our part. We will communicate any adjustments proactively.</span></p></div>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-4">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">04</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-indian-rupee-sign text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_4">Payments & Refunds</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_4_1">Payment terms are specific to each project and will be detailed in the project proposal. Standard payment structures include:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_4">
-                <li><strong>50% Advance:</strong> Due before project commencement to secure your slot and begin work</li>
-                <li><strong>50% Final:</strong> Due upon project completion, before final file handover or store transfer</li>
-                <li><strong>Milestone Payments:</strong> For larger projects, payments may be split across defined milestones</li>
-              </ul>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_4_2">Payments can be made via bank transfer, UPI, or other methods agreed upon. Invoices will be provided for all transactions.</p>
-              <h3 class="font-display text-2xl mb-3 mt-6" data-i18n="t_h3_4">Refund Policy</h3>
-              <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_4_3">Since our services involve customized, digital work created specifically for each Client, refunds are generally not applicable once work has commenced. However, we will work with you to resolve any concerns. Refund requests must be submitted within 7 days of the relevant payment and will be evaluated on a case-by-case basis.</p>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-5">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">05</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-copyright text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_5">Intellectual Property</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_5_1">Upon full payment completion, the Client receives ownership of the final deliverables created specifically for their project, including:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_5_1">
-                <li>Custom-designed layouts and visual elements</li>
-                <li>Custom-coded features and functionality</li>
-                <li>Configured store settings and integrations</li>
-              </ul>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_5_2">The following remain the property of Flixifys:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_5_2">
-                <li>Underlying code frameworks, libraries, and reusable components</li>
-                <li>Proprietary tools, processes, and methodologies</li>
-                <li>Pre-built templates or design systems not created specifically for the Client</li>
-              </ul>
-              <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_5_3">Third-party assets (stock photos, fonts, plugins) are subject to their respective license terms. We ensure all third-party assets used are properly licensed for commercial use.</p>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-6">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">06</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-user-check text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_6">Client Responsibilities</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_6_1">To ensure smooth project delivery, the Client agrees to:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_6">
-                <li>Provide all required content, assets, brand guidelines, and access credentials in a timely manner</li>
-                <li>Respond to review requests and provide feedback within agreed timeframes</li>
-                <li>Ensure all provided content (text, images, videos) does not infringe on third-party rights</li>
-                <li>Maintain an active Shopify account and necessary app subscriptions</li>
-                <li>Review and approve deliverables at each stage before proceeding</li>
-              </ul>
-              <div class="highlight-box"><p><i class="fas fa-lightbulb"></i><span data-i18n="t_box_6"><strong>Tip:</strong> Delays in client feedback are the most common cause of timeline extensions. We recommend designating a single point of contact for faster decision-making.</span></p></div>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-7">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">07</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-shield-halved text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_7">Limitation of Liability</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_7_1">Flixifys provides services on a best-effort basis. To the maximum extent permitted by law:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_7">
-                <li>We are not liable for any indirect, incidental, special, or consequential damages arising from the use of our services</li>
-                <li>Our total liability shall not exceed the total amount paid by the Client for the specific project in question</li>
-                <li>We are not responsible for third-party service outages (Shopify, payment gateways, apps, hosting providers)</li>
-                <li>We are not liable for business outcomes, revenue changes, or results that depend on factors outside our control</li>
-              </ul>
-              <div class="warning-box"><p><i class="fas fa-triangle-exclamation"></i><span data-i18n="t_box_7"><strong>Note:</strong> We build and optimize stores for conversion, but actual sales results depend on many external factors including product-market fit, marketing efforts, pricing strategy, and customer service.</span></p></div>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-8">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">08</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-eye-slash text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_8">Confidentiality</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_8_1">Both parties agree to maintain the confidentiality of proprietary information shared during the course of the project. This includes but is not limited to:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_8">
-                <li>Business strategies, plans, and financial information</li>
-                <li>Customer data and analytics</li>
-                <li>Technical specifications and proprietary code</li>
-                <li>Design concepts and unreleased product information</li>
-              </ul>
-              <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_8_2">This confidentiality obligation survives the termination of the agreement for a period of 2 years. We may use anonymized project descriptions and non-confidential deliverables in our portfolio unless explicitly requested otherwise in writing.</p>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-9">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">09</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-ban text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_9">Termination</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_9_1">Either party may terminate the engagement under the following conditions:</p>
-              <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_9">
-                <li><strong>By Client:</strong> Written notice with 7 days' notice period. Work completed up to termination date must be paid for. No refund for work already delivered.</li>
-                <li><strong>By Flixifys:</strong> If the Client fails to provide required inputs, make payments, or respond to communications for 14 consecutive days, we may terminate the project with written notice.</li>
-                <li><strong>For Cause:</strong> Either party may terminate immediately if the other party materially breaches these terms and fails to cure the breach within 7 days of receiving written notice.</li>
-              </ul>
-              <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_9_2">Upon termination, the Client will receive all completed deliverables for which payment has been made.</p>
-            </div>
-          </div>
-
-          <div class="content-section" id="t-10">
-            <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
-              <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">10</span>
-              <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-scale-balanced text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_10">Governing Law</span></h2>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_10_1">These Terms and Conditions shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the courts in India.</p>
-              <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_10_2">We encourage resolving any disputes through direct communication first. If a resolution cannot be reached, parties agree to attempt mediation before pursuing legal action.</p>
-              <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_10_3">For any questions regarding these Terms, please contact us at <a href="mailto:legal@flixifys.com" class="text-[var(--accent)] link-underline">legal@flixifys.com</a>.</p>
-            </div>
-          </div>
-
-        </div>
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-10 space-y-8">
+      
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">01</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-handshake text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_1">Agreement to Terms</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_1_1">By accessing our website <a href="https://flixifys.com" class="text-[var(--accent)] link-underline">flixifys.com</a> and engaging our services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our services or website.</p>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_1_2">These terms constitute a legally binding agreement between you ("Client") and Flixifys ("Company," "We," "Us," or "Our"). We reserve the right to update these terms at any time, and continued use of our services after changes constitutes acceptance of the revised terms.</p>
+        <div class="highlight-box"><p><i class="fas fa-info-circle"></i><span data-i18n="t_box_1"><strong>Last Updated:</strong> January 15, 2025. We recommend reviewing this page periodically for any changes.</span></p></div>
       </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">02</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-briefcase text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_2">Services Description</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_2_1">Flixifys provides Shopify-based ecommerce services including but not limited to:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_2">
+          <li>Shopify store design and theme customization</li>
+          <li>Custom Shopify development (Liquid, HTML, CSS, JavaScript)</li>
+          <li>Page speed optimization and performance auditing</li>
+          <li>Mobile-first responsive design and optimization</li>
+          <li>Platform migration (WooCommerce, Magento, Custom to Shopify)</li>
+          <li>Third-party app integration and configuration</li>
+          <li>Ongoing maintenance, support, and store management</li>
+          <li>Conversion rate optimization and UX consulting</li>
+        </ul>
+        <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_2_2">The specific scope of services for each project will be outlined in a separate proposal or Statement of Work (SOW) agreed upon by both parties before work commences.</p>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">03</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-timeline text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_3">Project Process & Timeline</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_3_1">Our standard project workflow includes Discovery, Design, Development, Testing, and Launch phases. Timelines for each project are estimated based on scope complexity and will be communicated in the project proposal.</p>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_3_2">Timelines are estimates and may be affected by:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_3">
+          <li>Delays in providing required assets, content, or feedback from the Client</li>
+          <li>Scope changes requested after project commencement</li>
+          <li>Third-party service outages or API limitations</li>
+          <li>Unforeseen technical complexities</li>
+        </ul>
+        <div class="warning-box"><p><i class="fas fa-clock"></i><span data-i18n="t_box_3"><strong>Important:</strong> Timeline extensions caused by Client delays do not constitute a breach of service on our part. We will communicate any adjustments proactively.</span></p></div>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">04</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-indian-rupee-sign text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_4">Payments & Refunds</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_4_1">Payment terms are specific to each project and will be detailed in the project proposal. Standard payment structures include:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_4">
+          <li><strong>50% Advance:</strong> Due before project commencement to secure your slot and begin work</li>
+          <li><strong>50% Final:</strong> Due upon project completion, before final file handover or store transfer</li>
+          <li><strong>Milestone Payments:</strong> For larger projects, payments may be split across defined milestones</li>
+        </ul>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_4_2">Payments can be made via bank transfer, UPI, or other methods agreed upon. Invoices will be provided for all transactions.</p>
+        <h3 class="font-display text-2xl mb-3 mt-6" data-i18n="t_h3_4">Refund Policy</h3>
+        <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_4_3">Since our services involve customized, digital work created specifically for each Client, refunds are generally not applicable once work has commenced. However, we will work with you to resolve any concerns. Refund requests must be submitted within 7 days of the relevant payment and will be evaluated on a case-by-case basis.</p>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">05</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-copyright text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_5">Intellectual Property</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_5_1">Upon full payment completion, the Client receives ownership of the final deliverables created specifically for their project, including:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_5_1">
+          <li>Custom-designed layouts and visual elements</li>
+          <li>Custom-coded features and functionality</li>
+          <li>Configured store settings and integrations</li>
+        </ul>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_5_2">The following remain the property of Flixifys:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_5_2">
+          <li>Underlying code frameworks, libraries, and reusable components</li>
+          <li>Proprietary tools, processes, and methodologies</li>
+          <li>Pre-built templates or design systems not created specifically for the Client</li>
+        </ul>
+        <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_5_3">Third-party assets (stock photos, fonts, plugins) are subject to their respective license terms. We ensure all third-party assets used are properly licensed for commercial use.</p>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">06</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-user-check text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_6">Client Responsibilities</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_6_1">To ensure smooth project delivery, the Client agrees to:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_6">
+          <li>Provide all required content, assets, brand guidelines, and access credentials in a timely manner</li>
+          <li>Respond to review requests and provide feedback within agreed timeframes</li>
+          <li>Ensure all provided content (text, images, videos) does not infringe on third-party rights</li>
+          <li>Maintain an active Shopify account and necessary app subscriptions</li>
+          <li>Review and approve deliverables at each stage before proceeding</li>
+        </ul>
+        <div class="highlight-box"><p><i class="fas fa-lightbulb"></i><span data-i18n="t_box_6"><strong>Tip:</strong> Delays in client feedback are the most common cause of timeline extensions. We recommend designating a single point of contact for faster decision-making.</span></p></div>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">07</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-shield-halved text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_7">Limitation of Liability</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_7_1">Flixifys provides services on a best-effort basis. To the maximum extent permitted by law:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_7">
+          <li>We are not liable for any indirect, incidental, special, or consequential damages arising from the use of our services</li>
+          <li>Our total liability shall not exceed the total amount paid by the Client for the specific project in question</li>
+          <li>We are not responsible for third-party service outages (Shopify, payment gateways, apps, hosting providers)</li>
+          <li>We are not liable for business outcomes, revenue changes, or results that depend on factors outside our control</li>
+        </ul>
+        <div class="warning-box"><p><i class="fas fa-triangle-exclamation"></i><span data-i18n="t_box_7"><strong>Note:</strong> We build and optimize stores for conversion, but actual sales results depend on many external factors including product-market fit, marketing efforts, pricing strategy, and customer service.</span></p></div>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">08</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-eye-slash text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_8">Confidentiality</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_8_1">Both parties agree to maintain the confidentiality of proprietary information shared during the course of the project. This includes but is not limited to:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_8">
+          <li>Business strategies, plans, and financial information</li>
+          <li>Customer data and analytics</li>
+          <li>Technical specifications and proprietary code</li>
+          <li>Design concepts and unreleased product information</li>
+        </ul>
+        <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_8_2">This confidentiality obligation survives the termination of the agreement for a period of 2 years. We may use anonymized project descriptions and non-confidential deliverables in our portfolio unless explicitly requested otherwise in writing.</p>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">09</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-ban text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_9">Termination</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_9_1">Either party may terminate the engagement under the following conditions:</p>
+        <ul class="list-disc pl-6 text-[var(--fg-dim)] leading-relaxed mb-4 space-y-2 marker:text-[var(--accent)]" data-i18n="t_ul_9">
+          <li><strong>By Client:</strong> Written notice with 7 days' notice period. Work completed up to termination date must be paid for. No refund for work already delivered.</li>
+          <li><strong>By Flixifys:</strong> If the Client fails to provide required inputs, make payments, or respond to communications for 14 consecutive days, we may terminate the project with written notice.</li>
+          <li><strong>For Cause:</strong> Either party may terminate immediately if the other party materially breaches these terms and fails to cure the breach within 7 days of receiving written notice.</li>
+        </ul>
+        <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_9_2">Upon termination, the Client will receive all completed deliverables for which payment has been made.</p>
+      </div>
+
+      <div class="info-card notch-corner p-8 lg:p-10 reveal relative">
+        <span class="absolute top-0 right-0 font-mono text-xs text-[var(--accent)] tracking-[0.2em] bg-[var(--accent)]/10 py-2 px-4">10</span>
+        <h2 class="font-display text-4xl mb-6 mt-2 flex items-center gap-3"><i class="fas fa-scale-balanced text-2xl text-[var(--accent)]"></i> <span data-i18n="t_h2_10">Governing Law</span></h2>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_10_1">These Terms and Conditions shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the courts in India.</p>
+        <p class="text-[var(--fg-dim)] leading-relaxed mb-4" data-i18n="t_p_10_2">We encourage resolving any disputes through direct communication first. If a resolution cannot be reached, parties agree to attempt mediation before pursuing legal action.</p>
+        <p class="text-[var(--fg-dim)] leading-relaxed" data-i18n="t_p_10_3">For any questions regarding these Terms, please contact us at <a href="mailto:legal@flixifys.com" class="text-[var(--accent)] link-underline">legal@flixifys.com</a>.</p>
+      </div>
+
     </div>
   </section>
 
@@ -499,7 +441,7 @@
             <li><a href="/blog/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_blog">Blog</a></li>
             <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_referral">Referral Program</a></li>
             <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Contact Us</a></li>
-            <li><a href="/support/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Support</a></li>
+            <li><a href="/support/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_support">Support</a></li>
           </ul>
         </div>
         
@@ -562,37 +504,6 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
 
-    // TOC Smooth Scroll & Active Link
-    const header = document.getElementById('header');
-    const tocLinks = document.querySelectorAll('.toc-link');
-    const tocSections = document.querySelectorAll('.content-section[id]');
-
-    tocLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        const t = document.getElementById(this.getAttribute('data-target'));
-        if (t) {
-          const top = t.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 24;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-        tocLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    window.addEventListener('scroll', function() {
-      let current = '';
-      tocSections.forEach(function(s) {
-        if (window.pageYOffset >= s.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 100) {
-          current = s.id;
-        }
-      });
-      if (current) {
-        tocLinks.forEach(function(l) {
-          l.classList.toggle('active', l.getAttribute('data-target') === current);
-        });
-      }
-    });
-
     // Grain Parallax
     const grain = document.getElementById('grain');
     let targetGrainY = 0; let currentGrainY = 0;
@@ -620,10 +531,9 @@
     // Full Language Translations Dictionary
     const translations = {
       en: {
-        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", btn_call: "Book a Free Call",
+        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", nav_support: "Support", btn_call: "Book a Free Call",
         footer_about: "A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.", footer_links: "Quick Links", footer_news: "Newsletter", footer_news_desc: "Weekly Shopify insights, case studies, and studio updates.",
         t_hero_marker: "LEGAL · BINDING TERMS", t_hero_h1_l1: "TERMS &", t_hero_h1_l2: "CONDITIONS", t_hero_p: "Please read these terms carefully before using our services or website. Engaging with Flixifys constitutes acceptance of these terms.",
-        t_toc_title: "On This Page", t_toc_1: "Agreement to Terms", t_toc_2: "Services Description", t_toc_3: "Project Process & Timeline", t_toc_4: "Payments & Refunds", t_toc_5: "Intellectual Property", t_toc_6: "Client Responsibilities", t_toc_7: "Limitation of Liability", t_toc_8: "Confidentiality", t_toc_9: "Termination", t_toc_10: "Governing Law",
         t_h2_1: "Agreement to Terms", t_p_1_1: `By accessing our website <a href="https://flixifys.com" class="text-[var(--accent)] link-underline">flixifys.com</a> and engaging our services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our services or website.`, t_p_1_2: `These terms constitute a legally binding agreement between you ("Client") and Flixifys ("Company," "We," "Us," or "Our"). We reserve the right to update these terms at any time, and continued use of our services after changes constitutes acceptance of the revised terms.`, t_box_1: `<strong>Last Updated:</strong> January 15, 2025. We recommend reviewing this page periodically for any changes.`,
         t_h2_2: "Services Description", t_p_2_1: "Flixifys provides Shopify-based ecommerce services including but not limited to:", t_ul_2: `<li>Shopify store design and theme customization</li><li>Custom Shopify development (Liquid, HTML, CSS, JavaScript)</li><li>Page speed optimization and performance auditing</li><li>Mobile-first responsive design and optimization</li><li>Platform migration (WooCommerce, Magento, Custom to Shopify)</li><li>Third-party app integration and configuration</li><li>Ongoing maintenance, support, and store management</li><li>Conversion rate optimization and UX consulting</li>`, t_p_2_2: "The specific scope of services for each project will be outlined in a separate proposal or Statement of Work (SOW) agreed upon by both parties before work commences.",
         t_h2_3: "Project Process & Timeline", t_p_3_1: "Our standard project workflow includes Discovery, Design, Development, Testing, and Launch phases. Timelines for each project are estimated based on scope complexity and will be communicated in the project proposal.", t_p_3_2: "Timelines are estimates and may be affected by:", t_ul_3: `<li>Delays in providing required assets, content, or feedback from the Client</li><li>Scope changes requested after project commencement</li><li>Third-party service outages or API limitations</li><li>Unforeseen technical complexities</li>`, t_box_3: `<strong>Important:</strong> Timeline extensions caused by Client delays do not constitute a breach of service on our part. We will communicate any adjustments proactively.`,
@@ -636,10 +546,9 @@
         t_h2_10: "Governing Law", t_p_10_1: "These Terms and Conditions shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the courts in India.", t_p_10_2: "We encourage resolving any disputes through direct communication first. If a resolution cannot be reached, parties agree to attempt mediation before pursuing legal action.", t_p_10_3: `For any questions regarding these Terms, please contact us at <a href="mailto:legal@flixifys.com" class="text-[var(--accent)] link-underline">legal@flixifys.com</a>.`
       },
       hi: {
-        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", btn_call: "निःशुल्क कॉल बुक करें",
+        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", nav_support: "सहायता", btn_call: "निःशुल्क कॉल बुक करें",
         footer_about: "एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो जो ब्रांड्स को बनाने, अनुकूलित करने और स्केल करने में मदद करता है।", footer_links: "त्वरित लिंक", footer_news: "न्यूज़लेटर", footer_news_desc: "साप्ताहिक शॉपिफाई इनसाइट्स, केस स्टडीज़ और स्टूडियो अपडेट।",
         t_hero_marker: "कानूनी · बाध्यकारी शर्तें", t_hero_h1_l1: "नियम और", t_hero_h1_l2: "शर्तें", t_hero_p: "कृपया हमारी सेवाओं या वेबसाइट का उपयोग करने से पहले इन नियमों को ध्यान से पढ़ें। Flixifys के साथ जुड़ना इन शर्तों की स्वीकृति माना जाएगा।",
-        t_toc_title: "इस पृष्ठ पर", t_toc_1: "नियमों से सहमति", t_toc_2: "सेवाओं का विवरण", t_toc_3: "प्रोजेक्ट प्रक्रिया और समयरेखा", t_toc_4: "भुगतान और रिफंड", t_toc_5: "बौद्धिक संपदा", t_toc_6: "ग्राहक की जिम्मेदारियाँ", t_toc_7: "देनदारी की सीमा", t_toc_8: "गोपनीयता", t_toc_9: "समाप्ति", t_toc_10: "शासित कानून",
         t_h2_1: "नियमों से सहमति", t_p_1_1: `हमारी वेबसाइट <a href="https://flixifys.com" class="text-[var(--accent)] link-underline">flixifys.com</a> तक पहुँचने और हमारी सेवाओं का उपयोग करके, आप इन नियमों और शर्तों से बंधे होने के लिए सहमत हैं। यदि आप इन नियमों के किसी भी हिस्से से सहमत नहीं हैं, तो आपको हमारी सेवाओं या वेबसाइट का उपयोग नहीं करना चाहिए।`, t_p_1_2: `ये नियम आप ("ग्राहक") और Flixifys ("कंपनी," "हम," या "हमारा") के बीच एक कानूनी रूप से बाध्यकारी समझौता हैं। हम किसी भी समय इन नियमों को अपडेट करने का अधिकार सुरक्षित रखते हैं।`, t_box_1: `<strong>अंतिम अपडेट:</strong> 15 जनवरी, 2025। हम किसी भी बदलाव के लिए इस पृष्ठ की समय-समय पर समीक्षा करने की सलाह देते हैं।`,
         t_h2_2: "सेवाओं का विवरण", t_p_2_1: "Flixifys शॉपिफाई-आधारित ईकॉमर्स सेवाएँ प्रदान करता है जिनमें शामिल हैं लेकिन केवल इन्हीं तक सीमित नहीं हैं:", t_ul_2: `<li>शॉपिफाई स्टोर डिजाइन और थीम कस्टमाइज़ेशन</li><li>कस्टम शॉपिफाई डेवलपमेंट (Liquid, HTML, CSS, JavaScript)</li><li>पेज स्पीड ऑप्टिमाइज़ेशन और परफॉरमेंस ऑडिटिंग</li><li>मोबाइल-फर्स्ट रिस्पॉन्सिव डिजाइन और ऑप्टिमाइज़ेशन</li><li>प्लेटफ़ॉर्म माइग्रेशन (WooCommerce, Magento, Custom to Shopify)</li><li>थर्ड-पार्टी ऐप इंटीग्रेशन और कॉन्फ़िगरेशन</li><li>चल रही रखरखाव, सहायता, और स्टोर प्रबंधन</li><li>कन्वर्ज़न रेट ऑप्टिमाइज़ेशन और UX परामर्श</li>`, t_p_2_2: "प्रत्येक प्रोजेक्ट के लिए सेवाओं का विशिष्ट दायरा एक अलग प्रस्ताव या कार्य विवरण (SOW) में बताया जाएगा।",
         t_h2_3: "प्रोजेक्ट प्रक्रिया और समयरेखा", t_p_3_1: "हमारा मानक प्रोजेक्ट वर्कफ़्लो डिस्कवरी, डिजाइन, डेवलपमेंट, टेस्टिंग और लॉन्च चरण शामिल हैं। समयरेखा प्रोजेक्ट प्रस्ताव में बताई जाएगी।", t_p_3_2: "समयरेखा अनुमानित हैं और इन प्रभावित हो सकती हैं:", t_ul_3: `<li>ग्राहक द्वारा आवश्यक सामग्री या प्रतिक्रिया देने में देरी</li><li>प्रोजेक्ट शुरू होने के बाद दायरे में बदलाव</li><li>थर्ड-पार्टी सेवा आउटेज या API सीमाएं</li><li>अप्रत्याशित तकनीकी जटिलताएं</li>`, t_box_3: `<strong>महत्वपूर्ण:</strong> ग्राहक की देरी के कारण समयरेखा बढ़ना हमारी सेवा का उल्लंघन नहीं है। हम किसी भी समायोजन के बारे में सक्रिय रूप से सूचित करेंगे।`,
@@ -652,10 +561,9 @@
         t_h2_10: "शासित कानून", t_p_10_1: "इन नियमों और शर्तों पर भारत के कानूनों का शासन होगा। विवाद भारत की अदालतों के अधिकार क्षेत्र के अधीन होंगे।", t_p_10_2: "हम सीधे संवाद के माध्यम से विवादों को सुलझाने के लिए प्रोत्साहित करते हैं।", t_p_10_3: `इन शर्तों के संबंध में किसी भी प्रश्न के लिए, कृपया हमसे <a href="mailto:legal@flixifys.com" class="text-[var(--accent)] link-underline">legal@flixifys.com</a> पर संपर्क करें।`
       },
       zh: {
-        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", btn_call: "预约免费通话",
+        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", nav_support: "支持", btn_call: "预约免费通话",
         footer_about: "一家专注于 Shopify 的工作室，帮助品牌构建和扩展。", footer_links: "快速链接", footer_news: "订阅", footer_news_desc: "每周 Shopify 洞察和更新。",
         t_hero_marker: "法律 · 具约束力的条款", t_hero_h1_l1: "条款和", t_hero_h1_l2: "条件", t_hero_p: "在使用我们的服务或网站之前，请仔细阅读这些条款。使用 Flixifys 即表示接受这些条款。",
-        t_toc_title: "本页内容", t_toc_1: "同意条款", t_toc_2: "服务描述", t_toc_3: "项目流程与时间表", t_toc_4: "付款与退款", t_toc_5: "知识产权", t_toc_6: "客户责任", t_toc_7: "责任限制", t_toc_8: "保密", t_toc_9: "终止", t_toc_10: "管辖法律",
         t_h2_1: "同意条款", t_p_1_1: `访问我们的网站 <a href="https://flixifys.com" class="text-[var(--accent)] link-underline">flixifys.com</a> 并使用我们的服务，即表示您同意受这些条款和条件的约束。`, t_p_1_2: `这些条款构成您（“客户”）与 Flixifys（“公司”、“我们”）之间具有法律约束力的协议。`, t_box_1: `<strong>最后更新：</strong> 2025年1月15日。`,
         t_h2_2: "服务描述", t_p_2_1: "Flixifys 提供基于 Shopify 的电商服务，包括但不限于：", t_ul_2: `<li>Shopify 商店设计和主题定制</li><li>Shopify 定制开发 (Liquid, HTML, CSS, JavaScript)</li><li>页面速度优化和性能审计</li><li>移动优先的响应式设计</li><li>平台迁移 (WooCommerce, Magento 等)</li><li>第三方应用集成</li><li>持续维护和支持</li><li>转化率优化和 UX 咨询</li>`, t_p_2_2: "每个项目的具体服务范围将在单独的提案或工作说明书 (SOW) 中概述。",
         t_h2_3: "项目流程与时间表", t_p_3_1: "我们的标准项目工作流程包括发现、设计、开发、测试和发布阶段。", t_p_3_2: "时间表是估计值，可能会受到以下因素的影响：", t_ul_3: `<li>客户提供所需资产或反馈的延迟</li><li>项目开始后要求的范围变更</li><li>第三方服务中断或 API 限制</li><li>不可预见的技术复杂性</li>`, t_box_3: `<strong>重要：</strong> 客户延迟导致的时间表延长不构成我们的服务违约。`,
@@ -668,10 +576,9 @@
         t_h2_10: "管辖法律", t_p_10_1: "这些条款和条件受印度法律管辖。任何争议均应提交印度法院的专属管辖权。", t_p_10_2: "我们鼓励首先通过直接沟通解决争议。", t_p_10_3: `如有任何问题，请联系 <a href="mailto:legal@flixifys.com" class="text-[var(--accent)] link-underline">legal@flixifys.com</a>。`
       },
       es: {
-        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", btn_call: "Reservar Llamada Gratis",
+        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", nav_support: "Soporte", btn_call: "Reservar Llamada Gratis",
         footer_about: "Un estudio digital enfocado en Shopify que ayuda a las marcas a crecer.", footer_links: "Enlaces", footer_news: "Boletín", footer_news_desc: "Información semanal de Shopify.",
         t_hero_marker: "LEGAL · TÉRMINOS VINCULANTES", t_hero_h1_l1: "TÉRMINOS Y", t_hero_h1_l2: "CONDICIONES", t_hero_p: "Lea estos términos cuidadosamente antes de usar nuestros servicios. Usar Flixifys constituye la aceptación de estos términos.",
-        t_toc_title: "En Esta Página", t_toc_1: "Acuerdo de Términos", t_toc_2: "Descripción de Servicios", t_toc_3: "Proceso y Cronograma", t_toc_4: "Pagos y Reembolsos", t_toc_5: "Propiedad Intelectual", t_toc_6: "Responsabilidades del Cliente", t_toc_7: "Limitación de Responsabilidad", t_toc_8: "Confidencialidad", t_toc_9: "Terminación", t_toc_10: "Ley Aplicable",
         t_h2_1: "Acuerdo de Términos", t_p_1_1: `Al acceder a nuestro sitio web <a href="https://flixifys.com" class="text-[var(--accent)] link-underline">flixifys.com</a> y usar nuestros servicios, usted acepta estar sujeto a estos Términos.`, t_p_1_2: `Estos términos constituyen un acuerdo legalmente vinculante entre usted ("Cliente") y Flixifys ("Nosotros").`, t_box_1: `<strong>Última Actualización:</strong> 15 de enero de 2025.`,
         t_h2_2: "Descripción de Servicios", t_p_2_1: "Flixifys proporciona servicios de ecommerce basados en Shopify incluyendo pero no limitado a:", t_ul_2: `<li>Diseño de tienda Shopify y personalización de temas</li><li>Desarrollo personalizado de Shopify (Liquid, HTML, CSS, JS)</li><li>Optimización de velocidad de página</li><li>Diseño responsivo móvil</li><li>Migración de plataforma (WooCommerce, Magento)</li><li>Integración de aplicaciones de terceros</li><li>Mantenimiento continuo y soporte</li><li>Optimización de tasa de conversión</li>`, t_p_2_2: "El alcance específico de los servicios se describirá en una propuesta separada.",
         t_h2_3: "Proceso y Cronograma", t_p_3_1: "Nuestro flujo de trabajo incluye fases de Descubrimiento, Diseño, Desarrollo, Pruebas y Lanzamiento.", t_p_3_2: "Los cronogramas son estimaciones y pueden verse afectados por:", t_ul_3: `<li>Retrasos en la provisión de activos por parte del Cliente</li><li>Cambios de alcance solicitados</li><li>Interrupciones de servicios de terceros</li><li>Complejidades técnicas imprevistas</li>`, t_box_3: `<strong>Importante:</strong> Las extensiones causadas por retrasos del Cliente no constituyen incumplimiento de nuestro servicio.`,
@@ -684,10 +591,9 @@
         t_h2_10: "Ley Aplicable", t_p_10_1: "Estos Términos se regirán por las leyes de India. Las disputas estarán sujetas a la jurisdicción de los tribunales de India.", t_p_10_2: "Fomentamos resolver disputas mediante comunicación directa.", t_p_10_3: `Para preguntas, contáctenos en <a href="mailto:legal@flixifys.com" class="text-[var(--accent)] link-underline">legal@flixifys.com</a>.`
       },
       fr: {
-        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", btn_call: "Réserver Appel",
+        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", nav_support: "Support", btn_call: "Réserver Appel",
         footer_about: "Un studio numérique axé sur Shopify aidant les marques à croître.", footer_links: "Liens", footer_news: "Newsletter", footer_news_desc: "Infos Shopify hebdomadaires.",
         t_hero_marker: "LÉGAL · CONDITIONS OBLIGATOIRES", t_hero_h1_l1: "TERMES ET", t_hero_h1_l2: "CONDITIONS", t_hero_p: "Veuillez lire attentivement ces termes avant d'utiliser nos services. L'utilisation de Flixifys constitue l'acceptation de ces termes.",
-        t_toc_title: "Sur Cette Page", t_toc_1: "Accord sur les Termes", t_toc_2: "Description des Services", t_toc_3: "Processus et Calendrier", t_toc_4: "Paiements et Remboursements", t_toc_5: "Propriété Intellectuelle", t_toc_6: "Responsabilités du Client", t_toc_7: "Limitation de Responsabilité", t_toc_8: "Confidentialité", t_toc_9: "Résiliation", t_toc_10: "Loi Applicable",
         t_h2_1: "Accord sur les Termes", t_p_1_1: `En accédant à notre site <a href="https://flixifys.com" class="text-[var(--accent)] link-underline">flixifys.com</a>, vous acceptez d'être lié par ces Termes.`, t_p_1_2: `Ces termes constituent un accord légalement contraignant entre vous ("Client") et Flixifys ("Nous").`, t_box_1: `<strong>Dernière Mise à Jour :</strong> 15 janvier 2025.`,
         t_h2_2: "Description des Services", t_p_2_1: "Flixifys fournit des services e-commerce basés sur Shopify, incluant mais sans s'y limiter :", t_ul_2: `<li>Conception de boutique Shopify et personnalisation</li><li>Développement sur mesure (Liquid, HTML, CSS, JS)</li><li>Optimisation de la vitesse</li><li>Design responsive mobile-first</li><li>Migration de plateforme (WooCommerce, Magento)</li><li>Intégration d'applications tierces</li><li>Maintenance et support continus</li><li>Optimisation du taux de conversion</li>`, t_p_2_2: "La portée spécifique sera décrite dans une proposition séparée.",
         t_h2_3: "Processus et Calendrier", t_p_3_1: "Notre flux de travail comprend la Découverte, la Conception, le Développement, les Tests et le Lancement.", t_p_3_2: "Les calendriers sont des estimations et peuvent être affectés par :", t_ul_3: `<li>Retards dans la fourniture d'actifs par le Client</li><li>Changements de portée demandés</li><li>Pannes de services tiers</li><li>Complexités techniques imprévues</li>`, t_box_3: `<strong>Important :</strong> Les retards du Client ne constituent pas une violation de notre service.`,
