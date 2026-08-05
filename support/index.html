@@ -1,248 +1,813 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Support — Flixifys</title>
-  <link rel="icon" type="image/png" sizes="48x48" href="/assets/images/Favicon.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#050510;--surface:#0a0a1a;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:#e2e8f0;--muted:#64748b;--accent:#8b5cf6;--accent2:#22c55e;--glow:rgba(139,92,246,0.15)}
-    ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#7c3aed}*{scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
-    html{scroll-behavior:smooth;overflow-x:hidden}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased;position:relative;z-index:1}
-    body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4}
-    a{text-decoration:none;color:inherit}img{max-width:100%;display:block}.container{max-width:1280px;margin:0 auto;padding:0 24px}
-    .page-loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}.page-loader.hide{opacity:0;visibility:hidden;pointer-events:none}.loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-    .header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:18px 0;transition:all .4s cubic-bezier(.4,0,.2,1)}.header.scrolled{background:rgba(5,5,16,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:12px 0}.header-inner{display:flex;align-items:center;justify-content:space-between}.logo img{height:38px;width:auto;transition:.3s}.header.scrolled .logo img{height:32px}.nav{display:flex;align-items:center;gap:32px}.nav a{font-size:14px;font-weight:500;color:var(--muted);position:relative;transition:color .3s}.nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);border-radius:2px;transition:width .3s}.nav a:hover{color:#fff}.nav a:hover::after{width:100%}.nav-cta{padding:10px 24px;border-radius:100px;font-size:14px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;transition:.3s}.nav a.nav-cta::after{display:none}.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}.menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
-    .drawer{position:fixed;top:0;right:0;bottom:0;width:280px;background:var(--surface);border-left:1px solid var(--border);padding:28px 24px;z-index:200;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:20px;overflow-y:auto;will-change:transform;contain:layout}.drawer.open{transform:translateX(0)}.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer-head span{font-size:15px;font-weight:700;color:#fff}.drawer-head button{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;transition:.2s;padding:5px}.drawer-head button:hover{color:#fff}.drawer a{font-size:15px;color:var(--muted);font-weight:500;transition:.2s;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03)}.drawer a:hover{color:#fff}.drawer-cta{margin-top:auto;padding:14px;text-align:center;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;font-weight:600;font-size:15px}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.3s;z-index:150}.overlay.open{opacity:1;pointer-events:auto}
-    .page-hero{padding:140px 0 60px;position:relative;overflow:hidden}.page-hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}.page-hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.25;animation:orbFloat 10s ease-in-out infinite;will-change:transform}.page-hero-orb.o1{width:500px;height:500px;background:var(--accent);top:-15%;right:-5%}.page-hero-orb.o2{width:300px;height:300px;background:var(--accent2);bottom:-10%;left:-5%;animation-delay:3s}@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}.page-hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 30%,transparent 70%)}.page-hero-content{position:relative;z-index:1;text-align:center}.page-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:100px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);font-size:13px;font-weight:600;color:var(--accent);margin-bottom:20px;backdrop-filter:blur(8px)}.page-hero-badge i{font-size:11px}.page-hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.1;letter-spacing:-2px;color:#fff;margin-bottom:16px}.page-hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.page-hero p{font-size:17px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.75}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support | Flixifys — Shopify Studio</title>
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/images/Favicon.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-darker: #050505;
+    --bg-card: #141414;
+    --bg-card-hover: #1a1a1a;
+    --fg: #f5f5f5;
+    --fg-dim: #c0c0c0;
+    --muted: #6a6a6a;
+    --accent: #00E676; /* Premium Match Green */
+    --accent-bright: #5BFFAA;
+    --accent-dim: #00B25C;
+    --accent-glow: rgba(0, 230, 118, 0.45);
+    --silver: #C8C8C8;
+    --silver-dim: #8a8a8a; 
+    --border: #1f1f1f;
+    --border-light: #2a2a2a;
+  }
+  
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
-    .support-section{position:relative;z-index:1;padding-bottom:100px}
-    .support-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start}
-    .support-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:36px;backdrop-filter:blur(10px);transition:border-color .3s}
-    .support-card:hover{border-color:rgba(139,92,246,.2)}
-    .support-card h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:28px;display:flex;align-items:center;gap:10px}
-    .support-card h2 i{color:var(--accent);font-size:18px}
-    .form-group{margin-bottom:20px}
-    .form-group label{display:block;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-    .form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;transition:all .3s;outline:none;-webkit-appearance:none;appearance:none}
-    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);opacity:.6}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,92,246,.1);background:rgba(139,92,246,.03)}
-    .form-group textarea{resize:vertical;min-height:130px}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .form-submit{width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;letter-spacing:.3px}
-    .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}
-    .form-submit:active{transform:translateY(0)}
-    .file-drop{border:2px dashed var(--border);border-radius:14px;padding:28px;text-align:center;cursor:pointer;transition:all .3s}
-    .file-drop:hover,.file-drop.dragover{border-color:var(--accent);background:rgba(139,92,246,.03)}
-    .file-drop i{font-size:28px;color:var(--muted);margin-bottom:8px}
-    .file-drop p{font-size:13px;color:var(--muted)}
-    .file-drop .file-name{color:var(--accent);font-weight:600;margin-top:4px}
-    .file-drop input{display:none}
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-darker); }
+  ::-webkit-scrollbar-thumb { background: var(--accent-dim); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Archivo', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Typography */
+  .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.01em; }
+  .font-heading { font-family: 'Oswald', sans-serif; }
+  .font-body { font-family: 'Archivo', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+  
+  /* Grain overlay */
+  .grain {
+    position: fixed; inset: -10%; pointer-events: none; z-index: 200; opacity: 0.08;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay; will-change: transform;
+  }
+  
+  /* Background texture */
+  .bg-textured {
+    background-color: var(--bg);
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(0, 230, 118, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(80, 80, 80, 0.06) 0%, transparent 40%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23r)' opacity='0.4'/></svg>");
+    background-blend-mode: normal, normal, overlay;
+  }
+  
+  /* Section reveal */
+  .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: var(--delay, 0s); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
 
-    .contact-methods{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
-    .contact-method{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid var(--border);transition:all .3s;cursor:pointer}
-    .contact-method:hover{border-color:rgba(139,92,246,.25);background:rgba(139,92,246,.03);transform:translateX(4px)}
-    .contact-method-icon{width:44px;height:44px;min-width:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;background:linear-gradient(135deg,var(--accent),#7c3aed)}
-    .contact-method-icon.green{background:linear-gradient(135deg,var(--accent2),#16a34a)}
-    .contact-method-text h4{font-size:14px;font-weight:600;color:#fff;margin-bottom:2px}
-    .contact-method-text p{font-size:13px;color:var(--muted)}
+  /* Hero overlay */
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: 
+      linear-gradient(180deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.45) 28%, rgba(10,10,10,0.55) 65%, rgba(10,10,10,0.98) 100%),
+      linear-gradient(90deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.5) 100%),
+      radial-gradient(ellipse at 50% 60%, rgba(0, 230, 118, 0.18) 0%, transparent 55%);
+  }
+  
+  /* Headline chars reveal */
+  .headline-line { overflow: hidden; display: block; }
+  .headline-line span { display: inline-block; transform: translateY(110%); transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1); }
+  .in-view .headline-line span { transform: translateY(0); }
+  .headline-line:nth-child(2) span { transition-delay: 0.1s; }
+  .headline-line:nth-child(3) span { transition-delay: 0.2s; }
+  
+  /* Text effects */
+  .text-stroke { -webkit-text-stroke: 1.5px var(--silver-dim); color: transparent; }
+  
+  /* Underline animation */
+  .link-underline { position: relative; display: inline-block; }
+  .link-underline::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--accent); transition: width 0.4s ease; }
+  .link-underline:hover::after { width: 100%; }
+  
+  /* Section divider */
+  .section-marker { display: inline-flex; align-items: center; gap: 0.75rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; }
+  .section-marker::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+  
+  /* Card hover light */
+  .info-card { background: var(--bg-card); border: 1px solid var(--border); transition: border-color 0.4s, background 0.4s, box-shadow 0.4s; }
+  .info-card:hover { border-color: var(--accent-dim); background: var(--bg-card-hover); box-shadow: 0 10px 30px -5px rgba(0, 230, 118, 0.1); }
+  
+  /* Corner notch decoration */
+  .notch-corner { position: relative; }
+  .notch-corner::before, .notch-corner::after { content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid var(--accent); pointer-events: none; }
+  .notch-corner::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .notch-corner::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+  
+  /* Nav link */
+  .nav-link { position: relative; font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); transition: color 0.3s; }
+  .nav-link:hover, .nav-link.active { color: var(--fg); }
+  .nav-link::before { content: ''; position: absolute; left: -14px; top: 50%; transform: translateY(-50%) scaleY(0); width: 4px; height: 4px; background: var(--accent); transition: transform 0.3s; }
+  .nav-link:hover::before, .nav-link.active::before { transform: translateY(-50%) scaleY(1); }
 
-    .response-card{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,197,94,.08));border:1px solid rgba(139,92,246,.15);border-radius:18px;padding:28px;margin-bottom:28px}
-    .response-card h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-    .response-card h3 i{color:var(--accent2)}
-    .response-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .response-stat{text-align:center;padding:14px 8px;border-radius:12px;background:rgba(0,0,0,.25)}
-    .response-stat .num{font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .response-stat .label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+  /* Mobile Drawer */
+  .mobile-drawer { position: fixed; top: 0; right: 0; width: 300px; height: 100vh; background: var(--bg-darker); border-left: 1px solid var(--border); z-index: 110; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); padding: 2rem 1.5rem; display: flex; flex-direction: column; }
+  .mobile-drawer.open { transform: translateX(0); }
+  .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 105; opacity: 0; pointer-events: none; transition: 0.3s; }
+  .drawer-overlay.open { opacity: 1; pointer-events: auto; }
 
-    .faq-mini .faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;transition:all .3s;backdrop-filter:blur(10px)}
-    .faq-mini .faq-item:hover{border-color:rgba(139,92,246,.2)}
-    .faq-mini .faq-item.open{border-color:rgba(139,92,246,.3);box-shadow:0 8px 30px rgba(0,0,0,.15)}
-    .faq-mini .faq-q{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;transition:.2s}
-    .faq-mini .faq-q:hover{background:rgba(139,92,246,.03)}
-    .faq-mini .faq-q-text{flex:1;font-size:14px;font-weight:600;color:#fff}
-    .faq-mini .faq-q-arrow{width:28px;height:28px;min-width:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);color:var(--muted);font-size:11px;transition:all .3s}
-    .faq-mini .faq-item.open .faq-q-arrow{background:var(--accent);color:#fff;transform:rotate(180deg)}
-    .faq-mini .faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
-    .faq-mini .faq-a-inner{padding:0 20px 18px;font-size:13px;color:var(--muted);line-height:1.8}
-
-    .toast{position:fixed;bottom:28px;right:28px;z-index:500;padding:18px 24px;border-radius:14px;background:var(--surface);border:1px solid rgba(34,197,94,.3);display:flex;align-items:center;gap:12px;transform:translateY(120px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 12px 40px rgba(0,0,0,.4);pointer-events:none}
-    .toast.show{transform:translateY(0);opacity:1;pointer-events:auto}
-    .toast-icon{width:36px;height:36px;min-width:36px;border-radius:50%;background:rgba(34,197,94,.15);display:flex;align-items:center;justify-content:center;color:var(--accent2);font-size:16px}
-    .toast-text h4{font-size:14px;font-weight:600;color:#fff}
-    .toast-text p{font-size:12px;color:var(--muted);margin-top:1px}
-
-    .footer{padding:80px 0 40px;border-top:1px solid var(--border);position:relative;z-index:1}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px}.footer h4{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px}.footer p{font-size:14px;color:var(--muted);line-height:1.8}.footer-links{display:flex;flex-direction:column;gap:10px}.footer-links a{font-size:14px;color:var(--muted);transition:.2s;display:flex;align-items:center;gap:8px}.footer-links a i{font-size:10px;color:var(--accent);opacity:0;transition:.2s}.footer-links a:hover{color:#fff}.footer-links a:hover i{opacity:1;transform:translateX(2px)}.footer-socials{display:flex;gap:14px;margin-top:16px}.footer-socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:.3s}.footer-socials a:hover{background:var(--accent);color:#fff;transform:translateY(-3px);box-shadow:0 8px 20px rgba(139,92,246,.3)}.footer-bottom{text-align:center;font-size:13px;color:var(--muted);padding-top:32px;border-top:1px solid var(--border)}
-    .wa-float{position:fixed;right:24px;bottom:24px;z-index:90}.wa-btn{width:56px;height:56px;border-radius:50%;background:#22c55e;color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(34,197,94,.35);transition:transform .3s;position:relative;z-index:2}.wa-btn:hover{transform:scale(1.08)}.wa-tip{position:absolute;bottom:68px;right:0;padding:10px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:13px;font-weight:500;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(6px);transition:all .25s ease}.wa-tip::after{content:'';position:absolute;top:100%;right:20px;border:6px solid transparent;border-top-color:var(--surface)}.wa-float:hover .wa-tip{opacity:1;transform:translateY(0)}
-    .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
-    @media(max-width:768px){.nav{display:none}.menu-btn{display:block}.header-inner{justify-content:center;position:relative}.header-inner .logo{flex:1;display:flex;justify-content:center;align-items:center}.menu-btn{position:absolute;right:24px;top:50%;transform:translateY(-50%);z-index:10}.page-hero{padding:110px 0 40px}.page-hero-orb.o1{width:250px;height:250px}.page-hero-orb.o2{width:150px;height:150px}.support-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.response-stats{grid-template-columns:repeat(3,1fr);gap:8px}.response-stat .num{font-size:20px}.footer{padding:60px 16px 24px}.footer-grid{grid-template-columns:1fr;gap:28px}.wa-float{right:16px;bottom:16px}.wa-btn{width:52px;height:52px;font-size:22px}}
-    @media(max-width:400px){.container{padding:0 16px}.page-hero h1{font-size:28px;letter-spacing:-1px}.support-card{padding:24px 18px}.footer{padding:40px 16px 20px}.wa-float{right:12px;bottom:12px}.wa-btn{width:48px;height:48px;font-size:20px}.toast{right:12px;left:12px;bottom:12px}}
-    @media(hover:none) and (pointer:coarse){.contact-method:hover{transform:none}.footer-socials a:hover{transform:none}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-  </style>
+  /* WhatsApp Scroll Progress */
+  .wa-progress-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; }
+  .wa-progress-svg { position: absolute; inset: 0; transform: rotate(-90deg); pointer-events: none; }
+  .wa-progress-bg { fill: none; stroke: var(--border-light); stroke-width: 3; }
+  .wa-progress-circle { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 188.4; stroke-dashoffset: 188.4; transition: stroke-dashoffset 0.1s linear; }
+  .wa-btn-center { position: relative; z-index: 10; width: 48px; height: 48px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: transform 0.3s; }
+  .wa-btn-center:hover { transform: scale(1.1); color: white; }
+  
+  /* Custom Styles for Support Content */
+  .form-input { background: var(--bg-darker); border: 1px solid var(--border-light); border-radius: 6px; padding: 0.85rem 1rem; color: var(--fg); font-family: 'Oswald', sans-serif; font-size: 1rem; width: 100%; transition: border-color 0.3s; }
+  .form-input:focus { outline: none; border-color: var(--accent); }
+  .form-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+  
+  .file-drop { border: 1px dashed var(--border-light); border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s; background: var(--bg-darker); }
+  .file-drop:hover, .file-drop.dragover { border-color: var(--accent); background: rgba(0,230,118,0.05); }
+  .file-drop i { font-size: 1.5rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .file-drop p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+  
+  .contact-method { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 8px; background: var(--bg-darker); border: 1px solid var(--border); transition: all 0.3s; }
+  .contact-method:hover { border-color: var(--accent-dim); background: var(--bg-card-hover); transform: translateX(4px); }
+  .contact-method-icon { width: 40px; height: 40px; min-width: 40px; border-radius: 8px; background: rgba(0,230,118,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); }
+  
+  .response-stat { text-align: center; padding: 1rem; border-radius: 8px; background: var(--bg-darker); border: 1px solid var(--border); }
+  .response-stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); line-height: 1; }
+  .response-stat .label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+  
+  .process-step { display: flex; gap: 1rem; align-items: flex-start; }
+  .process-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; min-width: 40px; }
+  
+  .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; transition: all 0.3s ease; }
+  .faq-item:hover { border-color: var(--border-light); }
+  .faq-item.open { border-color: var(--accent-dim); background: var(--bg-card-hover); }
+  .faq-q { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; cursor: pointer; user-select: none; }
+  .faq-q-text { flex: 1; font-family: 'Oswald', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--fg); }
+  .faq-q-arrow { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,230,118,0.05); color: var(--accent); font-size: 0.75rem; transition: all 0.3s; }
+  .faq-item.open .faq-q-arrow { background: var(--accent); color: #000; transform: rotate(180deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+  .faq-a-inner { padding: 0 1.25rem 1.25rem 3rem; font-size: 0.9rem; color: var(--fg-dim); line-height: 1.7; }
+  
+  .toast { position: fixed; top: 90px; right: 24px; background: var(--bg-card); border: 1px solid var(--accent); border-left: 3px solid var(--accent); padding: 1rem 1.5rem; z-index: 150; transform: translateX(120%); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); max-width: 360px; border-radius: 8px; }
+  .toast.visible { transform: translateX(0); }
+  
+  /* Language Dropdown & Mobile Active */
+  .mobile-lang-btn.active-lang { background: var(--accent); color: #000; border-color: var(--accent) !important; font-weight: 600; }
+  
+  /* Button Fix */
+  .btn-book-call { background: #C8C8C8; color: #000; transition: opacity 0.3s; }
+  .btn-book-call:hover { opacity: 0.8; }
+</style>
 </head>
-<body>
+<body class="bg-textured">
+  <div class="grain" id="grain"></div>
+  
+  <!-- Header Fixed -->
+  <header class="header fixed top-0 left-0 right-0 z-[100] backdrop-blur-lg bg-black/90 border-b border-white/5" id="header">
+    <div class="container header-inner max-w-[1600px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
+      <div class="logo flex-shrink-0">
+        <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
+      </div>
+      <nav class="nav hidden lg:flex items-center gap-8 xl:gap-10 flex-shrink-0">
+        <a href="/about-us/" class="nav-link" data-i18n="nav_about">About Us</a>
+        <a href="/services/" class="nav-link" data-i18n="nav_services">Services</a>
+        <a href="/blog/" class="nav-link" data-i18n="nav_blog">Blog</a>
+        <a href="/referral-program/" class="nav-link" data-i18n="nav_referral">Referral Program</a>
+        <a href="/contact-us/" class="nav-link" data-i18n="nav_contact">Contact Us</a>
+      </nav>
+      
+      <div class="flex items-center gap-4 md:gap-6 flex-shrink-0">
+        <div class="relative hidden lg:block" id="langContainer">
+          <button id="langBtnDesktop" class="flex items-center justify-center gap-2 font-heading text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors py-2 px-3 border border-transparent hover:border-gray-600 w-[140px]">
+            <i class="fas fa-globe"></i>
+            <span id="currentLangDesktop">English</span>
+            <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
+          </button>
+          <div id="langDropdownDesktop" class="absolute right-0 mt-2 w-44 bg-black border border-gray-800 shadow-2xl hidden z-[110]">
+            <ul class="py-2">
+              <li><a href="#" data-lang="en" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">English</a></li>
+              <li><a href="#" data-lang="zh" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Chinese</a></li>
+              <li><a href="#" data-lang="hi" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Hindi</a></li>
+              <li><a href="#" data-lang="es" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Spanish</a></li>
+              <li><a href="#" data-lang="fr" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">French</a></li>
+            </ul>
+          </div>
+        </div>
 
-  <div class="page-loader" id="pageLoader"><div class="loader-ring"></div></div>
-
-  <header class="header" id="header">
-    <div class="container header-inner">
-      <div class="logo"><a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys"></a></div>
-      <nav class="nav"><a href="/about-us/">About Us</a><a href="/services/">Services</a><a href="/blog/">Blog</a><a href="/referral-program/">Referral Program</a><a href="/contact-us/">Contact Us</a><a class="nav-cta" href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank">Book a Free Call</a></nav>
-      <button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+        <a href="https://wa.me/919876543210" target="_blank" class="hidden lg:inline-flex items-center font-heading text-xs tracking-[0.2em] uppercase px-5 py-2.5 btn-book-call" data-i18n="btn_call">
+          Book a Free Call
+        </a>
+        <button id="menuBtn" class="lg:hidden text-white text-2xl z-[120]"><i class="fas fa-bars"></i></button>
+      </div>
     </div>
   </header>
 
-  <div class="drawer" id="drawer"><div class="drawer-head"><span>Menu</span><button id="closeDrawer"><i class="fa-solid fa-xmark"></i></button></div><a href="/about-us/">About Us</a><a href="/services/">Services</a><a href="/blog/">Blog</a><a href="/referral-program/">Referral Program</a><a href="/contact-us/">Contact Us</a><a class="drawer-cta" href="https://wa.me/919876543210" target="_blank">Book a Free Call</a></div>
-  <div class="overlay" id="overlay"></div>
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer lg:hidden" id="mobileDrawer">
+    <div class="flex justify-between items-center mb-10">
+      <div class="logo">
+        <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="closeDrawer" class="text-2xl text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
 
-  <section class="page-hero">
-    <div class="page-hero-bg"><div class="page-hero-orb o1"></div><div class="page-hero-orb o2"></div></div>
-    <div class="page-hero-grid"></div>
-    <div class="container page-hero-content">
-      <div class="page-hero-badge"><i class="fa-solid fa-headset"></i> Help & Support</div>
-      <h1>How Can We <span class="grad">Help</span> You?</h1>
-      <p>Our team is here to assist you with any questions, issues, or project inquiries. Reach out and we'll get back to you fast.</p>
+    <div class="mb-8">
+      <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-3">Language</div>
+      <div class="grid grid-cols-2 gap-2" id="mobileLangGrid">
+        <button data-lang="en" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)] active-lang">English</button>
+        <button data-lang="zh" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Chinese</button>
+        <button data-lang="hi" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Hindi</button>
+        <button data-lang="es" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Spanish</button>
+        <button data-lang="fr" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">French</button>
+      </div>
+    </div>
+
+    <nav class="flex flex-col gap-6">
+      <a href="/about-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_about">About Us</a>
+      <a href="/services/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_services">Services</a>
+      <a href="/blog/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_blog">Blog</a>
+      <a href="/referral-program/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_referral">Referral Program</a>
+      <a href="/contact-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_contact">Contact Us</a>
+    </nav>
+    <a href="https://wa.me/919876543210" target="_blank" class="mt-auto bg-[var(--accent)] text-black text-center py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors" data-i18n="btn_call">
+      Book Free Call
+    </a>
+  </div>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  
+  <!-- HERO -->
+  <section class="relative min-h-[70vh] w-full overflow-hidden flex items-center pt-24 pb-20" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-grid-3d"></div>
+    
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 lg:px-10">
+      <div class="reveal in-view max-w-4xl mx-auto text-center">
+        <div class="section-marker justify-center mb-6">
+          <span data-i18n="s_hero_marker">HELP CENTER · 24/7 SUPPORT</span>
+        </div>
+        <h1 class="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] mb-6">
+          <span class="headline-line"><span data-i18n="s_hero_h1_l1">HOW CAN WE</span></span>
+          <span class="headline-line"><span class="text-[var(--accent)]" data-i18n="s_hero_h1_l2">HELP YOU?</span></span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body" data-i18n="s_hero_p">
+          Our team is here to assist you with any questions, technical issues, or project inquiries. Reach out and we'll get back to you fast.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="support-section">
-    <div class="container">
-      <div class="support-grid">
-
+  <!-- SUPPORT CONTENT -->
+  <section class="relative py-28 lg:py-36" id="support-content">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+        
         <!-- Left: Contact Form -->
-        <div class="support-card reveal">
-          <h2><i class="fa-solid fa-paper-plane"></i> Send a Message</h2>
-          <form id="supportForm" onsubmit="handleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" required placeholder="Your name">
+        <div class="lg:col-span-7 flex">
+          <div class="info-card notch-corner p-8 lg:p-10 reveal relative w-full flex flex-col">
+            <h2 class="font-display text-4xl mb-8 flex items-center gap-3">
+              <i class="fas fa-paper-plane text-2xl text-[var(--accent)]"></i> <span data-i18n="s_form_h">Send a Message</span>
+            </h2>
+            <form id="supportForm" onsubmit="handleSubmit(event)" class="space-y-6 flex-1 flex flex-col">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label class="form-label" data-i18n="s_lbl_name">Full Name *</label>
+                  <input type="text" class="form-input" required placeholder="John Doe">
+                </div>
+                <div>
+                  <label class="form-label" data-i18n="s_lbl_email">Email Address *</label>
+                  <input type="email" class="form-input" required placeholder="john@example.com">
+                </div>
               </div>
-              <div class="form-group">
-                <label>Email Address *</label>
-                <input type="email" required placeholder="you@example.com">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label class="form-label" data-i18n="s_lbl_dept">Department *</label>
+                  <select class="form-input" required>
+                    <option value="" disabled selected data-i18n="s_opt_select">Select a topic</option>
+                    <option data-i18n="s_opt_sales">Sales Inquiry</option>
+                    <option data-i18n="s_opt_tech">Technical Issue</option>
+                    <option data-i18n="s_opt_bill">Billing Question</option>
+                    <option data-i18n="s_opt_part">Partnership</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label" data-i18n="s_lbl_priority">Priority *</label>
+                  <select class="form-input" required>
+                    <option value="" disabled selected data-i18n="s_opt_select">Select priority</option>
+                    <option data-i18n="s_pri_low">Low</option>
+                    <option data-i18n="s_pri_med">Medium</option>
+                    <option data-i18n="s_pri_high">High</option>
+                    <option data-i18n="s_pri_urg">Urgent</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label>Subject *</label>
-              <select required>
-                <option value="" disabled selected>Select a topic</option>
-                <option>Project Inquiry</option>
-                <option>Technical Issue</option>
-                <option>Payment Question</option>
-                <option>Bug Report</option>
-                <option>Partnership</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Message *</label>
-              <textarea required placeholder="Describe your question or issue in detail..."></textarea>
-            </div>
-            <div class="form-group">
-              <label>Attachment (optional)</label>
-              <div class="file-drop" id="fileDrop" onclick="document.getElementById('fileInput').click()">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-                <p id="fileLabel">Click to upload or drag & drop</p>
-                <p style="font-size:11px;color:var(--muted);opacity:.5;margin-top:4px">PNG, JPG, PDF — Max 5MB</p>
-                <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf">
+              <div class="flex-1">
+                <label class="form-label" data-i18n="s_lbl_msg">Message *</label>
+                <textarea class="form-input" required rows="5" placeholder="Describe your question or issue in detail..."></textarea>
               </div>
-            </div>
-            <button type="submit" class="form-submit">Send Message</button>
-          </form>
+              <div>
+                <label class="form-label" data-i18n="s_lbl_file">Attachment (Optional)</label>
+                <div class="file-drop" id="fileDrop" onclick="document.getElementById('fileInput').click()">
+                  <i class="fas fa-cloud-arrow-up"></i>
+                  <p id="fileLabel" data-i18n="s_file_p">Click to upload or drag & drop</p>
+                  <p style="font-size:11px; margin-top:4px">PNG, JPG, PDF — Max 5MB</p>
+                  <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf" style="display:none">
+                </div>
+              </div>
+              <button type="submit" class="w-full bg-[var(--accent)] text-black py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors mt-auto" data-i18n="s_btn_submit">
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
 
-        <!-- Right: Contact Methods + FAQ -->
-        <div style="display:flex;flex-direction:column;gap:24px">
-          <div class="support-card reveal" style="transition-delay:.1s">
-            <h2><i class="fa-solid fa-address-book"></i> Contact Methods</h2>
-            <div class="contact-methods">
+        <!-- Right: Contact Methods + Stats -->
+        <div class="lg:col-span-5 flex flex-col gap-8">
+          
+          <div class="info-card notch-corner p-8 lg:p-10 reveal relative flex-1 flex flex-col">
+            <h2 class="font-display text-4xl mb-6 flex items-center gap-3">
+              <i class="fas fa-address-book text-2xl text-[var(--accent)]"></i> <span data-i18n="s_meth_h">Contact Methods</span>
+            </h2>
+            <div class="space-y-3 flex-1 flex flex-col justify-center">
               <a href="mailto:hello@flixifys.com" class="contact-method">
-                <div class="contact-method-icon"><i class="fa-solid fa-envelope"></i></div>
-                <div class="contact-method-text"><h4>Email</h4><p>hello@flixifys.com</p></div>
+                <div class="contact-method-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                  <h4 class="font-heading text-base text-white" data-i18n="s_meth_email">Email Support</h4>
+                  <p class="text-sm text-[var(--muted)] font-mono">hello@flixifys.com</p>
+                </div>
               </a>
-              <a href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20need%20support." target="_blank" class="contact-method">
-                <div class="contact-method-icon green"><i class="fa-brands fa-whatsapp"></i></div>
-                <div class="contact-method-text"><h4>WhatsApp</h4><p>+91 98765 43210</p></div>
+              <a href="https://wa.me/919876543210" target="_blank" class="contact-method">
+                <div class="contact-method-icon"><i class="fab fa-whatsapp"></i></div>
+                <div>
+                  <h4 class="font-heading text-base text-white" data-i18n="s_meth_wa">WhatsApp Chat</h4>
+                  <p class="text-sm text-[var(--muted)] font-mono">+91 98765 43210</p>
+                </div>
               </a>
               <a href="tel:+919876543210" class="contact-method">
-                <div class="contact-method-icon"><i class="fa-solid fa-phone"></i></div>
-                <div class="contact-method-text"><h4>Phone</h4><p>+91 98765 43210</p></div>
+                <div class="contact-method-icon"><i class="fas fa-phone"></i></div>
+                <div>
+                  <h4 class="font-heading text-base text-white" data-i18n="s_meth_phone">Phone Support</h4>
+                  <p class="text-sm text-[var(--muted)] font-mono">+91 98765 43210</p>
+                </div>
               </a>
             </div>
+          </div>
 
-            <div class="response-card">
-              <h3><i class="fa-solid fa-bolt"></i> Avg. Response Time</h3>
-              <div class="response-stats">
-                <div class="response-stat"><div class="num">2h</div><div class="label">Email</div></div>
-                <div class="response-stat"><div class="num">5m</div><div class="label">WhatsApp</div></div>
-                <div class="response-stat"><div class="num">1m</div><div class="label">Phone</div></div>
+          <div class="info-card notch-corner p-8 lg:p-10 reveal relative flex-1 flex flex-col justify-center">
+            <h2 class="font-display text-4xl mb-6 flex items-center gap-3">
+              <i class="fas fa-bolt text-2xl text-[var(--accent)]"></i> <span data-i18n="s_stats_h">Avg. Response Time</span>
+            </h2>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="response-stat">
+                <div class="num">2h</div>
+                <div class="label" data-i18n="s_stats_email">Email</div>
+              </div>
+              <div class="response-stat">
+                <div class="num">5m</div>
+                <div class="label" data-i18n="s_stats_wa">WhatsApp</div>
+              </div>
+              <div class="response-stat">
+                <div class="num">10m</div>
+                <div class="label" data-i18n="s_stats_phone">Phone</div>
               </div>
             </div>
           </div>
+          
+        </div>
+      </div>
 
-          <div class="support-card reveal faq-mini" style="transition-delay:.2s">
-            <h2><i class="fa-solid fa-circle-question"></i> Quick FAQ</h2>
-            <div class="faq-item">
-              <div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">How do I start a project?</div><div class="faq-q-arrow"><i class="fa-solid fa-chevron-down"></i></div></div>
-              <div class="faq-a"><div class="faq-a-inner">Fill out our contact form or message us on WhatsApp. We'll schedule a free consultation to discuss your requirements and provide a detailed proposal.</div></div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Do you offer post-launch support?</div><div class="faq-q-arrow"><i class="fa-solid fa-chevron-down"></i></div></div>
-              <div class="faq-a"><div class="faq-a-inner">Yes! We offer ongoing support packages covering bug fixes, minor updates, and performance monitoring. Details are included in every project proposal.</div></div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">What if I need changes after delivery?</div><div class="faq-q-arrow"><i class="fa-solid fa-chevron-down"></i></div></div>
-              <div class="faq-a"><div class="faq-a-inner">Each project includes defined revision rounds. Additional changes beyond scope can be accommodated at an agreed hourly rate. We're always flexible.</div></div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q" onclick="toggleFaq(this)"><div class="faq-q-text">Can I migrate from another platform?</div><div class="faq-q-arrow"><i class="fa-solid fa-chevron-down"></i></div></div>
-              <div class="faq-a"><div class="faq-a-inner">Absolutely. We handle migrations from WooCommerce, Magento, Wix, and custom platforms — including products, customers, orders, and SEO data.</div></div>
-            </div>
+      <!-- SUPPORT PROCESS (Added Content) -->
+      <div class="mt-16 lg:mt-24 reveal">
+        <div class="text-center mb-12">
+          <div class="section-marker justify-center mb-4">
+            <span data-i18n="s_proc_marker">HOW IT WORKS</span>
+          </div>
+          <h2 class="font-display text-5xl md:text-6xl" data-i18n="s_proc_h">Support Process</h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="info-card p-6 notch-corner">
+            <div class="process-num">01</div>
+            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_1">Submit Request</h4>
+            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_1_d">Fill out the form with your details and issue description.</p>
+          </div>
+          <div class="info-card p-6 notch-corner">
+            <div class="process-num">02</div>
+            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_2">We Review</h4>
+            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_2_d">Our team reviews your ticket and assigns it to the right expert.</p>
+          </div>
+          <div class="info-card p-6 notch-corner">
+            <div class="process-num">03</div>
+            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_3">Action Taken</h4>
+            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_3_d">We work on the solution and keep you updated throughout.</p>
+          </div>
+          <div class="info-card p-6 notch-corner">
+            <div class="process-num">04</div>
+            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_4">Resolution</h4>
+            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_4_d">Issue resolved! We ensure you're 100% satisfied with the fix.</p>
           </div>
         </div>
-
       </div>
+
+      <!-- EXPANDED FAQ (Added Content) -->
+      <div class="mt-16 lg:mt-24 reveal">
+        <div class="text-center mb-12">
+          <div class="section-marker justify-center mb-4">
+            <span data-i18n="s_faq_marker">QUICK ANSWERS</span>
+          </div>
+          <h2 class="font-display text-5xl md:text-6xl" data-i18n="s_faq_h">Frequently Asked Questions</h2>
+        </div>
+        <div class="max-w-[860px] mx-auto">
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-text" data-i18n="s_faq_q_1">How do I start a project?</div>
+              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_1">Fill out our contact form or message us on WhatsApp. We'll schedule a free consultation to discuss your requirements and provide a detailed proposal.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-text" data-i18n="s_faq_q_2">Do you offer post-launch support?</div>
+              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_2">Yes! We offer ongoing support packages covering bug fixes, minor updates, and performance monitoring. Details are included in every project proposal.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-text" data-i18n="s_faq_q_3">What if I need changes after delivery?</div>
+              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_3">Each project includes defined revision rounds. Additional changes beyond scope can be accommodated at an agreed hourly rate. We're always flexible.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-text" data-i18n="s_faq_q_4">Can I migrate from another platform?</div>
+              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_4">Absolutely. We handle migrations from WooCommerce, Magento, Wix, and custom platforms — including products, customers, orders, and SEO data.</div></div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-text" data-i18n="s_faq_q_5">Do you work with international clients?</div>
+              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_5">Yes, we work with clients globally. Our communication is primarily through WhatsApp, email, and video calls, which makes geography irrelevant.</div></div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div><div class="logo" style="margin-bottom:16px"><a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" style="height:34px"></a></div><p>Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.</p><div class="footer-socials"><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a><a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></div></div>
-        <div><h4>Quick Links</h4><div class="footer-links"><a href="/about-us/"><i class="fa-solid fa-chevron-right"></i> About Us</a><a href="/services/"><i class="fa-solid fa-chevron-right"></i> Services</a><a href="/blog/"><i class="fa-solid fa-chevron-right"></i> Blog</a><a href="/referral-program/"><i class="fa-solid fa-chevron-right"></i> Referral Program</a><a href="/contact-us/"><i class="fa-solid fa-chevron-right"></i> Contact Us</a></div></div>
-        <div><h4>Legal</h4><div class="footer-links"><a href="/terms-and-conditions/"><i class="fa-solid fa-chevron-right"></i> Terms & Conditions</a><a href="/privacy-policy/"><i class="fa-solid fa-chevron-right"></i> Privacy Policy</a><a href="/cookie-policy/"><i class="fa-solid fa-chevron-right"></i> Cookie Policy</a><a href="/disclaimer/"><i class="fa-solid fa-chevron-right"></i> Disclaimer</a><a href="/faq/"><i class="fa-solid fa-chevron-right"></i> FAQ</a><a href="/support/" style="color:var(--accent)"><i class="fa-solid fa-chevron-right"></i> Support</a></div></div>
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 bg-black py-16 relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
+      <div class="font-display text-[18vw] md:text-[14vw] leading-none text-stroke opacity-30 absolute bottom-0 left-0 right-0 text-center pointer-events-none select-none">
+        FLIXIFYS
       </div>
-      <div class="footer-bottom">&copy; 2025 Flixifys. All rights reserved. Built with precision for ecommerce brands.</div>
+      
+      <div class="relative grid md:grid-cols-12 gap-10 mb-12">
+        <div class="md:col-span-5">
+          <div class="flex items-center gap-3 mb-5">
+            <div>
+              <div class="font-display text-2xl leading-none tracking-wider text-white">FLIXIFYS</div>
+              <div class="font-mono text-[10px] text-gray-400 tracking-[0.3em] mt-0.5">SHOPIFY · STUDIO</div>
+            </div>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6" data-i18n="footer_about">
+            A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://instagram.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="md:col-span-2">
+          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_links">Quick Links</h5>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/about-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_about">About Us</a></li>
+            <li><a href="/services/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_services">Services</a></li>
+            <li><a href="/blog/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_blog">Blog</a></li>
+            <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_referral">Referral Program</a></li>
+            <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="md:col-span-2">
+          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Legal</h5>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/terms-and-conditions/" class="text-gray-400 hover:text-white link-underline">Terms & Conditions</a></li>
+            <li><a href="/privacy-policy/" class="text-gray-400 hover:text-white link-underline">Privacy Policy</a></li>
+            <li><a href="/cookie-policy/" class="text-gray-400 hover:text-white link-underline">Cookie Policy</a></li>
+            <li><a href="/disclaimer/" class="text-gray-400 hover:text-white link-underline">Disclaimer</a></li>
+            <li><a href="/faq/" class="text-gray-400 hover:text-white link-underline">FAQ</a></li>
+            <li><a href="/support/" class="text-[var(--accent)] link-underline">Support</a></li>
+          </ul>
+        </div>
+        
+        <div class="md:col-span-3">
+          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_news">Newsletter</h5>
+          <p class="text-gray-400 text-xs mb-4 leading-relaxed" data-i18n="footer_news_desc">Weekly Shopify insights, case studies, and studio updates.</p>
+          <form class="flex border border-gray-800 focus-within:border-[var(--accent)] transition-colors">
+            <input type="email" placeholder="email@address.com" class="flex-1 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-gray-500">
+            <button type="submit" class="px-4 bg-[var(--accent)] text-black hover:bg-[var(--accent-bright)] transition-colors">
+              <i class="fas fa-arrow-right text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="relative border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-center gap-4 text-gray-400 font-mono text-[11px] tracking-[0.15em] uppercase">
+        <div>© 2024 FLIXIFYS SHOPIFY STUDIO. ALL RIGHTS RESERVED.</div>
+      </div>
     </div>
   </footer>
 
-  <div class="wa-float"><div class="wa-tip">Chat with us on WhatsApp</div><a href="https://wa.me/919876543210?text=Hi%20Flixifys,%20I%20need%20support." target="_blank" class="wa-btn"><i class="fa-brands fa-whatsapp"></i></a></div>
-
-  <div class="toast" id="toast">
-    <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
-    <div class="toast-text"><h4>Message Sent!</h4><p>We'll get back to you within 2 hours.</p></div>
+  <!-- WHATSAPP WITH SCROLL PROGRESS -->
+  <div class="wa-progress-container">
+    <svg class="wa-progress-svg" width="64" height="64" viewBox="0 0 64 64">
+      <circle class="wa-progress-bg" cx="32" cy="32" r="30"></circle>
+      <circle class="wa-progress-circle" id="progressCircle" cx="32" cy="32" r="30"></circle>
+    </svg>
+    <a href="https://wa.me/919876543210?text=Hi%20Flixifys" target="_blank" class="wa-btn-center">
+      <i class="fab fa-whatsapp"></i>
+    </a>
   </div>
-
+  
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="flex items-start gap-3">
+      <div class="w-8 h-8 bg-[var(--accent)] flex items-center justify-center flex-shrink-0">
+        <i class="fas fa-check text-black text-xs"></i>
+      </div>
+      <div>
+        <div class="font-heading text-sm tracking-wider uppercase" data-i18n="s_toast_h">Message Sent</div>
+        <div class="text-[var(--fg-dim)] text-xs mt-1" data-i18n="s_toast_p">We'll get back to you within 2 hours.</div>
+      </div>
+    </div>
+  </div>
+  
   <script>
-    window.addEventListener('load',function(){setTimeout(function(){document.getElementById('pageLoader').classList.add('hide')},400)});
-    var header=document.getElementById('header');window.addEventListener('scroll',function(){header.classList.toggle('scrolled',window.scrollY>50)});
-    var menuBtn=document.getElementById('menuBtn'),closeDrawerBtn=document.getElementById('closeDrawer'),drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay');
-    function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden'}function closeDrawerFn(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow=''}
-    menuBtn.addEventListener('click',openDrawer);closeDrawerBtn.addEventListener('click',closeDrawerFn);overlay.addEventListener('click',closeDrawerFn);
-    function toggleFaq(q){var item=q.closest('.faq-item'),a=item.querySelector('.faq-a'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0'});if(!isOpen){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}}
-    function handleSubmit(e){e.preventDefault();var t=document.getElementById('toast');t.classList.add('show');e.target.reset();document.getElementById('fileLabel').textContent='Click to upload or drag & drop';setTimeout(function(){t.classList.remove('show')},4000)}
-    var fileDrop=document.getElementById('fileDrop'),fileInput=document.getElementById('fileInput');
-    ['dragenter','dragover'].forEach(function(ev){fileDrop.addEventListener(ev,function(e){e.preventDefault();fileDrop.classList.add('dragover')})});
-    ['dragleave','drop'].forEach(function(ev){fileDrop.addEventListener(ev,function(e){e.preventDefault();fileDrop.classList.remove('dragover')})});
-    fileDrop.addEventListener('drop',function(e){if(e.dataTransfer.files.length){fileInput.files=e.dataTransfer.files;document.getElementById('fileLabel').innerHTML='<span class="file-name">'+e.dataTransfer.files[0].name+'</span> uploaded'}});
-    fileInput.addEventListener('change',function(){if(fileInput.files.length){document.getElementById('fileLabel').innerHTML='<span class="file-name">'+fileInput.files[0].name+'</span> uploaded'}});
-    var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+    // Mobile Drawer
+    const menuBtn = document.getElementById('menuBtn');
+    const closeDrawer = document.getElementById('closeDrawer');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+
+    menuBtn.addEventListener('click', () => { mobileDrawer.classList.add('open'); drawerOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    closeDrawer.addEventListener('click', () => { mobileDrawer.classList.remove('open'); drawerOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+    drawerOverlay.addEventListener('click', () => { mobileDrawer.classList.remove('open'); drawerOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+
+    // Reveal on Scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+
+    // FAQ Accordion
+    function toggleFaq(q) {
+      var item = q.closest('.faq-item');
+      var a = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      
+      document.querySelectorAll('.faq-item.open').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = '0';
+      });
+      
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    }
+
+    // Form Submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      var t = document.getElementById('toast');
+      t.classList.add('visible');
+      e.target.reset();
+      document.getElementById('fileLabel').textContent = 'Click to upload or drag & drop';
+      setTimeout(function() {
+        t.classList.remove('visible');
+      }, 4000);
+    }
+
+    // File Upload Logic
+    var fileDrop = document.getElementById('fileDrop'), fileInput = document.getElementById('fileInput');
+    ['dragenter','dragover'].forEach(function(ev){ fileDrop.addEventListener(ev, function(e){ e.preventDefault(); fileDrop.classList.add('dragover'); }) });
+    ['dragleave','drop'].forEach(function(ev){ fileDrop.addEventListener(ev, function(e){ e.preventDefault(); fileDrop.classList.remove('dragover'); }) });
+    fileDrop.addEventListener('drop', function(e){ if(e.dataTransfer.files.length){ fileInput.files=e.dataTransfer.files; document.getElementById('fileLabel').innerHTML='<span style="color:var(--accent)">'+e.dataTransfer.files[0].name+'</span> uploaded'; } });
+    fileInput.addEventListener('change', function(){ if(fileInput.files.length){ document.getElementById('fileLabel').innerHTML='<span style="color:var(--accent)">'+fileInput.files[0].name+'</span> uploaded'; } });
+
+    // Grain Parallax
+    const grain = document.getElementById('grain');
+    let targetGrainY = 0; let currentGrainY = 0;
+    window.addEventListener('scroll', () => { targetGrainY = window.scrollY * 0.15; }, { passive: true });
+    function animateGrain() {
+      currentGrainY += (targetGrainY - currentGrainY) * 0.08;
+      grain.style.transform = `translateY(${currentGrainY}px)`;
+      requestAnimationFrame(animateGrain);
+    }
+    animateGrain();
+
+    // WhatsApp Scroll Progress
+    const progressCircle = document.getElementById('progressCircle');
+    const circumference = 2 * Math.PI * 30;
+    progressCircle.style.strokeDasharray = circumference;
+    function updateScrollProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressCircle.style.strokeDashoffset = circumference - (scrollPercent / 100) * circumference;
+    }
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+
+    // Full Language Translations Dictionary
+    const translations = {
+      en: {
+        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", btn_call: "Book a Free Call",
+        footer_about: "A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.", footer_links: "Quick Links", footer_news: "Newsletter", footer_news_desc: "Weekly Shopify insights, case studies, and studio updates.",
+        s_hero_marker: "HELP CENTER · 24/7 SUPPORT", s_hero_h1_l1: "HOW CAN WE", s_hero_h1_l2: "HELP YOU?", s_hero_p: "Our team is here to assist you with any questions, technical issues, or project inquiries. Reach out and we'll get back to you fast.",
+        s_form_h: "Send a Message", s_lbl_name: "Full Name *", s_lbl_email: "Email Address *", s_lbl_dept: "Department *", s_lbl_priority: "Priority *", s_lbl_msg: "Message *", s_lbl_file: "Attachment (Optional)", s_btn_submit: "Send Message",
+        s_opt_select: "Select an option", s_opt_sales: "Sales Inquiry", s_opt_tech: "Technical Issue", s_opt_bill: "Billing Question", s_opt_part: "Partnership", s_pri_low: "Low", s_pri_med: "Medium", s_pri_high: "High", s_pri_urg: "Urgent", s_file_p: "Click to upload or drag & drop",
+        s_meth_h: "Contact Methods", s_meth_email: "Email Support", s_meth_wa: "WhatsApp Chat", s_meth_phone: "Phone Support",
+        s_stats_h: "Avg. Response Time", s_stats_email: "Email", s_stats_wa: "WhatsApp", s_stats_phone: "Phone",
+        s_proc_marker: "HOW IT WORKS", s_proc_h: "Support Process", s_proc_1: "Submit Request", s_proc_1_d: "Fill out the form with your details and issue description.", s_proc_2: "We Review", s_proc_2_d: "Our team reviews your ticket and assigns it to the right expert.", s_proc_3: "Action Taken", s_proc_3_d: "We work on the solution and keep you updated throughout.", s_proc_4: "Resolution", s_proc_4_d: "Issue resolved! We ensure you're 100% satisfied with the fix.",
+        s_faq_marker: "QUICK ANSWERS", s_faq_h: "Frequently Asked Questions",
+        s_faq_q_1: "How do I start a project?", s_faq_a_1: "Fill out our contact form or message us on WhatsApp. We'll schedule a free consultation to discuss your requirements and provide a detailed proposal.",
+        s_faq_q_2: "Do you offer post-launch support?", s_faq_a_2: "Yes! We offer ongoing support packages covering bug fixes, minor updates, and performance monitoring. Details are included in every project proposal.",
+        s_faq_q_3: "What if I need changes after delivery?", s_faq_a_3: "Each project includes defined revision rounds. Additional changes beyond scope can be accommodated at an agreed hourly rate. We're always flexible.",
+        s_faq_q_4: "Can I migrate from another platform?", s_faq_a_4: "Absolutely. We handle migrations from WooCommerce, Magento, Wix, and custom platforms — including products, customers, orders, and SEO data.",
+        s_faq_q_5: "Do you work with international clients?", s_faq_a_5: "Yes, we work with clients globally. Our communication is primarily through WhatsApp, email, and video calls, which makes geography irrelevant.",
+        s_toast_h: "Message Sent", s_toast_p: "We'll get back to you within 2 hours."
+      },
+      hi: {
+        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", btn_call: "निःशुल्क कॉल बुक करें",
+        footer_about: "एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो जो ब्रांड्स को बनाने, अनुकूलित करने और स्केल करने में मदद करता है।", footer_links: "त्वरित लिंक", footer_news: "न्यूज़लेटर", footer_news_desc: "साप्ताहिक शॉपिफाई इनसाइट्स, केस स्टडीज़ और स्टूडियो अपडेट।",
+        s_hero_marker: "हेल्प सेंटर · 24/7 सहायता", s_hero_h1_l1: "हम आपकी", s_hero_h1_l2: "कैसे मदद करें?", s_hero_p: "हमारी टीम किसी भी प्रश्न, तकनीकी समस्या या प्रोजेक्ट पूछताछ में आपकी सहायता के लिए यहाँ है। संपर्क करें और हम जल्दी आपको वापस संपर्क करेंगे।",
+        s_form_h: "संदेश भेजें", s_lbl_name: "पूरा नाम *", s_lbl_email: "ईमेल पता *", s_lbl_dept: "विभाग *", s_lbl_priority: "प्राथमिकता *", s_lbl_msg: "संदेश *", s_lbl_file: "अटैचमेंट (वैकल्पिक)", s_btn_submit: "संदेश भेजें",
+        s_opt_select: "एक विकल्प चुनें", s_opt_sales: "बिक्री पूछताछ", s_opt_tech: "तकनीकी समस्या", s_opt_bill: "बिलिंग प्रश्न", s_opt_part: "साझेदारी", s_pri_low: "कम", s_pri_med: "मध्यम", s_pri_high: "उच्च", s_pri_urg: "तत्काल", s_file_p: "अपलोड करने के लिए क्लिक करें या खींचें",
+        s_meth_h: "संपर्क विधियाँ", s_meth_email: "ईमेल सहायता", s_meth_wa: "व्हाट्सएप चैट", s_meth_phone: "फ़ोन सहायता",
+        s_stats_h: "औसत प्रतिक्रिया समय", s_stats_email: "ईमेल", s_stats_wa: "व्हाट्सएप", s_stats_phone: "फ़ोन",
+        s_proc_marker: "यह कैसे काम करता है", s_proc_h: "सहायता प्रक्रिया", s_proc_1: "अनुरोध सबमिट करें", s_proc_1_d: "अपने विवरण और समस्या के विवरण के साथ फॉर्म भरें।", s_proc_2: "हम समीक्षा करते हैं", s_proc_2_d: "हमारी टीम आपके टिकट की समीक्षा करती है और इसे सही विशेषज्ञ को सौंपती है।", s_proc_3: "कार्रवाई की गई", s_proc_3_d: "हम समाधान पर काम करते हैं और आपको लगातार अपडेट रखते हैं।", s_proc_4: "समाधान", s_proc_4_d: "समस्या हल हो गई! हम सुनिश्चित करते हैं कि आप ठीक से संतुष्ट हों।",
+        s_faq_marker: "त्वरित उत्तर", s_faq_h: "अक्सर पूछे जाने वाले प्रश्न",
+        s_faq_q_1: "मैं प्रोजेक्ट कैसे शुरू करूँ?", s_faq_a_1: "हमारा संपर्क फॉर्म भरें या WhatsApp पर संदेश भेजें। हम आपकी आवश्यकताओं पर चर्चा करने के लिए एक निःशुल्क परामर्श निर्धारित करेंगे।",
+        s_faq_q_2: "क्या आप लॉन्च के बाद की सहायता प्रदान करते हैं?", s_faq_a_2: "हाँ! हम बग फिक्स, मामूली अपडेट और प्रदर्शन निगरानी को कवर करने वाले चल रहे सहायता पैकेज प्रदान करते हैं।",
+        s_faq_q_3: "डिलीवरी के बाद यदि मुझे बदलाव चाहिए तो?", s_faq_a_3: "प्रत्येक प्रोजेक्ट में निर्धारित संशोधन दौर शामिल होते हैं। दायरे से परे अतिरिक्त बदलाव एक सहमत दर पर किए जा सकते हैं।",
+        s_faq_q_4: "क्या मैं किसी अन्य प्लेटफ़ॉर्म से माइग्रेट कर सकता हूँ?", s_faq_a_4: "बिल्कुल। हम WooCommerce, Magento, Wix आदि से माइग्रेशन संभालते हैं।",
+        s_faq_q_5: "क्या आप अंतरराष्ट्रीय ग्राहकों के साथ काम करते हैं?", s_faq_a_5: "हाँ, हम वैश्विक स्तर पर ग्राहकों के साथ काम करते हैं।",
+        s_toast_h: "संदेश भेजा गया", s_toast_p: "हम 2 घंटों के भीतर आपको वापस संपर्क करेंगे।"
+      },
+      zh: {
+        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", btn_call: "预约免费通话",
+        footer_about: "一家专注于 Shopify 的工作室，帮助品牌构建和扩展。", footer_links: "快速链接", footer_news: "订阅", footer_news_desc: "每周 Shopify 洞察和更新。",
+        s_hero_marker: "帮助中心 · 24/7 支持", s_hero_h1_l1: "我们如何", s_hero_h1_l2: "帮助您？", s_hero_p: "我们的团队在此协助您解决任何问题、技术故障或项目查询。联系我们，我们将快速回复您。",
+        s_form_h: "发送消息", s_lbl_name: "全名 *", s_lbl_email: "电子邮件 *", s_lbl_dept: "部门 *", s_lbl_priority: "优先级 *", s_lbl_msg: "消息 *", s_lbl_file: "附件（可选）", s_btn_submit: "发送消息",
+        s_opt_select: "选择一个选项", s_opt_sales: "销售咨询", s_opt_tech: "技术问题", s_opt_bill: "账单问题", s_opt_part: "合作", s_pri_low: "低", s_pri_med: "中", s_pri_high: "高", s_pri_urg: "紧急", s_file_p: "点击上传或拖放",
+        s_meth_h: "联系方式", s_meth_email: "电子邮件支持", s_meth_wa: "WhatsApp 聊天", s_meth_phone: "电话支持",
+        s_stats_h: "平均响应时间", s_stats_email: "电子邮件", s_stats_wa: "WhatsApp", s_stats_phone: "电话",
+        s_proc_marker: "工作原理", s_proc_h: "支持流程", s_proc_1: "提交请求", s_proc_1_d: "填写表格并提供您的详细信息和问题描述。", s_proc_2: "我们审核", s_proc_2_d: "我们的团队会审核您的工单并分配给合适的专家。", s_proc_3: "采取行动", s_proc_3_d: "我们致力于解决方案并全程为您更新。", s_proc_4: "解决", s_proc_4_d: "问题已解决！我们确保您对修复感到 100% 满意。",
+        s_faq_marker: "快速解答", s_faq_h: "常见问题",
+        s_faq_q_1: "如何开始项目？", s_faq_a_1: "填写我们的联系表单或通过 WhatsApp 给我们留言。我们将安排免费咨询。",
+        s_faq_q_2: "你们提供上线后支持吗？", s_faq_a_2: "是的！我们提供持续的支持包，涵盖错误修复、小幅更新和性能监控。",
+        s_faq_q_3: "如果交付后需要更改怎么办？", s_faq_a_3: "每个项目都包含规定的修订轮次。超出范围的额外更改可按协商的费率进行。",
+        s_faq_q_4: "我可以从其他平台迁移吗？", s_faq_a_4: "绝对可以。我们处理来自 WooCommerce、Magento、Wix 等的迁移。",
+        s_faq_q_5: "你们与国际客户合作吗？", s_faq_a_5: "是的，我们与全球客户合作。",
+        s_toast_h: "消息已发送", s_toast_p: "我们将在 2 小时内回复您。"
+      },
+      es: {
+        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", btn_call: "Reservar Llamada Gratis",
+        footer_about: "Un estudio digital enfocado en Shopify que ayuda a las marcas a crecer.", footer_links: "Enlaces", footer_news: "Boletín", footer_news_desc: "Información semanal de Shopify.",
+        s_hero_marker: "CENTRO DE AYUDA · SOPORTE 24/7", s_hero_h1_l1: "CÓMO PODEMOS", s_hero_h1_l2: "AYUDARLE?", s_hero_p: "Nuestro equipo está aquí para asistirle con cualquier pregunta, problema técnico o consulta de proyecto. Contáctenos y le responderemos rápidamente.",
+        s_form_h: "Enviar un Mensaje", s_lbl_name: "Nombre Completo *", s_lbl_email: "Correo Electrónico *", s_lbl_dept: "Departamento *", s_lbl_priority: "Prioridad *", s_lbl_msg: "Mensaje *", s_lbl_file: "Adjunto (Opcional)", s_btn_submit: "Enviar Mensaje",
+        s_opt_select: "Seleccione una opción", s_opt_sales: "Consulta de Ventas", s_opt_tech: "Problema Técnico", s_opt_bill: "Pregunta de Facturación", s_opt_part: "Asociación", s_pri_low: "Baja", s_pri_med: "Media", s_pri_high: "Alta", s_pri_urg: "Urgente", s_file_p: "Haga clic para subir o arrastrar y soltar",
+        s_meth_h: "Métodos de Contacto", s_meth_email: "Soporte por Correo", s_meth_wa: "Chat de WhatsApp", s_meth_phone: "Soporte Telefónico",
+        s_stats_h: "Tiempo de Respuesta Prom.", s_stats_email: "Correo", s_stats_wa: "WhatsApp", s_stats_phone: "Teléfono",
+        s_proc_marker: "CÓMO FUNCIONA", s_proc_h: "Proceso de Soporte", s_proc_1: "Enviar Solicitud", s_proc_1_d: "Complete el formulario con sus datos y descripción del problema.", s_proc_2: "Revisamos", s_proc_2_d: "Nuestro equipo revisa su ticket y lo asigna al experto adecuado.", s_proc_3: "Acción Tomada", s_proc_3_d: "Trabajamos en la solución y lo mantenemos actualizado.", s_proc_4: "Resolución", s_proc_4_d: "¡Problema resuelto! Aseguramos que esté 100% satisfecho.",
+        s_faq_marker: "RESPUESTAS RÁPIDAS", s_faq_h: "Preguntas Frecuentes",
+        s_faq_q_1: "¿Cómo inicio un proyecto?", s_faq_a_1: "Complete nuestro formulario de contacto o envíenos un mensaje por WhatsApp. Programaremos una consulta gratuita.",
+        s_faq_q_2: "¿Ofrecen soporte post-lanzamiento?", s_faq_a_2: "¡Sí! Ofrecemos paquetes de soporte continuo que cubren corrección de errores y monitoreo.",
+        s_faq_q_3: "¿Qué si necesito cambios después de la entrega?", s_faq_a_3: "Cada proyecto incluye rondas de revisión definidas. Cambios adicionales pueden acomodarse a una tarifa acordada.",
+        s_faq_q_4: "¿Puedo migrar de otra plataforma?", s_faq_a_4: "Absolutamente. Manejamos migraciones desde WooCommerce, Magento, Wix, etc.",
+        s_faq_q_5: "¿Trabajan con clientes internacionales?", s_faq_a_5: "Sí, trabajamos con clientes a nivel global.",
+        s_toast_h: "Mensaje Enviado", s_toast_p: "Le responderemos en un plazo de 2 horas."
+      },
+      fr: {
+        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", btn_call: "Réserver Appel",
+        footer_about: "Un studio numérique axé sur Shopify aidant les marques à croître.", footer_links: "Liens", footer_news: "Newsletter", footer_news_desc: "Infos Shopify hebdomadaires.",
+        s_hero_marker: "CENTRE D'AIDE · SUPPORT 24/7", s_hero_h1_l1: "COMMENT POUVONS-NOUS", s_hero_h1_l2: "VOUS AIDER ?", s_hero_p: "Notre équipe est là pour vous assister avec toute question, problème technique ou demande de projet. Contactez-nous et nous vous répondrons rapidement.",
+        s_form_h: "Envoyer un Message", s_lbl_name: "Nom Complet *", s_lbl_email: "Adresse E-mail *", s_lbl_dept: "Département *", s_lbl_priority: "Priorité *", s_lbl_msg: "Message *", s_lbl_file: "Pièce Jointe (Optionnel)", s_btn_submit: "Envoyer Message",
+        s_opt_select: "Sélectionner une option", s_opt_sales: "Demande Commerciale", s_opt_tech: "Problème Technique", s_opt_bill: "Question de Facturation", s_opt_part: "Partenariat", s_pri_low: "Basse", s_pri_med: "Moyenne", s_pri_high: "Haute", s_pri_urg: "Urgente", s_file_p: "Cliquez pour télécharger ou glisser-déposer",
+        s_meth_h: "Méthodes de Contact", s_meth_email: "Support E-mail", s_meth_wa: "Chat WhatsApp", s_meth_phone: "Support Téléphonique",
+        s_stats_h: "Temps de Réponse Moy.", s_stats_email: "E-mail", s_stats_wa: "WhatsApp", s_stats_phone: "Téléphone",
+        s_proc_marker: "COMMENT ÇA MARCHE", s_proc_h: "Processus de Support", s_proc_1: "Soumettre la Demande", s_proc_1_d: "Remplissez le formulaire avec vos détails et la description du problème.", s_proc_2: "Nous Examinons", s_proc_2_d: "Notre équipe examine votre ticket et l'assigne au bon expert.", s_proc_3: "Action Entreprise", s_proc_3_d: "Nous travaillons sur la solution et vous tenons informé.", s_proc_4: "Résolution", s_proc_4_d: "Problème résolu ! Nous nous assurons que vous êtes satisfait à 100 %.",
+        s_faq_marker: "RÉPONSES RAPIDES", s_faq_h: "Questions Fréquentes",
+        s_faq_q_1: "Comment démarrer un projet ?", s_faq_a_1: "Remplissez notre formulaire de contact ou envoyez-nous un message sur WhatsApp. Nous planifierons une consultation gratuite.",
+        s_faq_q_2: "Offrez-vous un support post-lancement ?", s_faq_a_2: "Oui ! Nous proposons des forfaits de support continu couvrant la correction de bugs et la surveillance.",
+        s_faq_q_3: "Que faire si j'ai besoin de modifications après la livraison ?", s_faq_a_3: "Chaque projet inclut des tours de révision définis. Des modifications supplémentaires peuvent être accomplies à un tarif horaire convenu.",
+        s_faq_q_4: "Puis-je migrer depuis une autre plateforme ?", s_faq_a_4: "Absolument. Nous gérons les migrations depuis WooCommerce, Magento, Wix, etc.",
+        s_faq_q_5: "Travaillez-vous avec des clients internationaux ?", s_faq_a_5: "Oui, nous travaillons avec des clients du monde entier.",
+        s_toast_h: "Message Envoyé", s_toast_p: "Nous vous répondrons dans les 2 heures."
+      }
+    };
+
+    // Language Dropdown Logic
+    const langBtn = document.getElementById('langBtnDesktop');
+    const langDropdown = document.getElementById('langDropdownDesktop');
+    const currentLangSpan = document.getElementById('currentLangDesktop');
+    
+    if(langBtn && langDropdown) {
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if(!langDropdown.contains(e.target) && !langBtn.contains(e.target)) {
+                langDropdown.classList.add('hidden');
+            }
+        });
+
+        document.querySelectorAll('.lang-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = item.getAttribute('data-lang');
+                currentLangSpan.textContent = item.textContent;
+                langDropdown.classList.add('hidden');
+                
+                document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+                    btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
+                });
+
+                setLanguage(lang);
+            });
+        });
+    }
+
+    document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            document.querySelectorAll('.mobile-lang-btn').forEach(b => b.classList.remove('active-lang'));
+            btn.classList.add('active-lang');
+            
+            if(currentLangSpan) {
+                const selectedLangItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
+                if(selectedLangItem) currentLangSpan.textContent = selectedLangItem.textContent;
+            }
+
+            setLanguage(lang);
+        });
+    });
+
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      
+      // Recalculate FAQ open heights after language change
+      document.querySelectorAll('.faq-item.open').forEach(function(i) {
+        var a = i.querySelector('.faq-a');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      });
+    }
   </script>
 </body>
 </html>
