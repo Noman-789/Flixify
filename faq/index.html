@@ -257,6 +257,36 @@
     </div>
   </section>
 
+  <!-- SUPPORT HIGHLIGHTS (Added Content) -->
+  <section class="relative py-20 lg:py-28 border-b border-[var(--border)]" id="support-highlights">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10">
+      <div class="reveal text-center max-w-3xl mx-auto mb-16">
+        <div class="section-marker justify-center mb-4">
+          <span data-i18n="faq_h2_marker">WHY CHOOSE US</span>
+        </div>
+        <h2 class="font-display text-5xl md:text-6xl" data-i18n="faq_h2">Dedicated Shopify Support</h2>
+        <p class="mt-4 text-[var(--muted)] text-base md:text-lg" data-i18n="faq_h2_p">We don't just build stores; we ensure they thrive. Our team is always ready to help you navigate challenges and scale your ecommerce business.</p>
+      </div>
+      <div class="reveal-stagger grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="info-card p-8 notch-corner">
+          <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-bolt"></i></div>
+          <h3 class="font-display text-3xl mb-3" data-i18n="faq_h2_1">RAPID RESPONSE</h3>
+          <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="faq_h2_1_d">We understand that time is money. Our team ensures quick acknowledgment and fast resolution of your queries.</p>
+        </div>
+        <div class="info-card p-8 notch-corner">
+          <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-lightbulb"></i></div>
+          <h3 class="font-display text-3xl mb-3" data-i18n="faq_h2_2">EXPERT GUIDANCE</h3>
+          <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="faq_h2_2_d">Get answers from certified Shopify experts who understand the platform inside out and know what works best.</p>
+        </div>
+        <div class="info-card p-8 notch-corner">
+          <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-handshake"></i></div>
+          <h3 class="font-display text-3xl mb-3" data-i18n="faq_h2_3">TRANSPARENT PROCESS</h3>
+          <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="faq_h2_3_d">No hidden fees or confusing jargon. We explain every step clearly so you always know exactly what's happening.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ CONTENT -->
   <section class="relative py-28 lg:py-36" id="faq-content">
     <div class="max-w-[860px] mx-auto px-6 lg:px-10">
@@ -447,7 +477,7 @@
             <li><a href="/blog/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_blog">Blog</a></li>
             <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_referral">Referral Program</a></li>
             <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Contact Us</a></li>
-            <li><a href="/support/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Support</a></li>
+            <li><a href="/support/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_support">Support</a></li>
           </ul>
         </div>
         
@@ -554,9 +584,13 @@
     // Full Language Translations Dictionary
     const translations = {
       en: {
-        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", btn_call: "Book a Free Call",
+        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", nav_support: "Support", btn_call: "Book a Free Call",
         footer_about: "A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.", footer_links: "Quick Links", footer_news: "Newsletter", footer_news_desc: "Weekly Shopify insights, case studies, and studio updates.",
         faq_marker: "HELP CENTER · SUPPORT", faq_h1_l1: "FREQUENTLY ASKED", faq_h1_l2: "QUESTIONS", faq_sub: "Everything you need to know about our Shopify services, process, and support. Can't find what you're looking for? Reach out to us.",
+        faq_h2_marker: "WHY CHOOSE US", faq_h2: "Dedicated Shopify Support", faq_h2_p: "We don't just build stores; we ensure they thrive. Our team is always ready to help you navigate challenges and scale your ecommerce business.",
+        faq_h2_1: "RAPID RESPONSE", faq_h2_1_d: "We understand that time is money. Our team ensures quick acknowledgment and fast resolution of your queries.",
+        faq_h2_2: "EXPERT GUIDANCE", faq_h2_2_d: "Get answers from certified Shopify experts who understand the platform inside out and know what works best.",
+        faq_h2_3: "TRANSPARENT PROCESS", faq_h2_3_d: "No hidden fees or confusing jargon. We explain every step clearly so you always know exactly what's happening.",
         faq_cat_1: "Getting Started", faq_cat_2: "Pricing & Payments", faq_cat_3: "Process & Timeline", faq_cat_4: "Technical & Support", faq_cat_5: "General",
         faq_q_1: "What services does Flixifys offer?", faq_a_1: "Flixifys is a Shopify-focused digital studio offering end-to-end ecommerce services including store design, custom development, speed optimization, mobile optimization, platform migration, and ongoing support. We specialize in building high-converting Shopify stores tailored to your brand and business goals.",
         faq_q_2: "How do I get started with a project?", faq_a_2: "Simply <a href=\"/contact-us/\">fill out our contact form</a> or reach out via WhatsApp. We'll schedule a free consultation call to understand your requirements, after which you'll receive a detailed project proposal with scope, timeline, and pricing.",
@@ -574,9 +608,13 @@
         faq_q_14: "Can I see your previous work or case studies?", faq_a_14: "Yes! We share relevant case studies and portfolio examples during our consultation call, tailored to your industry and project type. Some projects are confidential, but we always have representative examples to share. Visit our <a href=\"/blog/\">blog</a> for insights and project highlights."
       },
       hi: {
-        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", btn_call: "निःशुल्क कॉल बुक करें",
+        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", nav_support: "सहायता", btn_call: "निःशुल्क कॉल बुक करें",
         footer_about: "एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो जो ब्रांड्स को बनाने, अनुकूलित करने और स्केल करने में मदद करता है।", footer_links: "त्वरित लिंक", footer_news: "न्यूज़लेटर", footer_news_desc: "साप्ताहिक शॉपिफाई इनसाइट्स, केस स्टडीज़ और स्टूडियो अपडेट।",
         faq_marker: "हेल्प सेंटर · सहायता", faq_h1_l1: "अक्सर पूछे जाने", faq_h1_l2: "वाले प्रश्न", faq_sub: "हमारी Shopify सेवाओं, प्रक्रिया और सहायता के बारे में सभी जानकारी जो आपको जाननी चाहिए। अपनी जानकारी नहीं मिल रही? हमसे संपर्क करें।",
+        faq_h2_marker: "हमें क्यों चुनें", faq_h2: "समर्पित शॉपिफाई सहायता", faq_h2_p: "हम सिर्फ स्टोर नहीं बनाते; हम सुनिश्चित करते हैं कि वे विकसित हों। हमारी टीम हमेशा आपको चुनौतियों का समाधान निकालने और अपने ईकॉमर्स व्यवसाय को बढ़ाने में मदद के लिए तैयार है।",
+        faq_h2_1: "तेज प्रतिक्रिया", faq_h2_1_d: "हम समझते हैं कि समय ही पैसा है। हमारी टीम आपके सवालों का त्वरित स्वीकार्यता और तेजी से समाधान सुनिश्चित करती है।",
+        faq_h2_2: "विशेषज्ञ मार्गदर्शन", faq_h2_2_d: "प्रमाणित शॉपिफाई विशेषज्ञों से जवाब पाएं जो प्लेटफ़ॉर्म को अंदर से बाहर समझते हैं।",
+        faq_h2_3: "पारदर्शी प्रक्रिया", faq_h2_3_d: "कोई छिपी हुई फीस या भ्रमित करने वाले शब्द नहीं। हम हर कदम को स्पष्ट रूप से समझाते हैं।",
         faq_cat_1: "शुरुआत करना", faq_cat_2: "मूल्य और भुगतान", faq_cat_3: "प्रक्रिया और समयरेखा", faq_cat_4: "तकनीकी और सहायता", faq_cat_5: "सामान्य",
         faq_q_1: "Flixifys कौन सी सेवाएँ प्रदान करता है?", faq_a_1: "Flixifys एक Shopify-केंद्रित डिजिटल स्टूडियो है जो स्टोर डिजाइन, कस्टम डेवलपमेंट, स्पीड ऑप्टिमाइज़ेशन, मोबाइल ऑप्टिमाइज़ेशन, प्लेटफ़ॉर्म माइग्रेशन और चल रही सहायता सहित एंड-टू-एंड ईकॉमर्स सेवाएँ प्रदान करता है। हम आपके ब्रांड और व्यापार लक्ष्यों के अनुरूप उच्च-रूपांतरण वाले Shopify स्टोर बनाने में विशेषज्ञता रखते हैं।",
         faq_q_2: "मैं किसी प्रोजेक्ट के साथ कैसे शुरुआत करूँ?", faq_a_2: "बस <a href=\"/contact-us/\">हमारा संपर्क फॉर्म भरें</a> या WhatsApp के माध्यम से संपर्क करें। हम आपकी आवश्यकताओं को समझने के लिए एक निःशुल्क परामर्श कॉल निर्धारित करेंगे, जिसके बाद आपको स्कोप, समयरेखा और मूल्य निर्धारण के साथ एक विस्तृत प्रोजेक्ट प्रस्ताव प्राप्त होगा।",
@@ -594,9 +632,13 @@
         faq_q_14: "क्या मैं आपका पिछला काम देख सकता हूँ?", faq_a_14: "हाँ! हम हमारी परामर्श कॉल के दौरान प्रासंगिक केस स्टडीज़ साझा करते हैं। कुछ प्रोजेक्ट गोपनीय हैं, लेकिन हमारे पास साझा करने के लिए हमेशा उदाहरण होते हैं। अंतर्दृष्टि के लिए हमारे <a href=\"/blog/\">ब्लॉग</a> पर जाएँ।"
       },
       zh: {
-        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", btn_call: "预约免费通话",
+        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", nav_support: "支持", btn_call: "预约免费通话",
         footer_about: "一家专注于 Shopify 的工作室，帮助品牌构建和扩展。", footer_links: "快速链接", footer_news: "订阅", footer_news_desc: "每周 Shopify 洞察和更新。",
         faq_marker: "帮助中心 · 支持", faq_h1_l1: "常见问题", faq_h1_l2: "解答", faq_sub: "关于我们的 Shopify 服务、流程和支持，您需要了解的一切。找不到您需要的？联系我们。",
+        faq_h2_marker: "为什么选择我们", faq_h2: "专业的 Shopify 支持", faq_h2_p: "我们不仅建立商店，我们还确保它们蓬勃发展。我们的团队随时准备帮助您应对挑战并扩展您的电商业务。",
+        faq_h2_1: "快速响应", faq_h2_1_d: "我们理解时间就是金钱。我们的团队确保快速确认并迅速解决您的疑问。",
+        faq_h2_2: "专家指导", faq_h2_2_d: "从深入了解平台的认证 Shopify 专家那里获得答案。",
+        faq_h2_3: "透明流程", faq_h2_3_d: "没有隐藏费用或令人困惑的术语。我们清晰地解释每一步。",
         faq_cat_1: "入门", faq_cat_2: "价格与付款", faq_cat_3: "流程与时间表", faq_cat_4: "技术支持", faq_cat_5: "一般问题",
         faq_q_1: "Flixifys 提供哪些服务？", faq_a_1: "Flixifys 是一家专注于 Shopify 的数字工作室，提供端到端的电商服务，包括商店设计、定制开发、速度优化、移动端优化、平台迁移和持续支持。我们专注于构建适合您品牌和业务目标的高转化率 Shopify 商店。",
         faq_q_2: "如何开始项目？", faq_a_2: "只需<a href=\"/contact-us/\">填写我们的联系表单</a>或通过 WhatsApp 联系我们。我们将安排一次免费咨询，之后您将收到包含范围、时间表和定价的详细项目提案。",
@@ -614,9 +656,13 @@
         faq_q_14: "我能看到你们以前的作品吗？", faq_a_14: "是的！我们会在咨询期间分享相关案例研究。某些项目是保密的，但我们总有代表性示例可分享。访问我们的<a href=\"/blog/\">博客</a>获取见解。"
       },
       es: {
-        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", btn_call: "Reservar Llamada Gratis",
+        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", nav_support: "Soporte", btn_call: "Reservar Llamada Gratis",
         footer_about: "Un estudio digital enfocado en Shopify que ayuda a las marcas a crecer.", footer_links: "Enlaces", footer_news: "Boletín", footer_news_desc: "Información semanal de Shopify.",
         faq_marker: "CENTRO DE AYUDA · SOPORTE", faq_h1_l1: "PREGUNTAS FRECUENTES", faq_h1_l2: "FAQ", faq_sub: "Todo lo que necesitas saber sobre nuestros servicios de Shopify, proceso y soporte. ¿No encuentras lo que buscas? Contáctanos.",
+        faq_h2_marker: "POR QUÉ ELEGIRNOS", faq_h2: "Soporte Dedicado de Shopify", faq_h2_p: "No solo creamos tiendas; nos aseguramos de que prosperen. Nuestro equipo siempre está listo para ayudarlo a superar desafíos y escalar su negocio de comercio electrónico.",
+        faq_h2_1: "RESPUESTA RÁPIDA", faq_h2_1_d: "Entendemos que el tiempo es dinero. Nuestro equipo asegura un reconocimiento rápido y una resolución veloz de sus consultas.",
+        faq_h2_2: "GUÍA EXPERTA", faq_h2_2_d: "Obtenga respuestas de expertos certificados en Shopify que conocen la plataforma a fondo.",
+        faq_h2_3: "PROCESO TRANSPARENTE", faq_h2_3_d: "Sin tarifas ocultas ni jerga confusa. Explicamos cada paso claramente.",
         faq_cat_1: "Primeros Pasos", faq_cat_2: "Precios y Pagos", faq_cat_3: "Proceso y Tiempos", faq_cat_4: "Técnico y Soporte", faq_cat_5: "General",
         faq_q_1: "¿Qué servicios ofrece Flixifys?", faq_a_1: "Flixifys es un estudio digital enfocado en Shopify que ofrece servicios de ecommerce de principio a fin, incluyendo diseño, desarrollo personalizado, optimización de velocidad y soporte. Nos especializamos en tiendas de alta conversión.",
         faq_q_2: "¿Cómo inicio un proyecto?", faq_a_2: "Simplemente <a href=\"/contact-us/\">complete nuestro formulario</a> o contáctenos por WhatsApp. Programaremos una consulta gratuita para entender sus requisitos.",
@@ -634,9 +680,13 @@
         faq_q_14: "¿Puedo ver trabajos anteriores?", faq_a_14: "¡Sí! Compartimos casos de estudio relevantes durante la consulta. Visite nuestro <a href=\"/blog/\">blog</a> para más detalles."
       },
       fr: {
-        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", btn_call: "Réserver Appel",
+        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", nav_support: "Support", btn_call: "Réserver Appel",
         footer_about: "Un studio numérique axé sur Shopify aidant les marques à croître.", footer_links: "Liens", footer_news: "Newsletter", footer_news_desc: "Infos Shopify hebdomadaires.",
         faq_marker: "CENTRE D'AIDE · SUPPORT", faq_h1_l1: "FOIRE AUX QUESTIONS", faq_h1_l2: "FAQ", faq_sub: "Tout ce que vous devez savoir sur nos services Shopify, notre processus et notre support. Contactez-nous si besoin.",
+        faq_h2_marker: "POURQUOI NOUS CHOISIR", faq_h2: "Support Shopify Dédié", faq_h2_p: "Nous ne nous contentons pas de créer des boutiques ; nous nous assurons qu'elles prospèrent. Notre équipe est toujours prête à vous aider à relever les défis et à développer votre entreprise.",
+        faq_h2_1: "RÉPONSE RAPIDE", faq_h2_1_d: "Nous comprenons que le temps c'est de l'argent. Notre équipe assure une reconnaissance rapide et une résolution rapide de vos requêtes.",
+        faq_h2_2: "CONSEILS D'EXPERTS", faq_h2_2_d: "Obtenez des réponses d'experts Shopify certifiés qui connaissent la plateforme sur le bout des doigts.",
+        faq_h2_3: "PROCESSUS TRANSPARENT", faq_h2_3_d: "Aucuns frais cachés ni jargon compliqué. Nous expliquons chaque étape clairement.",
         faq_cat_1: "Démarrage", faq_cat_2: "Tarifs et Paiements", faq_cat_3: "Processus et Délais", faq_cat_4: "Technique et Support", faq_cat_5: "Général",
         faq_q_1: "Quels services Flixifys propose-t-il ?", faq_a_1: "Flixifys est un studio numérique axé sur Shopify, offrant des services ecommerce de bout en bout : design de boutique, développement, optimisation, migration et support. Nous spécialisons dans les boutiques à fort taux de conversion.",
         faq_q_2: "Comment démarrer un projet ?", faq_a_2: "Remplissez <a href=\"/contact-us/\">notre formulaire de contact</a> ou contactez-nous via WhatsApp. Nous planifierons une consultation gratuite.",
