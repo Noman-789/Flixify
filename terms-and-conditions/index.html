@@ -607,11 +607,49 @@
       }
     };
 
-    // Language Dropdown Logic
+    // --- LANGUAGE LOCAL STORAGE LOGIC (PERSISTENT) ---
     const langBtn = document.getElementById('langBtnDesktop');
     const langDropdown = document.getElementById('langDropdownDesktop');
     const currentLangSpan = document.getElementById('currentLangDesktop');
-    
+
+    // 1. Function to set language and save to localStorage
+    function setLanguage(lang, save = true) {
+      if (!translations[lang]) return;
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      
+      // Recalculate FAQ open heights after language change
+      document.querySelectorAll('.faq-item.open').forEach(function(i) {
+        var a = i.querySelector('.faq-a');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      });
+
+      // Update UI text and active states
+      if(currentLangSpan) {
+        const selectedLangItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
+        if(selectedLangItem) currentLangSpan.textContent = selectedLangItem.textContent;
+      }
+      
+      document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+        btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
+      });
+
+      // Save to localStorage so it works on other pages
+      if (save) {
+        localStorage.setItem('flixifys_lang', lang);
+      }
+    }
+
+    // 2. Apply saved language on page load immediately
+    const savedLang = localStorage.getItem('flixifys_lang') || 'en';
+    setLanguage(savedLang, false);
+
+    // 3. Desktop Dropdown Click Events
     if(langBtn && langDropdown) {
         langBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -628,42 +666,19 @@
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const lang = item.getAttribute('data-lang');
-                currentLangSpan.textContent = item.textContent;
+                setLanguage(lang); // Save and apply
                 langDropdown.classList.add('hidden');
-                
-                document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-                    btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
-                });
-
-                setLanguage(lang);
             });
         });
     }
 
+    // 4. Mobile Drawer Click Events
     document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const lang = btn.getAttribute('data-lang');
-            document.querySelectorAll('.mobile-lang-btn').forEach(b => b.classList.remove('active-lang'));
-            btn.classList.add('active-lang');
-            
-            if(currentLangSpan) {
-                const selectedLangItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
-                if(selectedLangItem) currentLangSpan.textContent = selectedLangItem.textContent;
-            }
-
-            setLanguage(lang);
+            setLanguage(lang); // Save and apply
         });
     });
-
-    function setLanguage(lang) {
-      if (!translations[lang]) return;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-    }
   </script>
 </body>
 </html>
