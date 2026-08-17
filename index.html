@@ -28,6 +28,8 @@
     --silver-dim: #8a8a8a; 
     --border: #1f1f1f;
     --border-light: #2a2a2a;
+    --mai-tai-green-200: #0a6a66;
+    --pink-cta: #ec4899;
   }
   
   * { box-sizing: border-box; }
@@ -101,13 +103,13 @@
   
   /* 3D Sphere & Real Map Countries Styling */
   .sphere { 
-    fill: rgba(10, 10, 10, 0.8); /* Deep dark ocean */
-    stroke: rgba(0, 230, 118, 0.3); /* Sphere outline glow */
+    fill: rgba(10, 10, 10, 0.8); 
+    stroke: rgba(0, 230, 118, 0.3); 
     stroke-width: 1.5; 
   }
   .country { 
-    fill: rgba(0, 230, 118, 0.08); /* Subtle landmass color */
-    stroke: rgba(0, 230, 118, 0.5); /* Glowing country borders */
+    fill: rgba(0, 230, 118, 0.08); 
+    stroke: rgba(0, 230, 118, 0.5); 
     stroke-width: 0.5; 
   }
 .tooltip {
@@ -120,18 +122,11 @@
 }
 .tooltip.visible { opacity: 1; transform: translateY(0); }
 .tooltip .city-name { 
-    font-size: 13px;
-    font-weight: 700; 
-    color: #000000; 
-    margin-bottom: 4px; 
-    padding-bottom: 4px; 
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 13px; font-weight: 700; color: #000000; 
+    margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .tooltip .page-view { 
-    color: #333333;
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace; 
-    font-weight: 600; 
+    color: #333333; font-size: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 600; 
 }
   @keyframes grid-move { 0% { background-position: 0 0; } 100% { background-position: 0 50px; } }
   
@@ -165,6 +160,132 @@
   /* Marquee */
   @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .marquee-track { display: flex; animation: marquee 38s linear infinite; width: max-content; }
+  
+  /* Services Feature Marquee (Vertical Scroll) */
+  .feature-marquee-wrap { 
+    display: flex; 
+    gap: 1rem; 
+    height: 550px; 
+    overflow: hidden; 
+    width: 100%;
+  }
+  .feature-marquee-col { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+  }
+  .feature-marquee-col.up { 
+    animation: f-marquee-up 40s linear infinite; 
+  }
+  .feature-marquee-col.down { 
+    animation: f-marquee-down 40s linear infinite; 
+  }
+  .feature-marquee-wrap:hover .feature-marquee-col { 
+    animation-play-state: paused; 
+  }
+  .feature-img { 
+    width: 100%; 
+    height: 265px; 
+    object-fit: cover; 
+    border-radius: 16px; 
+    filter: grayscale(100%) contrast(1.2) brightness(0.8); 
+    transition: filter 0.4s ease; 
+  }
+  .feature-img:hover { 
+    filter: grayscale(0%) contrast(1) brightness(1); 
+  }
+  @keyframes f-marquee-up { 
+    0% { transform: translateY(0); } 
+    100% { transform: translateY(-50%); } 
+  }
+  @keyframes f-marquee-down { 
+    0% { transform: translateY(-50%); } 
+    100% { transform: translateY(0); } 
+  }
+
+  /* Core Services Tilt Marquee (Codify Style) */
+  .svc-tilt-wrap { 
+    perspective: 1500px; 
+    overflow: hidden; 
+    width: 100%; 
+    padding: 6rem 0; 
+    position: relative;
+  }
+  /* Default state: Heavy angle downwards from left to right */
+  .svc-tilt-inner {
+    transform: rotateX(15deg) rotateY(15deg) rotateZ(8deg) scale(0.9);
+    transform-origin: center center;
+    transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 120%; 
+    margin-left: -10%;
+  }
+  /* In-view state: Slightly angled downwards, NOT perfectly straight */
+  .reveal.in-view .svc-tilt-inner {
+    transform: rotateX(5deg) rotateY(8deg) rotateZ(3deg) scale(1);
+  }
+  
+  .svc-row { 
+    display: flex; 
+    gap: 1.5rem; 
+    width: max-content; 
+    margin-bottom: 1.5rem; 
+  }
+  .svc-row.left { 
+    animation: svc-scroll-left 40s linear infinite; 
+    margin-left: 0;
+  }
+  /* Row 2 offset for brick pattern (Half card width + half gap = -202.5px) */
+  .svc-row.right { 
+    animation: svc-scroll-right 40s linear infinite; 
+    margin-left: -202px; 
+  }
+  .svc-tilt-wrap:hover .svc-row { 
+    animation-play-state: paused; 
+  }
+  @keyframes svc-scroll-left { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(-50%); } 
+  }
+  @keyframes svc-scroll-right { 
+    0% { transform: translateX(-50%); } 
+    100% { transform: translateX(0); } 
+  }
+  /* HORIZONTAL CARDS (Landscape Mode) */
+  .svc-card {
+    width: 608px;
+    height: 375px; /* Horizontal dimensions */
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #000;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .svc-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1) brightness(0.8);
+    transition: filter 0.5s ease, transform 0.5s ease;
+  }
+  .svc-card:hover img {
+    filter: grayscale(0%) contrast(1) brightness(1);
+    transform: scale(1.05);
+  }
+  .svc-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 40%, transparent 70%);
+  }
+  .svc-card-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2rem;
+    z-index: 10;
+  }
   
   /* Carousel */
   .story-track { display: flex; gap: 1.5rem; cursor: grab; user-select: none; will-change: transform; padding: 0 2rem; }
@@ -270,9 +391,6 @@
   .wa-btn-center { position: relative; z-index: 10; width: 48px; height: 48px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: transform 0.3s; }
   .wa-btn-center:hover { transform: scale(1.1); color: white; }
   
-  /* Language Dropdown & Mobile Active */
-  .mobile-lang-btn.active-lang { background: var(--accent); color: #000; border-color: var(--accent) !important; font-weight: 600; }
-  
   /* Button Fix */
   .btn-book-call { background: #C8C8C8; color: #000; transition: opacity 0.3s; }
   .btn-book-call:hover { opacity: 0.8; }
@@ -317,49 +435,376 @@
   body.light-mode .btn-book-call { background: #000000; color: #ffffff; }
   body.light-mode .mobile-drawer { background: #ffffff; }
   
+  /* Industries Accordion CSS */
+  .industry-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.4s; padding-left: 3.5rem; padding-right: 1rem; opacity: 0.5; }
+  .industry-content > div { overflow: hidden; }
+  .industry-item.active .industry-content { grid-template-rows: 1fr; padding-bottom: 1.5rem; opacity: 1; }
+  .industry-item.active .industry-title { color: var(--accent); }
+  .industry-item.active .industry-icon { color: var(--accent); }
+  .industry-item.active .toggle-icon { transform: rotate(45deg); color: var(--accent); }
+
   @media (max-width: 768px) {
     .story-card { width: 300px; }
     .flip-card { height: 480px; }
     .map-container { width: 100%; right: 0; opacity: 0.3; }
+    .feature-marquee-wrap { height: 300px; }
+    .feature-img { height: 150px; }
+    /* Tilt disable nahi kiya, same rakha hai */
+    .svc-card { width: 300px; height: 200px; border-radius: 16px; }
+    .svc-row.right { margin-left: -162px; } /* Half of (300px + 24px gap) */
+    .svc-card-text { padding: 1.2rem; }
+    .svc-card-text h3 { font-size: 1.5rem; }
   }
+  
+/* Core Services - Premium Tabbed Interface */
+.services-tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background: #111;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-tab {
+  padding: 0.75rem 1.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.3s ease, background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 42px;
+}
+.service-tab:hover {
+  color: var(--fg);
+  background: rgba(255, 255, 255, 0.05);
+}
+.service-tab.active {
+  color: #000;
+  background: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+}
+
+/* Unified Panel Container - Strict Fixed Height */
+.service-panels-wrap {
+  position: relative;
+  height: 500px; /* Height locked to prevent any jump */
+  max-height: 500px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background: var(--bg-card);
+}
+
+.service-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.service-panel.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  opacity: 1;
+}
+
+.service-info-card {
+  padding: 2.5rem; /* Compact padding */
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  z-index: 2;
+  overflow: hidden; /* Prevent text overflow */
+}
+
+.feature-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.feature-list-item:last-child { border-bottom: none; }
+.feature-list-item .icon-wrap {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  background: rgba(0, 230, 118, 0.1);
+  border: 1px solid rgba(0, 230, 118, 0.2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 0.9rem;
+}
+.feature-list-item .text-wrap .title { font-family: 'Oswald'; font-size: 1rem; color: var(--fg); font-weight: 500; margin-bottom: 0.15rem; }
+.feature-list-item .text-wrap .desc { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+
+.service-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem 1.5rem; background: var(--accent); color: #000;
+  font-family: 'Oswald'; font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; border-radius: 8px;
+  transition: all 0.3s ease; border: none; cursor: pointer;
+  margin-top: auto; width: fit-content;
+  box-shadow: 0 4px 15px rgba(0, 230, 118, 0.2);
+}
+.service-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.4); }
+
+/* === REAL PRODUCT UI MOCKUPS (Perfect Fit) === */
+.service-graphic {
+  background: #080808;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 1. Real Website Mockup (Store Design) */
+.web-mockup { height: 100%; display: flex; flex-direction: column; background: #0f0f0f; }
+.web-bar { background: #1a1a1a; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid #1a1a1a; }
+.web-dots { display: flex; gap: 0.4rem; }
+.web-dots span { width: 8px; height: 8px; border-radius: 50%; background: #333; }
+.web-url { flex: 1; background: #0a0a0a; border-radius: 4px; padding: 0.3rem 0.6rem; font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--muted); border: 1px solid #1a1a1a; }
+.web-content { flex: 1; overflow: hidden; background: #111; display: flex; flex-direction: column; }
+.web-nav { height: 40px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; background: rgba(255,255,255,0.02); }
+.web-logo { font-family: 'Oswald'; font-size: 0.9rem; font-weight: 700; color: #fff; }
+.web-links { display: flex; gap: 1rem; }
+.web-link { width: 25px; height: 5px; background: #333; border-radius: 3px; }
+.web-cart { color: var(--accent); font-size: 0.8rem; }
+.web-hero { padding: 1.5rem 1rem; background: radial-gradient(circle at top right, rgba(0,230,118,0.1), transparent 60%); display: flex; flex-direction: column; gap: 6px; }
+.web-h1 { width: 50%; height: 14px; background: #333; border-radius: 4px; }
+.web-p { width: 30%; height: 8px; background: #222; border-radius: 4px; margin-bottom: 10px; }
+.web-cta { width: 80px; height: 26px; background: var(--accent); border-radius: 4px; }
+.web-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 0 1rem 1rem; flex: 1; }
+.web-prod { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+.web-prod-img { flex: 1; background: #161616; display: flex; align-items: center; justify-content: center; color: #333; font-size: 1.2rem; min-height: 40px; }
+.web-prod-info { padding: 0.4rem; }
+.web-prod-title { width: 80%; height: 5px; background: #333; border-radius: 3px; margin-bottom: 3px; }
+.web-prod-price { width: 40%; height: 5px; background: var(--accent); border-radius: 3px; }
+
+/* 2. Code Editor (Custom Dev) */
+.ide-wrap { display: flex; height: 100%; background: #0d0d0d; }
+.ide-sidebar { width: 40px; background: #080808; border-right: 1px solid #1a1a1a; padding: 1rem 0; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.ide-icon { width: 20px; height: 20px; background: #1a1a1a; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; color: #555; }
+.ide-icon.active { background: rgba(0,230,118,0.1); color: var(--accent); border: 1px solid rgba(0,230,118,0.2); }
+.ide-code { flex: 1; display: flex; flex-direction: column; }
+.ide-tabs { display: flex; background: #0f0f0f; border-bottom: 1px solid #1a1a1a; }
+.ide-tab { padding: 0.5rem 0.75rem; font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #555; border-right: 1px solid #1a1a1a; }
+.ide-tab.active { color: var(--fg); background: #0d0d0d; border-top: 2px solid var(--accent); }
+.ide-code-area { flex: 1; padding: 0.75rem; font-family: 'JetBrains Mono'; font-size: 0.7rem; line-height: 1.6; overflow: hidden; display: flex; gap: 0.75rem; }
+.line-numbers { display: flex; flex-direction: column; color: #333; user-select: none; }
+.code-content { color: #777; }
+.ide-tag { color: #ff79c6; } .ide-attr { color: #8be9fd; } .ide-val { color: #50fa7b; } .ide-com { color: #444; font-style: italic; }
+
+/* 3. Analytics Dashboard (Speed) */
+.analytic-dash { height: 100%; padding: 1.5rem; background: #0f0f0f; display: flex; flex-direction: column; gap: 1rem; }
+.dash-header { display: flex; justify-content: space-between; align-items: center; }
+.dash-title { font-family: 'Oswald'; font-size: 0.9rem; color: var(--fg); }
+.dash-badge { background: rgba(0,230,118,0.1); color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.6rem; font-family: 'JetBrains Mono'; }
+.dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+.dash-card { background: #161616; border: 1px solid #222; border-radius: 6px; padding: 0.75rem; }
+.dash-score { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
+.dash-label { font-size: 0.6rem; color: #555; text-transform: uppercase; }
+.dash-progress { height: 4px; background: #222; border-radius: 2px; margin-top: 0.5rem; overflow: hidden; }
+.dash-progress-fill { height: 100%; border-radius: 2px; }
+.fill-green { background: var(--accent); } .fill-orange { background: #ffa502; } .fill-red { background: #ff4757; }
+.dash-chart { flex: 1; background: #161616; border: 1px solid #222; border-radius: 6px; padding: 0.75rem; display: flex; align-items: flex-end; gap: 6px; }
+.dash-bar { flex: 1; background: linear-gradient(180deg, var(--accent), rgba(0,230,118,0.2)); border-radius: 4px 4px 0 0; }
+
+/* 4. Real iPhone (Mobile) */
+.iphone-pro { width: 200px; height: 400px; background: #000; border: 8px solid #1a1a1a; border-radius: 32px; margin: auto; overflow: hidden; position: relative; box-shadow: 0 15px 30px rgba(0,0,0,0.6); }
+.iphone-island { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 70px; height: 20px; background: #000; border-radius: 16px; z-index: 10; }
+.iphone-screen { height: 100%; background: #0f0f0f; padding: 2rem 0.75rem 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; overflow: hidden; }
+.iph-header { display: flex; justify-content: space-between; align-items: center; color: #fff; font-size: 0.8rem; margin-bottom: 0.25rem; }
+.iph-banner { height: 80px; background: linear-gradient(135deg, #1a1a1a, #0a0a0a); border-radius: 10px; margin-bottom: 0.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid #1a1a1a; color: #444; font-size: 1.2rem; }
+.iph-card { background: #161616; border-radius: 10px; overflow: hidden; border: 1px solid #1a1a1a; }
+.iph-card-img { height: 120px; background: linear-gradient(135deg, #2a2a2a, #111); display: flex; align-items: center; justify-content: center; color: #555; font-size: 1.8rem; position: relative; }
+.iph-badge { position: absolute; top: 6px; right: 6px; background: var(--accent); color: #000; font-size: 0.5rem; padding: 2px 5px; border-radius: 4px; font-weight: bold; font-family: 'Oswald'; }
+.iph-card-body { padding: 0.5rem; }
+.iph-title { width: 80%; height: 8px; background: #333; border-radius: 4px; margin-bottom: 3px; }
+.iph-sub { width: 40%; height: 6px; background: #222; border-radius: 4px; margin-bottom: 6px; }
+.iph-price-row { display: flex; justify-content: space-between; align-items: center; }
+.iph-price { display: flex; align-items: center; gap: 3px; }
+.iph-price-new { width: 25px; height: 10px; background: var(--accent); border-radius: 3px; }
+.iph-price-old { width: 15px; height: 5px; background: #333; border-radius: 3px; }
+.iph-btn { width: 25px; height: 25px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 0.6rem; }
+
+/* 5. Migration Pipeline (Migration) */
+.mig-pipe { height: 100%; padding: 1.5rem; background: #0f0f0f; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem; }
+.mig-step { background: #161616; border: 1px solid #222; border-radius: 6px; padding: 0.75rem; display: flex; align-items: center; gap: 0.75rem; position: relative; }
+.mig-step.done { border-color: rgba(0,230,118,0.3); background: rgba(0,230,118,0.05); }
+.mig-step.active { border-color: var(--accent); box-shadow: 0 0 15px rgba(0,230,118,0.1); }
+.mig-icon { width: 32px; height: 32px; border-radius: 6px; background: #222; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #555; }
+.mig-step.done .mig-icon { background: rgba(0,230,118,0.1); color: var(--accent); }
+.mig-step.active .mig-icon { background: var(--accent); color: #000; }
+.mig-info { flex: 1; }
+.mig-name { font-family: 'Oswald'; font-size: 0.8rem; color: var(--fg); }
+.mig-stat { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--muted); margin-top: 2px; }
+.mig-check { color: var(--accent); font-size: 0.8rem; }
+
+/* 6. Real Admin Dashboard (Support) */
+.admin-dash { height: 100%; padding: 1.5rem; background: #0a0a0a; display: flex; flex-direction: column; gap: 1rem; }
+.admin-head { display: flex; justify-content: space-between; align-items: center; }
+.admin-title { font-family: 'Oswald'; font-size: 1rem; color: #fff; }
+.admin-badge { background: rgba(0,230,118,0.1); color: var(--accent); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.6rem; font-family: 'JetBrains Mono'; border: 1px solid rgba(0,230,118,0.2); }
+.admin-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+.kpi-card { background: #111; border: 1px solid #1a1a1a; border-radius: 6px; padding: 0.75rem; }
+.kpi-label { font-size: 0.6rem; color: #555; text-transform: uppercase; margin-bottom: 0.25rem; }
+.kpi-val { font-size: 1.2rem; font-weight: bold; color: #fff; font-family: 'Oswald'; }
+.kpi-val span { font-size: 0.6rem; color: var(--accent); }
+.admin-list { flex: 1; background: #111; border: 1px solid #1a1a1a; border-radius: 6px; padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; overflow: hidden; }
+.admin-list-head { font-size: 0.6rem; color: #555; text-transform: uppercase; margin-bottom: 0.25rem; }
+.ticket-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid #1a1a1a; }
+.ticket-item:last-child { border-bottom: none; }
+.ticket-status { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.ticket-status.pending { background: #ffa502; }
+.ticket-info { flex: 1; }
+.ticket-title { font-size: 0.7rem; color: #fff; }
+.ticket-time { font-size: 0.5rem; color: #555; font-family: 'JetBrains Mono'; }
+.ticket-tag { font-size: 0.5rem; padding: 2px 5px; border-radius: 4px; background: #1a1a1a; color: #888; }
+
+@media (max-width: 1024px) {
+  .service-panels-wrap { height: auto; max-height: none; overflow: visible; }
+  .service-panel { position: relative; height: auto; }
+  .service-panel.active { grid-template-columns: 1fr; }
+  .service-info-card { border-right: none; border-bottom: 1px solid var(--border-light); padding: 2rem; overflow: visible; }
+  .service-graphic { min-height: 300px; }
+}
+
+@media (max-width: 768px) {
+  .services-tab-nav { max-width: 100%; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; }
+  .service-info-card { padding: 1.5rem; }
+}
+
+/* === CONTACT CARDS VISUAL FIXES === */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 15px 35px rgba(0, 230, 118, 0.1);
+}
+
+.contact-card:hover::before {
+  transform: scaleX(1);
+}
+
+.contact-link {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+  border-bottom-color: var(--border-light);
+  padding-left: 4px;
+}
+
+/* Delhi HQ Card - Image Left Layout */
+.delhi-img-wrap {
+  position: relative;
+  background: var(--bg-darker);
+}
+
+.delhi-img-wrap img {
+  transition: transform 0.6s ease;
+}
+
+.contact-card:hover .delhi-img-wrap img {
+  transform: scale(1.1);
+}
+
+.delhi-content {
+  background: var(--bg-card);
+  transition: background 0.4s ease;
+}
+
+.contact-card:hover .delhi-content {
+  background: var(--bg-card-hover);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .contact-card {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-card {
+    min-height: auto;
+  }
+  .delhi-img-wrap {
+    min-height: 160px;
+    width: 100% !important;
+  }
+  .delhi-content {
+    padding: 1.5rem 1rem;
+  }
+}
+  
 </style>
 </head>
 <body class="bg-textured">
   <div class="grain" id="grain"></div>
   
-  <!-- Header Fixed (Dark in both modes) -->
+  <!-- Header Fixed -->
   <header class="header fixed top-0 left-0 right-0 z-[100] backdrop-blur-lg bg-black/90 border-b border-white/5" id="header">
     <div class="container header-inner max-w-[1600px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
       <div class="logo flex-shrink-0">
         <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
       </div>
       <nav class="nav hidden lg:flex items-center gap-8 xl:gap-10 flex-shrink-0">
-        <a href="/about-us/" class="nav-link" data-i18n="nav_about">About Us</a>
-        <a href="/services/" class="nav-link" data-i18n="nav_services">Services</a>
-        <a href="/blog/" class="nav-link" data-i18n="nav_blog">Blog</a>
-        <a href="/referral-program/" class="nav-link" data-i18n="nav_referral">Referral Program</a>
-        <a href="/contact-us/" class="nav-link" data-i18n="nav_contact">Contact Us</a>
+        <a href="/about-us/" class="nav-link">About Us</a>
+        <a href="/services/" class="nav-link">Services</a>
+        <a href="/blog/" class="nav-link">Blog</a>
+        <a href="/referral-program/" class="nav-link">Referral Program</a>
+        <a href="/contact-us/" class="nav-link">Contact Us</a>
       </nav>
       
       <div class="flex items-center gap-4 md:gap-6 flex-shrink-0">
-        <div class="relative hidden lg:block" id="langContainer">
-          <button id="langBtnDesktop" class="flex items-center justify-center gap-2 font-heading text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors py-2 px-3 border border-transparent hover:border-gray-600 w-[140px]">
-            <i class="fas fa-globe"></i>
-            <span id="currentLangDesktop">English</span>
-            <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-          </button>
-          <div id="langDropdownDesktop" class="absolute right-0 mt-2 w-44 bg-black border border-gray-800 shadow-2xl hidden z-[110]">
-            <ul class="py-2">
-              <li><a href="#" data-lang="en" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">English</a></li>
-              <li><a href="#" data-lang="zh" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Chinese</a></li>
-              <li><a href="#" data-lang="hi" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Hindi</a></li>
-              <li><a href="#" data-lang="es" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Spanish</a></li>
-              <li><a href="#" data-lang="fr" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">French</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <a href="https://wa.me/919876543210" target="_blank" class="hidden lg:inline-flex items-center font-heading text-xs tracking-[0.2em] uppercase px-5 py-2.5 btn-book-call" data-i18n="btn_call">
+        <a href="https://wa.me/919876543210" target="_blank" class="hidden lg:inline-flex items-center font-heading text-xs tracking-[0.2em] uppercase px-5 py-2.5 btn-book-call">
           Book a Free Call
         </a>
         <button id="menuBtn" class="lg:hidden text-white text-2xl z-[120]"><i class="fas fa-bars"></i></button>
@@ -378,25 +823,14 @@
       </div>
     </div>
 
-    <div class="mb-8">
-      <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-3">Language</div>
-      <div class="grid grid-cols-2 gap-2" id="mobileLangGrid">
-        <button data-lang="en" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)] active-lang">English</button>
-        <button data-lang="zh" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Chinese</button>
-        <button data-lang="hi" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Hindi</button>
-        <button data-lang="es" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Spanish</button>
-        <button data-lang="fr" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">French</button>
-      </div>
-    </div>
-
     <nav class="flex flex-col gap-6">
-      <a href="/about-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_about">About Us</a>
-      <a href="/services/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_services">Services</a>
-      <a href="/blog/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_blog">Blog</a>
-      <a href="/referral-program/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_referral">Referral Program</a>
-      <a href="/contact-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_contact">Contact Us</a>
+      <a href="/about-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">About Us</a>
+      <a href="/services/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">Services</a>
+      <a href="/blog/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">Blog</a>
+      <a href="/referral-program/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">Referral Program</a>
+      <a href="/contact-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]">Contact Us</a>
     </nav>
-    <a href="https://wa.me/919876543210" target="_blank" class="mt-auto bg-[var(--accent)] text-black text-center py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors" data-i18n="btn_call">
+    <a href="https://wa.me/919876543210" target="_blank" class="mt-auto bg-[var(--accent)] text-black text-center py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors">
       Book Free Call
     </a>
   </div>
@@ -437,14 +871,14 @@
     <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 lg:px-10">
       <div class="reveal in-view max-w-5xl">
         <div class="section-marker mb-6">
-          <span data-i18n="hero_marker">SHOPIFY EXPERTS · GLOBAL</span>
+          <span>SHOPIFY EXPERTS · GLOBAL</span>
         </div>
         <h1 class="font-display text-[13vw] md:text-[9vw] lg:text-[7.5vw] leading-[0.85] mb-6">
-          <span class="headline-line"><span data-i18n="hero_h1_l1">WE BUILD SHOPIFY</span></span>
-          <span class="headline-line"><span class="text-stroke" data-i18n="hero_h1_l2">STORES THAT</span></span>
-          <span class="headline-line"><span data-i18n="hero_h1_l3">CONVERT VISITORS INTO</span> <span class="text-[var(--accent)]" data-i18n="hero_h1_l4">CUSTOMERS.</span></span>
+          <span class="headline-line"><span>WE BUILD SHOPIFY</span></span>
+          <span class="headline-line"><span class="text-stroke">STORES THAT</span></span>
+          <span class="headline-line"><span>CONVERT VISITORS INTO</span> <span class="text-[var(--accent)]">CUSTOMERS.</span></span>
         </h1>
-        <p class="max-w-xl text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body" data-i18n="hero_p">
+        <p class="max-w-xl text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body">
           Design, develop and optimize high-performing Shopify stores that drive traffic, increase conversions and scale your revenue.
         </p>
       </div>
@@ -459,8 +893,8 @@
             <div class="w-12 h-12 rounded-full border-2 border-[var(--bg)] bg-[var(--accent)] flex items-center justify-center font-display text-base text-black">150+</div>
           </div>
           <div>
-            <div class="font-mono text-[10px] tracking-[0.2em] text-[var(--muted)] uppercase" data-i18n="hero_stores">Stores Launched</div>
-            <div class="font-heading text-sm text-[var(--fg)] tracking-wider" data-i18n="hero_trusted">Trusted by global brands</div>
+            <div class="font-mono text-[10px] tracking-[0.2em] text-[var(--muted)] uppercase">Stores Launched</div>
+            <div class="font-heading text-sm text-[var(--fg)] tracking-wider">Trusted by global brands</div>
           </div>
         </div>
         
@@ -471,7 +905,7 @@
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
               </span>
-              <span class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase" data-i18n="live_visitors">Live Visitors</span>
+              <span class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Live Visitors</span>
             </div>
             <div class="font-display text-3xl text-[var(--accent)]" id="liveVisitorsCount">30</div>
           </div>
@@ -503,19 +937,19 @@
       <div class="reveal-stagger grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6">
         <div class="border-l border-[var(--border-light)] pl-6">
           <div class="font-display text-6xl md:text-7xl text-[var(--fg)] number-display" data-count="150" data-suffix="+">0</div>
-          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2" data-i18n="stat_stores">Stores Launched</div>
+          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2">Stores Launched</div>
         </div>
         <div class="border-l border-[var(--border-light)] pl-6">
           <div class="font-display text-6xl md:text-7xl text-[var(--accent)] number-display" data-count="98" data-suffix="%">0</div>
-          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2" data-i18n="stat_satisfaction">Client Satisfaction</div>
+          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2">Client Satisfaction</div>
         </div>
         <div class="border-l border-[var(--border-light)] pl-6">
           <div class="font-display text-6xl md:text-7xl text-[var(--fg)] number-display" data-count="3" data-suffix="x">0</div>
-          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2" data-i18n="stat_revenue">Avg. Revenue Boost</div>
+          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2">Avg. Revenue Boost</div>
         </div>
         <div class="border-l border-[var(--border-light)] pl-6">
           <div class="font-display text-6xl md:text-7xl text-[var(--fg)] number-display" data-count="24" data-suffix="/7">0</div>
-          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2" data-i18n="stat_support">Dedicated Support</div>
+          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2">Dedicated Support</div>
         </div>
       </div>
     </div>
@@ -526,16 +960,16 @@
     <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
       <div class="reveal grid lg:grid-cols-12 gap-8 mb-20">
         <div class="lg:col-span-5">
-          <div class="section-marker mb-6"><span data-i18n="sec1_marker">01 — What We Do</span></div>
+          <div class="section-marker mb-6"><span>01 — What We Do</span></div>
           <h2 class="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9]">
-            <span data-i18n="sec1_title_1">What We</span> <span class="text-[var(--accent)]" data-i18n="sec1_title_2">Actually</span> <span data-i18n="sec1_title_3">Do</span>
+            What We <span class="text-[var(--accent)]">Actually</span> Do
           </h2>
         </div>
         <div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-end">
-          <p class="text-[var(--fg-dim)] text-lg leading-relaxed mb-4" data-i18n="sec1_desc_1">
+          <p class="text-[var(--fg-dim)] text-lg leading-relaxed mb-4">
             We are a Shopify-focused digital studio helping brands plan, design, build and scale high-converting ecommerce experiences.
           </p>
-          <p class="text-[var(--muted)] text-base leading-relaxed" data-i18n="sec1_desc_2">
+          <p class="text-[var(--muted)] text-base leading-relaxed">
             Our role goes beyond just development. We work as a strategic partner — aligning design, technology and performance to support long-term ecommerce success.
           </p>
         </div>
@@ -550,8 +984,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">STRATEGY</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="card1_title">BUSINESS FIRST APPROACH</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="card1_desc">
+            <h3 class="font-display text-3xl mb-3">BUSINESS FIRST APPROACH</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               We deeply understand your business model, audience and revenue goals before starting design or development.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -561,7 +995,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Deliverable</div><div class="font-heading text-base">ROADMAP</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_explore">Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -574,8 +1008,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">DESIGN</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="card2_title">CONVERSION FOCUSED UI</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="card2_desc">
+            <h3 class="font-display text-3xl mb-3">CONVERSION FOCUSED UI</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               Layouts crafted using UX & CRO principles that guide users smoothly from landing to checkout.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -585,7 +1019,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Deliverable</div><div class="font-heading text-base">FIGMA</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_explore">Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -598,8 +1032,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">BUILD</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="card3_title">SCALABLE ARCHITECTURE</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="card3_desc">
+            <h3 class="font-display text-3xl mb-3">SCALABLE ARCHITECTURE</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               Clean, maintainable Shopify builds ready for future features, traffic spikes and integrations.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -609,7 +1043,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Deliverable</div><div class="font-heading text-base">CODEBASE</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_explore">Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -622,8 +1056,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SCALE</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="card4_title">DATA & GROWTH INSIGHTS</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="card4_desc">
+            <h3 class="font-display text-3xl mb-3">DATA & GROWTH INSIGHTS</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               Analytics-driven decisions help continuously improve conversion and revenue over time.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -633,7 +1067,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Deliverable</div><div class="font-heading text-base">REPORTS</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_explore">Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Explore Service</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -641,66 +1075,230 @@
     </div>
   </section>
 
-  <!-- OUR CORE SERVICES (With 3D Tilt Effect) -->
-  <section class="relative py-28 lg:py-36 border-t border-[var(--border)] bg-[var(--bg-darker)]" id="services">
+    <!-- OUR CORE SERVICES (Tabbed Interface) -->
+  <section class="relative py-28 lg:py-36 border-t border-[var(--border)] bg-[var(--bg-darker)] overflow-hidden" id="services">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="reveal grid lg:grid-cols-12 gap-8 mb-20">
-        <div class="lg:col-span-7">
-          <div class="section-marker mb-6"><span data-i18n="sec2_marker">02 — Core Services</span></div>
-          <h2 class="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9]">
-            <span data-i18n="sec2_title_1">Our</span> <span class="text-[var(--accent)]" data-i18n="sec2_title_2">Core</span> <span data-i18n="sec2_title_3">Services</span>
-          </h2>
-        </div>
-        <div class="lg:col-span-4 lg:col-start-9 flex flex-col justify-end">
-          <p class="text-[var(--fg-dim)] text-base leading-relaxed" data-i18n="sec2_desc">
-            End-to-end Shopify services designed to build, optimize and scale high-performing ecommerce brands.
-          </p>
-        </div>
+      
+      <div class="reveal text-center max-w-3xl mx-auto mb-12">
+        <div class="section-marker justify-center mb-6"><span>02 — Core Services</span></div>
+        <h2 class="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9] mb-6">
+          Our Core <span class="text-[var(--accent)]">Services</span>
+        </h2>
+        <p class="text-[var(--fg-dim)] text-base md:text-lg leading-relaxed mx-auto">
+          End-to-end Shopify services designed to build, optimize and scale high-performing ecommerce brands. Click any tab to explore.
+        </p>
       </div>
       
-      <div class="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-palette"></i></div>
-            <h3 class="font-display text-3xl mb-3" data-i18n="serv1_title">STORE DESIGN</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="serv1_desc">Modern, brand-aligned UI designs focused on trust, clarity and conversions across all devices.</p>
+      <div class="reveal services-tab-nav mb-4">
+        <button class="service-tab active" data-service="design">STORE DESIGN</button>
+        <button class="service-tab" data-service="dev">CUSTOM DEV</button>
+        <button class="service-tab" data-service="speed">SPEED & CRO</button>
+        <button class="service-tab" data-service="mobile">MOBILE OPTIMIZATION</button>
+        <button class="service-tab" data-service="migration">PLATFORM MIGRATION</button>
+        <button class="service-tab" data-service="support">ONGOING SUPPORT</button>
+      </div>
+      
+      <div class="reveal service-panels-wrap">
+        
+        <!-- PANEL 1: STORE DESIGN -->
+        <div class="service-panel active" data-panel="design">
+          <div class="service-info-card">
+            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">// SERVICE 01</div>
+            <h3 class="font-display text-5xl mb-4 leading-[0.9]">STORE DESIGN</h3>
+            <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-6">Modern, brand-aligned UI designs focused on trust, clarity and conversions across all devices.</p>
+            <div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-palette"></i></div><div class="text-wrap"><div class="title">Brand-Aligned Visual Systems</div><div class="desc">Consistent design language that reflects your brand identity.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-funnel-dollar"></i></div><div class="text-wrap"><div class="title">Conversion-Focused Layouts</div><div class="desc">UI/UX crafted using CRO principles to maximize sales.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-mobile-screen"></i></div><div class="text-wrap"><div class="title">Responsive Across Devices</div><div class="desc">Flawless experience on desktop, tablet and mobile.</div></div></div>
+            </div>
+            <a href="/contact-us/" class="service-cta-btn mt-6">Get Free Consultation <i class="fas fa-arrow-right"></i></a>
           </div>
-        </article>
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-code"></i></div>
-            <h3 class="font-display text-3xl mb-3" data-i18n="serv2_title">CUSTOM DEV</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="serv2_desc">Theme customization, custom sections and performance-optimized Shopify development.</p>
+          <div class="service-graphic">
+            <div class="web-mockup">
+              <div class="web-bar">
+                <div class="web-dots"><span></span><span></span><span></span></div>
+                <div class="web-url">https://your-brand.myshopify.com</div>
+              </div>
+              <div class="web-content">
+                <div class="web-nav">
+                  <div class="web-logo">STORE</div>
+                  <div class="web-links"><div class="web-link"></div><div class="web-link"></div><div class="web-link"></div></div>
+                  <div class="web-cart"><i class="fas fa-shopping-bag"></i></div>
+                </div>
+                <div class="web-hero">
+                  <div class="web-h1"></div>
+                  <div class="web-p"></div>
+                  <div class="web-cta"></div>
+                </div>
+                <div class="web-grid">
+                  <div class="web-prod"><div class="web-prod-img"><i class="fas fa-tshirt"></i></div><div class="web-prod-info"><div class="web-prod-title"></div><div class="web-prod-price"></div></div></div>
+                  <div class="web-prod"><div class="web-prod-img"><i class="fas fa-shoe-prints"></i></div><div class="web-prod-info"><div class="web-prod-title"></div><div class="web-prod-price"></div></div></div>
+                  <div class="web-prod"><div class="web-prod-img"><i class="fas fa-glasses"></i></div><div class="web-prod-info"><div class="web-prod-title"></div><div class="web-prod-price"></div></div></div>
+                </div>
+              </div>
+            </div>
           </div>
-        </article>
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-bolt"></i></div>
-            <h3 class="font-display text-3xl mb-3" data-i18n="serv3_title">SPEED & CRO</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="serv3_desc">Page speed optimization, clean code and performance best practices for better rankings.</p>
+        </div>
+        
+        <!-- PANEL 2: CUSTOM DEV -->
+        <div class="service-panel" data-panel="dev">
+          <div class="service-info-card">
+            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">// SERVICE 02</div>
+            <h3 class="font-display text-5xl mb-4 leading-[0.9]">CUSTOM DEV</h3>
+            <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-6">Theme customization, custom sections and performance-optimized Shopify development.</p>
+            <div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-code"></i></div><div class="text-wrap"><div class="title">Theme Customization</div><div class="desc">Tailored Shopify themes built to match your brand.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-puzzle-piece"></i></div><div class="text-wrap"><div class="title">Custom Sections & Blocks</div><div class="desc">Reusable, flexible components for easy management.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-bolt"></i></div><div class="text-wrap"><div class="title">Performance-Optimized Code</div><div class="desc">Clean Liquid/JS code built for speed and scalability.</div></div></div>
+            </div>
+            <a href="/contact-us/" class="service-cta-btn mt-6">Get Free Consultation <i class="fas fa-arrow-right"></i></a>
           </div>
-        </article>
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-mobile-screen-button"></i></div>
-            <h3 class="font-display text-3xl mb-3" data-i18n="serv4_title">MOBILE OPTIMIZATION</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="serv4_desc">Mobile-first layouts ensuring smooth browsing and checkout experiences.</p>
+          <div class="service-graphic">
+            <div class="ide-wrap">
+              <div class="ide-sidebar">
+                <div class="ide-icon active"><i class="fas fa-code"></i></div>
+                <div class="ide-icon"><i class="fas fa-folder"></i></div>
+                <div class="ide-icon"><i class="fas fa-search"></i></div>
+              </div>
+              <div class="ide-code">
+                <div class="ide-tabs">
+                  <div class="ide-tab active">hero-banner.liquid</div>
+                  <div class="ide-tab">base.css</div>
+                </div>
+                <div class="ide-code-area">
+                  <div class="line-numbers"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div>
+                  <div class="code-content">
+                    <span class="ide-line"><span class="ide-com">{%- comment -%} Dynamic {%- endcomment -%}</span></span>
+                    <span class="ide-line"><span class="ide-tag">&lt;div</span> <span class="ide-attr">class</span>=<span class="ide-val">"hero"</span><span class="ide-tag">&gt;</span></span>
+                    <span class="ide-line">  <span class="ide-tag">&lt;h1&gt;</span>{{ section.settings.title }}<span class="ide-tag">&lt;/h1&gt;</span></span>
+                    <span class="ide-line">  <span class="ide-tag">&lt;p&gt;</span>{{ block.settings.sub }}<span class="ide-tag">&lt;/p&gt;</span></span>
+                    <span class="ide-line">&nbsp;</span>
+                    <span class="ide-line">  <span class="ide-tag">{%</span> <span class="ide-attr">if</span> block.settings.img <span class="ide-tag">%}</span></span>
+                    <span class="ide-line">    <span class="ide-tag">&lt;img</span> <span class="ide-attr">src</span>=<span class="ide-val">"{{ img | url }}"</span> <span class="ide-tag">/&gt;</span></span>
+                    <span class="ide-line">  <span class="ide-tag">{%</span> <span class="ide-attr">endif</span> <span class="ide-tag">%}</span></span>
+                    <span class="ide-line"><span class="ide-tag">&lt;/div&gt;</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </article>
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-right-left"></i></div>
-            <h3 class="font-display text-3xl mb-3" data-i18n="serv5_title">PLATFORM MIGRATION</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="serv5_desc">Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.</p>
+        </div>
+        
+        <!-- PANEL 3: SPEED & CRO -->
+        <div class="service-panel" data-panel="speed">
+          <div class="service-info-card">
+            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">// SERVICE 03</div>
+            <h3 class="font-display text-5xl mb-4 leading-[0.9]">SPEED & CRO</h3>
+            <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-6">Page speed optimization, clean code and performance best practices for better rankings.</p>
+            <div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-gauge-high"></i></div><div class="text-wrap"><div class="title">Page Speed Optimization</div><div class="desc">Lightning-fast load times for better user experience.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-code-branch"></i></div><div class="text-wrap"><div class="title">Clean, Maintainable Code</div><div class="desc">Optimized codebase that scales with your business.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-chart-line"></i></div><div class="text-wrap"><div class="title">SEO & Ranking Boost</div><div class="desc">Performance best practices for higher search rankings.</div></div></div>
+            </div>
+            <a href="/contact-us/" class="service-cta-btn mt-6">Get Free Consultation <i class="fas fa-arrow-right"></i></a>
           </div>
-        </article>
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-headset"></i></div>
-            <h3 class="font-display text-3xl mb-3" data-i18n="serv6_title">ONGOING SUPPORT</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="serv6_desc">Post-launch maintenance, improvements, new features and continuous store monitoring.</p>
+          <div class="service-graphic">
+            <div class="analytic-dash">
+              <div class="dash-header">
+                <div class="dash-title">Core Web Vitals</div>
+                <div class="dash-badge">Passed</div>
+              </div>
+              <div class="dash-grid">
+                <div class="dash-card"><div class="dash-score">0.8s</div><div class="dash-label">LCP</div><div class="dash-progress"><div class="dash-progress-fill fill-green" style="width: 90%"></div></div></div>
+                <div class="dash-card"><div class="dash-score">2.1s</div><div class="dash-label">FID</div><div class="dash-progress"><div class="dash-progress-fill fill-orange" style="width: 60%"></div></div></div>
+                <div class="dash-card"><div class="dash-score">0.01</div><div class="dash-label">CLS</div><div class="dash-progress"><div class="dash-progress-fill fill-green" style="width: 95%"></div></div></div>
+              </div>
+              <div class="dash-chart">
+                <div class="dash-bar" style="height: 40%"></div><div class="dash-bar" style="height: 65%"></div><div class="dash-bar" style="height: 50%"></div><div class="dash-bar" style="height: 80%"></div><div class="dash-bar" style="height: 70%"></div><div class="dash-bar" style="height: 90%"></div><div class="dash-bar" style="height: 85%"></div>
+              </div>
+            </div>
           </div>
-        </article>
+        </div>
+        
+        <!-- PANEL 4: MOBILE OPTIMIZATION -->
+        <div class="service-panel" data-panel="mobile">
+          <div class="service-info-card">
+            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">// SERVICE 04</div>
+            <h3 class="font-display text-5xl mb-4 leading-[0.9]">MOBILE OPTIMIZATION</h3>
+            <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-6">Mobile-first layouts ensuring smooth browsing and checkout experiences.</p>
+            <div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-mobile-screen-button"></i></div><div class="text-wrap"><div class="title">Mobile-First Layouts</div><div class="desc">Designs built for mobile users from the ground up.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-hand-pointer"></i></div><div class="text-wrap"><div class="title">Smooth Browsing Experience</div><div class="desc">Intuitive navigation optimized for touch interactions.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-credit-card"></i></div><div class="text-wrap"><div class="title">Seamless Mobile Checkout</div><div class="desc">Frictionless payment flow that maximizes conversions.</div></div></div>
+            </div>
+            <a href="/contact-us/" class="service-cta-btn mt-6">Get Free Consultation <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-graphic">
+            <div class="iphone-pro">
+              <div class="iphone-island"></div>
+              <div class="iphone-screen">
+                <div class="iph-header"><i class="fas fa-bars"></i><div class="web-logo" style="font-size: 0.8rem;">STORE</div><i class="fas fa-shopping-bag"></i></div>
+                <div class="iph-banner"><i class="fas fa-percent"></i></div>
+                <div class="iph-card">
+                  <div class="iph-card-img"><i class="fas fa-tshirt"></i><div class="iph-badge">SALE</div></div>
+                  <div class="iph-card-body">
+                    <div class="iph-title"></div><div class="iph-sub"></div>
+                    <div class="iph-price-row"><div class="iph-price"><div class="iph-price-new"></div><div class="iph-price-old"></div></div><div class="iph-btn"><i class="fas fa-plus"></i></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- PANEL 5: PLATFORM MIGRATION -->
+        <div class="service-panel" data-panel="migration">
+          <div class="service-info-card">
+            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">// SERVICE 05</div>
+            <h3 class="font-display text-5xl mb-4 leading-[0.9]">PLATFORM MIGRATION</h3>
+            <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-6">Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.</p>
+            <div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-shield-halved"></i></div><div class="text-wrap"><div class="title">Safe Data Migration</div><div class="desc">Zero data loss with structured migration process.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-arrows-rotate"></i></div><div class="text-wrap"><div class="title">Multi-Platform Support</div><div class="desc">WooCommerce, Magento, custom platforms and more.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-rocket"></i></div><div class="text-wrap"><div class="title">Zero Downtime Launch</div><div class="desc">Seamless transition with no business disruption.</div></div></div>
+            </div>
+            <a href="/contact-us/" class="service-cta-btn mt-6">Get Free Consultation <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-graphic">
+            <div class="mig-pipe">
+              <div class="mig-step done"><div class="mig-icon"><i class="fab fa-wordpress"></i></div><div class="mig-info"><div class="mig-name">WooCommerce Export</div><div class="mig-stat">1,500 Products Moved</div></div><div class="mig-check"><i class="fas fa-check-circle"></i></div></div>
+              <div class="mig-step active"><div class="mig-icon"><i class="fas fa-database"></i></div><div class="mig-info"><div class="mig-name">Data Mapping</div><div class="mig-stat">In Progress... 85%</div></div></div>
+              <div class="mig-step"><div class="mig-icon"><i class="fab fa-shopify"></i></div><div class="mig-info"><div class="mig-name">Shopify Import</div><div class="mig-stat">Pending</div></div></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- PANEL 6: ONGOING SUPPORT -->
+        <div class="service-panel" data-panel="support">
+          <div class="service-info-card">
+            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">// SERVICE 06</div>
+            <h3 class="font-display text-5xl mb-4 leading-[0.9]">ONGOING SUPPORT</h3>
+            <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-6">Post-launch maintenance, improvements, new features and continuous store monitoring.</p>
+            <div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-screwdriver-wrench"></i></div><div class="text-wrap"><div class="title">Post-Launch Maintenance</div><div class="desc">Continuous updates and security patches.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-eye"></i></div><div class="text-wrap"><div class="title">Store Monitoring</div><div class="desc">24/7 performance tracking and issue resolution.</div></div></div>
+              <div class="feature-list-item"><div class="icon-wrap"><i class="fas fa-arrow-up-right-dots"></i></div><div class="text-wrap"><div class="title">Feature Improvements</div><div class="desc">Ongoing enhancements to boost conversions.</div></div></div>
+            </div>
+            <a href="/contact-us/" class="service-cta-btn mt-6">Get Free Consultation <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-graphic">
+            <div class="admin-dash">
+              <div class="admin-head"><div class="admin-title">Support Dashboard</div><div class="admin-badge">Operational</div></div>
+              <div class="admin-kpis">
+                <div class="kpi-card"><div class="kpi-label">Tickets</div><div class="kpi-val">142 <span>+12%</span></div></div>
+                <div class="kpi-card"><div class="kpi-label">Response</div><div class="kpi-val">1.2<span>h</span></div></div>
+                <div class="kpi-card"><div class="kpi-label">Uptime</div><div class="kpi-val">99.9<span>%</span></div></div>
+              </div>
+              <div class="admin-list">
+                <div class="admin-list-head">Recent Activity</div>
+                <div class="ticket-item"><div class="ticket-status"></div><div class="ticket-info"><div class="ticket-title">Checkout API optimized</div><div class="ticket-time">10:42 AM</div></div><div class="ticket-tag">CRO</div></div>
+                <div class="ticket-item"><div class="ticket-status"></div><div class="ticket-info"><div class="ticket-title">New schema added</div><div class="ticket-time">09:15 AM</div></div><div class="ticket-tag">SEO</div></div>
+                <div class="ticket-item"><div class="ticket-status pending"></div><div class="ticket-info"><div class="ticket-title">Plugin conflict resolved</div><div class="ticket-time">Yesterday</div></div><div class="ticket-tag">FIX</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </section>
@@ -710,13 +1308,13 @@
     <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
       <div class="reveal grid lg:grid-cols-12 gap-8 mb-20">
         <div class="lg:col-span-5">
-          <div class="section-marker mb-6"><span data-i18n="sec3_marker">03 — How We Work</span></div>
+          <div class="section-marker mb-6"><span>03 — How We Work</span></div>
           <h2 class="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9]">
-            <span data-i18n="sec3_title_1">How</span> <span class="text-[var(--accent)]" data-i18n="sec3_title_2">We</span> <span data-i18n="sec3_title_3">Work</span>
+            How <span class="text-[var(--accent)]">We</span> Work
           </h2>
         </div>
         <div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-end">
-          <p class="text-[var(--fg-dim)] text-lg leading-relaxed" data-i18n="sec3_desc">
+          <p class="text-[var(--fg-dim)] text-lg leading-relaxed">
             A structured, transparent and result-driven process that keeps projects aligned and focused on growth.
           </p>
         </div>
@@ -731,8 +1329,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">STRATEGY</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="step1_title">DISCOVERY & STRATEGY</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="step1_desc">
+            <h3 class="font-display text-3xl mb-3">DISCOVERY & STRATEGY</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -740,7 +1338,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Duration</div><div class="font-heading text-base">1-2 WEEKS</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_start">Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -753,8 +1351,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">DESIGN</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="step2_title">DESIGN SYSTEM</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="step2_desc">
+            <h3 class="font-display text-3xl mb-3">DESIGN SYSTEM</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -762,7 +1360,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Duration</div><div class="font-heading text-base">2-3 WEEKS</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_start">Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -775,8 +1373,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">BUILD</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="step3_title">DEVELOPMENT</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="step3_desc">
+            <h3 class="font-display text-3xl mb-3">DEVELOPMENT</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               Clean, scalable Shopify development with performance, SEO and best practices in mind.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -784,7 +1382,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Duration</div><div class="font-heading text-base">3-5 WEEKS</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_start">Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -797,8 +1395,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">QA</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="step4_title">TESTING & OPTIMIZATION</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="step4_desc">
+            <h3 class="font-display text-3xl mb-3">TESTING & OPTIMIZATION</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               Cross-device testing, speed optimization and UX refinements before going live.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -806,7 +1404,7 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Duration</div><div class="font-heading text-base">1 WEEK</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_start">Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
@@ -819,8 +1417,8 @@
             <div class="absolute top-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SCALE</div>
           </div>
           <div class="p-7">
-            <h3 class="font-display text-3xl mb-3" data-i18n="step5_title">LAUNCH & GROWTH</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="step5_desc">
+            <h3 class="font-display text-3xl mb-3">LAUNCH & GROWTH</h3>
+            <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
               Smooth launch followed by ongoing support, improvements and data-driven growth strategies.
             </p>
             <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 pb-6 border-b border-[var(--border-light)]">
@@ -828,18 +1426,18 @@
               <div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Duration</div><div class="font-heading text-base">ONGOING</div></div>
             </div>
             <a href="/contact-us/" class="flex items-center justify-between font-heading text-sm tracking-[0.15em] uppercase link-underline">
-              <span data-i18n="btn_start">Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
+              <span>Start Project</span><i class="fas fa-arrow-right text-[var(--accent)]"></i>
             </a>
           </div>
         </article>
 
         <article class="info-card p-8 flex flex-col justify-center items-center text-center notch-corner">
           <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-rocket"></i></div>
-          <h3 class="font-display text-3xl mb-3" data-i18n="cta_ready">READY TO SCALE?</h3>
-          <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6" data-i18n="cta_ready_desc">
+          <h3 class="font-display text-3xl mb-3">READY TO SCALE?</h3>
+          <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6">
             Let's build a Shopify store that drives real revenue and scales with your business.
           </p>
-          <a href="/contact-us/" class="font-heading text-sm tracking-[0.15em] uppercase link-underline text-[var(--accent)]" data-i18n="btn_call">
+          <a href="/contact-us/" class="font-heading text-sm tracking-[0.15em] uppercase link-underline text-[var(--accent)]">
             BOOK FREE CALL <i class="fas fa-arrow-right ml-2"></i>
           </a>
         </article>
@@ -852,13 +1450,13 @@
     <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
       <div class="reveal grid lg:grid-cols-12 gap-8 mb-20">
         <div class="lg:col-span-7">
-          <div class="section-marker mb-6"><span data-i18n="sec4_marker">04 — Why Choose Us</span></div>
+          <div class="section-marker mb-6"><span>04 — Why Choose Us</span></div>
           <h2 class="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9]">
-            <span data-i18n="sec4_title_1">Why Brands</span> <span class="text-[var(--accent)]" data-i18n="sec4_title_2">Choose</span> <span data-i18n="sec4_title_3">Us</span>
+            Why Brands <span class="text-[var(--accent)]">Choose</span> Us
           </h2>
         </div>
         <div class="lg:col-span-4 lg:col-start-9 flex flex-col justify-end">
-          <p class="text-[var(--fg-dim)] text-base leading-relaxed" data-i18n="sec4_desc">
+          <p class="text-[var(--fg-dim)] text-base leading-relaxed">
             Every project at Flixifys begins with business goals, target audience analysis and competitive research. Hover any card to reveal our core principles.
           </p>
         </div>
@@ -878,7 +1476,7 @@
               </div>
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="font-display text-3xl leading-none" data-i18n="why1_title">STRATEGY-LED</h3>
+                  <h3 class="font-display text-3xl leading-none">STRATEGY-LED</h3>
                   <p class="text-[var(--muted)] text-xs mt-2 font-heading tracking-wider uppercase">Decisions</p>
                 </div>
                 <div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--border-light)]">
@@ -889,13 +1487,13 @@
             </div>
             <div class="flip-face flip-back info-card p-7 flex flex-col bg-[var(--bg-card)]">
               <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">/ Strategy-Led Decisions</div>
-              <h3 class="font-display text-2xl mb-5" data-i18n="why_principle">The Principle</h3>
-              <p class="text-sm text-[var(--fg-dim)] mb-6" data-i18n="why1_desc">
+              <h3 class="font-display text-2xl mb-5">The Principle</h3>
+              <p class="text-sm text-[var(--fg-dim)] mb-6">
                 Every project at Flixify begins with business goals, target audience analysis and competitive research — ensuring design decisions are driven by growth, not assumptions.
               </p>
               <div class="mt-auto pt-5 border-t border-[var(--border-light)]">
                 <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-2">Core Result</div>
-                <div class="font-display text-2xl text-[var(--accent)]" data-i18n="why1_result">DATA-DRIVEN GROWTH</div>
+                <div class="font-display text-2xl text-[var(--accent)]">DATA-DRIVEN GROWTH</div>
               </div>
             </div>
           </div>
@@ -914,7 +1512,7 @@
               </div>
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="font-display text-3xl leading-none" data-i18n="why2_title">SENIOR SHOPIFY</h3>
+                  <h3 class="font-display text-3xl leading-none">SENIOR SHOPIFY</h3>
                   <p class="text-[var(--muted)] text-xs mt-2 font-heading tracking-wider uppercase">Expertise</p>
                 </div>
                 <div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--border-light)]">
@@ -925,13 +1523,13 @@
             </div>
             <div class="flip-face flip-back info-card p-7 flex flex-col bg-[var(--bg-card)]">
               <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">/ Senior Shopify Expertise</div>
-              <h3 class="font-display text-2xl mb-5" data-i18n="why_principle">The Principle</h3>
-              <p class="text-sm text-[var(--fg-dim)] mb-6" data-i18n="why2_desc">
+              <h3 class="font-display text-2xl mb-5">The Principle</h3>
+              <p class="text-sm text-[var(--fg-dim)] mb-6">
                 Clients work directly with experienced Shopify designers and developers. No outsourcing, no juniors — just focused expertise from start to launch.
               </p>
               <div class="mt-auto pt-5 border-t border-[var(--border-light)]">
                 <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-2">Core Result</div>
-                <div class="font-display text-2xl text-[var(--accent)]" data-i18n="why2_result">FLAWLESS EXECUTION</div>
+                <div class="font-display text-2xl text-[var(--accent)]">FLAWLESS EXECUTION</div>
               </div>
             </div>
           </div>
@@ -950,7 +1548,7 @@
               </div>
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="font-display text-3xl leading-none" data-i18n="why3_title">PERFORMANCE</h3>
+                  <h3 class="font-display text-3xl leading-none">PERFORMANCE</h3>
                   <p class="text-[var(--muted)] text-xs mt-2 font-heading tracking-wider uppercase">& Scalability</p>
                 </div>
                 <div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--border-light)]">
@@ -961,13 +1559,13 @@
             </div>
             <div class="flip-face flip-back info-card p-7 flex flex-col bg-[var(--bg-card)]">
               <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">/ Performance & Scalability</div>
-              <h3 class="font-display text-2xl mb-5" data-i18n="why_principle">The Principle</h3>
-              <p class="text-sm text-[var(--fg-dim)] mb-6" data-i18n="why3_desc">
+              <h3 class="font-display text-2xl mb-5">The Principle</h3>
+              <p class="text-sm text-[var(--fg-dim)] mb-6">
                 We build stores optimized for speed, scalability and future growth — ensuring smooth performance during traffic spikes and sales campaigns.
               </p>
               <div class="mt-auto pt-5 border-t border-[var(--border-light)]">
                 <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-2">Core Result</div>
-                <div class="font-display text-2xl text-[var(--accent)]" data-i18n="why3_result">ZERO DOWNTIME</div>
+                <div class="font-display text-2xl text-[var(--accent)]">ZERO DOWNTIME</div>
               </div>
             </div>
           </div>
@@ -986,7 +1584,7 @@
               </div>
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="font-display text-3xl leading-none" data-i18n="why4_title">CLEAR COMM</h3>
+                  <h3 class="font-display text-3xl leading-none">CLEAR COMM</h3>
                   <p class="text-[var(--muted)] text-xs mt-2 font-heading tracking-wider uppercase">& Transparency</p>
                 </div>
                 <div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--border-light)]">
@@ -997,13 +1595,13 @@
             </div>
             <div class="flip-face flip-back info-card p-7 flex flex-col bg-[var(--bg-card)]">
               <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">/ Clear Communication</div>
-              <h3 class="font-display text-2xl mb-5" data-i18n="why_principle">The Principle</h3>
-              <p class="text-sm text-[var(--fg-dim)] mb-6" data-i18n="why4_desc">
+              <h3 class="font-display text-2xl mb-5">The Principle</h3>
+              <p class="text-sm text-[var(--fg-dim)] mb-6">
                 Clear timelines, honest feedback and consistent updates keep clients informed at every stage — no confusion, no surprises.
               </p>
               <div class="mt-auto pt-5 border-t border-[var(--border-light)]">
                 <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-2">Core Result</div>
-                <div class="font-display text-2xl text-[var(--accent)]" data-i18n="why4_result">PEACE OF MIND</div>
+                <div class="font-display text-2xl text-[var(--accent)]">PEACE OF MIND</div>
               </div>
             </div>
           </div>
@@ -1016,11 +1614,11 @@
   <section class="relative py-20 lg:py-24 overflow-hidden border-t border-[var(--border)]" id="tech-partners">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-10 mb-10">
       <div class="reveal text-center max-w-3xl mx-auto">
-        <div class="section-marker justify-center mb-6"><span data-i18n="sec5_marker">05 — Tech Partners</span></div>
+        <div class="section-marker justify-center mb-6"><span>05 — Tech Partners</span></div>
         <h2 class="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-4">
-          <span data-i18n="sec5_title_1">Technology</span> <span class="text-[var(--accent)]" data-i18n="sec5_title_2">Partners</span>
+          Technology <span class="text-[var(--accent)]">Partners</span>
         </h2>
-        <p class="text-[var(--fg-dim)] text-base leading-relaxed" data-i18n="sec5_desc">We integrate with industry-leading platforms to power your Shopify store with seamless functionality.</p>
+        <p class="text-[var(--fg-dim)] text-base leading-relaxed">We integrate with industry-leading platforms to power your Shopify store with seamless functionality.</p>
       </div>
     </div>
     
@@ -1051,138 +1649,360 @@
 
   <!-- INDUSTRIES WE WORK WITH -->
   <section class="relative py-28 lg:py-36 bg-[var(--bg-darker)] border-t border-[var(--border)] overflow-hidden" id="industries">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10 mb-16">
-      <div class="reveal grid lg:grid-cols-12 gap-8">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
+      <!-- Section Header -->
+      <div class="reveal grid lg:grid-cols-12 gap-8 mb-16">
         <div class="lg:col-span-7">
-          <div class="section-marker mb-6"><span data-i18n="sec6_marker">06 — Industries</span></div>
+          <div class="section-marker mb-6"><span>06 — Industries</span></div>
           <h2 class="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9]">
-            <span data-i18n="sec6_title_1">Industries We</span> <span class="text-[var(--accent)]" data-i18n="sec6_title_2">Work With</span>
+            Industries We <span class="text-[var(--accent)]">WorkWith</span>
           </h2>
         </div>
         <div class="lg:col-span-4 lg:col-start-9 flex flex-col justify-end">
-          <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-5" data-i18n="sec6_desc">
+          <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-5">
             We partner with brands across diverse industries, adapting our Shopify strategies based on audience behavior and market trends.
           </p>
-          <div class="flex items-center gap-3 font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">
-            <i class="fas fa-hand-pointer text-[var(--accent)]"></i>
-            <span>Drag · Swipe · Auto-advance</span>
+        </div>
+      </div>
+      
+      <!-- Desktop Layout -->
+      <div class="hidden md:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div class="lg:col-span-5">
+          <div class="space-y-0">
+            <div class="industry-item active border-b border-[var(--border-light)]" data-ind="0">
+                <div class="industry-trigger flex items-center gap-4 cursor-pointer py-5 px-2 hover:bg-[var(--bg-card)]/30 transition-all">
+                    <i class="fas fa-shirt industry-icon text-xl text-[var(--accent)] transition-colors w-8 text-center"></i>
+                    <h3 class="industry-title font-display text-3xl lg:text-4xl transition-colors text-[var(--accent)]">FASHION & APPAREL</h3>
+                    <i class="fas fa-plus toggle-icon ml-auto text-[var(--accent)] transition-transform"></i>
+                </div>
+                <div class="industry-content">
+                    <div>
+                        <p class="text-[var(--fg-dim)] text-sm leading-relaxed">D2C fashion brands, clothing labels and lifestyle products.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-item border-b border-[var(--border-light)]" data-ind="1">
+                <div class="industry-trigger flex items-center gap-4 cursor-pointer py-5 px-2 hover:bg-[var(--bg-card)]/30 transition-all">
+                    <i class="fas fa-heart-pulse industry-icon text-xl text-[var(--muted)] transition-colors w-8 text-center"></i>
+                    <h3 class="industry-title font-display text-3xl lg:text-4xl transition-colors text-[var(--muted)]">HEALTH & WELLNESS</h3>
+                    <i class="fas fa-plus toggle-icon ml-auto text-[var(--muted)] transition-transform"></i>
+                </div>
+                <div class="industry-content">
+                    <div>
+                        <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Supplements, fitness brands and wellness-focused ecommerce.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-item border-b border-[var(--border-light)]" data-ind="2">
+                <div class="industry-trigger flex items-center gap-4 cursor-pointer py-5 px-2 hover:bg-[var(--bg-card)]/30 transition-all">
+                    <i class="fas fa-spray-can-sparkles industry-icon text-xl text-[var(--muted)] transition-colors w-8 text-center"></i>
+                    <h3 class="industry-title font-display text-3xl lg:text-4xl transition-colors text-[var(--muted)]">BEAUTY & COSMETICS</h3>
+                    <i class="fas fa-plus toggle-icon ml-auto text-[var(--muted)] transition-transform"></i>
+                </div>
+                <div class="industry-content">
+                    <div>
+                        <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Skincare, cosmetics and personal care brands.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-item border-b border-[var(--border-light)]" data-ind="3">
+                <div class="industry-trigger flex items-center gap-4 cursor-pointer py-5 px-2 hover:bg-[var(--bg-card)]/30 transition-all">
+                    <i class="fas fa-microchip industry-icon text-xl text-[var(--muted)] transition-colors w-8 text-center"></i>
+                    <h3 class="industry-title font-display text-3xl lg:text-4xl transition-colors text-[var(--muted)]">ELECTRONICS & GADGETS</h3>
+                    <i class="fas fa-plus toggle-icon ml-auto text-[var(--muted)] transition-transform"></i>
+                </div>
+                <div class="industry-content">
+                    <div>
+                        <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Consumer electronics, accessories and smart devices.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-item border-b border-[var(--border-light)]" data-ind="4">
+                <div class="industry-trigger flex items-center gap-4 cursor-pointer py-5 px-2 hover:bg-[var(--bg-card)]/30 transition-all">
+                    <i class="fas fa-utensils industry-icon text-xl text-[var(--muted)] transition-colors w-8 text-center"></i>
+                    <h3 class="industry-title font-display text-3xl lg:text-4xl transition-colors text-[var(--muted)]">FOOD & BEVERAGES</h3>
+                    <i class="fas fa-plus toggle-icon ml-auto text-[var(--muted)] transition-transform"></i>
+                </div>
+                <div class="industry-content">
+                    <div>
+                        <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Packaged food brands, beverages and subscription models.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-item border-b border-[var(--border-light)]" data-ind="5">
+                <div class="industry-trigger flex items-center gap-4 cursor-pointer py-5 px-2 hover:bg-[var(--bg-card)]/30 transition-all">
+                    <i class="fas fa-truck-fast industry-icon text-xl text-[var(--muted)] transition-colors w-8 text-center"></i>
+                    <h3 class="industry-title font-display text-3xl lg:text-4xl transition-colors text-[var(--muted)]">B2B & WHOLESALE</h3>
+                    <i class="fas fa-plus toggle-icon ml-auto text-[var(--muted)] transition-transform"></i>
+                </div>
+                <div class="industry-content">
+                    <div>
+                        <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Manufacturers, distributors and wholesale ecommerce solutions.</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 hidden md:block">
+          <div class="bg-[var(--bg-card)] border border-[var(--border-light)] rounded-xl overflow-hidden shadow-2xl">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-[var(--border-light)] bg-[var(--bg-darker)]">
+              <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div class="font-mono text-[10px] text-[var(--muted)] tracking-wider">Flixifys — Shopify Layers</div>
+              <div class="w-10"></div>
+            </div>
+            <div class="flex h-[550px]"> 
+              <div class="w-16 border-r border-[var(--border-light)] bg-[var(--bg-darker)] py-4 flex flex-col items-center gap-6">
+                <i class="fas fa-folder text-[var(--muted)]"></i>
+                <i class="fas fa-layer-group text-[var(--accent)]"></i>
+                <i class="fas fa-image text-[var(--muted)]"></i>
+                <i class="fas fa-font text-[var(--muted)]"></i>
+                <i class="fas fa-shapes text-[var(--muted)]"></i>
+              </div>
+              <div class="flex-1 relative bg-[var(--bg)] p-6 flex items-center justify-center">
+                <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <div class="relative w-full h-full overflow-hidden border border-[var(--accent)]/30 shadow-[0_0_30px_rgba(0,230,118,0.1)]">
+                    <img src="https://picsum.photos/seed/indFashion/1000/800.jpg" class="industry-image absolute inset-0 w-full h-full object-cover img-noir transition-opacity duration-500 opacity-100" data-img="0" alt="Fashion">
+                    <img src="https://picsum.photos/seed/indHealth/1000/800.jpg" class="industry-image absolute inset-0 w-full h-full object-cover img-noir transition-opacity duration-500 opacity-0" data-img="1" alt="Health">
+                    <img src="https://picsum.photos/seed/indBeauty/1000/800.jpg" class="industry-image absolute inset-0 w-full h-full object-cover img-noir transition-opacity duration-500 opacity-0" data-img="2" alt="Beauty">
+                    <img src="https://picsum.photos/seed/indTech/1000/800.jpg" class="industry-image absolute inset-0 w-full h-full object-cover img-noir transition-opacity duration-500 opacity-0" data-img="3" alt="Tech">
+                    <img src="https://picsum.photos/seed/indFood/1000/800.jpg" class="industry-image absolute inset-0 w-full h-full object-cover img-noir transition-opacity duration-500 opacity-0" data-img="4" alt="Food">
+                    <img src="https://picsum.photos/seed/indB2b/1000/800.jpg" class="industry-image absolute inset-0 w-full h-full object-cover img-noir transition-opacity duration-500 opacity-0" data-img="5" alt="B2B">
+                  <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+                     <div class="flex items-center justify-between">
+                       <span class="font-mono text-[10px] text-white tracking-wider">Artboard 1</span>
+                       <span class="px-2 py-0.5 bg-[var(--accent)] text-black font-mono text-[8px] tracking-widest">LIVE PREVIEW</span>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <div class="relative overflow-hidden">
-      <div class="story-track" id="storyTrack">
-        <article class="story-card">
-          <div class="relative h-56 overflow-hidden">
-            <img src="https://picsum.photos/seed/indFashion/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Fashion & Apparel">
-            <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 01</div>
-            <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">D2C</div>
+
+      <!-- Mobile Layout -->
+      <div class="md:hidden space-y-12">
+        <div class="reveal">
+          <div class="space-y-5 mb-8">
+             <div class="flex items-center gap-4">
+                <i class="fas fa-shirt text-xl text-[var(--accent)]"></i>
+                <div class="h-px w-12 bg-[var(--accent)]"></div>
+             </div>
+             <h3 class="font-display text-4xl leading-none">FASHION & APPAREL</h3>
+             <p class="text-[var(--fg-dim)] text-lg leading-relaxed">D2C fashion brands, clothing labels and lifestyle products.</p>
           </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2" data-i18n="ind1_title">FASHION & APPAREL</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="ind1_desc">D2C fashion brands, clothing labels and lifestyle products.</p>
+          <div class="relative h-80 overflow-hidden notch-corner group">
+             <img src="https://picsum.photos/seed/indFashion/800/600.jpg" class="w-full h-full object-cover img-noir" alt="Fashion">
+             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-darker)]/50 to-transparent"></div>
+             <div class="absolute bottom-6 right-6 px-3 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">D2C</div>
           </div>
-        </article>
-        <article class="story-card">
-          <div class="relative h-56 overflow-hidden">
-            <img src="https://picsum.photos/seed/indHealth/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Health & Wellness">
-            <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 02</div>
-            <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SUBSCRIPTIONS</div>
+        </div>
+        <div class="reveal">
+          <div class="space-y-5 mb-8">
+             <div class="flex items-center gap-4">
+                <i class="fas fa-heart-pulse text-xl text-[var(--accent)]"></i>
+                <div class="h-px w-12 bg-[var(--accent)]"></div>
+             </div>
+             <h3 class="font-display text-4xl leading-none">HEALTH & WELLNESS</h3>
+             <p class="text-[var(--fg-dim)] text-lg leading-relaxed">Supplements, fitness brands and wellness-focused ecommerce.</p>
           </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2" data-i18n="ind2_title">HEALTH & WELLNESS</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="ind2_desc">Supplements, fitness brands and wellness-focused ecommerce.</p>
+          <div class="relative h-80 overflow-hidden notch-corner group">
+             <img src="https://picsum.photos/seed/indHealth/800/600.jpg" class="w-full h-full object-cover img-noir" alt="Health">
+             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-darker)]/50 to-transparent"></div>
+             <div class="absolute bottom-6 right-6 px-3 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SUBSCRIPTIONS</div>
           </div>
-        </article>
-        <article class="story-card">
-          <div class="relative h-56 overflow-hidden">
-            <img src="https://picsum.photos/seed/indBeauty/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Beauty & Cosmetics">
-            <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 03</div>
-            <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">PERSONAL CARE</div>
+        </div>
+        <div class="reveal">
+          <div class="space-y-5 mb-8">
+             <div class="flex items-center gap-4">
+                <i class="fas fa-spray-can-sparkles text-xl text-[var(--accent)]"></i>
+                <div class="h-px w-12 bg-[var(--accent)]"></div>
+             </div>
+             <h3 class="font-display text-4xl leading-none">BEAUTY & COSMETICS</h3>
+             <p class="text-[var(--fg-dim)] text-lg leading-relaxed">Skincare, cosmetics and personal care brands.</p>
           </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2" data-i18n="ind3_title">BEAUTY & COSMETICS</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="ind3_desc">Skincare, cosmetics and personal care brands.</p>
+          <div class="relative h-80 overflow-hidden notch-corner group">
+             <img src="https://picsum.photos/seed/indBeauty/800/600.jpg" class="w-full h-full object-cover img-noir" alt="Beauty">
+             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-darker)]/50 to-transparent"></div>
+             <div class="absolute bottom-6 right-6 px-3 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">PERSONAL CARE</div>
           </div>
-        </article>
-        <article class="story-card">
-          <div class="relative h-56 overflow-hidden">
-            <img src="https://picsum.photos/seed/indTech/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Electronics & Gadgets">
-            <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 04</div>
-            <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SMART DEVICES</div>
+        </div>
+        <div class="reveal">
+          <div class="space-y-5 mb-8">
+             <div class="flex items-center gap-4">
+                <i class="fas fa-microchip text-xl text-[var(--accent)]"></i>
+                <div class="h-px w-12 bg-[var(--accent)]"></div>
+             </div>
+             <h3 class="font-display text-4xl leading-none">ELECTRONICS & GADGETS</h3>
+             <p class="text-[var(--fg-dim)] text-lg leading-relaxed">Consumer electronics, accessories and smart devices.</p>
           </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2" data-i18n="ind4_title">ELECTRONICS & GADGETS</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="ind4_desc">Consumer electronics, accessories and smart devices.</p>
+          <div class="relative h-80 overflow-hidden notch-corner group">
+             <img src="https://picsum.photos/seed/indTech/800/600.jpg" class="w-full h-full object-cover img-noir" alt="Tech">
+             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-darker)]/50 to-transparent"></div>
+             <div class="absolute bottom-6 right-6 px-3 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SMART DEVICES</div>
           </div>
-        </article>
-        <article class="story-card">
-          <div class="relative h-56 overflow-hidden">
-            <img src="https://picsum.photos/seed/indFood/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Food & Beverages">
-            <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 05</div>
-            <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">PACKAGED</div>
+        </div>
+        <div class="reveal">
+          <div class="space-y-5 mb-8">
+             <div class="flex items-center gap-4">
+                <i class="fas fa-utensils text-xl text-[var(--accent)]"></i>
+                <div class="h-px w-12 bg-[var(--accent)]"></div>
+             </div>
+             <h3 class="font-display text-4xl leading-none">FOOD & BEVERAGES</h3>
+             <p class="text-[var(--fg-dim)] text-lg leading-relaxed">Packaged food brands, beverages and subscription models.</p>
           </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2" data-i18n="ind5_title">FOOD & BEVERAGES</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="ind5_desc">Packaged food brands, beverages and subscription models.</p>
+          <div class="relative h-80 overflow-hidden notch-corner group">
+             <img src="https://picsum.photos/seed/indFood/800/600.jpg" class="w-full h-full object-cover img-noir" alt="Food">
+             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-darker)]/50 to-transparent"></div>
+             <div class="absolute bottom-6 right-6 px-3 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">PACKAGED</div>
           </div>
-        </article>
-        <article class="story-card">
-          <div class="relative h-56 overflow-hidden">
-            <img src="https://picsum.photos/seed/indB2b/600/400.jpg" class="w-full h-full object-cover img-noir" alt="B2B & Wholesale">
-            <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 06</div>
-            <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">WHOLESALE</div>
+        </div>
+        <div class="reveal">
+          <div class="space-y-5 mb-8">
+             <div class="flex items-center gap-4">
+                <i class="fas fa-truck-fast text-xl text-[var(--accent)]"></i>
+                <div class="h-px w-12 bg-[var(--accent)]"></div>
+             </div>
+             <h3 class="font-display text-4xl leading-none">B2B & WHOLESALE</h3>
+             <p class="text-[var(--fg-dim)] text-lg leading-relaxed">Manufacturers, distributors and wholesale ecommerce solutions.</p>
           </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2" data-i18n="ind6_title">B2B & WHOLESALE</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed" data-i18n="ind6_desc">Manufacturers, distributors and wholesale ecommerce solutions.</p>
+          <div class="relative h-80 overflow-hidden notch-corner group">
+             <img src="https://picsum.photos/seed/indB2b/800/600.jpg" class="w-full h-full object-cover img-noir" alt="B2B">
+             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-darker)]/50 to-transparent"></div>
+             <div class="absolute bottom-6 right-6 px-3 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">WHOLESALE</div>
           </div>
-        </article>
+        </div>
       </div>
-      
-      <div class="max-w-[1600px] mx-auto px-6 lg:px-10 mt-10 flex items-center justify-between">
-        <div class="flex items-center gap-2" id="storyDots"></div>
-        <div class="flex items-center gap-3">
-          <button id="storyPrev" class="w-11 h-11 border border-[var(--border-light)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center">
-            <i class="fas fa-arrow-left text-xs"></i>
-          </button>
-          <button id="storyNext" class="w-11 h-11 border border-[var(--border-light)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center">
-            <i class="fas fa-arrow-right text-xs"></i>
-          </button>
+
+      <!-- Hidden Original Carousel to preserve JS integrity -->
+      <div class="hidden">
+        <div class="story-track" id="storyTrack">
+          <article class="story-card">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://picsum.photos/seed/indFashion/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Fashion & Apparel">
+              <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 01</div>
+              <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">D2C</div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl mb-2">FASHION & APPAREL</h3>
+              <p class="text-[var(--fg-dim)] text-sm leading-relaxed">D2C fashion brands, clothing labels and lifestyle products.</p>
+            </div>
+          </article>
+          <article class="story-card">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://picsum.photos/seed/indHealth/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Health & Wellness">
+              <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 02</div>
+              <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SUBSCRIPTIONS</div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl mb-2">HEALTH & WELLNESS</h3>
+              <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Supplements, fitness brands and wellness-focused ecommerce.</p>
+            </div>
+          </article>
+          <article class="story-card">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://picsum.photos/seed/indBeauty/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Beauty & Cosmetics">
+              <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 03</div>
+              <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">PERSONAL CARE</div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl mb-2">BEAUTY & COSMETICS</h3>
+              <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Skincare, cosmetics and personal care brands.</p>
+            </div>
+          </article>
+          <article class="story-card">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://picsum.photos/seed/indTech/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Electronics & Gadgets">
+              <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 04</div>
+              <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">SMART DEVICES</div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl mb-2">ELECTRONICS & GADGETS</h3>
+              <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Consumer electronics, accessories and smart devices.</p>
+            </div>
+          </article>
+          <article class="story-card">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://picsum.photos/seed/indFood/600/400.jpg" class="w-full h-full object-cover img-noir" alt="Food & Beverages">
+              <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 05</div>
+              <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">PACKAGED</div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl mb-2">FOOD & BEVERAGES</h3>
+              <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Packaged food brands, beverages and subscription models.</p>
+            </div>
+          </article>
+          <article class="story-card">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://picsum.photos/seed/indB2b/600/400.jpg" class="w-full h-full object-cover img-noir" alt="B2B & Wholesale">
+              <div class="absolute top-4 left-4 font-mono text-[10px] text-[var(--accent)] tracking-[0.2em]">INDUSTRY / 06</div>
+              <div class="absolute bottom-4 right-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">WHOLESALE</div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl mb-2">B2B & WHOLESALE</h3>
+              <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Manufacturers, distributors and wholesale ecommerce solutions.</p>
+            </div>
+          </article>
+        </div>
+        
+        <div class="max-w-[1600px] mx-auto px-6 lg:px-10 mt-10 flex items-center justify-between">
+          <div class="flex items-center gap-2" id="storyDots"></div>
+          <div class="flex items-center gap-3">
+            <button id="storyPrev" class="w-11 h-11 border border-[var(--border-light)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center">
+              <i class="fas fa-arrow-left text-xs"></i>
+            </button>
+            <button id="storyNext" class="w-11 h-11 border border-[var(--border-light]] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center">
+              <i class="fas fa-arrow-right text-xs"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="relative py-28 lg:py-36 border-t border-[var(--border)]" id="contact">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="reveal grid lg:grid-cols-12 gap-8 mb-16">
-        <div class="lg:col-span-8">
-          <div class="section-marker mb-6"><span data-i18n="sec7_marker">07 — Let's Get In Touch</span></div>
-          <h2 class="font-display text-6xl md:text-7xl lg:text-[7rem] leading-[0.9]">
-            <span data-i18n="sec7_title_1">STOP WAITING.</span><br>
-            <span class="text-stroke" data-i18n="sec7_title_2">START</span> <span class="text-[var(--accent)]" data-i18n="sec7_title_3">CONVERTING.</span>
-          </h2>
-        </div>
+<section class="relative py-28 lg:py-36 border-t border-[var(--border)]" id="contact">
+  <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
+    
+    <!-- Heading Left & Subheading Right -->
+    <div class="reveal grid lg:grid-cols-12 gap-8 mb-16 items-center">
+      <div class="lg:col-span-7">
+        <div class="section-marker mb-6"><span>07 — Let's Get In Touch</span></div>
+        <h2 class="font-display text-6xl md:text-7xl lg:text-[7rem] leading-[0.9]">
+          STOP WAITING.<br>
+          <span class="text-stroke">START</span> <span class="text-[var(--accent)]">CONVERTING.</span>
+        </h2>
       </div>
+      <div class="lg:col-span-5">
+        <p class="text-[var(--fg-dim)] text-base md:text-lg leading-relaxed">
+          Your customers are searching for you right now. Let's build a Shopify store that captures attention, builds trust, and turns visitors into loyal customers. Book a free strategy call today.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Main Grid -->
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
       
-      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
-        <div class="lg:col-span-7 reveal">
-          <div class="booking-frame p-8 lg:p-12">
-            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-3">// Free Consultation Request</div>
-            <h3 class="font-display text-4xl mb-2" data-i18n="form_title">CLAIM YOUR FREE CALL</h3>
-            <p class="text-[var(--fg-dim)] text-sm mb-8" data-i18n="form_subtitle">Have a project in mind? Drop us a message and we'll get back to you within 24 hours.</p>
-            
-            <form id="bookingForm" class="space-y-6">
+      <!-- LEFT: Booking Form -->
+      <div class="lg:col-span-7 reveal">
+        <div class="booking-frame p-8 lg:p-12 h-full flex flex-col">
+          <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-3">// Free Consultation Request</div>
+          <h3 class="font-display text-4xl mb-2">CLAIM YOUR FREE CALL</h3>
+          <p class="text-[var(--fg-dim)] text-sm mb-8">Have a project in mind? Drop us a message and we'll get back to you within 24 hours.</p>
+          
+          <form id="bookingForm" class="space-y-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-6">
               <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase" data-i18n="form_name">Full Name</label>
+                  <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Full Name</label>
                   <input type="text" class="form-input" placeholder="John Doe" required>
                 </div>
                 <div>
-                  <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase" data-i18n="form_phone">Phone</label>
+                  <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Phone</label>
                   <input type="tel" class="form-input" placeholder="+91 98765 43210" required>
                 </div>
               </div>
@@ -1191,78 +2011,151 @@
                 <input type="email" class="form-input" placeholder="john@example.com" required>
               </div>
               <div>
-                <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase block mb-3" data-i18n="form_service">Select Service</label>
+                <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase block mb-3">Select Service</label>
                 <div class="flex flex-wrap gap-2" id="goalSelector">
-                  <span class="goal-pill active" data-goal="design" data-i18n="serv_design">Store Design</span>
-                  <span class="goal-pill" data-goal="dev" data-i18n="serv_dev">Custom Dev</span>
-                  <span class="goal-pill" data-goal="speed" data-i18n="serv_speed">Speed & CRO</span>
-                  <span class="goal-pill" data-goal="migrate" data-i18n="serv_migrate">Migration</span>
-                  <span class="goal-pill" data-goal="support" data-i18n="serv_support">Support</span>
+                  <span class="goal-pill active" data-goal="design">Store Design</span>
+                  <span class="goal-pill" data-goal="dev">Custom Dev</span>
+                  <span class="goal-pill" data-goal="speed">Speed & CRO</span>
+                  <span class="goal-pill" data-goal="migrate">Migration</span>
+                  <span class="goal-pill" data-goal="support">Support</span>
                 </div>
               </div>
               <div>
-                <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase" data-i18n="form_message">Your Message</label>
+                <label class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">Your Message</label>
                 <textarea class="form-input" placeholder="Tell us about your project, goals, and timeline..." required rows="3"></textarea>
               </div>
+            </div>
+            
+            <div>
               <button type="submit" class="pulse-btn w-full bg-[var(--accent)] text-black py-5 font-display text-2xl tracking-wider hover:bg-[var(--accent-bright)] transition-colors flex items-center justify-center gap-4 mt-4">
-                <span data-i18n="form_submit">SEND MESSAGE</span><i class="fas fa-paper-plane"></i>
+                <span>SEND MESSAGE</span><i class="fas fa-paper-plane"></i>
               </button>
-              <p class="text-center font-mono text-[10px] text-[var(--muted)] tracking-[0.15em] uppercase" data-i18n="form_note">
+              <p class="text-center font-mono text-[10px] text-[var(--muted)] tracking-[0.15em] uppercase mt-4">
                 No charge · No obligation · Response within 24 hours
               </p>
-            </form>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <!-- RIGHT: Contact Cards (Heights matched with Form) -->
+      <div class="lg:col-span-5 reveal flex flex-col gap-6 h-full" style="--delay: 0.2s;">
+        
+        <!-- Card 1: Direct Contact -->
+        <div class="info-card contact-card p-6 flex-1 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)]">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase">/ Direct Contact</div>
+          </div>
+          <h4 class="font-display text-2xl mb-4">REACH THE STUDIO</h4>
+          <div class="space-y-3 text-sm flex-1">
+            <a href="mailto:hello@flixifys.com" class="contact-link flex items-center gap-3 hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+              <i class="fas fa-envelope text-[var(--accent)] w-4"></i>
+              <span class="font-mono">hello@flixifys.com</span>
+            </a>
+            <a href="https://wa.me/919876543210" target="_blank" class="contact-link flex items-center gap-3 hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+              <i class="fab fa-whatsapp text-[var(--accent)] w-4"></i>
+              <span class="font-mono">+91 98765 43210</span>
+            </a>
+            <a href="https://wa.me/919876543210" target="_blank" class="contact-link flex items-center gap-3 hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+              <i class="fas fa-comment-dots text-[var(--accent)] w-4"></i>
+              <span class="font-mono">Live Chat Available</span>
+            </a>
+          </div>
+          <div class="mt-4 pt-4 border-t border-[var(--border-light)] flex items-center gap-2 font-mono text-[10px] text-[var(--accent)] tracking-[0.15em] uppercase">
+            <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+            <span>Online Now · Avg Reply 5 Min</span>
           </div>
         </div>
-        
-        <div class="lg:col-span-5 reveal" style="--delay: 0.2s;">
-          <div class="space-y-6">
-            <div class="info-card p-7">
-              <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-2">/ Direct Contact</div>
-              <h4 class="font-display text-2xl mb-3" data-i18n="contact_direct">REACH THE STUDIO</h4>
-              <div class="space-y-2.5 text-sm">
-                <a href="mailto:hello@flixifys.com" class="flex items-center gap-3 hover:text-[var(--accent)] transition-colors">
-                  <i class="fas fa-envelope text-[var(--accent)] w-4"></i>
-                  <span class="font-mono">hello@flixifys.com</span>
-                </a>
-                <a href="https://wa.me/919876543210" target="_blank" class="flex items-center gap-3 hover:text-[var(--accent)] transition-colors">
-                  <i class="fab fa-whatsapp text-[var(--accent)] w-4"></i>
+
+        <!-- Card 2: Studio HQ -->
+        <div class="info-card contact-card p-6 flex-1 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)]">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase">/ Location</div>
+          </div>
+          <h4 class="font-display text-2xl mb-4">STUDIO HQ</h4>
+          <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-4 flex-1">
+            Based in India, serving ambitious Shopify brands across the globe with premium design and development services.
+          </p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fas fa-circle-check text-[var(--accent)] w-4 text-xs"></i>
+              <span class="font-mono text-[var(--fg-dim)] whitespace-nowrap">100% Remote Friendly</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fas fa-circle-check text-[var(--accent)] w-4 text-xs"></i>
+              <span class="font-mono text-[var(--fg-dim)] whitespace-nowrap">Global Timezone Support</span>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-[var(--border-light)] flex items-center gap-3 font-mono text-[11px] text-[var(--silver)]">
+            <i class="fas fa-globe text-[var(--accent)]"></i>
+            <span>REMOTE · WORLDWIDE</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Delhi HQ (Image Left, Text Center, Single Line) -->
+        <div class="info-card contact-card flex-1 flex flex-col overflow-hidden">
+          <div class="flex flex-col sm:flex-row h-full">
+            <!-- Image Section (LEFT) -->
+            <div class="delhi-img-wrap relative sm:w-2/5 min-h-[180px] overflow-hidden flex-shrink-0">
+              <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover img-noir" alt="Delhi HQ">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--bg-card)]/90 sm:block hidden"></div>
+              <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 bg-[var(--accent)] text-black font-mono text-[9px] tracking-[0.15em] uppercase rounded-sm shadow-lg z-10">
+                <span class="w-1.5 h-1.5 bg-black rounded-full animate-pulse"></span> Open
+              </div>
+            </div>
+            
+            <!-- Content Section (RIGHT - Centered) -->
+            <div class="delhi-content flex-1 p-6 flex flex-col items-center justify-center text-center">
+              <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-2">/ Headquarters</div>
+              <h4 class="font-display text-2xl mb-4">DELHI HQ</h4>
+              <div class="space-y-2.5 text-sm text-[var(--fg-dim)] w-full">
+                <div class="flex items-center justify-center gap-2 whitespace-nowrap">
+                  <i class="fas fa-location-dot text-[var(--accent)] w-4"></i>
+                  <span class="font-mono">New Delhi, India</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 whitespace-nowrap">
+                  <i class="fas fa-clock text-[var(--accent)] w-4"></i>
+                  <span class="font-mono">Mon - Fri · 9AM - 5PM</span>
+                </div>
+                <a href="tel:+919876543210" class="flex items-center justify-center gap-2 hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+                  <i class="fas fa-phone text-[var(--accent)] w-4"></i>
                   <span class="font-mono">+91 98765 43210</span>
                 </a>
               </div>
-            </div>
-            <div class="info-card p-7">
-              <div class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-2">/ Location</div>
-              <h4 class="font-display text-2xl mb-3" data-i18n="contact_location">STUDIO HQ</h4>
-              <p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-4" data-i18n="contact_address">
-                India<br>Serving Globally
+              <p class="text-xs text-[var(--muted)] leading-relaxed mt-4 pt-4 border-t border-[var(--border-light)] w-full">
+                Visit our primary office for in-person consultations and strategic meetings.
               </p>
-              <div class="flex items-center gap-3 font-mono text-[11px] text-[var(--silver)]">
-                <i class="fas fa-globe text-[var(--accent)]"></i>
-                <span>REMOTE · WORLDWIDE</span>
-              </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
-  </section>
+  </div>
+</section>
   
-  <!-- FOOTER (Dark in both modes) -->
+  <!-- FOOTER -->
   <footer class="border-t border-white/5 bg-black py-16 relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
       <div class="font-display text-[18vw] md:text-[14vw] leading-none text-stroke opacity-30 absolute bottom-0 left-0 right-0 text-center pointer-events-none select-none">
         FLIXIFYS
       </div>
       
-      <div class="relative grid md:grid-cols-12 gap-10 mb-12">
-        <div class="md:col-span-5">
+      <div class="relative grid grid-cols-2 md:grid-cols-12 gap-10 mb-12">
+        <div class="col-span-2 md:col-span-5">
           <div class="flex items-center gap-3 mb-5">
             <div>
               <div class="font-display text-2xl leading-none tracking-wider text-white">FLIXIFYS</div>
               <div class="font-mono text-[10px] text-gray-400 tracking-[0.3em] mt-0.5">SHOPIFY · STUDIO</div>
             </div>
           </div>
-          <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6" data-i18n="footer_about">
+          <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6">
             A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.
           </p>
           <div class="flex gap-3">
@@ -1281,19 +2174,19 @@
           </div>
         </div>
         
-        <div class="md:col-span-2">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_links">Quick Links</h5>
+        <div class="col-span-1 md:col-span-2">
+          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Quick Links</h5>
           <ul class="space-y-2 text-sm">
-            <li><a href="/about-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_about">About Us</a></li>
-            <li><a href="/services/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_services">Services</a></li>
-            <li><a href="/blog/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_blog">Blog</a></li>
-            <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_referral">Referral Program</a></li>
-            <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Contact Us</a></li>
-            <li><a href="/support/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_support">Support</a></li>
+            <li><a href="/about-us/" class="text-gray-400 hover:text-white link-underline">About Us</a></li>
+            <li><a href="/services/" class="text-gray-400 hover:text-white link-underline">Services</a></li>
+            <li><a href="/blog/" class="text-gray-400 hover:text-white link-underline">Blog</a></li>
+            <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline">Referral Program</a></li>
+            <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline">Contact Us</a></li>
+            <li><a href="/support/" class="text-gray-400 hover:text-white link-underline">Support</a></li>
           </ul>
         </div>
         
-        <div class="md:col-span-2">
+        <div class="col-span-1 md:col-span-2">
           <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Polices</h5>
           <ul class="space-y-2 text-sm">
             <li><a href="/terms-and-conditions/" class="text-gray-400 hover:text-white link-underline">Terms And Conditions</a></li>
@@ -1304,9 +2197,9 @@
           </ul>
         </div>
         
-        <div class="md:col-span-3">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_news">Newsletter</h5>
-          <p class="text-gray-400 text-xs mb-4 leading-relaxed" data-i18n="footer_news_desc">Weekly Shopify insights, case studies, and studio updates.</p>
+        <div class="col-span-2 md:col-span-3">
+          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Newsletter</h5>
+          <p class="text-gray-400 text-xs mb-4 leading-relaxed">Weekly Shopify insights, case studies, and studio updates.</p>
           <form class="flex border border-gray-800 focus-within:border-[var(--accent)] transition-colors">
             <input type="email" placeholder="email@address.com" class="flex-1 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-gray-500">
             <button type="submit" class="px-4 bg-[var(--accent)] text-black hover:bg-[var(--accent-bright)] transition-colors">
@@ -1347,6 +2240,40 @@
   </div>
   
   <script>
+     
+// ==========================================
+// CORE SERVICES TAB SWITCHING (WITH SCROLL FIX)
+// ==========================================
+const serviceTabs = document.querySelectorAll('.service-tab');
+const servicePanels = document.querySelectorAll('.service-panel');
+
+serviceTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // 1. Save current scroll position to prevent page jump
+    const scrollPosition = window.scrollY;
+    
+    const targetService = tab.dataset.service;
+    
+    // Remove active from all tabs
+    serviceTabs.forEach(t => t.classList.remove('active'));
+    // Add active to clicked tab
+    tab.classList.add('active');
+    
+    // Hide all panels
+    servicePanels.forEach(panel => {
+      panel.classList.remove('active');
+    });
+    
+    // Show target panel
+    const targetPanel = document.querySelector(`.service-panel[data-panel="${targetService}"]`);
+    if (targetPanel) {
+      targetPanel.classList.add('active');
+    }
+    
+    // 2. Restore scroll position exactly where it was to prevent jumping
+    window.scrollTo(0, scrollPosition);
+  });
+});
     // Mobile Drawer
     const menuBtn = document.getElementById('menuBtn');
     const closeDrawer = document.getElementById('closeDrawer');
@@ -1466,7 +2393,7 @@
       document.querySelectorAll('.goal-pill').forEach((p, i) => p.classList.toggle('active', i === 0));
     });
     
-    // Stories Carousel
+    // Stories Carousel (Kept intact as requested, runs invisibly)
     class StoriesCarousel {
       constructor(track, opts = {}) {
         this.track = track;
@@ -1665,7 +2592,54 @@
     }
     
     new StoriesCarousel(document.getElementById('storyTrack'), { interval: 4500 });
-    
+
+    // ==========================================
+    // INDUSTRIES ACCORDION INTERACTIVITY (CLICK ONLY)
+    // ==========================================
+    const industryItems = document.querySelectorAll('.industry-item');
+    const industryImages = document.querySelectorAll('.industry-image');
+
+    function activateIndustry(index) {
+        industryItems.forEach((item, i) => {
+            const title = item.querySelector('.industry-title');
+            const icon = item.querySelector('.industry-icon');
+            const toggleIcon = item.querySelector('.toggle-icon');
+            
+            if (i === index) {
+                item.classList.add('active');
+                title.classList.remove('text-[var(--muted)]');
+                title.classList.add('text-[var(--accent)]');
+                icon.classList.remove('text-[var(--muted)]');
+                icon.classList.add('text-[var(--accent)]');
+                toggleIcon.classList.remove('text-[var(--muted)]');
+                toggleIcon.classList.add('text-[var(--accent)]');
+            } else {
+                item.classList.remove('active');
+                title.classList.add('text-[var(--muted)]');
+                title.classList.remove('text-[var(--accent)]');
+                icon.classList.add('text-[var(--muted)]');
+                icon.classList.remove('text-[var(--accent)]');
+                toggleIcon.classList.add('text-[var(--muted)]');
+                toggleIcon.classList.remove('text-[var(--accent)]');
+            }
+        });
+
+        industryImages.forEach((img, i) => {
+            if (i === index) {
+                img.classList.remove('opacity-0');
+                img.classList.add('opacity-100');
+            } else {
+                img.classList.add('opacity-0');
+                img.classList.remove('opacity-100');
+            }
+        });
+    }
+
+    industryItems.forEach((item, index) => {
+        const trigger = item.querySelector('.industry-trigger');
+        trigger.addEventListener('click', () => activateIndustry(index));
+    });
+
     // Grain Parallax
     const grain = document.getElementById('grain');
     let targetGrainY = 0; let currentGrainY = 0;
@@ -1689,308 +2663,6 @@
     }
     window.addEventListener('scroll', updateScrollProgress, { passive: true });
     updateScrollProgress();
-
-    // Language Translations Dictionary
-    const translations = {
-      en: {
-        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", btn_call: "Book a Free Call",
-        hero_marker: "SHOPIFY EXPERTS · GLOBAL", hero_h1_l1: "WE BUILD SHOPIFY", hero_h1_l2: "STORES THAT", hero_h1_l3: "CONVERT VISITORS INTO", hero_h1_l4: "CUSTOMERS.",
-        hero_p: "Design, develop and optimize high-performing Shopify stores that drive traffic, increase conversions and scale your revenue.",
-        hero_stores: "Stores Launched", hero_trusted: "Trusted by global brands", live_visitors: "Live Visitors", hero_projects: "Active Projects",
-        stat_stores: "Stores Launched", stat_satisfaction: "Client Satisfaction", stat_revenue: "Avg. Revenue Boost", stat_support: "Dedicated Support",
-        sec1_marker: "01 — What We Do", sec1_title_1: "What We", sec1_title_2: "Actually", sec1_title_3: "Do", sec1_desc_1: "We are a Shopify-focused digital studio helping brands plan, design, build and scale high-converting ecommerce experiences.", sec1_desc_2: "Our role goes beyond just development. We work as a strategic partner — aligning design, technology and performance to support long-term ecommerce success.",
-        card1_title: "BUSINESS FIRST APPROACH", card1_desc: "We deeply understand your business model, audience and revenue goals before starting design or development.",
-        card2_title: "CONVERSION FOCUSED UI", card2_desc: "Layouts crafted using UX & CRO principles that guide users smoothly from landing to checkout.",
-        card3_title: "SCALABLE ARCHITECTURE", card3_desc: "Clean, maintainable Shopify builds ready for future features, traffic spikes and integrations.",
-        card4_title: "DATA & GROWTH INSIGHTS", card4_desc: "Analytics-driven decisions help continuously improve conversion and revenue over time.",
-        btn_explore: "Explore Service",
-        sec2_marker: "02 — Core Services", sec2_title_1: "Our", sec2_title_2: "Core", sec2_title_3: "Services", sec2_desc: "End-to-end Shopify services designed to build, optimize and scale high-performing ecommerce brands.",
-        serv1_title: "STORE DESIGN", serv1_desc: "Modern, brand-aligned UI designs focused on trust, clarity and conversions across all devices.",
-        serv2_title: "CUSTOM DEV", serv2_desc: "Theme customization, custom sections and performance-optimized Shopify development.",
-        serv3_title: "SPEED & CRO", serv3_desc: "Page speed optimization, clean code and performance best practices for better rankings.",
-        serv4_title: "MOBILE OPTIMIZATION", serv4_desc: "Mobile-first layouts ensuring smooth browsing and checkout experiences.",
-        serv5_title: "PLATFORM MIGRATION", serv5_desc: "Safe and structured migration from WooCommerce, Magento or custom platforms to Shopify.",
-        serv6_title: "ONGOING SUPPORT", serv6_desc: "Post-launch maintenance, improvements, new features and continuous store monitoring.",
-        sec3_marker: "03 — How We Work", sec3_title_1: "How", sec3_title_2: "We", sec3_title_3: "Work", sec3_desc: "A structured, transparent and result-driven process that keeps projects aligned and focused on growth.",
-        step1_title: "DISCOVERY & STRATEGY", step1_desc: "We understand your brand, audience, competitors and business goals to define a clear ecommerce roadmap.",
-        step2_title: "DESIGN SYSTEM", step2_desc: "Wireframes and UI systems crafted for clarity, consistency and conversion-focused user experience.",
-        step3_title: "DEVELOPMENT", step3_desc: "Clean, scalable Shopify development with performance, SEO and best practices in mind.",
-        step4_title: "TESTING & OPTIMIZATION", step4_desc: "Cross-device testing, speed optimization and UX refinements before going live.",
-        step5_title: "LAUNCH & GROWTH", step5_desc: "Smooth launch followed by ongoing support, improvements and data-driven growth strategies.",
-        btn_start: "Start Project", cta_ready: "READY TO SCALE?", cta_ready_desc: "Let's build a Shopify store that drives real revenue and scales with your business.",
-        sec4_marker: "04 — Why Choose Us", sec4_title_1: "Why Brands", sec4_title_2: "Choose", sec4_title_3: "Us", sec4_desc: "Every project at Flixifys begins with business goals, target audience analysis and competitive research. Hover any card to reveal our core principles.",
-        why_principle: "The Principle", why1_title: "STRATEGY-LED", why1_desc: "Every project at Flixify begins with business goals, target audience analysis and competitive research — ensuring design decisions are driven by growth, not assumptions.", why1_result: "DATA-DRIVEN GROWTH",
-        why2_title: "SENIOR SHOPIFY", why2_desc: "Clients work directly with experienced Shopify designers and developers. No outsourcing, no juniors — just focused expertise from start to launch.", why2_result: "FLAWLESS EXECUTION",
-        why3_title: "PERFORMANCE", why3_desc: "We build stores optimized for speed, scalability and future growth — ensuring smooth performance during traffic spikes and sales campaigns.", why3_result: "ZERO DOWNTIME",
-        why4_title: "CLEAR COMM", why4_desc: "Clear timelines, honest feedback and consistent updates keep clients informed at every stage — no confusion, no surprises.", why4_result: "PEACE OF MIND",
-        sec5_marker: "05 — Tech Partners", sec5_title_1: "Technology", sec5_title_2: "Partners", sec5_desc: "We integrate with industry-leading platforms to power your Shopify store with seamless functionality.",
-        sec6_marker: "06 — Industries", sec6_title_1: "Industries We", sec6_title_2: "Work With", sec6_desc: "We partner with brands across diverse industries, adapting our Shopify strategies based on audience behavior and market trends.",
-        ind1_title: "FASHION & APPAREL", ind1_desc: "D2C fashion brands, clothing labels and lifestyle products.",
-        ind2_title: "HEALTH & WELLNESS", ind2_desc: "Supplements, fitness brands and wellness-focused ecommerce.",
-        ind3_title: "BEAUTY & COSMETICS", ind3_desc: "Skincare, cosmetics and personal care brands.",
-        ind4_title: "ELECTRONICS & GADGETS", ind4_desc: "Consumer electronics, accessories and smart devices.",
-        ind5_title: "FOOD & BEVERAGES", ind5_desc: "Packaged food brands, beverages and subscription models.",
-        ind6_title: "B2B & WHOLESALE", ind6_desc: "Manufacturers, distributors and wholesale ecommerce solutions.",
-        sec7_marker: "07 — Let's Get In Touch", sec7_title_1: "STOP WAITING.", sec7_title_2: "START", sec7_title_3: "CONVERTING.",
-        form_title: "CLAIM YOUR FREE CALL", form_subtitle: "Have a project in mind? Drop us a message and we'll get back to you within 24 hours.", form_name: "Full Name", form_phone: "Phone", form_service: "Select Service", form_message: "Your Message", form_submit: "SEND MESSAGE", form_note: "No charge · No obligation · Response within 24 hours",
-        serv_design: "Store Design", serv_dev: "Custom Dev", serv_speed: "Speed & CRO", serv_migrate: "Migration", serv_support: "Support",
-        contact_direct: "REACH THE STUDIO", contact_location: "STUDIO HQ", contact_address: "India<br>Serving Globally",
-        footer_about: "A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.", footer_links: "Quick Links", footer_news: "Newsletter", footer_news_desc: "Weekly Shopify insights, case studies, and studio updates."
-      },
-      hi: {
-        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", btn_call: "निःशुल्क कॉल बुक करें",
-        hero_marker: "शॉपिफाई विशेषज्ञ · वैश्विक", hero_h1_l1: "हम बनाते हैं शॉपिफाई", hero_h1_l2: "स्टोर जो", hero_h1_l3: "विजिटर्स को बदलते हैं", hero_h1_l4: "ग्राहकों में।",
-        hero_p: "उच्च-प्रदर्शन वाले शॉपिफाई स्टोर डिजाइन, विकसित और अनुकूलित करें जो ट्रैफ़िक बढ़ाते हैं, रूपांतरण बढ़ाते हैं और आपके राजस्व को बढ़ाते हैं।",
-        hero_stores: "स्टोर लॉन्च किए गए", hero_trusted: "वैश्विक ब्रांड्स द्वारा भरोसा किया गया", live_visitors: "लाइव विजिटर्स", hero_projects: "सक्रिय प्रोजेक्ट्स",
-        stat_stores: "स्टोर लॉन्च किए गए", stat_satisfaction: "ग्राहक संतुष्टि", stat_revenue: "औसत राजस्व वृद्धि", stat_support: "समर्पित सहायता",
-        sec1_marker: "01 — हम क्या करते हैं", sec1_title_1: "हम क्या", sec1_title_2: "वास्तव में", sec1_title_3: "करते हैं", sec1_desc_1: "हम एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो हैं जो ब्रांड्स को उच्च-रूपांतरण वाले ईकॉमर्स अनुभव की योजना, डिजाइन, निर्माण और स्केल करने में मदद करता है।", sec1_desc_2: "हमारी भूमिका केवल विकास से कहीं अधिक है। हम एक रणनीतिक भागीदार के रूप में काम करते हैं।",
-        card1_title: "बिजनेस फर्स्ट अप्रोच", card1_desc: "हम डिजाइन या विकास शुरू करने से पहले आपके बिजनेस मॉडल, दर्शकों और राजस्व लक्ष्यों को गहराई से समझते हैं।",
-        card2_title: "कन्वर्ज़न UI", card2_desc: "UX और CRO सिद्धांतों का उपयोग करके बनाए गए लेआउट जो उपयोगकर्ताओं को लैंडिंग से चेकआउट तक आसानी से ले जाते हैं।",
-        card3_title: "स्केलेबल बिल्ड", card3_desc: "भविष्य की सुविधाओं, ट्रैफ़िक वृद्धि और एकीकरण के लिए तैयार स्वच्छ, रखरखाव योग्य शॉपिफाई बिल्ड।",
-        card4_title: "डेटा इनसाइट्स", card4_desc: "एनालिटिक्स-संचालित निर्णय समय के साथ रूपांतरण और राजस्व को लगातार बेहतर बनाने में मदद करते हैं।",
-        btn_explore: "सेवा देखें",
-        sec2_marker: "02 — मुख्य सेवाएँ", sec2_title_1: "हमारी", sec2_title_2: "मुख्य", sec2_title_3: "सेवाएँ", sec2_desc: "उच्च-प्रदर्शन वाले ईकॉमर्स ब्रांड्स के निर्माण, अनुकूलन और स्केल करने के लिए डिज़ाइन की गई एंड-टू-एंड शॉपिफाई सेवाएँ।",
-        serv1_title: "स्टोर डिजाइन", serv1_desc: "सभी डिवाइस पर विश्वास, स्पष्टता और रूपांतरण पर केंद्रित आधुनिक, ब्रांड-संरेखित UI डिजाइन।",
-        serv2_title: "कस्टम डेव", serv2_desc: "थीम अनुकूलन, कस्टम सेक्शन और प्रदर्शन-अनुकूलित शॉपिफाई विकास।",
-        serv3_title: "स्पीड और CRO", serv3_desc: "बेहतर रैंकिंग के लिए पेज स्पीड ऑप्टिमाइज़ेशन, स्वच्छ कोड और प्रदर्शन सर्वोत्तम प्रथाएँ।",
-        serv4_title: "मोबाइल ऑप्टिमाइज़ेशन", serv4_desc: "मोबाइल-फर्स्ट लेआउट जो सहज ब्राउज़िंग और चेकआउट अनुभव सुनिश्चित करते हैं।",
-        serv5_title: "प्लेटफ़ॉर्म माइग्रेशन", serv5_desc: "WooCommerce, Magento या कस्टम प्लेटफ़ॉर्म से शॉपिफाई में सुरक्षित और संरचित माइग्रेशन।",
-        serv6_title: "चल रही सहायता", serv6_desc: "लॉन्च के बाद रखरखाव, सुधार, नई सुविधाएँ और निरंतर स्टोर निगरानी।",
-        sec3_marker: "03 — हम कैसे काम करते हैं", sec3_title_1: "हम कैसे", sec3_title_2: "काम करते", sec3_title_3: "हैं", sec3_desc: "एक संरचित, पारदर्शी और परिणाम-उन्मुख प्रक्रिया जो परियोजनाओं को संरेखित और विकास पर केंद्रित रखती है।",
-        step1_title: "डिस्कवरी और रणनीति", step1_desc: "हम एक स्पष्ट ईकॉमर्स रोडमैप परिभाषित करने के लिए आपके ब्रांड, दर्शकों, प्रतिस्पर्धियों और बिजनेस लक्ष्यों को समझते हैं।",
-        step2_title: "डिज़ाइन सिस्टम", step2_desc: "स्पष्टता, स्थिरता और रूपांतरण-केंद्रित उपयोगकर्ता अनुभव के लिए तैयार वायरफ्रेम और UI सिस्टम।",
-        step3_title: "विकास", step3_desc: "प्रदर्शन, SEO और सर्वोत्तम प्रथाओं के साथ स्वच्छ, स्केलेबल शॉपिफाई विकास।",
-        step4_title: "परीक्षण और अनुकूलन", step4_desc: "लाइव होने से पहले क्रॉस-डिवाइस परीक्षण, स्पीड ऑप्टिमाइज़ेशन और UX सुधार।",
-        step5_title: "लॉन्च और विकास", step5_desc: "चिकना लॉन्च और उसके बाद चल रही सहायता, सुधार और डेटा-संचालित विकास रणनीतियाँ।",
-        btn_start: "प्रोजेक्ट शुरू करें", cta_ready: "स्केल करने के लिए तैयार?", cta_ready_desc: "आइए एक शॉपिफाई स्टोर बनाते हैं जो वास्तविक राजस्व उत्पन्न करता है।",
-        sec4_marker: "04 — हमें क्यों चुनें", sec4_title_1: "ब्रांड्स हमें क्यों", sec4_title_2: "चुनते", sec4_title_3: "हैं", sec4_desc: "फ्लिक्सिफाई के हर प्रोजेक्ट की शुरुआत बिजनेस लक्ष्यों से होती है। हमारे मूल सिद्धांतों को देखने के लिए किसी भी कार्ड पर होवर करें।",
-        why_principle: "सिद्धांत", why1_title: "रणनीति-नेतृत्व", why1_desc: "फ्लिक्सिफाई में हर प्रोजेक्ट की शुरुआत बिजनेस लक्ष्यों, लक्षित दर्शकों के विश्लेषण से होती है।", why1_result: "डेटा-संचालित विकास",
-        why2_title: "वरिष्ठ शॉपिफाई", why2_desc: "ग्राहक सीधे अनुभवी शॉपिफाई डिजाइनरों के साथ काम करते हैं। कोई आउटसोर्सिंग नहीं, कोई जूनियर नहीं।", why2_result: "निर्दोष निष्पादन",
-        why3_title: "प्रदर्शन", why3_desc: "हम स्पीड, स्केलेबिलिटी और भविष्य के विकास के लिए अनुकूलित स्टोर बनाते हैं।", why3_result: "शून्य डाउनटाइम",
-        why4_title: "स्पष्ट संचार", why4_desc: "स्पष्ट समयसीमा, ईमानदार प्रतिक्रिया और लगातार अपडेट।", why4_result: "मन की शांति",
-        sec5_marker: "05 — टेक पार्टनर्स", sec5_title_1: "तकनीकी", sec5_title_2: "पार्टनर्स", sec5_desc: "हम आपके शॉपिफाई स्टोर को निर्बाध कार्यक्षमता प्रदान करने के लिए उद्योग-प्रमुख प्लेटफार्शों के साथ एकीकृत करते हैं।",
-        sec6_marker: "06 — उद्योग", sec6_title_1: "हम जिन उद्योगों के साथ काम करते हैं", sec6_title_2: "", sec6_desc: "हम विविध उद्योगों में ब्रांड्स के साथ साझेदारी करते हैं।",
-        ind1_title: "फैशन और परिधान", ind1_desc: "D2C फैशन ब्रांड्स, कपड़े के लेबल और लाइफस्टाइल उत्पाद।",
-        ind2_title: "स्वास्थ्य और कल्याण", ind2_desc: "सप्लीमेंट्स, फिटनेस ब्रांड्स और वेलनेस-केंद्रित ईकॉमर्स।",
-        ind3_title: "सौंदर्य और प्रसाधन सामग्री", ind3_desc: "स्किनकेयर, कॉस्मेटिक्स और पर्सनल केयर ब्रांड्स।",
-        ind4_title: "इलेक्ट्रॉनिक्स और गैजेट्स", ind4_desc: "कंज्यूमर इलेक्ट्रॉनिक्स, एक्सेसरीज़ और स्मार्ट डिवाइस।",
-        ind5_title: "खाद्य और पेय", ind5_desc: "पैकेज्ड फूड ब्रांड्स, पेय और सब्सक्रिप्शन मॉडल।",
-        ind6_title: "B2B और थोक", ind6_desc: "मैन्युफैक्चरर्स, डिस्ट्रीब्यूटर्स और थोक ईकॉमर्स समाधान।",
-        sec7_marker: "07 — संपर्क करें", sec7_title_1: "अब रुकें नहीं।", sec7_title_2: "शुरू करें", sec7_title_3: "कन्वर्ट करना।",
-        form_title: "अपनी फ्री कॉल क्लेम करें", form_subtitle: "क्या आपके दिमाग में कोई प्रोजेक्ट है? हमें एक संदेश भेजें और हम 24 घंटों के भीतर आपको वापस कॉल करेंगे।", form_name: "पूरा नाम", form_phone: "फ़ोन", form_service: "सेवा चुनें", form_message: "आपका संदेश", form_submit: "संदेश भेजें", form_note: "कोई शुल्क नहीं · 24 घंटे में प्रतिक्रिया",
-        serv_design: "स्टोर डिजाइन", serv_dev: "कस्टम डेव", serv_speed: "स्पीड और CRO", serv_migrate: "माइग्रेशन", serv_support: "सहायता",
-        contact_direct: "स्टूडियो तक पहुँचें", contact_location: "स्टूडियो HQ", contact_address: "भारत<br>वैश्विक स्तर पर सेवा",
-        footer_about: "एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो जो ब्रांड्स को बनाने, अनुकूलित करने और स्केल करने में मदद करता है।", footer_links: "त्वरित लिंक", footer_news: "न्यूज़लेटर", footer_news_desc: "साप्ताहिक शॉपिफाई इनसाइट्स, केस स्टडीज़ और स्टूडियो अपडेट।"
-      },
-      zh: {
-        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", btn_call: "预约免费通话",
-        hero_marker: "SHOPIFY 专家 · 全球", hero_h1_l1: "我们构建 SHOPIFY", hero_h1_l2: "商店", hero_h1_l3: "将访客转化为", hero_h1_l4: "客户。",
-        hero_p: "设计、开发和优化高性能 Shopify 商店，以推动流量、提高转化率并扩大您的收入。",
-        hero_stores: "已启动商店", hero_trusted: "受全球品牌信赖", live_visitors: "实时访客", hero_projects: "活跃项目",
-        stat_stores: "已启动商店", stat_satisfaction: "客户满意度", stat_revenue: "平均收入提升", stat_support: "专属支持",
-        sec1_marker: "01 — 我们做什么", sec1_title_1: "我们", sec1_title_2: "实际", sec1_title_3: "做什么", sec1_desc_1: "我们是一家专注于 Shopify 的数字工作室，帮助品牌规划、设计、构建和扩展高转化率的电子商务体验。", sec1_desc_2: "我们的角色超越单纯开发。我们作为战略合作伙伴工作。",
-        card1_title: "业务优先方法", card1_desc: "在开始设计或开发之前，我们深入理解您的业务模式、受众和收入目标。",
-        card2_title: "转化 UI", card2_desc: "使用 UX 和 CRO 原则制作的布局，引导用户从落地到结账。",
-        card3_title: "可扩展构建", card3_desc: "为未来功能、流量峰值和集成准备好的干净、可维护的 Shopify 构建。",
-        card4_title: "数据洞察", card4_desc: "分析驱动的决策帮助持续改善转化率和收入。",
-        btn_explore: "探索服务",
-        sec2_marker: "02 — 核心服务", sec2_title_1: "我们的", sec2_title_2: "核心", sec2_title_3: "服务", sec2_desc: "旨在构建、优化和扩展高性能电商品牌的端到端 Shopify 服务。",
-        serv1_title: "商店设计", serv1_desc: "专注于信任、清晰度和跨设备转化的现代、品牌一致的 UI 设计。",
-        serv2_title: "定制开发", serv2_desc: "主题定制、自定义部分和性能优化的 Shopify 开发。",
-        serv3_title: "速度与 CRO", serv3_desc: "页面速度优化、整洁代码和性能最佳实践。",
-        serv4_title: "移动优化", serv4_desc: "确保流畅浏览和结账体验的移动优先布局。",
-        serv5_title: "平台迁移", serv5_desc: "从 WooCommerce、Magento 或定制平台安全迁移到 Shopify。",
-        serv6_title: "持续支持", serv6_desc: "上线后维护、改进、新功能和持续商店监控。",
-        sec3_marker: "03 — 我们如何工作", sec3_title_1: "我们", sec3_title_2: "如何", sec3_title_3: "工作", sec3_desc: "结构化、透明且结果导向的流程，保持项目一致并专注于增长。",
-        step1_title: "发现与策略", step1_desc: "我们理解您的品牌、受众、竞争对手和业务目标，以定义清晰的电商路线图。",
-        step2_title: "设计系统", step2_desc: "为清晰、一致和转化导向用户体验制作的线框图和 UI 系统。",
-        step3_title: "开发", step3_desc: "考虑性能、SEO 和最佳实践的干净、可扩展 Shopify 开发。",
-        step4_title: "测试与优化", step4_desc: "上线前的跨设备测试、速度优化和 UX 改进。",
-        step5_title: "发布与增长", step5_desc: "顺利发布及随后的持续支持、改进和数据驱动增长策略。",
-        btn_start: "开始项目", cta_ready: "准备扩展？", cta_ready_desc: "让我们构建一个带来真实收入的 Shopify 商店。",
-        sec4_marker: "04 — 为什么选择我们", sec4_title_1: "品牌为何", sec4_title_2: "选择", sec4_title_3: "我们", sec4_desc: "Flixifys 的每个项目都以业务目标开始。悬停任意卡片以揭示我们的核心原则。",
-        why_principle: "原则", why1_title: "策略导向", why1_desc: "每个项目都从业务目标、目标受众分析和竞争研究开始。", why1_result: "数据驱动增长",
-        why2_title: "高级 SHOPIFY", why2_desc: "客户直接与经验丰富的设计师合作。无外包。", why2_result: "完美执行",
-        why3_title: "性能", why3_desc: "我们为速度、可扩展性和未来增长构建商店。", why3_result: "零停机",
-        why4_title: "清晰沟通", why4_desc: "清晰时间表、诚实反馈和持续更新。", why4_result: "安心",
-        sec5_marker: "05 — 技术合作伙伴", sec5_title_1: "技术", sec5_title_2: "合作伙伴", sec5_desc: "我们与行业领先平台集成。",
-        sec6_marker: "06 — 行业", sec6_title_1: "我们服务的", sec6_title_2: "行业", sec6_desc: "我们与不同行业的品牌合作。",
-        ind1_title: "时尚与服饰", ind1_desc: "D2C 时尚品牌、服装标签和生活方式产品。",
-        ind2_title: "健康与保健", ind2_desc: "补充剂、健身品牌和保健电商。",
-        ind3_title: "美容与化妆品", ind3_desc: "护肤品、化妆品和个人护理品牌。",
-        ind4_title: "电子产品", ind4_desc: "消费电子、配件和智能设备。",
-        ind5_title: "食品与饮料", ind5_desc: "包装食品品牌、饮料和订阅模式。",
-        ind6_title: "B2B 与批发", ind6_desc: "制造商、分销商和批发电商解决方案。",
-        sec7_marker: "07 — 联系我们", sec7_title_1: "停止等待。", sec7_title_2: "开始", sec7_title_3: "转化。",
-        form_title: "领取免费通话", form_subtitle: "有项目想法？给我们留言，24小时内回复。", form_name: "全名", form_phone: "电话", form_service: "选择服务", form_message: "您的留言", form_submit: "发送留言", form_note: "无费用 · 24小时回应",
-        serv_design: "商店设计", serv_dev: "定制开发", serv_speed: "速度与 CRO", serv_migrate: "迁移", serv_support: "支持",
-        contact_direct: "联系工作室", contact_location: "工作室总部", contact_address: "印度<br>全球服务",
-        footer_about: "一家专注于 Shopify 的工作室，帮助品牌构建和扩展。", footer_links: "快速链接", footer_news: "订阅", footer_news_desc: "每周 Shopify 洞察和更新。"
-      },
-      es: {
-        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", btn_call: "Reservar Llamada Gratis",
-        hero_marker: "EXPERTOS EN SHOPIFY · GLOBAL", hero_h1_l1: "CONSTRUIMOS TIENDAS", hero_h1_l2: "SHOPIFY", hero_h1_l3: "QUE CONVIERTEN VISITANTES EN", hero_h1_l4: "CLIENTES.",
-        hero_p: "Diseñamos, desarrollamos y optimizamos tiendas de alto rendimiento que impulsan el tráfico, aumentan conversiones y escalan tus ingresos.",
-        hero_stores: "Tiendas Lanzadas", hero_trusted: "Confiado por marcas globales", live_visitors: "Visitantes en Vivo", hero_projects: "Proyectos Activos",
-        stat_stores: "Tiendas Lanzadas", stat_satisfaction: "Satisfacción del Cliente", stat_revenue: "Aumento Promedio de Ingresos", stat_support: "Soporte Dedicado",
-        sec1_marker: "01 — Lo Que Hacemos", sec1_title_1: "Lo Que", sec1_title_2: "Realmente", sec1_title_3: "Hacemos", sec1_desc_1: "Somos un estudio digital enfocado en Shopify que ayuda a las marcas a planificar, diseñar, construir y escalar experiencias de comercio electrónico de alta conversión.", sec1_desc_2: "Nuestro rol va más allá del desarrollo. Trabajamos como socios estratégicos.",
-        card1_title: "ENFOQUE DE NEGOCIOS PRIMERO", card1_desc: "Entendemos profundamente su modelo de negocio, audiencia y metas de ingresos antes de comenzar.",
-        card2_title: "UI DE CONVERSIÓN", card2_desc: "Diseños creados con principios de UX y CRO que guían al usuario desde el inicio hasta el pago.",
-        card3_title: "CONSTRUCCIÓN ESCALABLE", card3_desc: "Construcciones de Shopify limpias y mantenibles listas para el futuro.",
-        card4_title: "PERSPECTIVAS DE DATOS", card4_desc: "Decisiones basadas en analíticas para mejorar la conversión y los ingresos.",
-        btn_explore: "Explorar Servicio",
-        sec2_marker: "02 — Servicios Principales", sec2_title_1: "Nuestros", sec2_title_2: "Servicios", sec2_title_3: "Principales", sec2_desc: "Servicios de Shopify de principio a fin diseñados para construir, optimizar y escalar marcas de comercio electrónico.",
-        serv1_title: "DISEÑO DE TIENDA", serv1_desc: "Diseños de UI modernos y alineados con la marca enfocados en la confianza y conversiones.",
-        serv2_title: "DESARROLLO PERSONALIZADO", serv2_desc: "Personalización de temas, secciones personalizadas y desarrollo optimizado.",
-        serv3_title: "VELOCIDAD Y CRO", serv3_desc: "Optimización de velocidad de página, código limpio y mejores prácticas.",
-        serv4_title: "OPTIMIZACIÓN MÓVIL", serv4_desc: "Diseños móviles primero que garantizan experiencias fluidas.",
-        serv5_title: "MIGRACIÓN DE PLATAFORMA", serv5_desc: "Migración segura desde WooCommerce, Magento o plataformas personalizadas.",
-        serv6_title: "SOPORTE CONTINUO", serv6_desc: "Mantenimiento post-lanzamiento, mejoras y monitoreo continuo.",
-        sec3_marker: "03 — Cómo Trabajamos", sec3_title_1: "Cómo", sec3_title_2: "Trabajamos", sec3_title_3: "", sec3_desc: "Un proceso estructurado, transparente y orientado a resultados.",
-        step1_title: "DESCUBRIMIENTO Y ESTRATEGIA", step1_desc: "Entendemos su marca, audiencia y metas para definir un plan claro.",
-        step2_title: "SISTEMA DE DISEÑO", step2_desc: "Wireframes y sistemas UI para una experiencia clara y enfocada.",
-        step3_title: "DESARROLLO", step3_desc: "Desarrollo de Shopify escalable y limpio.",
-        step4_title: "PRUEBAS Y OPTIMIZACIÓN", step4_desc: "Pruebas en múltiples dispositivos y optimización antes del lanzamiento.",
-        step5_title: "LANZAMIENTO Y CRECIMIENTO", step5_desc: "Lanzamiento fluido seguido de soporte y estrategias de crecimiento.",
-        btn_start: "Iniciar Proyecto", cta_ready: "¿LISTO PARA ESCALAR?", cta_ready_desc: "Construyamos una tienda que genere ingresos reales.",
-        sec4_marker: "04 — Por Qué Elegirnos", sec4_title_1: "Por Qué las Marcas", sec4_title_2: "Nos", sec4_title_3: "Eligen", sec4_desc: "Cada proyecto comienza con metas de negocio. Pasa el cursor sobre cualquier tarjeta para ver nuestros principios.",
-        why_principle: "El Principio", why1_title: "ESTRATEGIA", why1_desc: "Decisiones basadas en datos, no en suposiciones.", why1_result: "CRECIMIENTO BASADO EN DATOS",
-        why2_title: "EXPERTOS SHOPIFY", why2_desc: "Trabaja directamente con expertos experimentados. Sin subcontratación.", why2_result: "EJECUCIÓN IMPECABLE",
-        why3_title: "RENDIMIENTO", why3_desc: "Construimos tiendas optimizadas para velocidad y escalabilidad.", why3_result: "CERO TIEMPO DE INACTIVIDAD",
-        why4_title: "COMUNICACIÓN CLARA", why4_desc: "Cronogramas claros, retroalimentación honesta y actualizaciones constantes.", why4_result: "TRANQUILIDAD",
-        sec5_marker: "05 — Socios Tecnológicos", sec5_title_1: "Socios", sec5_title_2: "Tecnológicos", sec5_desc: "Nos integramos con plataformas líderes en la industria.",
-        sec6_marker: "06 — Industrias", sec6_title_1: "Industrias Que", sec6_title_2: "Atendemos", sec6_desc: "Trabajamos con marcas de diversas industrias.",
-        ind1_title: "MODA Y ROPA", ind1_desc: "Marcas D2C de moda y productos de estilo de vida.",
-        ind2_title: "SALUD Y BIENESTAR", ind2_desc: "Suplementos y marcas de fitness.",
-        ind3_title: "BELLEZA Y COSMÉTICOS", ind3_desc: "Cuidado de la piel y marcas de cuidado personal.",
-        ind4_title: "ELECTRÓNICOS", ind4_desc: "Dispositivos inteligentes y accesorios.",
-        ind5_title: "ALIMENTOS Y BEBIDAS", ind5_desc: "Marcas de alimentos envasados y modelos de suscripción.",
-        ind6_title: "B2B Y MAYORISTAS", ind6_desc: "Fabricantes y soluciones de comercio mayorista.",
-        sec7_marker: "07 — Contacto", sec7_title_1: "DEJA DE ESPERAR.", sec7_title_2: "EMPIEZA A", sec7_title_3: "CONVERTIR.",
-        form_title: "SOLICITA TU LLAMADA GRATIS", form_subtitle: "¿Tienes un proyecto? Envíanos un mensaje y te responderemos en 24 horas.", form_name: "Nombre Completo", form_phone: "Teléfono", form_service: "Selecciona Servicio", form_message: "Tu Mensaje", form_submit: "ENVIAR MENSAJE", form_note: "Sin cargo · Respuesta en 24 horas",
-        serv_design: "Diseño", serv_dev: "Dev Personalizado", serv_speed: "Velocidad y CRO", serv_migrate: "Migración", serv_support: "Soporte",
-        contact_direct: "CONTACTO", contact_location: "OFICINA", contact_address: "India<br>Sirviendo Globalmente",
-        footer_about: "Un estudio digital enfocado en Shopify que ayuda a las marcas a crecer.", footer_links: "Enlaces", footer_news: "Boletín", footer_news_desc: "Información semanal de Shopify."
-      },
-      fr: {
-        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", btn_call: "Réserver Appel",
-        hero_marker: "EXPERTS SHOPIFY · MONDIAL", hero_h1_l1: "NOUS CONSTRUISONS DES BOUTIQUES", hero_h1_l2: "SHOPIFY", hero_h1_l3: "QUI CONVERTISSENT LES VISITEURS EN", hero_h1_l4: "CLIENTS.",
-        hero_p: "Concevez, développez et optimisez des boutiques Shopify performantes qui génèrent du trafic et augmentent vos revenus.",
-        hero_stores: "Boutiques Lancées", hero_trusted: "Approuvé par les marques mondiales", live_visitors: "Visiteurs en Direct", hero_projects: "Projets Actifs",
-        stat_stores: "Boutiques Lancées", stat_satisfaction: "Satisfaction Client", stat_revenue: "Hausse Moyenne des Revenus", stat_support: "Support Dédié",
-        sec1_marker: "01 — Ce Que Nous Faisons", sec1_title_1: "Ce Que Nous", sec1_title_2: "Faisons", sec1_title_3: "Réellement", sec1_desc_1: "Nous sommes un studio numérique axé sur Shopify, aidant les marques à concevoir et développer des expériences e-commerce à forte conversion.", sec1_desc_2: "Notre rôle va au-delà du développement. Nous travaillons comme partenaires stratégiques.",
-        card1_title: "APPROCHE BUSINESS", card1_desc: "Nous comprenons votre modèle commercial et vos objectifs de revenus avant de commencer.",
-        card2_title: "UI DE CONVERSION", card2_desc: "Mises en page utilisant les principes UX et CRO pour guider les utilisateurs.",
-        card3_title: "CONSTRUCTION ÉVOLUTIVE", card3_desc: "Des constructions Shopify propres et maintenables prêtes pour l'avenir.",
-        card4_title: "INSIGHTS DONNÉES", card4_desc: "Des décisions basées sur les analyses pour améliorer la conversion.",
-        btn_explore: "Explorer",
-        sec2_marker: "02 — Services Principaux", sec2_title_1: "Nos", sec2_title_2: "Services", sec2_title_3: "Principaux", sec2_desc: "Des services Shopify de bout en bout pour construire et optimiser des marques e-commerce.",
-        serv1_title: "CONCEPTION BOUTIQUE", serv1_desc: "Conceptions d'interface UI modernes axées sur la confiance et les conversions.",
-        serv2_title: "DÉVELOPPEMENT", serv2_desc: "Personnalisation de thèmes et développement Shopify optimisé.",
-        serv3_title: "VITESSE ET CRO", serv3_desc: "Optimisation de la vitesse, code propre et meilleures pratiques.",
-        serv4_title: "OPTIMISATION MOBILE", serv4_desc: "Mises en page mobile-first pour une expérience fluide.",
-        serv5_title: "MIGRATION PLATEFORME", serv5_desc: "Migration sécurisée vers Shopify depuis WooCommerce ou Magento.",
-        serv6_title: "SUPPORT CONTINU", serv6_desc: "Maintenance post-lancement et surveillance continue.",
-        sec3_marker: "03 — Comment Nous Travaillons", sec3_title_1: "Comment Nous", sec3_title_2: "Travaillons", sec3_title_3: "", sec3_desc: "Un processus structuré, transparent et axé sur les résultats.",
-        step1_title: "DÉCOUVERTE ET STRATÉGIE", step1_desc: "Nous comprenons votre marque pour définir une feuille de route claire.",
-        step2_title: "SYSTÈME DE DESIGN", step2_desc: "Wireframes et systèmes UI pour une expérience claire.",
-        step3_title: "DÉVELOPPEMENT", step3_desc: "Développement Shopify propre et évolutif.",
-        step4_title: "TESTS ET OPTIMISATION", step4_desc: "Tests multi-appareils et optimisation avant lancement.",
-        step5_title: "LANCEMENT ET CROISSANCE", step5_desc: "Lancement fluide et stratégies de croissance continues.",
-        btn_start: "Commencer", cta_ready: "PRÊT À PASSER À L'ÉCHELLE ?", cta_ready_desc: "Construisons une boutique qui génère des revenus réels.",
-        sec4_marker: "04 — Pourquoi Nous Choisir", sec4_title_1: "Pourquoi les Marques Nous", sec4_title_2: "Choisissent", sec4_title_3: "", sec4_desc: "Chaque projet commence par des objectifs commerciaux. Survolez une carte pour voir nos principes.",
-        why_principle: "Le Principe", why1_title: "STRATÉGIE", why1_desc: "Décisions basées sur les données, non sur des suppositions.", why1_result: "CROISSANCE BASÉE SUR DONNÉES",
-        why2_title: "EXPERTS SHOPIFY", why2_desc: "Travaillez directement avec des experts. Aucune sous-traitance.", why2_result: "EXÉCUTION PARFAITE",
-        why3_title: "PERFORMANCE", why3_desc: "Boutiques optimisées pour la vitesse et la scalabilité.", why3_result: "ZÉRO TEMPS D'ARRÊT",
-        why4_title: "COMMUNICATION CLAIRE", why4_desc: "Calendriers clairs, retours honnêtes et mises à jour constantes.", why4_result: "TRANQUILLITÉ D'ESPRIT",
-        sec5_marker: "05 — Partenaires Tech", sec5_title_1: "Partenaires", sec5_title_2: "Tech", sec5_desc: "Nous nous intégrons aux plateformes leaders.",
-        sec6_marker: "06 — Industries", sec6_title_1: "Industries Que Nous Servons", sec6_title_2: "", sec6_desc: "Nous collaborons avec des marques de diverses industries.",
-        ind1_title: "MODE ET VÊTEMENTS", ind1_desc: "Marques de mode D2C et produits de style de vie.",
-        ind2_title: "SANTÉ ET BIEN-ÊTRE", ind2_desc: "Compléments et marques de fitness.",
-        ind3_title: "BEAUTÉ ET COSMÉTIQUES", ind3_desc: "Soins de la peau et marques de soins personnels.",
-        ind4_title: "ÉLECTRONIQUE", ind4_desc: "Appareils intelligents et accessoires.",
-        ind5_title: "ALIMENTS ET BOISSONS", ind5_desc: "Marques alimentaires emballées et abonnements.",
-        ind6_title: "B2B ET GROSSISTES", ind6_desc: "Fabricants et solutions de vente en gros.",
-        sec7_marker: "07 — Contact", sec7_title_1: "ARRÊTEZ D'ATTENDRE.", sec7_title_2: "COMMENCEZ À", sec7_title_3: "CONVERTIR.",
-        form_title: "RÉCLAMEZ VOTRE APPEL GRATUIT", form_subtitle: "Un projet en tête ? Laissez-nous un message, réponse en 24h.", form_name: "Nom Complet", form_phone: "Téléphone", form_service: "Choisir Service", form_message: "Votre Message", form_submit: "ENVOYER MESSAGE", form_note: "Sans frais · Réponse en 24h",
-        serv_design: "Design", serv_dev: "Dev", serv_speed: "Vitesse et CRO", serv_migrate: "Migration", serv_support: "Support",
-        contact_direct: "CONTACTER", contact_location: "BUREAU", contact_address: "Inde<br>Service Mondial",
-        footer_about: "Un studio numérique axé sur Shopify aidant les marques à croître.", footer_links: "Liens", footer_news: "Newsletter", footer_news_desc: "Infos Shopify hebdomadaires."
-      }
-    };
-
-    // --- LANGUAGE LOCAL STORAGE LOGIC (PERSISTENT) ---
-    const langBtn = document.getElementById('langBtnDesktop');
-    const langDropdown = document.getElementById('langDropdownDesktop');
-    const currentLangSpan = document.getElementById('currentLangDesktop');
-
-    // 1. Function to set language and save to localStorage
-    function setLanguage(lang, save = true) {
-      if (!translations[lang]) return;
-      
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-      
-      // Recalculate FAQ open heights after language change
-      document.querySelectorAll('.faq-item.open').forEach(function(i) {
-        var a = i.querySelector('.faq-a');
-        a.style.maxHeight = a.scrollHeight + 'px';
-      });
-
-      // Update UI text and active states
-      if(currentLangSpan) {
-        const selectedLangItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
-        if(selectedLangItem) currentLangSpan.textContent = selectedLangItem.textContent;
-      }
-      
-      document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-        btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
-      });
-
-      // Save to localStorage so it works on other pages
-      if (save) {
-        localStorage.setItem('flixifys_lang', lang);
-      }
-    }
-
-    // 2. Apply saved language on page load immediately
-    const savedLang = localStorage.getItem('flixifys_lang') || 'en';
-    setLanguage(savedLang, false);
-
-    // 3. Desktop Dropdown Click Events
-    if(langBtn && langDropdown) {
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-            if(!langDropdown.contains(e.target) && !langBtn.contains(e.target)) {
-                langDropdown.classList.add('hidden');
-            }
-        });
-
-        document.querySelectorAll('.lang-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = item.getAttribute('data-lang');
-                setLanguage(lang); // Save and apply
-                langDropdown.classList.add('hidden');
-            });
-        });
-    }
-
-    // 4. Mobile Drawer Click Events
-    document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang); // Save and apply
-        });
-    });
 
     // ==========================================
     // D3 LIVE TRAFFIC MAP LOGIC (PROPER GEOGRAPHIC GLOBE - NO DOTS)
@@ -2032,7 +2704,7 @@
       const projection = d3.geoOrthographic()
         .scale(220)
         .translate([mapWidth / 2, mapHeight / 2])
-        .clipAngle(90); // Prevents drawing on the back side natively
+        .clipAngle(90); 
 
       const path = d3.geoPath().projection(projection);
 
@@ -2041,7 +2713,6 @@
       let currentRotationMap = [20, -15];
       let currentCityMap = cities[0]; 
 
-      // Draw Sphere
       svgMap.append('path')
         .datum({ type: 'Sphere' })
         .attr('class', 'sphere')
@@ -2050,7 +2721,6 @@
       d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
         const countries = topojson.feature(world, world.objects.countries);
 
-        // Draw Actual Countries (Real Map Look)
         svgMap.append('g').attr('class', 'countries-group')
           .selectAll('.country')
           .data(countries.features)
@@ -2058,10 +2728,8 @@
           .append('path')
           .attr('class', 'country');
 
-        // BUTTER SMOOTH RENDERING LOOP (Updates country paths instead of 10,000 dots)
         let lastFrameTime = 0;
         d3.timer((elapsed) => {
-          // Throttle to ~40 FPS (25ms) for smoothness + performance balance
           if (elapsed - lastFrameTime < 25) return;
           lastFrameTime = elapsed;
 
@@ -2069,17 +2737,12 @@
             currentRotationMap[0] += 0.12; 
             projection.rotate(currentRotationMap);
           }
-          // Update sphere path
           svgMap.select('.sphere').attr('d', path);
-          
-          // Update all country paths - D3 handles the 3D projection and clipping!
           svgMap.selectAll('.country').attr('d', path);
         });
 
-        // Start the continuous chain
         setTimeout(() => runAnimationCycleMap(), 1500);
         
-        // Update Live Count 25-35
         setInterval(() => {
           liveCountMap += Math.floor(Math.random() * 3) - 1; 
           if (liveCountMap < 25) liveCountMap = 26;
@@ -2094,11 +2757,10 @@
         }, 2000);
       });
 
-      // Pick the next city that is VISIBLE on the current side of the globe
       function getNextVisibleCity(fromCity) {
         let candidates = cities.filter(c => {
           return c.name !== fromCity.name && 
-                 d3.geoDistance([c.lng, c.lat], [fromCity.lng, fromCity.lat]) < (Math.PI / 3); // Within 60 degrees
+                 d3.geoDistance([c.lng, c.lat], [fromCity.lng, fromCity.lat]) < (Math.PI / 3); 
         });
         
         if (candidates.length === 0) {
@@ -2111,7 +2773,6 @@
         return new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
       }
 
-      // Continuous Cycle: City A -> City B -> City B becomes City A -> City C...
       function runAnimationCycleMap() {
         const fromCity = currentCityMap;
         const toCity = getNextVisibleCity(fromCity);
