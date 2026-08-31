@@ -4,859 +4,935 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog | Flixifys — Shopify Studio</title>
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/images/Favicon.png">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0a;
-    --bg-darker: #050505;
-    --bg-card: #141414;
-    --bg-card-hover: #1a1a1a;
-    --fg: #f5f5f5;
-    --fg-dim: #c0c0c0;
-    --muted: #6a6a6a;
-    --accent: #00E676; /* Premium Match Green */
-    --accent-bright: #5BFFAA;
-    --accent-dim: #00B25C;
-    --accent-glow: rgba(0, 230, 118, 0.45);
-    --silver: #C8C8C8;
-    --silver-dim: #8a8a8a; 
-    --border: #1f1f1f;
-    --border-light: #2a2a2a;
-  }
-  
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; overflow-x: hidden; }
+:root{
+  --cream:#F3EBE1;
+  --orange:#F0642D;
+  --teal:#1F9C9C;
+  --purple:#4E4A67;
+  --yellow:#F0B429;
+  --dark:#17161C;
+  --text:#1c1c1c;
+  --muted:#6f6a63;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+html{scroll-behavior:smooth}
+body{
+  background:linear-gradient(120deg,#FBF7F1,#F6EFE6,#FBF7F1);
+  background-size:300% 300%;
+  animation:bgShift 18s ease-in-out infinite;
+  color:var(--text);
+  overflow-x:hidden;
+}
+body.lock{overflow:hidden}
+@keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-    /* Custom scrollbar*/
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: var(--bg-darker); }
-  ::-webkit-scrollbar-thumb { background: var(--accent-dim); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-  
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: 'Archivo', sans-serif;
-    overflow-x: hidden;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  /* Typography */
-  .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.01em; }
-  .font-heading { font-family: 'Oswald', sans-serif; }
-  .font-body { font-family: 'Archivo', sans-serif; }
-  .font-mono { font-family: 'JetBrains Mono', monospace; }
-  
-  /* Grain overlay */
-  .grain {
-    position: fixed; inset: -10%; pointer-events: none; z-index: 200; opacity: 0.08;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: overlay; will-change: transform;
-  }
-  
-  /* Background texture */
-  .bg-textured {
-    background-color: var(--bg);
-    background-image: 
-      radial-gradient(circle at 20% 30%, rgba(0, 230, 118, 0.06) 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(80, 80, 80, 0.06) 0%, transparent 40%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23r)' opacity='0.4'/></svg>");
-    background-blend-mode: normal, normal, overlay;
-  }
-  
-  /* Section reveal */
-  .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: var(--delay, 0s); }
-  .reveal.in-view { opacity: 1; transform: translateY(0); }
-  
-  .reveal-stagger > * { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
-  .reveal-stagger.in-view > * { opacity: 1; transform: translateY(0); }
-  .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0s; }
-  .reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.1s; }
-  .reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.2s; }
-  .reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.3s; }
+/* ===== SVG ICONS ===== */
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.icn{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icn.fill{fill:currentColor;stroke:none}
 
-  @keyframes grid-move { 0% { background-position: 0 0; } 100% { background-position: 0 50px; } }
-  
-  /* Hero overlay */
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: 
-      linear-gradient(180deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.45) 28%, rgba(10,10,10,0.55) 65%, rgba(10,10,10,0.98) 100%),
-      linear-gradient(90deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.5) 100%),
-      radial-gradient(ellipse at 50% 60%, rgba(0, 230, 118, 0.18) 0%, transparent 55%);
-  }
-  
-  /* Headline chars reveal */
-  .headline-line { overflow: hidden; display: block; }
-  .headline-line span { display: inline-block; transform: translateY(110%); transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1); }
-  .in-view .headline-line span { transform: translateY(0); }
-  .headline-line:nth-child(2) span { transition-delay: 0.1s; }
-  .headline-line:nth-child(3) span { transition-delay: 0.2s; }
-  
-  /* 3D Tilt Card Effect */
-  .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
-  .tilt-inner { transform: translateZ(40px); } 
-  
-  /* Image treatments */
-  .img-noir { filter: grayscale(100%) contrast(1.4) brightness(0.7); transition: filter 0.8s ease, transform 0.8s ease; }
-  
-  /* Text effects */
-  .text-stroke { -webkit-text-stroke: 1.5px var(--silver-dim); color: transparent; }
-  
-  /* Underline animation */
-  .link-underline { position: relative; display: inline-block; }
-  .link-underline::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--accent); transition: width 0.4s ease; }
-  .link-underline:hover::after { width: 100%; }
-  
-  /* Number counter */
-  .number-display { font-variant-numeric: tabular-nums; }
-  
-  /* Section divider */
-  .section-marker { display: inline-flex; align-items: center; gap: 0.75rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; }
-  .section-marker::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-  
-  /* Card hover light */
-  .info-card { background: var(--bg-card); border: 1px solid var(--border); transition: border-color 0.4s, background 0.4s, box-shadow 0.4s; }
-  .info-card:hover { border-color: var(--accent-dim); background: var(--bg-card-hover); box-shadow: 0 10px 30px -5px rgba(0, 230, 118, 0.1); }
-  
-  /* Corner notch decoration */
-  .notch-corner { position: relative; }
-  .notch-corner::before, .notch-corner::after { content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid var(--accent); pointer-events: none; z-index: 2; }
-  .notch-corner::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-  .notch-corner::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
-  
-  /* Program card hover */
-  .program-card { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
-  .program-card:hover { transform: translateY(-8px); }
-  .program-card .program-img { transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s; }
-  .program-card:hover .program-img { transform: scale(1.08); filter: grayscale(80%) contrast(1.4) brightness(0.7); }
-  
-  /* Nav link */
-  .nav-link { position: relative; font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); transition: color 0.3s; }
-  .nav-link:hover, .nav-link.active { color: #00E676; }
-  .nav-link::before { content: ''; position: absolute; left: -14px; top: 50%; transform: translateY(-50%) scaleY(0); width: 4px; height: 4px; background: var(--accent); transition: transform 0.3s; }
-  .nav-link:hover::before, .nav-link.active::before { transform: translateY(-50%) scaleY(1); }
+/* ===== ANIMATED BACKGROUND CANVAS ===== */
+#bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,header,footer{position:relative;z-index:1}
 
-  /* Mobile Drawer */
-  .mobile-drawer { position: fixed; top: 0; right: 0; width: 300px; height: 100vh; background: var(--bg-darker); border-left: 1px solid var(--border); z-index: 110; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); padding: 2rem 1.5rem; display: flex; flex-direction: column; }
-  .mobile-drawer.open { transform: translateX(0); }
-  .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 105; opacity: 0; pointer-events: none; transition: 0.3s; }
-  .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+/* ===== NAVBAR ===== */
+.navbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 60px;background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);position:sticky;top:0;z-index:200;
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.logo-mark{width:30px;height:30px;position:relative;animation:spinSlow 14s linear infinite}
+.logo-mark::before{content:"";position:absolute;left:0;top:0;width:14px;height:14px;background:var(--orange);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.logo-mark::after{content:"";position:absolute;right:0;bottom:0;width:14px;height:14px;background:var(--teal);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;position:relative}
+.nav-links a.active,.nav-links a:hover{color:var(--orange)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--orange);transition:.3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.btn-outline{
+  padding:10px 24px;border:1.5px solid var(--dark);border-radius:999px;
+  background:transparent;font-weight:600;font-size:14px;cursor:pointer;transition:.3s;color:var(--text);text-decoration:none;display:inline-block;
+}
+.btn-outline:hover{background:var(--dark);color:#fff}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:210}
+.hamburger span{width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;background:linear-gradient(150deg,var(--cream),#fff);z-index:190;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:0;opacity:0;visibility:hidden;transition:.45s;padding:96px 36px 40px;text-align:left;overflow-y:auto}
+.mobile-menu.open{opacity:1;visibility:visible}
+.mobile-menu a{font-size:23px;font-weight:600;text-decoration:none;color:var(--text);padding:13px 0;width:100%;text-align:left;border-bottom:1px dashed rgba(0,0,0,.1);transition:.3s}
+.mobile-menu a:hover{color:var(--orange);padding-left:6px}
+.mobile-menu a.btn-outline{border-bottom:none;width:auto;margin-top:24px;font-size:14px;padding:10px 24px}
+.mobile-menu a.btn-outline:hover{background:var(--dark);color:#fff;padding-left:24px}
 
-  /* WhatsApp Scroll Progress */
-  .wa-progress-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; }
-  .wa-progress-svg { position: absolute; inset: 0; transform: rotate(-90deg); pointer-events: none; }
-  .wa-progress-bg { fill: none; stroke: var(--border-light); stroke-width: 3; }
-  .wa-progress-circle { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 188.4; stroke-dashoffset: 188.4; transition: stroke-dashoffset 0.1s linear; }
-  .wa-btn-center { position: relative; z-index: 10; width: 48px; height: 48px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: transform 0.3s; }
-  .wa-btn-center:hover { transform: scale(1.1); color: white; }
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;
+  padding:13px 26px;border-radius:999px;border:none;font-size:14px;font-weight:500;
+  cursor:pointer;text-decoration:none;transition:.3s;
+}
+.btn:hover{background:var(--dark);transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.15)}
+.btn .arr{background:rgba(255,255,255,.25);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;transition:.3s}
+.btn:hover .arr{transform:translateX(4px)}
+.btn .icn{width:13px;height:13px}
 
-  /* Goal selector / Category Pills */
-  .goal-pill { cursor: pointer; padding: 0.55rem 1.1rem; border: 1px solid var(--border-light); background: transparent; color: var(--fg-dim); font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.3s; }
-  .goal-pill:hover { border-color: var(--silver-dim); color: var(--fg); }
-  .goal-pill.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 600; }
+/* ===== SECTIONS COMMON ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 40px}
+.section{padding:40px 0}
+.reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.7,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.kicker{color:var(--orange);font-weight:600;font-size:13px;margin-bottom:14px;letter-spacing:.5px;display:inline-flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:34px;height:2px;background:var(--orange);border-radius:99px}
 
-  /* Article Modal Styling */
-  .article-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); z-index: 5000; display: none; overflow-y: auto; }
-  .article-modal.visible { display: block; }
-  .article-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--fg); margin-top: 2rem; margin-bottom: 1rem; letter-spacing: 0.02em; }
-  .article-body h3 { font-family: 'Oswald', sans-serif; font-size: 1.125rem; color: var(--fg); margin-top: 1.5rem; margin-bottom: 0.5rem; }
-  .article-body p { color: var(--fg-dim); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
-  .article-body ul, .article-body ol { margin: 1rem 0 1.5rem; padding-left: 0; list-style: none; }
-  .article-body li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; color: var(--fg-dim); }
-  .article-body ul li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--accent); }
-  .article-body ol { counter-reset: ac; }
-  .article-body ol li { counter-increment: ac; }
-  .article-body ol li::before { content: counter(ac); width: 20px; height: 20px; border: 1px solid var(--accent); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; top: 2px; font-size: 10px; font-family: 'JetBrains Mono'; }
-  .article-body blockquote { border-left: 3px solid var(--accent); padding: 1rem 1.5rem; margin: 1.5rem 0; background: var(--bg-card); color: var(--fg); font-style: italic; }
-  .article-body code { background: var(--bg-card); border: 1px solid var(--border-light); padding: 2px 6px; border-radius: 4px; color: var(--accent); font-family: 'JetBrains Mono'; font-size: 0.85rem; }
-  
-  /* Language Dropdown & Mobile Active */
-  .mobile-lang-btn.active-lang { background: var(--accent); color: #000; border-color: var(--accent) !important; font-weight: 600; }
-  
-  /* Button Fix */
-  .btn-book-call { background: #C8C8C8; color: #000; transition: opacity 0.3s; }
-  .btn-book-call:hover { opacity: 0.8; }
+/* ===== HERO ===== */
+.hero-wrap{padding:10px 40px}
+.hero{
+  background:var(--cream);border-radius:28px;max-width:1320px;margin:0 auto;
+  padding:90px 60px 80px;position:relative;overflow:hidden;text-align:center;
+}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14;filter:saturate(.9)}
+.hero-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(243,235,225,.7),rgba(243,235,225,.55) 50%,rgba(243,235,225,.8))}
+.hero-inner{position:relative;z-index:3;max-width:860px;margin:0 auto}
+.hero h1{font-size:56px;font-weight:600;line-height:1.12;margin:0 auto 20px}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.stroke{color:transparent;-webkit-text-stroke:1.5px var(--purple)}
+.hero p{color:var(--muted);font-size:15px;line-height:1.85;max-width:640px;margin:0 auto}
+.shp{position:absolute}
+.tri{clip-path:polygon(50% 0,100% 100%,0 100%)}
+.float1{animation:floatY 5s ease-in-out infinite}
+.float2{animation:floatY 6.5s ease-in-out infinite .5s}
+.float3{animation:floatY 7.5s ease-in-out infinite 1s}
+.float4{animation:floatX 8s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@keyframes floatX{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@keyframes blink{50%{opacity:.3}}
+
+/* ===== SEARCH + CATEGORIES ===== */
+.search-wrap{position:relative;max-width:460px;margin:0 auto 24px}
+.search-wrap .icn{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted);pointer-events:none}
+.search-input{
+  width:100%;background:#fff;border:1.5px solid #e5d9ca;border-radius:999px;
+  padding:14px 22px 14px 46px;font-size:13px;color:var(--text);outline:none;transition:.3s;font-family:'Poppins',sans-serif;
+}
+.search-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,156,156,.12)}
+.search-input::placeholder{color:var(--muted)}
+.cat-bar{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.goal-pill{cursor:pointer;padding:9px 18px;border:1.5px solid #e5d9ca;border-radius:99px;background:#fff;font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:500;color:var(--muted);transition:.3s;user-select:none}
+.goal-pill:hover{border-color:var(--orange);color:var(--orange)}
+.goal-pill.active{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:600}
+
+/* ===== FEATURED POST ===== */
+.featured{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;margin-bottom:52px}
+.feat-imgwrap{position:relative;cursor:pointer}
+.feat-img{border-radius:20px;overflow:hidden;border:2px solid rgba(240,100,45,.28);box-shadow:0 18px 44px rgba(0,0,0,.12);position:relative}
+.feat-img img{width:100%;height:400px;object-fit:cover;display:block;transition:transform .8s ease}
+.feat-imgwrap:hover .feat-img img{transform:scale(1.04)}
+.feat-badge{position:absolute;top:16px;left:16px;z-index:2;background:var(--orange);color:#fff;font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:6px 14px;border-radius:99px}
+.feat-text h3{font-size:29px;font-weight:600;line-height:1.2;margin-bottom:14px;cursor:pointer;transition:.3s}
+.feat-text h3:hover{color:var(--orange)}
+.feat-text>p{font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:20px}
+.feat-author{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.feat-author img{width:46px;height:46px;border-radius:50%;border:3px solid var(--orange);object-fit:cover}
+.feat-author b{display:block;font-size:15px;font-weight:600}
+.feat-author span{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.feat-meta{display:flex;align-items:center;gap:22px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.feat-meta span{display:inline-flex;align-items:center;gap:7px}
+.feat-meta .icn{width:13px;height:13px;color:var(--orange)}
+.feat-text .btn{background:var(--orange)}
+.feat-text .btn:hover{background:var(--dark)}
+
+/* ===== BLOG GRID CARDS (JS-rendered) ===== */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{
+  background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06);
+  transition:.35s;cursor:pointer;display:flex;flex-direction:column;
+}
+.blog-card:hover{transform:translateY(-8px);box-shadow:0 20px 44px rgba(0,0,0,.13)}
+.bc-imgwrap{position:relative;height:180px;overflow:hidden}
+.bc-imgwrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+.blog-card:hover .bc-imgwrap img{transform:scale(1.07)}
+.bc-imgwrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(23,22,28,.25))}
+.bc-tag{position:absolute;top:14px;left:14px;z-index:2;background:var(--orange);color:#fff;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:99px}
+.bc-body{padding:20px 20px 18px;display:flex;flex-direction:column;flex:1}
+.bc-title{font-size:15.5px;font-weight:600;line-height:1.4;margin-bottom:8px;transition:.3s}
+.blog-card:hover .bc-title{color:var(--orange)}
+.bc-excerpt{font-size:11.5px;color:var(--muted);line-height:1.75;margin-bottom:14px;flex:1}
+.bc-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px dashed #e5dcd0}
+.bc-author{display:flex;align-items:center;gap:8px}
+.bc-author img{width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid #FBF7F0}
+.bc-author span{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.bc-date{display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.bc-date .icn{width:11px;height:11px;color:var(--orange)}
+.no-results{text-align:center;padding:60px 20px;color:var(--muted);font-size:12px;letter-spacing:.15em;text-transform:uppercase}
+.no-results .icn{width:38px;height:38px;color:#cbbfae;display:block;margin:0 auto 14px}
+
+/* ===== QUOTE CARD ===== */
+.quote-card{background:var(--cream);border-radius:28px;max-width:1200px;margin:0 auto;padding:64px 60px;text-align:center;position:relative;overflow:hidden}
+.quote-ic{width:56px;height:56px;color:var(--orange);margin:0 auto 22px;opacity:.85}
+.quote-ic .icn{width:100%;height:100%;stroke-width:1.5}
+.quote-card h2{font-size:22px;font-weight:500;line-height:1.6;max-width:900px;margin:0 auto 30px;color:var(--text);text-wrap:balance}
+.quote-card h2 em{font-style:normal;color:var(--teal);font-weight:600}
+.founder-row{display:flex;align-items:center;justify-content:center;gap:16px}
+.founder-row img{width:56px;height:56px;border-radius:50%;border:3px solid var(--orange);object-fit:cover}
+.founder-name{text-align:left}
+.founder-name b{display:block;font-size:19px;font-weight:600;letter-spacing:.02em}
+.founder-name span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+
+/* ===== VALUES ===== */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.value-card{
+  background:#fff;border-radius:16px;padding:30px 26px;box-shadow:0 10px 30px rgba(0,0,0,.06);
+  transition:.35s;display:flex;flex-direction:column;transform-style:preserve-3d;
+}
+.value-card:hover{box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.vc-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px}
+.vc-ic .icn{width:23px;height:23px}
+.vc-ic.o{background:rgba(240,100,45,.12);color:var(--orange)}
+.vc-ic.t{background:rgba(31,156,156,.12);color:var(--teal)}
+.vc-ic.p{background:rgba(78,74,103,.12);color:var(--purple)}
+.value-card h3{font-size:17.5px;font-weight:600;line-height:1.35;margin-bottom:10px}
+.value-card p{font-size:12.5px;color:var(--muted);line-height:1.8}
+.values-grid .value-card:nth-child(2){transition-delay:.1s}
+.values-grid .value-card:nth-child(3){transition-delay:.2s}
+
+/* ===== NEWSLETTER SECTION ===== */
+.nl-card{
+  background:var(--cream);border-radius:28px;max-width:1200px;margin:0 auto;
+  padding:64px 60px;text-align:center;position:relative;overflow:hidden;
+}
+.nl-card h2{font-size:42px;font-weight:600;line-height:1.15;margin-bottom:18px}
+.nl-card>p{font-size:14px;color:var(--muted);line-height:1.85;max-width:560px;margin:0 auto 28px}
+.nl-form-big{display:flex;flex-direction:row;gap:12px;max-width:520px;margin:0 auto 14px}
+.nl-form-big input{
+  flex:1;background:#fff;border:1.5px solid #e5d9ca;border-radius:999px;
+  padding:14px 22px;font-size:13px;color:var(--text);outline:none;transition:.3s;font-family:'Poppins',sans-serif;min-width:0;
+}
+.nl-form-big input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,156,156,.12)}
+.nl-form-big input::placeholder{color:var(--muted)}
+.nl-form-big button{
+  background:var(--orange);color:#fff;border:none;border-radius:999px;padding:14px 28px;
+  font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.1em;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;transition:.3s;white-space:nowrap;
+}
+.nl-form-big button:hover{background:var(--dark)}
+.nl-error{display:none;color:#d93b2b;font-size:12px;font-weight:500;margin-bottom:8px}
+.nl-error.show{display:block}
+.nl-note{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:16px}
+
+/* ===== CTA CARD + STATS ===== */
+.cta-card{
+  background:var(--cream);border-radius:28px;max-width:1320px;margin:0 auto;
+  padding:70px 80px 56px;position:relative;overflow:hidden;text-align:center;
+}
+.cta-card h2{font-size:44px;font-weight:600;line-height:1.18;margin-bottom:20px}
+.cta-card>p{font-size:14px;color:var(--muted);line-height:1.85;max-width:560px;margin:0 auto 30px}
+.cta-card .btn{background:var(--orange)}
+.cta-card .btn:hover{background:var(--dark)}
+.cta-stats{display:flex;justify-content:center;margin-top:46px;padding-top:36px;border-top:1px dashed #dccfc0;flex-wrap:wrap}
+.stat{text-align:center;padding:0 44px;position:relative}
+.stat + .stat::before{content:"";position:absolute;left:0;top:8px;width:1px;height:56px;background:#d8cec2}
+.stat h3{font-size:38px;font-weight:700;color:var(--orange)}
+.stat:nth-child(2) h3{color:var(--teal)}
+.stat:nth-child(3) h3{color:var(--purple)}
+.stat span{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+.deco-semi-teal{position:absolute;top:-45px;right:60px;width:110px;height:55px;background:var(--teal);border-radius:0 0 110px 110px;animation:pulseK 5s ease-in-out infinite}
+.deco-semi-purple{position:absolute;bottom:-50px;left:40px;width:130px;height:65px;background:var(--purple);border-radius:130px 130px 0 0;animation:floatY 6s ease-in-out infinite}
+@keyframes pulseK{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* ===== FOOTER ===== */
+.footer-wrap{padding:20px 40px 40px}
+footer{
+  background:var(--dark);border-radius:28px;max-width:1320px;margin:0 auto;
+  color:#fff;padding:60px 70px 30px;position:relative;overflow:hidden;
+}
+footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);position:relative}
+.footer-grid h5{font-size:14px;margin-bottom:18px;font-weight:600;position:relative;padding-bottom:10px}
+.footer-grid h5::after{content:"";position:absolute;left:0;bottom:0;width:22px;height:2px;background:var(--orange);border-radius:99px}
+.footer-grid ul{list-style:none}
+.footer-grid li{margin-bottom:12px}
+.footer-grid a{color:#a5a1ab;text-decoration:none;font-size:12.5px;transition:.3s}
+.footer-grid a:hover{color:var(--orange);padding-left:5px}
+.footer-grid a.f-active{color:var(--orange);font-weight:600}
+.footer-brand p{color:#a5a1ab;font-size:12.5px;line-height:1.8;margin:16px 0 22px;max-width:280px}
+.socials{display:flex;gap:12px}
+.socials a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:.3s;text-decoration:none}
+.socials a .icn{width:15px;height:15px}
+.socials a:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-4px);color:#fff}
+.newsletter p{color:#a5a1ab;font-size:11.5px;line-height:1.7;margin-bottom:16px}
+.nl-form{display:flex;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;overflow:hidden;transition:.3s}
+.nl-form:focus-within{border-color:var(--teal)}
+.nl-form input{flex:1;background:transparent;border:none;outline:none;color:#fff;padding:12px 18px;font-size:12px;font-family:'Poppins',sans-serif;min-width:0}
+.nl-form input::placeholder{color:#7d7985}
+.nl-form button{background:var(--orange);border:none;color:#fff;width:44px;cursor:pointer;font-size:15px;transition:.3s;display:grid;place-items:center}
+.nl-form button .icn{width:14px;height:14px}
+.nl-form button:hover{background:var(--teal)}
+.copy{text-align:center;color:#8a8690;font-size:12px;padding-top:24px;position:relative}
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float{
+  --wa-size:64px;
+  position:fixed;
+  right:calc(22px + env(safe-area-inset-right,0px));
+  bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  width:var(--wa-size);height:var(--wa-size);
+  z-index:150;display:grid;place-items:center;
+}
+.wa-float::before{content:"";position:absolute;inset:3px;border-radius:50%;background:rgba(255,255,255,.85);backdrop-filter:blur(4px);box-shadow:0 8px 20px rgba(23,22,28,.14)}
+.wa-ring{position:absolute;inset:0;width:100%;height:100%;display:block;transform:rotate(-90deg);z-index:2;pointer-events:none}
+.wa-track{fill:none;stroke:#eadfd0;stroke-width:3.5}
+.wa-prog{fill:none;stroke:url(#waGrad);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .12s linear;filter:drop-shadow(0 0 4px rgba(240,100,45,.45))}
+.wa-btn{
+  position:relative;z-index:3;
+  width:calc(var(--wa-size) - 18px);height:calc(var(--wa-size) - 18px);
+  border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;
+  box-shadow:0 8px 18px rgba(23,22,28,.3);transition:background .3s,transform .3s;
+}
+.wa-btn .icn{width:calc((var(--wa-size) - 18px)*.47);height:calc((var(--wa-size) - 18px)*.47)}
+.wa-btn:hover{background:var(--orange);transform:scale(1.1)}
+
+/* ===== ARTICLE MODAL (warm) ===== */
+.article-modal{
+  position:fixed;inset:0;background:rgba(243,235,225,.96);backdrop-filter:blur(10px);
+  z-index:5000;display:none;overflow-y:auto;
+}
+.article-modal.visible{display:block}
+.am-wrap{max-width:840px;margin:0 auto;padding:56px 32px 80px}
+.am-back{
+  display:inline-flex;align-items:center;gap:9px;background:#fff;border:1.5px solid #e5d9ca;
+  border-radius:999px;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:.3s;margin-bottom:32px;
+}
+.am-back:hover{border-color:var(--orange);color:var(--orange)}
+.am-back .icn{width:13px;height:13px}
+.am-img{border-radius:20px;overflow:hidden;border:2px solid rgba(240,100,45,.28);box-shadow:0 18px 44px rgba(0,0,0,.12);margin-bottom:28px}
+.am-img img{width:100%;height:340px;object-fit:cover;display:block}
+.am-tag{display:inline-block;background:var(--orange);color:#fff;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:16px}
+.am-title{font-size:32px;font-weight:600;line-height:1.2;margin-bottom:16px}
+.am-meta{display:flex;align-items:center;gap:22px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;padding-bottom:20px;border-bottom:1px dashed #dccfc0}
+.am-meta span{display:inline-flex;align-items:center;gap:7px}
+.am-meta .icn{width:13px;height:13px;color:var(--orange)}
+.am-author{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #eee4d7;border-radius:16px;padding:16px 20px;margin-bottom:28px}
+.am-author img{width:52px;height:52px;border-radius:50%;border:3px solid var(--orange);object-fit:cover}
+.am-author b{display:block;font-size:16px;font-weight:600}
+.am-author span{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+/* article body typography (warm) */
+.article-body h2{font-size:22px;font-weight:600;color:var(--text);margin:28px 0 12px;line-height:1.3}
+.article-body h3{font-size:15.5px;font-weight:600;color:var(--text);margin:20px 0 8px}
+.article-body p{color:#57534b;line-height:1.9;margin-bottom:14px;font-size:13.5px}
+.article-body ul,.article-body ol{margin:14px 0 20px;padding-left:0;list-style:none}
+.article-body li{padding-left:26px;position:relative;margin-bottom:8px;color:#57534b;line-height:1.75;font-size:13.5px}
+.article-body ul li::before{content:"";position:absolute;left:2px;top:9px;width:8px;height:8px;background:var(--orange);border-radius:2px;transform:rotate(45deg)}
+.article-body ol{counter-reset:ac}
+.article-body ol li{counter-increment:ac;padding-left:38px}
+.article-body ol li::before{
+  content:counter(ac);position:absolute;left:0;top:1px;width:22px;height:22px;
+  border:1.5px solid var(--teal);color:var(--teal);border-radius:50%;
+  display:grid;place-items:center;font-size:10px;font-weight:600;
+}
+.article-body blockquote{
+  border-left:3px solid var(--orange);padding:16px 22px;margin:20px 0;
+  background:var(--cream);border-radius:0 14px 14px 0;color:var(--text);font-style:italic;font-size:14px;line-height:1.8;
+}
+.article-body code{
+  background:rgba(31,156,156,.1);border:1px solid rgba(31,156,156,.25);
+  padding:2px 8px;border-radius:6px;color:var(--teal);
+  font-family:'Poppins',monospace;font-size:12px;
+}
+.am-share{display:flex;align-items:center;gap:10px;margin-top:36px;padding-top:26px;border-top:1px dashed #dccfc0}
+.am-share>span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-right:6px}
+.am-share a{width:40px;height:40px;border-radius:50%;background:#fff;border:1.5px solid #e5d9ca;display:grid;place-items:center;color:var(--muted);transition:.3s;text-decoration:none}
+.am-share a .icn{width:15px;height:15px}
+.am-share a:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-3px)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero,.cta-card{padding:60px 36px 48px}
+  .hero h1{font-size:40px}
+  .cta-card h2{font-size:33px}
+  .quote-card{padding:48px 32px}
+  .quote-card h2{font-size:18px}
+  .nl-card h2{font-size:32px}
+  .featured{grid-template-columns:1fr;gap:28px}
+  .feat-img img{height:320px}
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  .navbar .btn-outline{display:none}
+  .hamburger{display:flex}
+  .values-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+}
+@media(max-width:640px){
+  .hero{padding:56px 24px 48px}
+  .hero h1{font-size:30px}
+  .blog-grid{grid-template-columns:1fr}
+  .featured{gap:24px;margin-bottom:40px}
+  .feat-text h3{font-size:23px}
+  .feat-img img{height:230px}
+  .nl-form-big{flex-direction:column}
+  .nl-card{padding:48px 24px}
+  .nl-card h2{font-size:27px}
+  .cta-card h2{font-size:26px}
+  .stat{padding:0 20px}
+  .stat h3{font-size:30px}
+  .cta-stats{gap:6px 0}
+  .quote-card{padding:40px 22px}
+  .quote-card h2{font-size:16px;line-height:1.7}
+  .founder-row{flex-direction:column;gap:10px}
+  .founder-name{text-align:center}
+  .cta-card{padding:52px 26px 40px}
+  .navbar{padding:16px 20px}
+  .container{padding:0 20px}
+  .hero-wrap{padding:10px 16px}
+  .footer-wrap{padding:16px 16px 24px}
+  footer{padding:44px 28px 24px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .mobile-menu{padding:88px 26px 40px}
+  .am-wrap{padding:40px 20px 70px}
+  .am-title{font-size:24px}
+  .am-img img{height:210px}
+  .wa-float{--wa-size:56px;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
-<body class="bg-textured">
-  <div class="grain" id="grain"></div>
-  
-    <!-- Header Fixed -->
-  <header class="header fixed top-0 left-0 right-0 z-[100] backdrop-blur-lg bg-black/90 border-b border-white/5" id="header">
-    <div class="container header-inner max-w-[1600px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
-      <div class="logo flex-shrink-0">
-        <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
-      </div>
-      <nav class="nav hidden lg:flex items-center gap-8 xl:gap-10 flex-shrink-0">
-        <a href="/about-us/" class="nav-link" data-i18n="nav_about">About Us</a>
-        <a href="/services/" class="nav-link" data-i18n="nav_services">Services</a>
-        <a href="/blog/" class="nav-link active" data-i18n="nav_blog">Blog</a>
-        <a href="/referral-program/" class="nav-link" data-i18n="nav_referral">Referral Program</a>
-        <a href="/contact-us/" class="nav-link" data-i18n="nav_contact">Contact Us</a>
-      </nav>
-      
-      <div class="flex items-center gap-4 md:gap-6 flex-shrink-0">
-        <div class="relative hidden lg:block" id="langContainer">
-          <button id="langBtnDesktop" class="flex items-center justify-center gap-2 font-heading text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors py-2 px-3 border border-transparent hover:border-gray-600 w-[140px]">
-            <i class="fas fa-globe"></i>
-            <span id="currentLangDesktop">English</span>
-            <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-          </button>
-          <div id="langDropdownDesktop" class="absolute right-0 mt-2 w-44 bg-black border border-gray-800 shadow-2xl hidden z-[110]">
-            <ul class="py-2">
-              <li><a href="#" data-lang="en" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">English</a></li>
-              <li><a href="#" data-lang="zh" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Chinese</a></li>
-              <li><a href="#" data-lang="hi" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Hindi</a></li>
-              <li><a href="#" data-lang="es" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Spanish</a></li>
-              <li><a href="#" data-lang="fr" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">French</a></li>
-            </ul>
-          </div>
-        </div>
+<body>
 
-        <a href="https://wa.me/919876543210" target="_blank" class="hidden lg:inline-flex items-center font-heading text-xs tracking-[0.2em] uppercase px-5 py-2.5 btn-book-call" data-i18n="btn_call">
-          Book a Free Call
-        </a>
-        <button id="menuBtn" class="lg:hidden text-white text-2xl z-[120]"><i class="fas fa-bars"></i></button>
-      </div>
-    </div>
-  </header>
+<!-- SVG ICON LIBRARY -->
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7L4.5 19a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-meh" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 15h8"/><path d="M9 9h.01M15 9h.01"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></symbol>
+  <symbol id="i-xx" viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26L22.83 21.75h-6.66l-5.22-6.82-5.97 6.82H1.66l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+</svg>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-drawer lg:hidden" id="mobileDrawer">
-    <div class="flex justify-between items-center mb-10">
-      <div class="logo">
-        <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
-      </div>
-      <div class="flex items-center gap-4">
-        <button id="closeDrawer" class="text-2xl text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
-      </div>
-    </div>
+<!-- Animated moving background -->
+<canvas id="bgCanvas"></canvas>
 
-    <div class="mb-8">
-      <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-3">Language</div>
-      <div class="grid grid-cols-2 gap-2" id="mobileLangGrid">
-        <button data-lang="en" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)] active-lang">English</button>
-        <button data-lang="zh" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Chinese</button>
-        <button data-lang="hi" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Hindi</button>
-        <button data-lang="es" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Spanish</button>
-        <button data-lang="fr" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">French</button>
-      </div>
-    </div>
+<header class="navbar">
+  <div class="logo"><span class="logo-mark"></span>Flixifys</div>
+  <ul class="nav-links">
+    <li><a href="/about-us/">About Us</a></li>
+    <li><a href="/services/">Services</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/referral-program/">Referral Program</a></li>
+    <li><a href="/contact-us/">Contact Us</a></li>
+  </ul>
+  <a href="https://wa.me/919876543210" target="_blank" class="btn-outline">Book a Free Call</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
 
-    <nav class="flex flex-col gap-6">
-      <a href="/about-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_about">About Us</a>
-      <a href="/services/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_services">Services</a>
-      <a href="/blog/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_blog">Blog</a>
-      <a href="/referral-program/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_referral">Referral Program</a>
-      <a href="/contact-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_contact">Contact Us</a>
-    </nav>
-    <a href="https://wa.me/919876543210" target="_blank" class="mt-auto bg-[var(--accent)] text-black text-center py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors" data-i18n="btn_call">
-      Book Free Call
-    </a>
-  </div>
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  
-  <!-- HERO -->
-  <section class="relative min-h-[90vh] w-full overflow-hidden flex items-center pt-24 pb-20" id="hero">
-    <div class="absolute inset-0" id="reelContainer">
-      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=80" alt="Blog Background" class="w-full h-full object-cover" style="filter: grayscale(100%) contrast(1.55) brightness(0.42);">
-    </div>
-    
-    <div class="hero-overlay"></div>
-    <div class="hero-grid-3d"></div>
-    
-    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="reveal in-view max-w-4xl mx-auto text-center">
-        <div class="section-marker justify-center mb-6">
-          <span>FLIXIFYS BLOG · INSIGHTS</span>
-        </div>
-        <h1 class="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] mb-6">
-          <span class="headline-line"><span>EXPERT <span class="text-[var(--accent)]">INSIGHTS</span> &</span></span>
-          <span class="headline-line"><span class="text-stroke">SHOPIFY STRATEGIES</span></span>
-        </h1>
-        <p class="max-w-2xl mx-auto text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body">
-          Expert insights, Shopify strategies and ecommerce growth tips from our team of specialists.
-        </p>
-      </div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="tagline kicker" style="margin-bottom:14px">// Menu</div>
+  <a href="/about-us/">About Us</a>
+  <a href="/services/">Services</a>
+  <a href="/blog/">Blog</a>
+  <a href="/referral-program/">Referral Program</a>
+  <a href="/contact-us/">Contact Us</a>
+  <a href="https://wa.me/919876543210" target="_blank" class="btn-outline">Book a Free Call &rsaquo;</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+<div class="hero-wrap section" id="hero">
+  <section class="hero reveal">
+    <img class="hero-bg" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=80" alt="Blog Background">
+    <div class="hero-tint"></div>
+    <div class="shp tri float2" style="width:56px;height:50px;background:var(--yellow);top:44px;left:7%;z-index:2"></div>
+    <div class="shp float3" style="width:44px;height:44px;background:var(--teal);border-radius:50%;top:26%;right:8%;z-index:2"></div>
+    <div class="shp float4" style="width:70px;height:70px;background:radial-gradient(circle 5px, var(--purple) 96%,transparent) 0 0/18px 18px;bottom:44px;left:12%;z-index:2"></div>
+    <div class="shp float1" style="width:34px;height:34px;background:var(--orange);border-radius:50%;bottom:22%;right:13%;z-index:2"></div>
+    <div class="shp tri float3" style="width:40px;height:36px;background:var(--orange);top:52px;right:22%;transform:rotate(18deg);z-index:2;opacity:.85"></div>
+
+    <div class="hero-inner">
+      <div class="kicker" style="margin-bottom:16px">FLIXIFYS BLOG · INSIGHTS</div>
+      <h1>Expert <em>Insights</em> &amp;<br><span class="stroke">Shopify Strategies</span></h1>
+      <p>Expert insights, Shopify strategies and ecommerce growth tips from our team of specialists.</p>
     </div>
   </section>
+</div>
 
-  <!-- BLOG SECTION -->
-  <section class="relative py-28 lg:py-36" id="blog">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-        
-      <!-- Search & Categories -->
-      <div class="reveal text-center mb-16">
-        <div class="max-w-md mx-auto mb-10 relative">
-          <input type="text" id="blogSearch" placeholder="Search articles..." class="w-full bg-transparent border border-[var(--border-light)] focus:border-[var(--accent)] px-6 py-4 pl-12 text-sm text-[var(--fg)] outline-none placeholder:text-[var(--muted)] font-mono transition-colors">
-          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]"></i>
-        </div>
-        <div class="flex flex-wrap gap-3 justify-center" id="categoryBar">
-          <button class="goal-pill active" data-cat="all">All Posts</button>
-          <button class="goal-pill" data-cat="shopify">Shopify</button>
-          <button class="goal-pill" data-cat="design">Design</button>
-          <button class="goal-pill" data-cat="seo">SEO</button>
-          <button class="goal-pill" data-cat="growth">Growth</button>
-          <button class="goal-pill" data-cat="tech">Technology</button>
-          <button class="goal-pill" data-cat="strategy">Strategy</button>
-        </div>
+<!-- BLOG SECTION -->
+<section class="section container" id="blog" style="max-width:1240px">
+
+  <!-- Search & Categories -->
+  <div class="reveal text-center" style="margin-bottom:44px">
+    <div class="search-wrap">
+      <svg class="icn"><use href="#i-search"/></svg>
+      <input type="text" id="blogSearch" placeholder="Search articles..." class="search-input">
+    </div>
+    <div class="cat-bar" id="categoryBar">
+      <button class="goal-pill active" data-cat="all">All Posts</button>
+      <button class="goal-pill" data-cat="shopify">Shopify</button>
+      <button class="goal-pill" data-cat="design">Design</button>
+      <button class="goal-pill" data-cat="seo">SEO</button>
+      <button class="goal-pill" data-cat="growth">Growth</button>
+      <button class="goal-pill" data-cat="tech">Technology</button>
+      <button class="goal-pill" data-cat="strategy">Strategy</button>
+    </div>
+  </div>
+
+  <!-- Featured Post -->
+  <div class="featured reveal" id="featuredPost">
+    <div class="feat-imgwrap" onclick="openArticle('featured')">
+      <div class="feat-img">
+        <img src="https://picsum.photos/seed/shopify-2025-trends/800/500.jpg" alt="Featured Post">
+        <span class="feat-badge">Featured</span>
       </div>
-
-      <!-- Featured Post -->
-      <div class="reveal grid lg:grid-cols-2 gap-8 lg:gap-12 mb-20 items-center" id="featuredPost">
-        <div class="relative group cursor-pointer" onclick="openArticle('featured')">
-          <div class="absolute -inset-4 bg-[var(--accent)]/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative info-card notch-corner overflow-hidden">
-            <img src="https://picsum.photos/seed/shopify-2025-trends/800/500.jpg" alt="Featured Post" class="w-full h-[450px] object-cover img-noir">
-            <div class="absolute top-4 left-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">FEATURED</div>
-          </div>
-        </div>
+    </div>
+    <div class="feat-text">
+      <div class="kicker">Featured Post</div>
+      <h3 onclick="openArticle('featured')">10 SHOPIFY TRENDS THAT WILL DEFINE ECOMMERCE IN 2025</h3>
+      <p>From AI-powered personalization to headless commerce, these are the trends every Shopify brand needs to watch this year to stay ahead of the competition.</p>
+      <div class="feat-author">
+        <img src="https://picsum.photos/seed/author-rahul/100/100.jpg" alt="Rahul Sharma">
         <div>
-          <div class="section-marker mb-6"><span>Featured Post</span></div>
-          <h3 class="font-display text-4xl lg:text-5xl leading-[0.9] mb-4 cursor-pointer hover:text-[var(--accent)] transition-colors" onclick="openArticle('featured')">10 SHOPIFY TRENDS THAT WILL DEFINE ECOMMERCE IN 2025</h3>
-          <p class="text-[var(--fg-dim)] text-base leading-relaxed mb-6">From AI-powered personalization to headless commerce, these are the trends every Shopify brand needs to watch this year to stay ahead of the competition.</p>
-          <div class="flex items-center gap-4 mb-8">
-            <img src="https://picsum.photos/seed/author-rahul/100/100.jpg" class="w-12 h-12 rounded-full border-2 border-[var(--accent)] object-cover" alt="Rahul Sharma">
-            <div>
-              <div class="font-display text-xl tracking-wider">RAHUL SHARMA</div>
-              <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.3em] mt-1">FOUNDER & LEAD STRATEGIST</div>
-            </div>
-          </div>
-          <div class="flex items-center gap-6 font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mb-8">
-            <span><i class="far fa-calendar mr-2"></i> Jan 15, 2025</span>
-            <span><i class="far fa-clock mr-2"></i> 8 min read</span>
-          </div>
-          <button onclick="openArticle('featured')" class="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-black font-heading text-sm tracking-[0.15em] uppercase hover:bg-[var(--accent-bright)] transition-colors">
-            Read Article <i class="fas fa-arrow-right"></i>
-          </button>
+          <b>RAHUL SHARMA</b>
+          <span>Founder &amp; Lead Strategist</span>
         </div>
       </div>
-
-      <!-- Blog Grid -->
-      <div class="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="blogGrid"></div>
-      <div id="noResults" class="hidden text-center py-20 text-[var(--muted)] font-mono text-sm tracking-widest uppercase">
-        <i class="fas fa-meh text-4xl mb-4 block"></i>
-        No articles found. Try a different search or category.
+      <div class="feat-meta">
+        <span><svg class="icn"><use href="#i-calendar"/></svg> Jan 15, 2025</span>
+        <span><svg class="icn"><use href="#i-clock"/></svg> 8 min read</span>
       </div>
-
+      <button onclick="openArticle('featured')" class="btn">Read Article <span class="arr">›</span></button>
     </div>
-  </section>
+  </div>
 
-  <!-- QUOTE & VALUES -->
-  <section class="relative py-28 lg:py-36 border-t border-[var(--border)] bg-[var(--bg-darker)]">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="reveal text-center max-w-4xl mx-auto mb-20">
-        <i class="fas fa-quote-left text-5xl text-[var(--accent)] mb-8 opacity-50"></i>
-        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-8 text-[var(--fg)]">
-          "Knowledge shared freely is the best marketing strategy there is. We publish everything we know about Shopify because informed clients make <span class="text-[var(--accent)]">better decisions</span> — and better decisions lead to better stores."
-        </h2>
-        <div class="flex items-center justify-center gap-4">
-          <img src="https://picsum.photos/seed/author-rahul/100/100.jpg" alt="Founder" class="w-14 h-14 rounded-full border-2 border-[var(--accent)] object-cover">
-          <div class="text-left">
-            <div class="font-display text-2xl tracking-wider">RAHUL SHARMA, FLIXIFYS</div>
-            <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.3em] mt-1">FOUNDER & CONTENT LEAD</div>
-          </div>
+  <!-- Blog Grid -->
+  <div class="blog-grid" id="blogGrid"></div>
+  <div id="noResults" class="no-results" style="display:none">
+    <svg class="icn"><use href="#i-meh"/></svg>
+    No articles found. Try a different search or category.
+  </div>
+
+</section>
+
+<!-- QUOTE & VALUES -->
+<section class="section container" style="max-width:1280px">
+  <div class="quote-card reveal">
+    <div class="deco-semi-teal"></div>
+    <div class="deco-semi-purple"></div>
+    <div class="quote-ic"><svg class="icn"><use href="#i-quote"/></svg></div>
+    <h2>"Knowledge shared freely is the best marketing strategy there is. We publish everything we know about Shopify because informed clients make <em>better decisions</em> — and better decisions lead to better stores."</h2>
+    <div class="founder-row">
+      <img src="https://picsum.photos/seed/author-rahul/100/100.jpg" alt="Founder">
+      <div class="founder-name">
+        <b>RAHUL SHARMA, FLIXIFYS</b>
+        <span>Founder &amp; Content Lead</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="values-grid">
+    <article class="value-card reveal tilt-card">
+      <div class="vc-ic o"><svg class="icn"><use href="#i-bulb"/></svg></div>
+      <h3>ACTIONABLE INSIGHTS</h3>
+      <p>Every article includes steps you can implement today.</p>
+    </article>
+    <article class="value-card reveal tilt-card">
+      <div class="vc-ic t"><svg class="icn"><use href="#i-flask"/></svg></div>
+      <h3>BATTLE-TESTED METHODS</h3>
+      <p>We only write about what has worked for our clients.</p>
+    </article>
+    <article class="value-card reveal tilt-card">
+      <div class="vc-ic p"><svg class="icn"><use href="#i-rocket"/></svg></div>
+      <h3>GROWTH-FOCUSED CONTENT</h3>
+      <p>Every piece is designed to help you scale smarter.</p>
+    </article>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section container" style="max-width:1280px">
+  <div class="nl-card reveal">
+    <div class="kicker" style="margin-bottom:14px">Newsletter</div>
+    <h2>STAY <span class="stroke">UPDATED</span></h2>
+    <p>Join 2,000+ ecommerce founders who get our best insights, teardowns and Shopify strategies delivered every week.</p>
+    <form id="newsletterForm" class="nl-form-big">
+      <input type="email" id="newsletterEmail" required placeholder="email@address.com">
+      <button type="submit">SUBSCRIBE <svg class="icn" style="width:13px;height:13px"><use href="#i-send"/></svg></button>
+    </form>
+    <p id="newsletterError" class="nl-error">Please enter a valid email address.</p>
+    <p class="nl-note">No spam. Unsubscribe in one click.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section container" id="contact" style="max-width:1360px">
+  <div class="cta-card reveal">
+    <div class="kicker" style="margin-bottom:16px">Let's Build</div>
+    <h2>WANT RESULTS, NOT JUST <span class="stroke">READS?</span></h2>
+    <p>Our blog is free — but real growth happens when strategy meets execution. Let's turn these insights into your competitive advantage.</p>
+    <a href="/contact-us/" class="btn">WORK WITH US <span class="arr">›</span></a>
+
+    <div class="cta-stats">
+      <div class="stat"><h3 class="number-display" data-count="150" data-suffix="+">0</h3><span>Stores Launched</span></div>
+      <div class="stat"><h3 class="number-display" data-count="98" data-suffix="%">0</h3><span>Client Satisfaction</span></div>
+      <div class="stat"><h3 class="number-display" data-count="3" data-suffix="x">0</h3><span>Avg. Revenue Boost</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<div class="footer-wrap">
+  <footer class="reveal">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="color:#fff"><span class="logo-mark"></span>Flixifys</div>
+        <div style="font-size:10px;letter-spacing:.25em;color:#8a8690;margin-top:4px">SHOPIFY · STUDIO</div>
+        <p>A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.</p>
+        <div class="socials">
+          <a href="https://instagram.com" target="_blank" title="Instagram"><svg class="icn"><use href="#i-ig"/></svg></a>
+          <a href="https://linkedin.com" target="_blank" title="LinkedIn"><svg class="icn fill"><use href="#i-in"/></svg></a>
+          <a href="https://twitter.com" target="_blank" title="X"><svg class="icn fill"><use href="#i-xx"/></svg></a>
+          <a href="https://youtube.com" target="_blank" title="YouTube"><svg class="icn fill"><use href="#i-yt"/></svg></a>
         </div>
       </div>
-      
-      <div class="reveal-stagger grid md:grid-cols-3 gap-6 lg:gap-8">
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-lightbulb"></i></div>
-            <h3 class="font-display text-3xl mb-3">ACTIONABLE INSIGHTS</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Every article includes steps you can implement today.</p>
-          </div>
-        </article>
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-flask"></i></div>
-            <h3 class="font-display text-3xl mb-3">BATTLE-TESTED METHODS</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed">We only write about what has worked for our clients.</p>
-          </div>
-        </article>
-        <article class="info-card p-8 tilt-card">
-          <div class="tilt-inner">
-            <div class="w-14 h-14 mb-6 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-2xl"><i class="fas fa-rocket"></i></div>
-            <h3 class="font-display text-3xl mb-3">GROWTH-FOCUSED CONTENT</h3>
-            <p class="text-[var(--fg-dim)] text-sm leading-relaxed">Every piece is designed to help you scale smarter.</p>
-          </div>
-        </article>
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/blog/" class="f-active">Blog</a></li>
+          <li><a href="/referral-program/">Referral Program</a></li>
+          <li><a href="/contact-us/">Contact Us</a></li>
+          <li><a href="/support/">Support</a></li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <!-- NEWSLETTER -->
-  <section class="relative py-28 lg:py-36 border-t border-[var(--border)]">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="reveal text-center max-w-4xl mx-auto">
-        <div class="section-marker justify-center mb-6"><span>Newsletter</span></div>
-        <h2 class="font-display text-6xl md:text-7xl lg:text-[7rem] leading-[0.9] mb-8">
-          STAY <span class="text-stroke">UPDATED</span>
-        </h2>
-        <p class="max-w-xl mx-auto text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body mb-10">
-          Join 2,000+ ecommerce founders who get our best insights, teardowns and Shopify strategies delivered every week.
-        </p>
-        <form id="newsletterForm" class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-6">
-          <input type="email" id="newsletterEmail" required placeholder="email@address.com" class="flex-1 bg-transparent border border-[var(--border-light)] focus:border-[var(--accent)] px-5 py-4 text-sm text-[var(--fg)] outline-none placeholder:text-[var(--muted)] font-mono transition-colors">
-          <button type="submit" class="px-8 py-4 bg-[var(--accent)] text-black font-heading text-sm tracking-[0.15em] uppercase hover:bg-[var(--accent-bright)] transition-colors flex items-center justify-center gap-2">
-            SUBSCRIBE <i class="fas fa-paper-plane"></i>
-          </button>
+      <div>
+        <h5>Policies</h5>
+        <ul>
+          <li><a href="/terms-and-conditions/">Terms And Conditions</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/cookie-policy/">Cookie Policy/</a></li>
+          <li><a href="/faq/">Faq</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+      <div class="newsletter">
+        <h5>Newsletter</h5>
+        <p>Weekly Shopify insights, case studies, and studio updates.</p>
+        <form class="nl-form" id="nlFormFooter">
+          <input type="email" placeholder="email@address.com" required>
+          <button type="submit" aria-label="Subscribe"><svg class="icn"><use href="#i-arrow"/></svg></button>
         </form>
-        <p id="newsletterError" class="hidden text-red-500 text-sm mb-4 font-mono">Please enter a valid email address.</p>
-        <p class="mt-6 font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase">No spam. Unsubscribe in one click.</p>
       </div>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="relative py-28 lg:py-36 border-t border-[var(--border)] bg-[var(--bg-darker)]">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="reveal text-center max-w-4xl mx-auto mb-16">
-        <div class="section-marker justify-center mb-6"><span>Let's Build</span></div>
-        <h2 class="font-display text-6xl md:text-7xl lg:text-[7rem] leading-[0.9]">
-          WANT RESULTS, NOT JUST <span class="text-stroke">READS?</span>
-        </h2>
-        <p class="max-w-xl mx-auto text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body mt-8">
-          Our blog is free — but real growth happens when strategy meets execution. Let's turn these insights into your competitive advantage.
-        </p>
-        <a href="/contact-us/" class="pulse-btn inline-flex bg-[var(--accent)] text-black px-8 py-4 font-display text-xl tracking-wider hover:bg-[var(--accent-bright)] transition-colors mt-10">
-          WORK WITH US <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-      </div>
-      
-      <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-        <div class="border-l border-[var(--border-light)] pl-6 text-center md:text-left">
-          <div class="font-display text-6xl md:text-7xl text-[var(--accent)] number-display" data-count="150" data-suffix="+">0</div>
-          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2">Stores Launched</div>
-        </div>
-        <div class="border-l border-[var(--border-light)] pl-6 text-center md:text-left">
-          <div class="font-display text-6xl md:text-7xl text-[var(--fg)] number-display" data-count="98" data-suffix="%">0</div>
-          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2">Client Satisfaction</div>
-        </div>
-        <div class="border-l border-[var(--border-light)] pl-6 text-center md:text-left">
-          <div class="font-display text-6xl md:text-7xl text-[var(--fg)] number-display" data-count="3" data-suffix="x">0</div>
-          <div class="font-mono text-[11px] text-[var(--muted)] tracking-[0.2em] uppercase mt-2">Avg. Revenue Boost</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-    <!-- FOOTER -->
-  <footer class="border-t border-white/5 bg-black py-16 relative overflow-hidden">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="font-display text-[18vw] md:text-[14vw] leading-none text-stroke opacity-30 absolute bottom-0 left-0 right-0 text-center pointer-events-none select-none">
-        FLIXIFYS
-      </div>
-      
-      <div class="relative grid md:grid-cols-12 gap-10 mb-12">
-        <div class="md:col-span-5">
-          <div class="flex items-center gap-3 mb-5">
-            <div>
-              <div class="font-display text-2xl leading-none tracking-wider text-white">FLIXIFYS</div>
-              <div class="font-mono text-[10px] text-gray-400 tracking-[0.3em] mt-0.5">SHOPIFY · STUDIO</div>
-            </div>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6" data-i18n="footer_about">
-            A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.
-          </p>
-          <div class="flex gap-3">
-            <a href="https://instagram.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://linkedin.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-x-twitter"></i>
-            </a>
-            <a href="https://youtube.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="md:col-span-2">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_links">Quick Links</h5>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/about-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_about">About Us</a></li>
-            <li><a href="/services/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_services">Services</a></li>
-            <li><a href="/blog/" class="text-[var(--accent)] link-underline" data-i18n="nav_blog">Blog</a></li>
-            <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_referral">Referral Program</a></li>
-            <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Contact Us</a></li>
-            <li><a href="/support/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_support">Support</a></li>
-          </ul>
-        </div>
-        
-        <div class="md:col-span-2">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Policies</h5>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/terms-and-conditions/" class="text-gray-400 hover:text-white link-underline">Terms And Conditions</a></li>
-            <li><a href="/privacy-policy" class="text-gray-400 hover:text-white link-underline">Privacy Policy</a></li>
-            <li><a href="/cookie-policy/" class="text-gray-400 hover:text-white link-underline">Cookie Policy/</a></li>
-            <li><a href="/faq/" class="text-gray-400 hover:text-white link-underline">Faq</a></li>
-            <li><a href="/disclaimer/" class="text-gray-400 hover:text-white link-underline">Disclaimer</a></li>
-          </ul>
-        </div>
-        
-        <div class="md:col-span-3">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_news">Newsletter</h5>
-          <p class="text-gray-400 text-xs mb-4 leading-relaxed" data-i18n="footer_news_desc">Weekly Shopify insights, case studies, and studio updates.</p>
-          <form class="flex border border-gray-800 focus-within:border-[var(--accent)] transition-colors">
-            <input type="email" placeholder="email@address.com" class="flex-1 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-gray-500">
-            <button type="submit" class="px-4 bg-[var(--accent)] text-black hover:bg-[var(--accent-bright)] transition-colors">
-              <i class="fas fa-arrow-right text-xs"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-      
-      <div class="relative border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-center gap-4 text-gray-400 font-mono text-[11px] tracking-[0.15em] uppercase">
-        <div>© 2024 FLIXIFYS SHOPIFY STUDIO. ALL RIGHTS RESERVED.</div>
-      </div>
-    </div>
+    <div class="copy">© 2024 FLIXIFYS SHOPIFY STUDIO. ALL RIGHTS RESERVED.</div>
   </footer>
+</div>
 
-  <!-- WHATSAPP WITH SCROLL PROGRESS -->
-  <div class="wa-progress-container">
-    <svg class="wa-progress-svg" width="64" height="64" viewBox="0 0 64 64">
-      <circle class="wa-progress-bg" cx="32" cy="32" r="30"></circle>
-      <circle class="wa-progress-circle" id="progressCircle" cx="32" cy="32" r="30"></circle>
-    </svg>
-    <a href="https://wa.me/919876543210?text=Hi%20Flixifys" target="_blank" class="wa-btn-center">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  </div>
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <svg class="wa-ring" viewBox="0 0 64 64" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <defs>
+      <linearGradient id="waGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F0642D"/>
+        <stop offset="100%" stop-color="#1F9C9C"/>
+      </linearGradient>
+    </defs>
+    <circle class="wa-track" cx="32" cy="32" r="29"></circle>
+    <circle class="wa-prog" id="waProgress" cx="32" cy="32" r="29" pathLength="100"></circle>
+  </svg>
+  <a href="https://wa.me/919876543210?text=Hi%20Flixifys" target="_blank" class="wa-btn" aria-label="WhatsApp">
+    <svg class="icn fill"><use href="#i-wa"/></svg>
+  </a>
+</div>
 
-  <!-- ARTICLE MODAL -->
-  <div class="article-modal" id="articleModal">
-    <div class="max-w-4xl mx-auto px-6 lg:px-10 py-24" id="articleContent"></div>
-  </div>
+<!-- ARTICLE MODAL -->
+<div class="article-modal" id="articleModal">
+  <div class="am-wrap" id="articleContent"></div>
+</div>
 
-  <script>
-      // Mobile Drawer
-    const menuBtn = document.getElementById('menuBtn');
-    const closeDrawer = document.getElementById('closeDrawer');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const drawerOverlay = document.getElementById('drawerOverlay');
+<script>
+/* ===== Moving Background - Floating Geometric Shapes ===== */
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+addEventListener('resize', resize); resize();
 
-    menuBtn.addEventListener('click', () => { mobileDrawer.classList.add('open'); drawerOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
-    closeDrawer.addEventListener('click', () => { mobileDrawer.classList.remove('open'); drawerOverlay.classList.remove('open'); document.body.style.overflow = ''; });
-    drawerOverlay.addEventListener('click', () => { mobileDrawer.classList.remove('open'); drawerOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+const colors = ['#F0642D','#1F9C9C','#4E4A67','#F0B429','#17161C'];
+const types = ['circle','square','triangle','ring','dot'];
+const shapes = [];
+for(let i=0;i<28;i++){
+  shapes.push({
+    x:Math.random()*W, y:Math.random()*H,
+    size:10+Math.random()*30,
+    type:types[Math.floor(Math.random()*types.length)],
+    color:colors[Math.floor(Math.random()*colors.length)],
+    vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+    rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*.012,
+    alpha:.10+Math.random()*.18
+  });
+}
+(function draw(){
+  ctx.clearRect(0,0,W,H);
+  shapes.forEach(s=>{
+    s.x+=s.vx; s.y+=s.vy; s.rot+=s.vr;
+    if(s.x<-60)s.x=W+60; if(s.x>W+60)s.x=-60;
+    if(s.y<-60)s.y=H+60; if(s.y>H+60)s.y=-60;
+    ctx.save(); ctx.translate(s.x,s.y); ctx.rotate(s.rot);
+    ctx.globalAlpha=s.alpha; ctx.fillStyle=s.color; ctx.strokeStyle=s.color;
+    const h=s.size/2;
+    if(s.type==='circle'){ctx.beginPath();ctx.arc(0,0,h,0,7);ctx.fill();}
+    else if(s.type==='square'){ctx.fillRect(-h,-h,s.size,s.size);}
+    else if(s.type==='triangle'){ctx.beginPath();ctx.moveTo(0,-h);ctx.lineTo(h,h);ctx.lineTo(-h,h);ctx.closePath();ctx.fill();}
+    else if(s.type==='ring'){ctx.lineWidth=s.size/4;ctx.beginPath();ctx.arc(0,0,h,0,7);ctx.stroke();}
+    else {ctx.beginPath();ctx.arc(0,0,s.size/6,0,7);ctx.fill();}
+    ctx.restore();
+  });
+  requestAnimationFrame(draw);
+})();
 
-    // Reveal on Scroll
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('in-view');
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
-    
-    // 3D Tilt Effect Logic
-    document.querySelectorAll('.tilt-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-      });
-    });
+/* ===== Scroll Reveal ===== */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Number Counters
-    const counters = document.querySelectorAll('.number-display');
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.count, 10);
-          const suffix = el.dataset.suffix || '';
-          let current = 0;
-          const increment = target / 60;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) { current = target; clearInterval(timer); }
-            el.textContent = Math.floor(current) + suffix;
-          }, 30);
-          counterObserver.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(c => counterObserver.observe(c));
+/* ===== 3D Tilt ===== */
+document.querySelectorAll('.tilt-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+  });
+});
 
-    // Grain Parallax
-    const grain = document.getElementById('grain');
-    let targetGrainY = 0; let currentGrainY = 0;
-    window.addEventListener('scroll', () => { targetGrainY = window.scrollY * 0.15; }, { passive: true });
-    function animateGrain() {
-      currentGrainY += (targetGrainY - currentGrainY) * 0.08;
-      grain.style.transform = `translateY(${currentGrainY}px)`;
-      requestAnimationFrame(animateGrain);
+/* ===== Number Counters ===== */
+const counters = document.querySelectorAll('.number-display');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      let current = 0;
+      const increment = target / 60;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current) + suffix;
+      }, 30);
+      counterObserver.unobserve(el);
     }
-    animateGrain();
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
 
-    // WhatsApp Scroll Progress
-    const progressCircle = document.getElementById('progressCircle');
-    const circumference = 2 * Math.PI * 30;
-    progressCircle.style.strokeDasharray = circumference;
-    function updateScrollProgress() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      progressCircle.style.strokeDashoffset = circumference - (scrollPercent / 100) * circumference;
-    }
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-    updateScrollProgress();
+/* ===== Footer Newsletter ===== */
+const nlFormFooter = document.getElementById('nlFormFooter');
+if(nlFormFooter){
+  nlFormFooter.addEventListener('submit',e=>{
+    e.preventDefault();
+    const btn = nlFormFooter.querySelector('button');
+    btn.innerHTML = '✓';
+    nlFormFooter.reset();
+    setTimeout(()=>{btn.innerHTML='<svg class="icn"><use href="#i-arrow"/></svg>';},2500);
+  });
+}
 
-    // Language Translations Dictionary (Trimmed for Header/Footer)
-    const translations = {
-      en: {
-        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", btn_call: "Book a Free Call",
-        footer_about: "A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.", footer_links: "Quick Links", footer_news: "Newsletter", footer_news_desc: "Weekly Shopify insights, case studies, and studio updates."
-      },
-      hi: {
-        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", btn_call: "निःशुल्क कॉल बुक करें",
-        footer_about: "एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो जो ब्रांड्स को बनाने, अनुकूलित करने और स्केल करने में मदद करता है।", footer_links: "त्वरित लिंक", footer_news: "न्यूज़लेटर", footer_news_desc: "साप्ताहिक शॉपिफाई इनसाइट्स, केस स्टडीज़ और स्टूडियो अपडेट।"
-      },
-      zh: {
-        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", btn_call: "预约免费通话",
-        footer_about: "一家专注于 Shopify 的工作室，帮助品牌构建和扩展。", footer_links: "快速链接", footer_news: "订阅", footer_news_desc: "每周 Shopify 洞察和更新。"
-      },
-      es: {
-        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", btn_call: "Reservar Llamada Gratis",
-        footer_about: "Un estudio digital enfocado en Shopify que ayuda a las marcas a crecer.", footer_links: "Enlaces", footer_news: "Boletín", footer_news_desc: "Información semanal de Shopify."
-      },
-      fr: {
-        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", btn_call: "Réserver Appel",
-        footer_about: "Un studio numérique axé sur Shopify aidant les marques à croître.", footer_links: "Liens", footer_news: "Newsletter", footer_news_desc: "Infos Shopify hebdomadaires."
-      }
-    };
+/* ===== Mobile Menu ===== */
+const burger=document.getElementById('hamburger'),mMenu=document.querySelector('.mobile-menu');
+let menuOpen=false;
+burger.addEventListener('click',()=>{
+  menuOpen=!menuOpen;
+  burger.classList.toggle('open',menuOpen);
+  mMenu.classList.toggle('open',menuOpen);
+  document.body.classList.toggle('lock',menuOpen);
+});
+mMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  menuOpen=false;burger.classList.remove('open');mMenu.classList.remove('open');document.body.classList.remove('lock');
+}));
 
-    // --- LANGUAGE LOCAL STORAGE LOGIC (PERSISTENT) ---
-    const langBtn = document.getElementById('langBtnDesktop');
-    const langDropdown = document.getElementById('langDropdownDesktop');
-    const currentLangSpan = document.getElementById('currentLangDesktop');
+/* ===== WhatsApp Scroll Progress ===== */
+const waProg = document.getElementById('waProgress');
+function waUpdate(){
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = max > 0 ? (window.scrollY / max) : 0;
+  waProg.style.strokeDashoffset = 100 - (pct * 100);
+}
+addEventListener('scroll', waUpdate, {passive:true});
+addEventListener('resize', waUpdate);
+waUpdate();
 
-    // 1. Function to set language and save to localStorage
-    function setLanguage(lang, save = true) {
-      if (!translations[lang]) return;
-      
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-      
-      // Recalculate FAQ open heights after language change
-      document.querySelectorAll('.faq-item.open').forEach(function(i) {
-        var a = i.querySelector('.faq-a');
-        a.style.maxHeight = a.scrollHeight + 'px';
-      });
+/* ==========================================
+   BLOG LOGIC (content 100% preserved)
+   ========================================== */
+var blogData = {
+  featured: {
+    title: "10 Shopify Trends That Will Define Ecommerce in 2025",
+    tagLabel: "Growth", 
+    img: "shopify-2025-trends", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist",
+    date: "January 15, 2025", readTime: "8 min read", category: "growth",
+    body: "<h2>The Ecommerce Landscape is Shifting Fast</h2><p>Every year brings new technology and new opportunities. 2025 is no different. Brands that adapt early will win.</p><h2>1. AI-Powered Recommendations</h2><p>Basic recommendation engines are being replaced by AI models that understand intent and purchase history at a much deeper level.</p><blockquote>The brands winning in 2025 are curating experiences personalized to each visitor intent.</blockquote><h2>2. Headless Commerce Goes Mainstream</h2><p>Headless architecture is becoming accessible to mid-market stores through Hydrogen and Next.js + Shopify Storefront API.</p><h2>3. Social Commerce Integration</h2><p>TikTok Shop, Instagram Shopping and YouTube Shopping are essential channels now.</p><h2>4. Zero-Party Data Strategies</h2><p>With third-party cookies disappearing, brands are investing in first-party data: email lists, loyalty programs and customer profiles.</p><h2>5. Mobile-First Everything</h2><p>Mobile accounts for 70-80% of ecommerce traffic. In 2025, mobile-first is the default.</p><h2>6. Sustainable Commerce</h2><p>Consumers increasingly care about sustainability. Transparent brands build stronger loyalty.</p><h2>7. Subscription Models</h2><p>Recurring revenue models are expanding beyond subscription boxes to memberships and auto-replenishment.</p><h2>8. Video Commerce</h2><p>Shoppable videos on TikTok, Instagram Reels and YouTube Shorts convert at significantly higher rates.</p><h2>9. Micro-Fulfillment</h2><p>Smaller brands compete with Amazon by partnering with local fulfillment centers and 3PL services.</p><h2>10. CRO as a Discipline</h2><p>Winning brands have dedicated conversion strategies. They analyze funnels, fix checkout friction and continuously optimize.</p><blockquote>The gap is in executing trends better than competitors, not just knowing them.</blockquote>"
+  },
+  post1: { title: "How to Speed Up Your Shopify Store in 2025", tagLabel: "Technology", img: "shopify-speed-2025", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 12, 2025", readTime: "6 min read", category: "tech", body: "<p>Page speed directly impacts conversion rate, SEO rankings and user experience.</p><h2>Why Speed Matters</h2><p>53% of mobile users abandon sites taking longer than 3 seconds to load.</p><h2>Measure First</h2><ul><li><strong>Google PageSpeed Insights</strong> - Free scores with recommendations</li><li><strong>GTmetrix</strong> - Detailed waterfall analysis</li><li><strong>Shopify speed dashboard</strong> - Real-time metrics</li></ul><h2>Big Wins</h2><h3>1. Optimize Images</h3><p>Images account for 50-70% of page weight. Use WebP format.</p><h3>2. Reduce JavaScript Bloat</h3><p>Every app adds JavaScript. Audit and remove unused apps.</p><h3>3. Fix Render-Blocking</h3><p>Use <code>defer</code> for non-critical scripts.</p><h2>Checklist</h2><ol><li>Convert images to WebP</li><li>Set explicit width/height</li><li>Enable lazy loading</li><li>Remove unused apps</li><li>Defer non-critical JS</li><li>Minify CSS and JS</li><li>Enable browser caching</li><li>Use a CDN</li><li>Optimize fonts</li></ol><blockquote>Speed optimization is an ongoing discipline. Set quarterly audits.</blockquote>" },
+  post2: { title: "Shopify Theme Design Principles That Convert", tagLabel: "Design", img: "shopify-design-principles", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 8, 2025", readTime: "7 min read", category: "design", body: "<p>Great design guides visitors toward purchase decisions.</p><h2>1. Visual Hierarchy</h2><p>The most important element should be the most prominent.</p><h2>2. Whitespace</h2><p>Whitespace reduces cognitive load and makes key elements stand out.</p><h2>3. Consistency</h2><p>Every element should follow the same design system.</p><blockquote>Design is not just what it looks like. Design is how it works.</blockquote><h2>4. Mobile-First</h2><p>Design for mobile first, then scale up.</p><h2>5. Trust Signals</h2><p>Reviews, badges, guarantees at every decision point.</p>" },
+  post3: { title: "SEO for Shopify Stores: Complete Guide", tagLabel: "SEO", img: "shopify-seo-guide", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 5, 2025", readTime: "9 min read", category: "seo", body: "<p>SEO on Shopify has unique challenges and opportunities.</p><h2>Technical Foundations</h2><p>Site speed, mobile-friendliness, proper indexing and clean URLs.</p><h2>Keyword Research</h2><ul><li><strong>Product pages:</strong> Specific product names</li><li><strong>Collection pages:</strong> Category keywords</li><li><strong>Blog content:</strong> Informational keywords</li></ul><h2>On-Page Optimization</h2><p>Unique title tag, meta description, H1, and product description for every page.</p><blockquote>The #1 mistake: using the same manufacturer description as 50 other stores.</blockquote>" },
+  post4: { title: "From $0 to $100K: Shopify Growth Playbook", tagLabel: "Growth", img: "shopify-growth-playbook", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 2, 2025", readTime: "10 min read", category: "growth", body: "<p>Growing from zero to six figures requires systematic improvement.</p><h2>Phase 1: $0-$10K/month</h2><p>Focus on product-market fit. Get first 100 customers.</p><h2>Phase 2: $10K-$30K/month</h2><p>Double down on what works. Build email lists, optimize conversion.</p><h2>Phase 3: $30K-$100K/month</h2><p>Scale proven channels. Invest in content, SEO and brand building.</p><blockquote>Most stores fail because they scale before having product-market fit.</blockquote>" },
+  post5: { title: "Shopify Checkout Optimization Guide", tagLabel: "Strategy", img: "shopify-checkout-opt", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "December 28, 2024", readTime: "7 min read", category: "strategy", body: "<p>The checkout page is where money is made or lost.</p><h2>Biggest Killers</h2><ul><li>Unexpected shipping costs</li><li>Forced account creation</li><li>Too many form fields</li><li>No guest checkout</li><li>Slow page load</li></ul><h2>Strategies</h2><p>Show shipping early. Offer guest checkout. Use one-page checkout. Minimize form fields.</p><blockquote>A 1% checkout improvement on $50K/month = $6,000/year extra.</blockquote>" },
+  post6: { title: "Building a Shopify Store That Scales", tagLabel: "Shopify", img: "shopify-store-scale", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "December 22, 2024", readTime: "8 min read", category: "shopify", body: "<p>Most stores are built for today, not tomorrow.</p><h2>Architecture</h2><p>Choose themes carefully. Custom themes give performance and flexibility at scale.</p><h2>App Strategy</h2><p>Every app adds weight. Ask: critical problem? Custom code alternative? Performance impact?</p><h2>Infrastructure</h2><p>Consider Shopify Plus for advanced features and higher API limits.</p><blockquote>Build for where you want to be. Refactoring later is 10x more expensive.</blockquote>" }
+};
 
-      // Update UI text and active states
-      if(currentLangSpan) {
-        const selectedLangItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
-        if(selectedLangItem) currentLangSpan.textContent = selectedLangItem.textContent;
-      }
-      
-      document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-        btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
-      });
+var cardIds = ["post1", "post2", "post3", "post4", "post5", "post6"];
+var cardExcerpts = {
+  post1: "Page speed directly impacts conversion rates and SEO. Learn exact steps to make your Shopify store fast.",
+  post2: "Great design guides visitors toward purchase decisions. Principles we follow for every Shopify theme.",
+  post3: "SEO on Shopify has unique challenges. Complete guide to rank your store in 2025.",
+  post4: "Growing from zero to six figures by systematically improving every part of your business.",
+  post5: "The checkout page is where money is made or lost. Small improvements, massive revenue impact.",
+  post6: "Most stores are built for today. If you plan to grow, build with scale in mind from day one."
+};
 
-      // Save to localStorage so it works on other pages
-      if (save) {
-        localStorage.setItem('flixifys_lang', lang);
-      }
-    }
+var currentFilter = "all", currentSearch = "";
 
-    // 2. Apply saved language on page load immediately
-    const savedLang = localStorage.getItem('flixifys_lang') || 'en';
-    setLanguage(savedLang, false);
+function renderGrid(filter, search) {
+  var grid = document.getElementById("blogGrid");
+  var noRes = document.getElementById("noResults");
+  if (!grid) return;
+  var f = filter || "all", s = (search || "").toLowerCase(), html = "";
+  for (var i = 0; i < cardIds.length; i++) {
+    var id = cardIds[i], d = blogData[id];
+    if (!d) continue;
+    if ((f !== "all" && d.category !== f) || (s && d.title.toLowerCase().indexOf(s) === -1 && d.tagLabel.toLowerCase().indexOf(s) === -1)) continue;
 
-    // 3. Desktop Dropdown Click Events
-    if(langBtn && langDropdown) {
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-            if(!langDropdown.contains(e.target) && !langBtn.contains(e.target)) {
-                langDropdown.classList.add('hidden');
-            }
-        });
-
-        document.querySelectorAll('.lang-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = item.getAttribute('data-lang');
-                setLanguage(lang); // Save and apply
-                langDropdown.classList.add('hidden');
-            });
-        });
-    }
-
-    // 4. Mobile Drawer Click Events
-    document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang); // Save and apply
-        });
-    });
-
-    // ==========================================
-    // BLOG LOGIC
-    // ==========================================
-    var blogData = {
-      featured: {
-        title: "10 Shopify Trends That Will Define Ecommerce in 2025",
-        tagLabel: "Growth", 
-        img: "shopify-2025-trends", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist",
-        date: "January 15, 2025", readTime: "8 min read", category: "growth",
-        body: "<h2>The Ecommerce Landscape is Shifting Fast</h2><p>Every year brings new technology and new opportunities. 2025 is no different. Brands that adapt early will win.</p><h2>1. AI-Powered Recommendations</h2><p>Basic recommendation engines are being replaced by AI models that understand intent and purchase history at a much deeper level.</p><blockquote>The brands winning in 2025 are curating experiences personalized to each visitor intent.</blockquote><h2>2. Headless Commerce Goes Mainstream</h2><p>Headless architecture is becoming accessible to mid-market stores through Hydrogen and Next.js + Shopify Storefront API.</p><h2>3. Social Commerce Integration</h2><p>TikTok Shop, Instagram Shopping and YouTube Shopping are essential channels now.</p><h2>4. Zero-Party Data Strategies</h2><p>With third-party cookies disappearing, brands are investing in first-party data: email lists, loyalty programs and customer profiles.</p><h2>5. Mobile-First Everything</h2><p>Mobile accounts for 70-80% of ecommerce traffic. In 2025, mobile-first is the default.</p><h2>6. Sustainable Commerce</h2><p>Consumers increasingly care about sustainability. Transparent brands build stronger loyalty.</p><h2>7. Subscription Models</h2><p>Recurring revenue models are expanding beyond subscription boxes to memberships and auto-replenishment.</p><h2>8. Video Commerce</h2><p>Shoppable videos on TikTok, Instagram Reels and YouTube Shorts convert at significantly higher rates.</p><h2>9. Micro-Fulfillment</h2><p>Smaller brands compete with Amazon by partnering with local fulfillment centers and 3PL services.</p><h2>10. CRO as a Discipline</h2><p>Winning brands have dedicated conversion strategies. They analyze funnels, fix checkout friction and continuously optimize.</p><blockquote>The gap is in executing trends better than competitors, not just knowing them.</blockquote>"
-      },
-      post1: { title: "How to Speed Up Your Shopify Store in 2025", tagLabel: "Technology", img: "shopify-speed-2025", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 12, 2025", readTime: "6 min read", category: "tech", body: "<p>Page speed directly impacts conversion rate, SEO rankings and user experience.</p><h2>Why Speed Matters</h2><p>53% of mobile users abandon sites taking longer than 3 seconds to load.</p><h2>Measure First</h2><ul><li><strong>Google PageSpeed Insights</strong> - Free scores with recommendations</li><li><strong>GTmetrix</strong> - Detailed waterfall analysis</li><li><strong>Shopify speed dashboard</strong> - Real-time metrics</li></ul><h2>Big Wins</h2><h3>1. Optimize Images</h3><p>Images account for 50-70% of page weight. Use WebP format.</p><h3>2. Reduce JavaScript Bloat</h3><p>Every app adds JavaScript. Audit and remove unused apps.</p><h3>3. Fix Render-Blocking</h3><p>Use <code>defer</code> for non-critical scripts.</p><h2>Checklist</h2><ol><li>Convert images to WebP</li><li>Set explicit width/height</li><li>Enable lazy loading</li><li>Remove unused apps</li><li>Defer non-critical JS</li><li>Minify CSS and JS</li><li>Enable browser caching</li><li>Use a CDN</li><li>Optimize fonts</li></ol><blockquote>Speed optimization is an ongoing discipline. Set quarterly audits.</blockquote>" },
-      post2: { title: "Shopify Theme Design Principles That Convert", tagLabel: "Design", img: "shopify-design-principles", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 8, 2025", readTime: "7 min read", category: "design", body: "<p>Great design guides visitors toward purchase decisions.</p><h2>1. Visual Hierarchy</h2><p>The most important element should be the most prominent.</p><h2>2. Whitespace</h2><p>Whitespace reduces cognitive load and makes key elements stand out.</p><h2>3. Consistency</h2><p>Every element should follow the same design system.</p><blockquote>Design is not just what it looks like. Design is how it works.</blockquote><h2>4. Mobile-First</h2><p>Design for mobile first, then scale up.</p><h2>5. Trust Signals</h2><p>Reviews, badges, guarantees at every decision point.</p>" },
-      post3: { title: "SEO for Shopify Stores: Complete Guide", tagLabel: "SEO", img: "shopify-seo-guide", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 5, 2025", readTime: "9 min read", category: "seo", body: "<p>SEO on Shopify has unique challenges and opportunities.</p><h2>Technical Foundations</h2><p>Site speed, mobile-friendliness, proper indexing and clean URLs.</p><h2>Keyword Research</h2><ul><li><strong>Product pages:</strong> Specific product names</li><li><strong>Collection pages:</strong> Category keywords</li><li><strong>Blog content:</strong> Informational keywords</li></ul><h2>On-Page Optimization</h2><p>Unique title tag, meta description, H1, and product description for every page.</p><blockquote>The #1 mistake: using the same manufacturer description as 50 other stores.</blockquote>" },
-      post4: { title: "From $0 to $100K: Shopify Growth Playbook", tagLabel: "Growth", img: "shopify-growth-playbook", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 2, 2025", readTime: "10 min read", category: "growth", body: "<p>Growing from zero to six figures requires systematic improvement.</p><h2>Phase 1: $0-$10K/month</h2><p>Focus on product-market fit. Get first 100 customers.</p><h2>Phase 2: $10K-$30K/month</h2><p>Double down on what works. Build email lists, optimize conversion.</p><h2>Phase 3: $30K-$100K/month</h2><p>Scale proven channels. Invest in content, SEO and brand building.</p><blockquote>Most stores fail because they scale before having product-market fit.</blockquote>" },
-      post5: { title: "Shopify Checkout Optimization Guide", tagLabel: "Strategy", img: "shopify-checkout-opt", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "December 28, 2024", readTime: "7 min read", category: "strategy", body: "<p>The checkout page is where money is made or lost.</p><h2>Biggest Killers</h2><ul><li>Unexpected shipping costs</li><li>Forced account creation</li><li>Too many form fields</li><li>No guest checkout</li><li>Slow page load</li></ul><h2>Strategies</h2><p>Show shipping early. Offer guest checkout. Use one-page checkout. Minimize form fields.</p><blockquote>A 1% checkout improvement on $50K/month = $6,000/year extra.</blockquote>" },
-      post6: { title: "Building a Shopify Store That Scales", tagLabel: "Shopify", img: "shopify-store-scale", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "December 22, 2024", readTime: "8 min read", category: "shopify", body: "<p>Most stores are built for today, not tomorrow.</p><h2>Architecture</h2><p>Choose themes carefully. Custom themes give performance and flexibility at scale.</p><h2>App Strategy</h2><p>Every app adds weight. Ask: critical problem? Custom code alternative? Performance impact?</p><h2>Infrastructure</h2><p>Consider Shopify Plus for advanced features and higher API limits.</p><blockquote>Build for where you want to be. Refactoring later is 10x more expensive.</blockquote>" }
-    };
-
-    var cardIds = ["post1", "post2", "post3", "post4", "post5", "post6"];
-    var cardExcerpts = {
-      post1: "Page speed directly impacts conversion rates and SEO. Learn exact steps to make your Shopify store fast.",
-      post2: "Great design guides visitors toward purchase decisions. Principles we follow for every Shopify theme.",
-      post3: "SEO on Shopify has unique challenges. Complete guide to rank your store in 2025.",
-      post4: "Growing from zero to six figures by systematically improving every part of your business.",
-      post5: "The checkout page is where money is made or lost. Small improvements, massive revenue impact.",
-      post6: "Most stores are built for today. If you plan to grow, build with scale in mind from day one."
-    };
-
-    var currentFilter = "all", currentSearch = "";
-
-    function renderGrid(filter, search) {
-      var grid = document.getElementById("blogGrid");
-      var noRes = document.getElementById("noResults");
-      if (!grid) return;
-      var f = filter || "all", s = (search || "").toLowerCase(), html = "";
-      for (var i = 0; i < cardIds.length; i++) {
-        var id = cardIds[i], d = blogData[id];
-        if (!d) continue;
-        if ((f !== "all" && d.category !== f) || (s && d.title.toLowerCase().indexOf(s) === -1 && d.tagLabel.toLowerCase().indexOf(s) === -1)) continue;
-        
-        html += '<article class="program-card info-card notch-corner group cursor-pointer" data-article-id="' + id + '">' +
-          '<div class="relative h-56 overflow-hidden">' +
-            '<img src="https://picsum.photos/seed/' + d.img + '/600/400.jpg" class="program-img w-full h-full object-cover img-noir" alt="' + d.title + '">' +
-            '<div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent"></div>' +
-            '<span class="absolute top-4 left-4 px-2 py-1 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em]">' + d.tagLabel + '</span>' +
+    html += '<article class="blog-card" data-article-id="' + id + '">' +
+      '<div class="bc-imgwrap">' +
+        '<img src="https://picsum.photos/seed/' + d.img + '/600/400.jpg" alt="' + d.title + '">' +
+        '<span class="bc-tag">' + d.tagLabel + '</span>' +
+      '</div>' +
+      '<div class="bc-body">' +
+        '<h3 class="bc-title">' + d.title + '</h3>' +
+        '<p class="bc-excerpt">' + (cardExcerpts[id] || '') + '</p>' +
+        '<div class="bc-meta">' +
+          '<div class="bc-author">' +
+            '<img src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" alt="' + d.author + '">' +
+            '<span>' + d.author + '</span>' +
           '</div>' +
-          '<div class="p-7 flex flex-col h-full">' +
-            '<h3 class="font-display text-2xl mb-2 group-hover:text-[var(--accent)] transition-colors">' + d.title + '</h3>' +
-            '<p class="text-[var(--fg-dim)] text-sm leading-relaxed mb-6 flex-1">' + (cardExcerpts[id] || '') + '</p>' +
-            '<div class="flex items-center justify-between pt-4 border-t border-[var(--border-light)]">' +
-              '<div class="flex items-center gap-2">' +
-                '<img src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" class="w-8 h-8 rounded-full object-cover border border-[var(--border-light)]" alt="' + d.author + '">' +
-                '<span class="font-mono text-[10px] text-[var(--muted)] tracking-[0.15em] uppercase">' + d.author + '</span>' +
-              '</div>' +
-              '<span class="font-mono text-[10px] text-[var(--muted)] tracking-[0.15em] uppercase"><i class="far fa-calendar mr-1"></i> ' + d.date + '</span>' +
-            '</div>' +
-          '</div>' +
-        '</article>';
-      }
-      grid.innerHTML = html;
-      noRes.className = html ? "hidden" : "block text-center py-20 text-[var(--muted)] font-mono text-sm tracking-widest uppercase";
-      
-      grid.querySelectorAll(".blog-card, [data-article-id]").forEach(function(card) {
-        card.addEventListener("click", function() { openArticle(this.getAttribute("data-article-id")); });
-      });
-    }
+          '<span class="bc-date"><svg class="icn"><use href="#i-calendar"/></svg> ' + d.date + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }
+  grid.innerHTML = html;
+  noResults.style.display = html ? "none" : "block";
 
-    function openArticle(id) {
-      var d = blogData[id];
-      if (!d) return;
-      var modal = document.getElementById("articleModal");
-      var container = document.getElementById("articleContent");
-      
-      container.innerHTML =
-        '<button class="mb-8 inline-flex items-center gap-2 px-5 py-2 border border-[var(--border-light)] text-[var(--fg-dim)] font-mono text-xs tracking-[0.2em] uppercase hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors" id="articleBack"><i class="fas fa-arrow-left"></i> Back to Blog</button>' +
-        '<div class="relative w-full h-[300px] md:h-[400px] mb-10 overflow-hidden notch-corner"><img class="w-full h-full object-cover img-noir" src="https://picsum.photos/seed/' + d.img + '/1200/600.jpg" alt="' + d.title + '"></div>' +
-        '<span class="inline-block px-3 py-1 mb-5 bg-[var(--accent)] text-black font-mono text-[10px] tracking-[0.15em] uppercase">' + d.tagLabel + '</span>' +
-        '<h1 class="font-display text-4xl md:text-6xl leading-[0.9] mb-6">' + d.title + '</h1>' +
-        '<div class="flex items-center gap-6 mb-8 pb-6 border-b border-[var(--border-light)] font-mono text-[11px] text-[var(--muted)] tracking-[0.15em] uppercase"><span><i class="far fa-calendar mr-2"></i> ' + d.date + '</span><span><i class="far fa-clock mr-2"></i> ' + d.readTime + '</span></div>' +
-        '<div class="flex items-center gap-4 mb-10 p-5 info-card notch-corner"><img class="w-14 h-14 rounded-full object-cover border-2 border-[var(--accent)]" src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" alt="' + d.author + '"><div><div class="font-display text-2xl tracking-wider">' + d.author + '</div><div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.3em] mt-1">' + d.authorRole + '</div></div></div>' +
-        '<div class="article-body max-w-none">' + d.body + '</div>' +
-        '<div class="flex items-center gap-3 mt-10 pt-8 border-t border-[var(--border-light)]"><span class="font-mono text-xs text-[var(--muted)] tracking-[0.2em] uppercase mr-3">Share:</span><a class="w-10 h-10 flex items-center justify-center border border-[var(--border-light)] text-[var(--fg-dim)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(d.title) + '" target="_blank"><i class="fab fa-x-twitter"></i></a><a class="w-10 h-10 flex items-center justify-center border border-[var(--border-light)] text-[var(--fg-dim)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all" href="https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href) + '" target="_blank"><i class="fab fa-linkedin-in"></i></a><a class="w-10 h-10 flex items-center justify-center border border-[var(--border-light)] text-[var(--fg-dim)] hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all" href="https://wa.me/?text=' + encodeURIComponent(d.title + ' ' + window.location.href) + '" target="_blank"><i class="fab fa-whatsapp"></i></a></div>';
-        
-      modal.classList.add("visible");
-      document.body.style.overflow = "hidden";
-      document.getElementById("articleBack").addEventListener("click", closeArticle);
-    }
+  grid.querySelectorAll("[data-article-id]").forEach(function(card) {
+    card.addEventListener("click", function() { openArticle(this.getAttribute("data-article-id")); });
+  });
+}
 
-    function closeArticle() {
-      document.getElementById("articleModal").classList.remove("visible");
-      document.body.style.overflow = "";
-    }
+function openArticle(id) {
+  var d = blogData[id];
+  if (!d) return;
+  var modal = document.getElementById("articleModal");
+  var container = document.getElementById("articleContent");
 
-    // Category filter
-    document.getElementById("categoryBar").addEventListener("click", function(e) {
-      var pill = e.target.closest(".goal-pill");
-      if (!pill) return;
-      this.querySelectorAll(".goal-pill").forEach(function(p) { p.classList.remove("active"); });
-      pill.classList.add("active");
-      currentFilter = pill.getAttribute("data-cat");
-      renderGrid(currentFilter, currentSearch);
-    });
+  container.innerHTML =
+    '<button class="am-back" id="articleBack"><svg class="icn"><use href="#i-arrow-l"/></svg> Back to Blog</button>' +
+    '<div class="am-img"><img src="https://picsum.photos/seed/' + d.img + '/1200/600.jpg" alt="' + d.title + '"></div>' +
+    '<span class="am-tag">' + d.tagLabel + '</span>' +
+    '<h1 class="am-title">' + d.title + '</h1>' +
+    '<div class="am-meta"><span><svg class="icn"><use href="#i-calendar"/></svg> ' + d.date + '</span><span><svg class="icn"><use href="#i-clock"/></svg> ' + d.readTime + '</span></div>' +
+    '<div class="am-author"><img src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" alt="' + d.author + '"><div><b>' + d.author + '</b><span>' + d.authorRole + '</span></div></div>' +
+    '<div class="article-body">' + d.body + '</div>' +
+    '<div class="am-share"><span>Share:</span>' +
+      '<a href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(d.title) + '" target="_blank" aria-label="Share on X"><svg class="icn fill"><use href="#i-xx"/></svg></a>' +
+      '<a href="https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href) + '" target="_blank" aria-label="Share on LinkedIn"><svg class="icn fill"><use href="#i-in"/></svg></a>' +
+      '<a href="https://wa.me/?text=' + encodeURIComponent(d.title + ' ' + window.location.href) + '" target="_blank" aria-label="Share on WhatsApp"><svg class="icn fill"><use href="#i-wa"/></svg></a>' +
+    '</div>';
 
-    // Search
-    var searchTimer;
-    document.getElementById("blogSearch").addEventListener("input", function() {
-      var val = this.value;
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(function() {
-        currentSearch = val;
-        renderGrid(currentFilter, currentSearch);
-      }, 300);
-    });
+  modal.classList.add("visible");
+  document.body.style.overflow = "hidden";
+  document.getElementById("articleBack").addEventListener("click", closeArticle);
+}
 
-    // Modal close events
-    document.getElementById("articleModal").addEventListener("click", function(e) {
-      if (e.target === this) closeArticle();
-    });
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") closeArticle();
-    });
+function closeArticle() {
+  document.getElementById("articleModal").classList.remove("visible");
+  document.body.style.overflow = "";
+}
 
-    // Newsletter
-    document.getElementById("newsletterForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      var emailInput = document.getElementById("newsletterEmail");
-      var errorEl = document.getElementById("newsletterError");
-      var email = emailInput.value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errorEl.classList.remove("hidden");
-        emailInput.classList.add("border-red-500");
-        return;
-      }
-      errorEl.classList.add("hidden");
-      emailInput.classList.remove("border-red-500");
-      emailInput.value = "";
-      alert("You're subscribed! Welcome aboard.");
-    });
+/* Category filter */
+document.getElementById("categoryBar").addEventListener("click", function(e) {
+  var pill = e.target.closest(".goal-pill");
+  if (!pill) return;
+  this.querySelectorAll(".goal-pill").forEach(function(p) { p.classList.remove("active"); });
+  pill.classList.add("active");
+  currentFilter = pill.getAttribute("data-cat");
+  renderGrid(currentFilter, currentSearch);
+});
 
-    // Init
-    renderGrid("all", "");
-  </script>
+/* Search */
+var searchTimer;
+document.getElementById("blogSearch").addEventListener("input", function() {
+  var val = this.value;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(function() {
+    currentSearch = val;
+    renderGrid(currentFilter, currentSearch);
+  }, 300);
+});
+
+/* Modal close events */
+document.getElementById("articleModal").addEventListener("click", function(e) {
+  if (e.target === this) closeArticle();
+});
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeArticle();
+});
+
+/* Newsletter (validation + alert preserved) */
+document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var emailInput = document.getElementById("newsletterEmail");
+  var errorEl = document.getElementById("newsletterError");
+  var email = emailInput.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.classList.add("show");
+    emailInput.style.borderColor = "#d93b2b";
+    return;
+  }
+  errorEl.classList.remove("show");
+  emailInput.style.borderColor = "#e5d9ca";
+  emailInput.value = "";
+  alert("You're subscribed! Welcome aboard.");
+});
+
+/* Init */
+renderGrid("all", "");
+</script>
 </body>
 </html>
