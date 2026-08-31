@@ -78,7 +78,6 @@ main,header,footer{position:relative;z-index:1}
 .btn:hover{background:var(--dark);transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.15)}
 .btn .arr{background:rgba(255,255,255,.25);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;transition:.3s}
 .btn:hover .arr{transform:translateX(4px)}
-.btn .icn{width:13px;height:13px}
 
 /* ===== SECTIONS COMMON ===== */
 .container{max-width:1200px;margin:0 auto;padding:0 40px}
@@ -146,7 +145,7 @@ main,header,footer{position:relative;z-index:1}
 .feat-text .btn{background:var(--orange)}
 .feat-text .btn:hover{background:var(--dark)}
 
-/* ===== BLOG GRID CARDS (JS-rendered) ===== */
+/* ===== BLOG GRID CARDS ===== */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .blog-card{
   background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06);
@@ -200,14 +199,14 @@ main,header,footer{position:relative;z-index:1}
 .values-grid .value-card:nth-child(2){transition-delay:.1s}
 .values-grid .value-card:nth-child(3){transition-delay:.2s}
 
-/* ===== NEWSLETTER SECTION ===== */
+/* ===== NEWSLETTER ===== */
 .nl-card{
   background:var(--cream);border-radius:28px;max-width:1200px;margin:0 auto;
   padding:64px 60px;text-align:center;position:relative;overflow:hidden;
 }
 .nl-card h2{font-size:42px;font-weight:600;line-height:1.15;margin-bottom:18px}
 .nl-card>p{font-size:14px;color:var(--muted);line-height:1.85;max-width:560px;margin:0 auto 28px}
-.nl-form-big{display:flex;flex-direction:row;gap:12px;max-width:520px;margin:0 auto 14px}
+.nl-form-big{display:flex;gap:12px;max-width:520px;margin:0 auto 14px}
 .nl-form-big input{
   flex:1;background:#fff;border:1.5px solid #e5d9ca;border-radius:999px;
   padding:14px 22px;font-size:13px;color:var(--text);outline:none;transition:.3s;font-family:'Poppins',sans-serif;min-width:0;
@@ -296,7 +295,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
 .wa-btn .icn{width:calc((var(--wa-size) - 18px)*.47);height:calc((var(--wa-size) - 18px)*.47)}
 .wa-btn:hover{background:var(--orange);transform:scale(1.1)}
 
-/* ===== ARTICLE MODAL (warm) ===== */
+/* ===== ARTICLE MODAL ===== */
 .article-modal{
   position:fixed;inset:0;background:rgba(243,235,225,.96);backdrop-filter:blur(10px);
   z-index:5000;display:none;overflow-y:auto;
@@ -321,7 +320,6 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
 .am-author img{width:52px;height:52px;border-radius:50%;border:3px solid var(--orange);object-fit:cover}
 .am-author b{display:block;font-size:16px;font-weight:600}
 .am-author span{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
-/* article body typography (warm) */
 .article-body h2{font-size:22px;font-weight:600;color:var(--text);margin:28px 0 12px;line-height:1.3}
 .article-body h3{font-size:15.5px;font-weight:600;color:var(--text);margin:20px 0 8px}
 .article-body p{color:#57534b;line-height:1.9;margin-bottom:14px;font-size:13.5px}
@@ -496,7 +494,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
   <div class="featured reveal" id="featuredPost">
     <div class="feat-imgwrap" onclick="openArticle('featured')">
       <div class="feat-img">
-        <img src="https://picsum.photos/seed/shopify-2025-trends/800/500.jpg" alt="Featured Post">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop&q=80" alt="Featured Post" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80'">
         <span class="feat-badge">Featured</span>
       </div>
     </div>
@@ -505,7 +503,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
       <h3 onclick="openArticle('featured')">10 SHOPIFY TRENDS THAT WILL DEFINE ECOMMERCE IN 2025</h3>
       <p>From AI-powered personalization to headless commerce, these are the trends every Shopify brand needs to watch this year to stay ahead of the competition.</p>
       <div class="feat-author">
-        <img src="https://picsum.photos/seed/author-rahul/100/100.jpg" alt="Rahul Sharma">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" alt="Rahul Sharma">
         <div>
           <b>RAHUL SHARMA</b>
           <span>Founder &amp; Lead Strategist</span>
@@ -536,7 +534,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
     <div class="quote-ic"><svg class="icn"><use href="#i-quote"/></svg></div>
     <h2>"Knowledge shared freely is the best marketing strategy there is. We publish everything we know about Shopify because informed clients make <em>better decisions</em> — and better decisions lead to better stores."</h2>
     <div class="founder-row">
-      <img src="https://picsum.photos/seed/author-rahul/100/100.jpg" alt="Founder">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" alt="Founder">
       <div class="founder-name">
         <b>RAHUL SHARMA, FLIXIFYS</b>
         <span>Founder &amp; Content Lead</span>
@@ -789,22 +787,56 @@ addEventListener('resize', waUpdate);
 waUpdate();
 
 /* ==========================================
-   BLOG LOGIC (content 100% preserved)
+   BLOG LOGIC (content 100% preserved — sirf images updated)
    ========================================== */
 var blogData = {
   featured: {
     title: "10 Shopify Trends That Will Define Ecommerce in 2025",
     tagLabel: "Growth", 
-    img: "shopify-2025-trends", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&q=80",
+    imgLg: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop&q=80",
+    author: "Rahul Sharma",
+    authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
+    authorRole: "Founder & Lead Strategist",
     date: "January 15, 2025", readTime: "8 min read", category: "growth",
     body: "<h2>The Ecommerce Landscape is Shifting Fast</h2><p>Every year brings new technology and new opportunities. 2025 is no different. Brands that adapt early will win.</p><h2>1. AI-Powered Recommendations</h2><p>Basic recommendation engines are being replaced by AI models that understand intent and purchase history at a much deeper level.</p><blockquote>The brands winning in 2025 are curating experiences personalized to each visitor intent.</blockquote><h2>2. Headless Commerce Goes Mainstream</h2><p>Headless architecture is becoming accessible to mid-market stores through Hydrogen and Next.js + Shopify Storefront API.</p><h2>3. Social Commerce Integration</h2><p>TikTok Shop, Instagram Shopping and YouTube Shopping are essential channels now.</p><h2>4. Zero-Party Data Strategies</h2><p>With third-party cookies disappearing, brands are investing in first-party data: email lists, loyalty programs and customer profiles.</p><h2>5. Mobile-First Everything</h2><p>Mobile accounts for 70-80% of ecommerce traffic. In 2025, mobile-first is the default.</p><h2>6. Sustainable Commerce</h2><p>Consumers increasingly care about sustainability. Transparent brands build stronger loyalty.</p><h2>7. Subscription Models</h2><p>Recurring revenue models are expanding beyond subscription boxes to memberships and auto-replenishment.</p><h2>8. Video Commerce</h2><p>Shoppable videos on TikTok, Instagram Reels and YouTube Shorts convert at significantly higher rates.</p><h2>9. Micro-Fulfillment</h2><p>Smaller brands compete with Amazon by partnering with local fulfillment centers and 3PL services.</p><h2>10. CRO as a Discipline</h2><p>Winning brands have dedicated conversion strategies. They analyze funnels, fix checkout friction and continuously optimize.</p><blockquote>The gap is in executing trends better than competitors, not just knowing them.</blockquote>"
   },
-  post1: { title: "How to Speed Up Your Shopify Store in 2025", tagLabel: "Technology", img: "shopify-speed-2025", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 12, 2025", readTime: "6 min read", category: "tech", body: "<p>Page speed directly impacts conversion rate, SEO rankings and user experience.</p><h2>Why Speed Matters</h2><p>53% of mobile users abandon sites taking longer than 3 seconds to load.</p><h2>Measure First</h2><ul><li><strong>Google PageSpeed Insights</strong> - Free scores with recommendations</li><li><strong>GTmetrix</strong> - Detailed waterfall analysis</li><li><strong>Shopify speed dashboard</strong> - Real-time metrics</li></ul><h2>Big Wins</h2><h3>1. Optimize Images</h3><p>Images account for 50-70% of page weight. Use WebP format.</p><h3>2. Reduce JavaScript Bloat</h3><p>Every app adds JavaScript. Audit and remove unused apps.</p><h3>3. Fix Render-Blocking</h3><p>Use <code>defer</code> for non-critical scripts.</p><h2>Checklist</h2><ol><li>Convert images to WebP</li><li>Set explicit width/height</li><li>Enable lazy loading</li><li>Remove unused apps</li><li>Defer non-critical JS</li><li>Minify CSS and JS</li><li>Enable browser caching</li><li>Use a CDN</li><li>Optimize fonts</li></ol><blockquote>Speed optimization is an ongoing discipline. Set quarterly audits.</blockquote>" },
-  post2: { title: "Shopify Theme Design Principles That Convert", tagLabel: "Design", img: "shopify-design-principles", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 8, 2025", readTime: "7 min read", category: "design", body: "<p>Great design guides visitors toward purchase decisions.</p><h2>1. Visual Hierarchy</h2><p>The most important element should be the most prominent.</p><h2>2. Whitespace</h2><p>Whitespace reduces cognitive load and makes key elements stand out.</p><h2>3. Consistency</h2><p>Every element should follow the same design system.</p><blockquote>Design is not just what it looks like. Design is how it works.</blockquote><h2>4. Mobile-First</h2><p>Design for mobile first, then scale up.</p><h2>5. Trust Signals</h2><p>Reviews, badges, guarantees at every decision point.</p>" },
-  post3: { title: "SEO for Shopify Stores: Complete Guide", tagLabel: "SEO", img: "shopify-seo-guide", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 5, 2025", readTime: "9 min read", category: "seo", body: "<p>SEO on Shopify has unique challenges and opportunities.</p><h2>Technical Foundations</h2><p>Site speed, mobile-friendliness, proper indexing and clean URLs.</p><h2>Keyword Research</h2><ul><li><strong>Product pages:</strong> Specific product names</li><li><strong>Collection pages:</strong> Category keywords</li><li><strong>Blog content:</strong> Informational keywords</li></ul><h2>On-Page Optimization</h2><p>Unique title tag, meta description, H1, and product description for every page.</p><blockquote>The #1 mistake: using the same manufacturer description as 50 other stores.</blockquote>" },
-  post4: { title: "From $0 to $100K: Shopify Growth Playbook", tagLabel: "Growth", img: "shopify-growth-playbook", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "January 2, 2025", readTime: "10 min read", category: "growth", body: "<p>Growing from zero to six figures requires systematic improvement.</p><h2>Phase 1: $0-$10K/month</h2><p>Focus on product-market fit. Get first 100 customers.</p><h2>Phase 2: $10K-$30K/month</h2><p>Double down on what works. Build email lists, optimize conversion.</p><h2>Phase 3: $30K-$100K/month</h2><p>Scale proven channels. Invest in content, SEO and brand building.</p><blockquote>Most stores fail because they scale before having product-market fit.</blockquote>" },
-  post5: { title: "Shopify Checkout Optimization Guide", tagLabel: "Strategy", img: "shopify-checkout-opt", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "December 28, 2024", readTime: "7 min read", category: "strategy", body: "<p>The checkout page is where money is made or lost.</p><h2>Biggest Killers</h2><ul><li>Unexpected shipping costs</li><li>Forced account creation</li><li>Too many form fields</li><li>No guest checkout</li><li>Slow page load</li></ul><h2>Strategies</h2><p>Show shipping early. Offer guest checkout. Use one-page checkout. Minimize form fields.</p><blockquote>A 1% checkout improvement on $50K/month = $6,000/year extra.</blockquote>" },
-  post6: { title: "Building a Shopify Store That Scales", tagLabel: "Shopify", img: "shopify-store-scale", author: "Rahul Sharma", authorImg: "author-rahul", authorRole: "Founder & Lead Strategist", date: "December 22, 2024", readTime: "8 min read", category: "shopify", body: "<p>Most stores are built for today, not tomorrow.</p><h2>Architecture</h2><p>Choose themes carefully. Custom themes give performance and flexibility at scale.</p><h2>App Strategy</h2><p>Every app adds weight. Ask: critical problem? Custom code alternative? Performance impact?</p><h2>Infrastructure</h2><p>Consider Shopify Plus for advanced features and higher API limits.</p><blockquote>Build for where you want to be. Refactoring later is 10x more expensive.</blockquote>" }
+  post1: { title: "How to Speed Up Your Shopify Store in 2025", tagLabel: "Technology",
+    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop&q=80",
+    imgLg: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=600&fit=crop&q=80",
+    author: "Rahul Sharma",
+    authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
+    authorRole: "Founder & Lead Strategist", date: "January 12, 2025", readTime: "6 min read", category: "tech", body: "<p>Page speed directly impacts conversion rate, SEO rankings and user experience.</p><h2>Why Speed Matters</h2><p>53% of mobile users abandon sites taking longer than 3 seconds to load.</p><h2>Measure First</h2><ul><li><strong>Google PageSpeed Insights</strong> - Free scores with recommendations</li><li><strong>GTmetrix</strong> - Detailed waterfall analysis</li><li><strong>Shopify speed dashboard</strong> - Real-time metrics</li></ul><h2>Big Wins</h2><h3>1. Optimize Images</h3><p>Images account for 50-70% of page weight. Use WebP format.</p><h3>2. Reduce JavaScript Bloat</h3><p>Every app adds JavaScript. Audit and remove unused apps.</p><h3>3. Fix Render-Blocking</h3><p>Use <code>defer</code> for non-critical scripts.</p><h2>Checklist</h2><ol><li>Convert images to WebP</li><li>Set explicit width/height</li><li>Enable lazy loading</li><li>Remove unused apps</li><li>Defer non-critical JS</li><li>Minify CSS and JS</li><li>Enable browser caching</li><li>Use a CDN</li><li>Optimize fonts</li></ol><blockquote>Speed optimization is an ongoing discipline. Set quarterly audits.</blockquote>" },
+  post2: { title: "Shopify Theme Design Principles That Convert", tagLabel: "Design",
+    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop&q=80",
+    imgLg: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=600&fit=crop&q=80",
+    author: "Rahul Sharma",
+    authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
+    authorRole: "Founder & Lead Strategist", date: "January 8, 2025", readTime: "7 min read", category: "design", body: "<p>Great design guides visitors toward purchase decisions.</p><h2>1. Visual Hierarchy</h2><p>The most important element should be the most prominent.</p><h2>2. Whitespace</h2><p>Whitespace reduces cognitive load and makes key elements stand out.</p><h2>3. Consistency</h2><p>Every element should follow the same design system.</p><blockquote>Design is not just what it looks like. Design is how it works.</blockquote><h2>4. Mobile-First</h2><p>Design for mobile first, then scale up.</p><h2>5. Trust Signals</h2><p>Reviews, badges, guarantees at every decision point.</p>" },
+  post3: { title: "SEO for Shopify Stores: Complete Guide", tagLabel: "SEO",
+    img: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=600&h=400&fit=crop&q=80",
+    imgLg: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=1200&h=600&fit=crop&q=80",
+    author: "Rahul Sharma",
+    authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
+    authorRole: "Founder & Lead Strategist", date: "January 5, 2025", readTime: "9 min read", category: "seo", body: "<p>SEO on Shopify has unique challenges and opportunities.</p><h2>Technical Foundations</h2><p>Site speed, mobile-friendliness, proper indexing and clean URLs.</p><h2>Keyword Research</h2><ul><li><strong>Product pages:</strong> Specific product names</li><li><strong>Collection pages:</strong> Category keywords</li><li><strong>Blog content:</strong> Informational keywords</li></ul><h2>On-Page Optimization</h2><p>Unique title tag, meta description, H1, and product description for every page.</p><blockquote>The #1 mistake: using the same manufacturer description as 50 other stores.</blockquote>" },
+  post4: { title: "From $0 to $100K: Shopify Growth Playbook", tagLabel: "Growth",
+    img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop&q=80",
+    imgLg: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=600&fit=crop&q=80",
+    author: "Rahul Sharma",
+    authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
+    authorRole: "Founder & Lead Strategist", date: "January 2, 2025", readTime: "10 min read", category: "growth", body: "<p>Growing from zero to six figures requires systematic improvement.</p><h2>Phase 1: $0-$10K/month</h2><p>Focus on product-market fit. Get first 100 customers.</p><h2>Phase 2: $10K-$30K/month</h2><p>Double down on what works. Build email lists, optimize conversion.</p><h2>Phase 3: $30K-$100K/month</h2><p>Scale proven channels. Invest in content, SEO and brand building.</p><blockquote>Most stores fail because they scale before having product-market fit.</blockquote>" },
+  post5: { title: "Shopify Checkout Optimization Guide", tagLabel: "Strategy",
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&q=80",
+    imgLg: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop&q=80",
+    author: "Rahul Sharma",
+    authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
+    authorRole: "Founder & Lead Strategist", date: "December 28, 2024", readTime: "7 min read", category: "strategy", body: "<p>The checkout page is where money is made or lost.</p><h2>Biggest Killers</h2><ul><li>Unexpected shipping costs</li><li>Forced account creation</li><li>Too many form fields</li><li>No guest checkout</li><li>Slow page load</li></ul><h2>Strategies</h2><p>Show shipping early. Offer guest checkout. Use one-page checkout. Minimize form fields.</p><blockquote>A 1% checkout improvement on $50K/month = $6,000/year extra.</blockquote>" },
+  post6: { title: "Building a Shopify Store That Scales", tagLabel: "Shopify",
+    img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop&q=80",
+    imgLg: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop&q=80",
+    author: "Rahul Sharma",
+    authorImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
+    authorRole: "Founder & Lead Strategist", date: "December 22, 2024", readTime: "8 min read", category: "shopify", body: "<p>Most stores are built for today, not tomorrow.</p><h2>Architecture</h2><p>Choose themes carefully. Custom themes give performance and flexibility at scale.</p><h2>App Strategy</h2><p>Every app adds weight. Ask: critical problem? Custom code alternative? Performance impact?</p><h2>Infrastructure</h2><p>Consider Shopify Plus for advanced features and higher API limits.</p><blockquote>Build for where you want to be. Refactoring later is 10x more expensive.</blockquote>" }
 };
 
 var cardIds = ["post1", "post2", "post3", "post4", "post5", "post6"];
@@ -831,7 +863,7 @@ function renderGrid(filter, search) {
 
     html += '<article class="blog-card" data-article-id="' + id + '">' +
       '<div class="bc-imgwrap">' +
-        '<img src="https://picsum.photos/seed/' + d.img + '/600/400.jpg" alt="' + d.title + '">' +
+        '<img src="' + d.img + '" alt="' + d.title + '">' +
         '<span class="bc-tag">' + d.tagLabel + '</span>' +
       '</div>' +
       '<div class="bc-body">' +
@@ -839,7 +871,7 @@ function renderGrid(filter, search) {
         '<p class="bc-excerpt">' + (cardExcerpts[id] || '') + '</p>' +
         '<div class="bc-meta">' +
           '<div class="bc-author">' +
-            '<img src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" alt="' + d.author + '">' +
+            '<img src="' + d.authorImg + '" alt="' + d.author + '">' +
             '<span>' + d.author + '</span>' +
           '</div>' +
           '<span class="bc-date"><svg class="icn"><use href="#i-calendar"/></svg> ' + d.date + '</span>' +
@@ -863,11 +895,11 @@ function openArticle(id) {
 
   container.innerHTML =
     '<button class="am-back" id="articleBack"><svg class="icn"><use href="#i-arrow-l"/></svg> Back to Blog</button>' +
-    '<div class="am-img"><img src="https://picsum.photos/seed/' + d.img + '/1200/600.jpg" alt="' + d.title + '"></div>' +
+    '<div class="am-img"><img src="' + (d.imgLg || d.img) + '" alt="' + d.title + '"></div>' +
     '<span class="am-tag">' + d.tagLabel + '</span>' +
     '<h1 class="am-title">' + d.title + '</h1>' +
     '<div class="am-meta"><span><svg class="icn"><use href="#i-calendar"/></svg> ' + d.date + '</span><span><svg class="icn"><use href="#i-clock"/></svg> ' + d.readTime + '</span></div>' +
-    '<div class="am-author"><img src="https://picsum.photos/seed/' + d.authorImg + '/100/100.jpg" alt="' + d.author + '"><div><b>' + d.author + '</b><span>' + d.authorRole + '</span></div></div>' +
+    '<div class="am-author"><img src="' + d.authorImg + '" alt="' + d.author + '"><div><b>' + d.author + '</b><span>' + d.authorRole + '</span></div></div>' +
     '<div class="article-body">' + d.body + '</div>' +
     '<div class="am-share"><span>Share:</span>' +
       '<a href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(d.title) + '" target="_blank" aria-label="Share on X"><svg class="icn fill"><use href="#i-xx"/></svg></a>' +
