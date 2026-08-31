@@ -414,7 +414,7 @@ main,header,footer{position:relative;z-index:1}
 .why-grid .why-card:nth-child(3){transition-delay:.16s}
 .why-grid .why-card:nth-child(4){transition-delay:.24s}
 
-/* ===== PARTNERS (koi fade/overlay nahi — clean edge clip) ===== */
+/* ===== PARTNERS (auto-fill marquee — no overlays) ===== */
 .partner-wrap{position:relative;overflow:hidden;padding:16px 0 36px}
 .partner-track{display:flex;width:max-content;will-change:transform}
 .p-set{display:flex;gap:16px;padding-right:16px;flex-shrink:0}
@@ -488,14 +488,26 @@ a.cline:hover{color:var(--orange);padding-left:4px}
 .online-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);animation:blink 1.6s infinite}
 .open-badge{position:absolute;top:20px;right:20px;display:flex;align-items:center;gap:6px;background:var(--teal);color:#fff;font-size:9.5px;font-weight:600;letter-spacing:.1em;padding:5px 12px;border-radius:99px}
 
-/* ===== WHATSAPP FLOAT ===== */
-.wa-float{position:fixed;right:22px;bottom:22px;width:64px;height:64px;z-index:150;display:grid;place-items:center}
+/* ===== WHATSAPP FLOAT (bulletproof alignment — sab --wa-size se scale) ===== */
+.wa-float{
+  --wa-size:64px;
+  position:fixed;
+  right:calc(22px + env(safe-area-inset-right,0px));
+  bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  width:var(--wa-size);height:var(--wa-size);
+  z-index:150;display:grid;place-items:center;
+}
 .wa-float::before{content:"";position:absolute;inset:3px;border-radius:50%;background:rgba(255,255,255,.85);backdrop-filter:blur(4px);box-shadow:0 8px 20px rgba(23,22,28,.14)}
-.wa-ring{position:absolute;inset:0;transform:rotate(-90deg);z-index:2}
+.wa-ring{position:absolute;inset:0;width:100%;height:100%;display:block;transform:rotate(-90deg);z-index:2;pointer-events:none}
 .wa-track{fill:none;stroke:#eadfd0;stroke-width:3.5}
-.wa-prog{fill:none;stroke:url(#waGrad);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:182.2;stroke-dashoffset:182.2;transition:stroke-dashoffset .12s linear;filter:drop-shadow(0 0 4px rgba(240,100,45,.45))}
-.wa-btn{position:relative;z-index:3;width:46px;height:46px;border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;box-shadow:0 8px 18px rgba(23,22,28,.3);transition:.3s}
-.wa-btn .icn{width:22px;height:22px}
+.wa-prog{fill:none;stroke:url(#waGrad);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .12s linear;filter:drop-shadow(0 0 4px rgba(240,100,45,.45))}
+.wa-btn{
+  position:relative;z-index:3;
+  width:calc(var(--wa-size) - 18px);height:calc(var(--wa-size) - 18px);
+  border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;
+  box-shadow:0 8px 18px rgba(23,22,28,.3);transition:background .3s,transform .3s;
+}
+.wa-btn .icn{width:calc((var(--wa-size) - 18px)*.47);height:calc((var(--wa-size) - 18px)*.47)}
 .wa-btn:hover{background:var(--orange);transform:scale(1.1)}
 
 /* ===== FOOTER ===== */
@@ -605,8 +617,8 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
   .ip-side{width:42px}
   .ind-head h3{font-size:17px}
   .mobile-menu{padding:88px 26px 40px}
-  .wa-float{right:14px;bottom:14px;width:58px;height:58px}
-  .wa-btn{width:42px;height:42px}
+  /* WhatsApp: size sirf ek variable se — ring+btn+icon sab auto-align */
+  .wa-float{--wa-size:56px;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px))}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -1239,7 +1251,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
   </div>
 </section>
 
-<!-- TECHNOLOGY PARTNERS (no fade overlays — clean edges) -->
+<!-- TECHNOLOGY PARTNERS -->
 <section class="section container" id="tech-partners" style="max-width:1400px">
   <h2 class="sec-title reveal">Technology <span style="color:var(--teal)">Partners</span></h2>
   <p class="sec-sub reveal">We integrate with industry-leading platforms to power your Shopify store with seamless functionality.</p>
@@ -1492,9 +1504,9 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
   </footer>
 </div>
 
-<!-- WHATSAPP FLOAT -->
+<!-- WHATSAPP FLOAT (fully responsive — ring aur button hamesha centered) -->
 <div class="wa-float">
-  <svg class="wa-ring" width="64" height="64" viewBox="0 0 64 64">
+  <svg class="wa-ring" viewBox="0 0 64 64" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
     <defs>
       <linearGradient id="waGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#F0642D"/>
@@ -1502,7 +1514,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
       </linearGradient>
     </defs>
     <circle class="wa-track" cx="32" cy="32" r="29"></circle>
-    <circle class="wa-prog" id="waProgress" cx="32" cy="32" r="29"></circle>
+    <circle class="wa-prog" id="waProgress" cx="32" cy="32" r="29" pathLength="100"></circle>
   </svg>
   <a href="https://wa.me/919876543210?text=Hi%20Flixifys" target="_blank" class="wa-btn" aria-label="WhatsApp">
     <svg class="icn fill"><use href="#i-wa"/></svg>
@@ -1640,20 +1652,18 @@ mMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   menuOpen=false;burger.classList.remove('open');mMenu.classList.remove('open');document.body.classList.remove('lock');
 }));
 
-/* ===== WhatsApp Scroll Progress Ring ===== */
+/* ===== WhatsApp Scroll Progress (pathLength=100 => size-independent) ===== */
 const waProg = document.getElementById('waProgress');
-const WA_C = 2 * Math.PI * 29;
-waProg.style.strokeDasharray = WA_C;
 function waUpdate(){
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const pct = max > 0 ? (window.scrollY / max) : 0;
-  waProg.style.strokeDashoffset = WA_C - (pct * WA_C);
+  waProg.style.strokeDashoffset = 100 - (pct * 100);
 }
 addEventListener('scroll', waUpdate, {passive:true});
 addEventListener('resize', waUpdate);
 waUpdate();
 
-/* ===== Technology Partners — auto-fill infinite marquee (unchanged logic) ===== */
+/* ===== Technology Partners — auto-fill infinite marquee ===== */
 (function(){
   const wrap  = document.getElementById('partnerWrap');
   const track = document.getElementById('partnerTrack');
