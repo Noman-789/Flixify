@@ -4,825 +4,721 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Support | Flixifys — Shopify Studio</title>
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/images/Favicon.png">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0a;
-    --bg-darker: #050505;
-    --bg-card: #141414;
-    --bg-card-hover: #1a1a1a;
-    --fg: #f5f5f5;
-    --fg-dim: #c0c0c0;
-    --muted: #6a6a6a;
-    --accent: #00E676; /* Premium Match Green */
-    --accent-bright: #5BFFAA;
-    --accent-dim: #00B25C;
-    --accent-glow: rgba(0, 230, 118, 0.45);
-    --silver: #C8C8C8;
-    --silver-dim: #8a8a8a; 
-    --border: #1f1f1f;
-    --border-light: #2a2a2a;
-  }
-  
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; overflow-x: hidden; }
+:root{
+  --cream:#F3EBE1;
+  --orange:#F0642D;
+  --teal:#1F9C9C;
+  --purple:#4E4A67;
+  --yellow:#F0B429;
+  --dark:#17161C;
+  --text:#1c1c1c;
+  --muted:#6f6a63;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+html{scroll-behavior:smooth}
+body{
+  background:linear-gradient(120deg,#FBF7F1,#F6EFE6,#FBF7F1);
+  background-size:300% 300%;
+  animation:bgShift 18s ease-in-out infinite;
+  color:var(--text);
+  overflow-x:hidden;
+}
+body.lock{overflow:hidden}
+@keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: var(--bg-darker); }
-  ::-webkit-scrollbar-thumb { background: var(--accent-dim); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-  
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: 'Archivo', sans-serif;
-    overflow-x: hidden;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  /* Typography */
-  .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.01em; }
-  .font-heading { font-family: 'Oswald', sans-serif; }
-  .font-body { font-family: 'Archivo', sans-serif; }
-  .font-mono { font-family: 'JetBrains Mono', monospace; }
-  
-  /* Grain overlay */
-  .grain {
-    position: fixed; inset: -10%; pointer-events: none; z-index: 200; opacity: 0.08;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: overlay; will-change: transform;
-  }
-  
-  /* Background texture */
-  .bg-textured {
-    background-color: var(--bg);
-    background-image: 
-      radial-gradient(circle at 20% 30%, rgba(0, 230, 118, 0.06) 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(80, 80, 80, 0.06) 0%, transparent 40%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23r)' opacity='0.4'/></svg>");
-    background-blend-mode: normal, normal, overlay;
-  }
-  
-  /* Section reveal */
-  .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: var(--delay, 0s); }
-  .reveal.in-view { opacity: 1; transform: translateY(0); }
+/* ===== SVG ICONS ===== */
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.icn{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icn.fill{fill:currentColor;stroke:none}
 
-  /* Hero overlay */
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: 
-      linear-gradient(180deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.45) 28%, rgba(10,10,10,0.55) 65%, rgba(10,10,10,0.98) 100%),
-      linear-gradient(90deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.5) 100%),
-      radial-gradient(ellipse at 50% 60%, rgba(0, 230, 118, 0.18) 0%, transparent 55%);
-  }
-  
-  /* Headline chars reveal */
-  .headline-line { overflow: hidden; display: block; }
-  .headline-line span { display: inline-block; transform: translateY(110%); transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1); }
-  .in-view .headline-line span { transform: translateY(0); }
-  .headline-line:nth-child(2) span { transition-delay: 0.1s; }
-  .headline-line:nth-child(3) span { transition-delay: 0.2s; }
-  
-  /* Text effects */
-  .text-stroke { -webkit-text-stroke: 1.5px var(--silver-dim); color: transparent; }
-  
-  /* Underline animation */
-  .link-underline { position: relative; display: inline-block; }
-  .link-underline::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--accent); transition: width 0.4s ease; }
-  .link-underline:hover::after { width: 100%; }
-  
-  /* Section divider */
-  .section-marker { display: inline-flex; align-items: center; gap: 0.75rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; }
-  .section-marker::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-  
-  /* Card hover light */
-  .info-card { background: var(--bg-card); border: 1px solid var(--border); transition: border-color 0.4s, background 0.4s, box-shadow 0.4s; }
-  .info-card:hover { border-color: var(--accent-dim); background: var(--bg-card-hover); box-shadow: 0 10px 30px -5px rgba(0, 230, 118, 0.1); }
-  
-  /* Corner notch decoration */
-  .notch-corner { position: relative; }
-  .notch-corner::before, .notch-corner::after { content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid var(--accent); pointer-events: none; }
-  .notch-corner::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-  .notch-corner::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
-  
-  /* Nav link */
-  .nav-link { position: relative; font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim); transition: color 0.3s; }
-  .nav-link:hover, .nav-link.active { color: #00E676; }
-  .nav-link::before { content: ''; position: absolute; left: -14px; top: 50%; transform: translateY(-50%) scaleY(0); width: 4px; height: 4px; background: var(--accent); transition: transform 0.3s; }
-  .nav-link:hover::before, .nav-link.active::before { transform: translateY(-50%) scaleY(1); }
+/* ===== ANIMATED BACKGROUND CANVAS ===== */
+#bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,header,footer{position:relative;z-index:1}
 
-  /* Mobile Drawer */
-  .mobile-drawer { position: fixed; top: 0; right: 0; width: 300px; height: 100vh; background: var(--bg-darker); border-left: 1px solid var(--border); z-index: 110; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); padding: 2rem 1.5rem; display: flex; flex-direction: column; }
-  .mobile-drawer.open { transform: translateX(0); }
-  .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 105; opacity: 0; pointer-events: none; transition: 0.3s; }
-  .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+/* ===== NAVBAR ===== */
+.navbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 60px;background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);position:sticky;top:0;z-index:200;
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.logo-mark{width:30px;height:30px;position:relative;animation:spinSlow 14s linear infinite}
+.logo-mark::before{content:"";position:absolute;left:0;top:0;width:14px;height:14px;background:var(--orange);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.logo-mark::after{content:"";position:absolute;right:0;bottom:0;width:14px;height:14px;background:var(--teal);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;position:relative}
+.nav-links a.active,.nav-links a:hover{color:var(--orange)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--orange);transition:.3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+/* Book a Free Call — BLACK bg, ORANGE hover, thoda left shift */
+.btn-book{
+  padding:10px 24px;border:none;border-radius:999px;
+  background:var(--dark);color:#fff;font-weight:600;font-size:14px;cursor:pointer;transition:.3s;color:#fff;text-decoration:none;display:inline-block;
+  margin-right:26px; /* thoda left ki taraf shift */
+}
+.btn-book:hover{background:var(--orange);transform:translateY(-2px);box-shadow:0 8px 20px rgba(240,100,45,.3)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:210}
+.hamburger span{width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;background:linear-gradient(150deg,var(--cream),#fff);z-index:190;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:0;opacity:0;visibility:hidden;transition:.45s;padding:96px 36px 40px;text-align:left;overflow-y:auto}
+.mobile-menu.open{opacity:1;visibility:visible}
+.mobile-menu a{font-size:23px;font-weight:600;text-decoration:none;color:var(--text);padding:13px 0;width:100%;text-align:left;border-bottom:1px dashed rgba(0,0,0,.1);transition:.3s}
+.mobile-menu a:hover{color:var(--orange);padding-left:6px}
+.mobile-menu a.btn-book{border-bottom:none;width:auto;margin-top:24px;font-size:14px;padding:10px 24px;margin-right:0}
+.mobile-menu a.btn-book:hover{color:#fff;padding-left:24px}
 
-  /* WhatsApp Scroll Progress */
-  .wa-progress-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; }
-  .wa-progress-svg { position: absolute; inset: 0; transform: rotate(-90deg); pointer-events: none; }
-  .wa-progress-bg { fill: none; stroke: var(--border-light); stroke-width: 3; }
-  .wa-progress-circle { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 188.4; stroke-dashoffset: 188.4; transition: stroke-dashoffset 0.1s linear; }
-  .wa-btn-center { position: relative; z-index: 10; width: 48px; height: 48px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: transform 0.3s; }
-  .wa-btn-center:hover { transform: scale(1.1); color: white; }
-  
-  /* Custom Styles for Support Content */
-  .form-input { background: var(--bg-darker); border: 1px solid var(--border-light); border-radius: 6px; padding: 0.85rem 1rem; color: var(--fg); font-family: 'Oswald', sans-serif; font-size: 1rem; width: 100%; transition: border-color 0.3s; }
-  .form-input:focus { outline: none; border-color: var(--accent); }
-  .form-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.5rem; }
-  
-  .file-drop { border: 1px dashed var(--border-light); border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s; background: var(--bg-darker); }
-  .file-drop:hover, .file-drop.dragover { border-color: var(--accent); background: rgba(0,230,118,0.05); }
-  .file-drop i { font-size: 1.5rem; color: var(--muted); margin-bottom: 0.5rem; }
-  .file-drop p { font-size: 0.85rem; color: var(--muted); margin: 0; }
-  
-  .contact-method { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 8px; background: var(--bg-darker); border: 1px solid var(--border); transition: all 0.3s; }
-  .contact-method:hover { border-color: var(--accent-dim); background: var(--bg-card-hover); transform: translateX(4px); }
-  .contact-method-icon { width: 40px; height: 40px; min-width: 40px; border-radius: 8px; background: rgba(0,230,118,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); }
-  
-  .response-stat { text-align: center; padding: 1rem; border-radius: 8px; background: var(--bg-darker); border: 1px solid var(--border); }
-  .response-stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); line-height: 1; }
-  .response-stat .label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
-  
-  .process-step { display: flex; gap: 1rem; align-items: flex-start; }
-  .process-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; min-width: 40px; }
-  
-  .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; transition: all 0.3s ease; }
-  .faq-item:hover { border-color: var(--border-light); }
-  .faq-item.open { border-color: var(--accent-dim); background: var(--bg-card-hover); }
-  .faq-q { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; cursor: pointer; user-select: none; }
-  .faq-q-text { flex: 1; font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 500; color: var(--fg); text-transform: uppercase; letter-spacing: 0.05em; }
-  .faq-q-arrow { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,230,118,0.05); color: var(--accent); font-size: 0.75rem; transition: all 0.3s; }
-  .faq-item.open .faq-q-arrow { background: var(--accent); color: #000; transform: rotate(180deg); }
-  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-  .faq-a-inner { padding: 0 1.25rem 1.25rem 3rem; font-size: 0.9rem; color: var(--fg-dim); line-height: 1.7; }
-  
-  .toast { position: fixed; top: 90px; right: 24px; background: var(--bg-card); border: 1px solid var(--accent); border-left: 3px solid var(--accent); padding: 1rem 1.5rem; z-index: 150; transform: translateX(120%); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); max-width: 360px; border-radius: 8px; }
-  .toast.visible { transform: translateX(0); }
-  
-  /* Language Dropdown & Mobile Active */
-  .mobile-lang-btn.active-lang { background: var(--accent); color: #000; border-color: var(--accent) !important; font-weight: 600; }
-  
-  /* Button Fix */
-  .btn-book-call { background: #C8C8C8; color: #000; transition: opacity 0.3s; }
-  .btn-book-call:hover { opacity: 0.8; }
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;
+  padding:13px 26px;border-radius:999px;border:none;font-size:14px;font-weight:500;
+  cursor:pointer;text-decoration:none;transition:.3s;
+}
+.btn:hover{background:var(--dark);transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.15)}
+.btn .arr{background:rgba(255,255,255,.25);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;transition:.3s}
+.btn:hover .arr{transform:translateX(4px)}
+.btn .icn{width:13px;height:13px}
+
+/* ===== SECTIONS COMMON ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 40px}
+.section{padding:40px 0}
+.reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.7,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.kicker{color:var(--orange);font-weight:600;font-size:13px;margin-bottom:14px;letter-spacing:.5px;display:inline-flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:34px;height:2px;background:var(--orange);border-radius:99px}
+
+/* ===== HERO ===== */
+.hero-wrap{padding:10px 40px}
+.hero{
+  background:var(--cream);border-radius:28px;max-width:1320px;margin:0 auto;
+  padding:80px 60px 70px;position:relative;overflow:hidden;text-align:center;
+}
+.hero-tint{position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,rgba(240,180,41,.15),transparent 60%)}
+.hero-inner{position:relative;z-index:3;max-width:760px;margin:0 auto}
+.hero h1{font-size:52px;font-weight:600;line-height:1.12;margin:0 auto 20px}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero p{color:var(--muted);font-size:15px;line-height:1.85;max-width:620px;margin:0 auto}
+.shp{position:absolute}
+.tri{clip-path:polygon(50% 0,100% 100%,0 100%)}
+.float1{animation:floatY 5s ease-in-out infinite}
+.float2{animation:floatY 6.5s ease-in-out infinite .5s}
+.float3{animation:floatY 7.5s ease-in-out infinite 1s}
+.float4{animation:floatX 8s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@keyframes floatX{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@keyframes blink{50%{opacity:.3}}
+
+/* ===== SUPPORT GRID ===== */
+.support-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:stretch}
+
+/* ===== FORM CARD ===== */
+.form-card{background:var(--cream);border-radius:24px;padding:40px 38px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.form-card h3{font-size:25px;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.form-card h3 .icn{width:21px;height:21px;color:var(--orange)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.f-field{margin-bottom:18px}
+.f-field label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
+.f-field input,.f-field select,.f-field textarea{
+  width:100%;background:#fff;border:1.5px solid #e5d9ca;border-radius:12px;
+  padding:13px 16px;font-size:13px;color:var(--text);outline:none;transition:.3s;font-family:'Poppins',sans-serif;resize:vertical;
+}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,156,156,.12)}
+.f-field input::placeholder,.f-field textarea::placeholder{color:#b0a695}
+.f-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236f6a63' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+.form-submit{
+  width:100%;background:var(--orange);color:#fff;border:none;border-radius:14px;
+  padding:16px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:.3s;margin-top:auto;
+}
+.form-submit:hover{background:var(--dark)}
+/* file drop */
+.file-drop{
+  border:2px dashed #e0d4c5;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:.3s;background:#fff;
+}
+.file-drop:hover,.file-drop.dragover{border-color:var(--teal);background:rgba(31,156,156,.05)}
+.file-drop .icn{width:26px;height:26px;color:var(--muted);display:block;margin:0 auto 8px}
+.file-drop p{font-size:12px;color:var(--muted);margin:0}
+.file-drop p small{font-size:10px;display:block;margin-top:4px;color:#b0a695}
+.file-drop p b{color:var(--teal)}
+
+/* ===== SIDEBAR ===== */
+.side-col{display:flex;flex-direction:column;gap:18px}
+.ccard{background:#fff;border-radius:18px;padding:26px;box-shadow:0 10px 30px rgba(0,0,0,.06);transition:.35s;flex:1}
+.ccard:hover{box-shadow:0 16px 38px rgba(0,0,0,.1)}
+.ccard h4{font-size:17px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:11px}
+.ccard h4 .icn{width:19px;height:19px;color:var(--orange)}
+.contact-method{
+  display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:14px;
+  background:#FBF7F0;border:1.5px solid #eee4d7;transition:.3s;text-decoration:none;color:var(--text);margin-bottom:10px;
+}
+.contact-method:last-child{margin-bottom:0}
+.contact-method:hover{border-color:var(--orange);transform:translateX(5px)}
+.cm-ic{width:40px;height:40px;min-width:40px;border-radius:11px;background:rgba(240,100,45,.1);display:grid;place-items:center;color:var(--orange)}
+.cm-ic .icn{width:17px;height:17px}
+.contact-method b{display:block;font-size:13px;font-weight:600}
+.contact-method small{font-size:11px;color:var(--muted)}
+/* response stats */
+.resp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.resp-stat{text-align:center;padding:16px 8px;border-radius:14px;background:#FBF7F0;border:1.5px solid #eee4d7}
+.resp-stat .num{font-size:26px;font-weight:700;color:var(--orange);line-height:1.1}
+.resp-stat .label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:5px;font-weight:600}
+
+/* ===== PROCESS STEPS ===== */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.proc-card{
+  background:#fff;border-radius:18px;padding:26px 24px;box-shadow:0 10px 30px rgba(0,0,0,.06);transition:.35s;
+}
+.proc-card:hover{box-shadow:0 20px 44px rgba(0,0,0,.13)}
+.proc-num{font-size:34px;font-weight:700;color:var(--orange);line-height:1}
+.proc-card h4{font-size:15.5px;font-weight:600;margin:12px 0 8px}
+.proc-card p{font-size:12px;color:var(--muted);line-height:1.75}
+.proc-grid .proc-card:nth-child(2){transition-delay:.08s}
+.proc-grid .proc-card:nth-child(3){transition-delay:.16s}
+.proc-grid .proc-card:nth-child(4){transition-delay:.24s}
+
+/* ===== FAQ ===== */
+.faq-wrap{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:#fff;border-radius:16px;box-shadow:0 8px 22px rgba(0,0,0,.05);overflow:hidden;transition:box-shadow .3s;cursor:pointer}
+.faq-item:hover{box-shadow:0 14px 32px rgba(0,0,0,.09)}
+.faq-q{display:flex;align-items:center;gap:16px;padding:20px 24px;font-size:14.5px;font-weight:600;color:var(--text);transition:.3s}
+.faq-item:hover .faq-q{color:var(--orange)}
+.faq-chevron{width:30px;height:30px;border:1.5px solid #e5d9ca;border-radius:50%;display:grid;place-items:center;color:var(--muted);transition:.35s;flex-shrink:0}
+.faq-chevron .icn{width:13px;height:13px}
+.faq-item.on .faq-chevron{background:var(--orange);border-color:var(--orange);color:#fff;transform:rotate(180deg)}
+.faq-item.on .faq-q{color:var(--orange)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.3,1)}
+.faq-a p{padding:0 24px 20px;font-size:12.5px;color:var(--muted);line-height:1.85}
+
+/* ===== FOOTER ===== */
+.footer-wrap{padding:20px 40px 40px}
+footer{
+  background:var(--dark);border-radius:28px;max-width:1320px;margin:0 auto;
+  color:#fff;padding:60px 70px 30px;position:relative;overflow:hidden;
+}
+footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);position:relative}
+.footer-grid h5{font-size:14px;margin-bottom:18px;font-weight:600;position:relative;padding-bottom:10px}
+.footer-grid h5::after{content:"";position:absolute;left:0;bottom:0;width:22px;height:2px;background:var(--orange);border-radius:99px}
+.footer-grid ul{list-style:none}
+.footer-grid li{margin-bottom:12px}
+.footer-grid a{color:#a5a1ab;text-decoration:none;font-size:12.5px;transition:.3s}
+.footer-grid a:hover{color:var(--orange);padding-left:5px}
+.footer-grid a.f-active{color:var(--orange);font-weight:600}
+.footer-brand p{color:#a5a1ab;font-size:12.5px;line-height:1.8;margin:16px 0 22px;max-width:280px}
+.socials{display:flex;gap:12px}
+.socials a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:.3s;text-decoration:none}
+.socials a .icn{width:15px;height:15px}
+.socials a:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-4px);color:#fff}
+.newsletter p{color:#a5a1ab;font-size:11.5px;line-height:1.7;margin-bottom:16px}
+.nl-form{display:flex;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;overflow:hidden;transition:.3s}
+.nl-form:focus-within{border-color:var(--teal)}
+.nl-form input{flex:1;background:transparent;border:none;outline:none;color:#fff;padding:12px 18px;font-size:12px;font-family:'Poppins',sans-serif;min-width:0}
+.nl-form input::placeholder{color:#7d7985}
+.nl-form button{background:var(--orange);border:none;color:#fff;width:44px;cursor:pointer;font-size:15px;transition:.3s;display:grid;place-items:center}
+.nl-form button .icn{width:14px;height:14px}
+.nl-form button:hover{background:var(--teal)}
+.copy{text-align:center;color:#8a8690;font-size:12px;padding-top:24px;position:relative}
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float{
+  --wa-size:64px;
+  position:fixed;
+  right:calc(22px + env(safe-area-inset-right,0px));
+  bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  width:var(--wa-size);height:var(--wa-size);
+  z-index:150;display:grid;place-items:center;
+}
+.wa-float::before{content:"";position:absolute;inset:3px;border-radius:50%;background:rgba(255,255,255,.85);backdrop-filter:blur(4px);box-shadow:0 8px 20px rgba(23,22,28,.14)}
+.wa-ring{position:absolute;inset:0;width:100%;height:100%;display:block;transform:rotate(-90deg);z-index:2;pointer-events:none}
+.wa-track{fill:none;stroke:#eadfd0;stroke-width:3.5}
+.wa-prog{fill:none;stroke:url(#waGrad);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .12s linear;filter:drop-shadow(0 0 4px rgba(240,100,45,.45))}
+.wa-btn{
+  position:relative;z-index:3;
+  width:calc(var(--wa-size) - 18px);height:calc(var(--wa-size) - 18px);
+  border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;
+  box-shadow:0 8px 18px rgba(23,22,28,.3);transition:background .3s,transform .3s;
+}
+.wa-btn .icn{width:calc((var(--wa-size) - 18px)*.47);height:calc((var(--wa-size) - 18px)*.47)}
+.wa-btn:hover{background:var(--orange);transform:scale(1.1)}
+
+/* ===== TOAST ===== */
+.toast{
+  position:fixed;top:90px;right:24px;background:#fff;
+  border:1.5px solid rgba(31,156,156,.4);border-left:4px solid var(--teal);
+  border-radius:14px;padding:16px 20px;z-index:400;display:flex;align-items:flex-start;gap:13px;
+  box-shadow:0 14px 34px rgba(0,0,0,.14);max-width:340px;
+  transform:translateX(130%);transition:transform .5s cubic-bezier(.2,.7,.3,1);
+}
+.toast.show{transform:translateX(0)}
+.toast .t-ic{width:32px;height:32px;border-radius:9px;background:var(--teal);display:grid;place-items:center;color:#fff;flex-shrink:0}
+.toast .t-ic .icn{width:15px;height:15px}
+.toast b{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.toast small{font-size:11.5px;color:var(--muted)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero{padding:60px 36px 50px}
+  .hero h1{font-size:40px}
+  .nav-links{display:none}
+  .navbar .btn-book{display:none}
+  .hamburger{display:flex}
+  .support-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .hero{padding:52px 24px 46px}
+  .hero h1{font-size:30px}
+  .f-row{grid-template-columns:1fr}
+  .form-card{padding:30px 22px}
+  .proc-grid{grid-template-columns:1fr}
+  .navbar{padding:16px 20px}
+  .container{padding:0 20px}
+  .hero-wrap{padding:10px 16px}
+  .footer-wrap{padding:16px 16px 24px}
+  footer{padding:44px 28px 24px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .mobile-menu{padding:88px 26px 40px}
+  .toast{right:14px;left:14px;max-width:none}
+  .wa-float{--wa-size:56px;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
-<body class="bg-textured">
-  <div class="grain" id="grain"></div>
-  
-  <!-- Header Fixed -->
-  <header class="header fixed top-0 left-0 right-0 z-[100] backdrop-blur-lg bg-black/90 border-b border-white/5" id="header">
-    <div class="container header-inner max-w-[1600px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
-      <div class="logo flex-shrink-0">
-        <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
-      </div>
-      <nav class="nav hidden lg:flex items-center gap-8 xl:gap-10 flex-shrink-0">
-        <a href="/about-us/" class="nav-link" data-i18n="nav_about">About Us</a>
-        <a href="/services/" class="nav-link" data-i18n="nav_services">Services</a>
-        <a href="/blog/" class="nav-link" data-i18n="nav_blog">Blog</a>
-        <a href="/referral-program/" class="nav-link" data-i18n="nav_referral">Referral Program</a>
-        <a href="/contact-us/" class="nav-link" data-i18n="nav_contact">Contact Us</a>
-      </nav>
-      
-      <div class="flex items-center gap-4 md:gap-6 flex-shrink-0">
-        <div class="relative hidden lg:block" id="langContainer">
-          <button id="langBtnDesktop" class="flex items-center justify-center gap-2 font-heading text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors py-2 px-3 border border-transparent hover:border-gray-600 w-[140px]">
-            <i class="fas fa-globe"></i>
-            <span id="currentLangDesktop">English</span>
-            <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-          </button>
-          <div id="langDropdownDesktop" class="absolute right-0 mt-2 w-44 bg-black border border-gray-800 shadow-2xl hidden z-[110]">
-            <ul class="py-2">
-              <li><a href="#" data-lang="en" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">English</a></li>
-              <li><a href="#" data-lang="zh" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Chinese</a></li>
-              <li><a href="#" data-lang="hi" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Hindi</a></li>
-              <li><a href="#" data-lang="es" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">Spanish</a></li>
-              <li><a href="#" data-lang="fr" class="lang-item block px-4 py-2 font-heading text-sm text-gray-400 hover:bg-gray-900 hover:text-[var(--accent)]">French</a></li>
-            </ul>
+<body>
+
+<!-- SVG ICON LIBRARY -->
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite">
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.63a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.45-1.22a2 2 0 0 1 2.11-.45c.84.31 1.73.53 2.63.65A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+  <symbol id="i-address" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"/><path d="M12 12v9"/><path d="M16 16l-4-4-4 4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></symbol>
+  <symbol id="i-xx" viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26L22.83 21.75h-6.66l-5.22-6.82-5.97 6.82H1.66l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></symbol>
+</svg>
+
+<!-- Animated moving background -->
+<canvas id="bgCanvas"></canvas>
+
+<header class="navbar">
+  <div class="logo"><span class="logo-mark"></span>Flixifys</div>
+  <ul class="nav-links">
+    <li><a href="/about-us/">About Us</a></li>
+    <li><a href="/services/">Services</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/referral-program/">Referral Program</a></li>
+    <li><a href="/contact-us/">Contact Us</a></li>
+  </ul>
+  <a href="https://wa.me/919876543210" target="_blank" class="btn-book">Book a Free Call</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="tagline kicker" style="margin-bottom:14px">// Menu</div>
+  <a href="/about-us/">About Us</a>
+  <a href="/services/">Services</a>
+  <a href="/blog/">Blog</a>
+  <a href="/referral-program/">Referral Program</a>
+  <a href="/contact-us/">Contact Us</a>
+  <a href="https://wa.me/919876543210" target="_blank" class="btn-book">Book a Free Call &rsaquo;</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+<div class="hero-wrap section" id="hero">
+  <section class="hero reveal">
+    <div class="hero-tint"></div>
+    <div class="shp tri float2" style="width:56px;height:50px;background:var(--yellow);top:40px;left:7%;z-index:2"></div>
+    <div class="shp float3" style="width:44px;height:44px;background:var(--teal);border-radius:50%;top:26%;right:8%;z-index:2"></div>
+    <div class="shp float4" style="width:70px;height:70px;background:radial-gradient(circle 5px, var(--purple) 96%,transparent) 0 0/18px 18px;bottom:40px;left:12%;z-index:2"></div>
+    <div class="shp float1" style="width:34px;height:34px;background:var(--orange);border-radius:50%;bottom:22%;right:13%;z-index:2"></div>
+    <div class="shp tri float3" style="width:40px;height:36px;background:var(--orange);top:48px;right:22%;transform:rotate(18deg);z-index:2;opacity:.85"></div>
+
+    <div class="hero-inner">
+      <div class="kicker" style="margin-bottom:16px">HELP CENTER · 24/7 SUPPORT</div>
+      <h1>How Can We<br><em>Help You?</em></h1>
+      <p>Our team is here to assist you with any questions, technical issues, or project inquiries. Reach out and we'll get back to you fast.</p>
+    </div>
+  </section>
+</div>
+
+<!-- SUPPORT CONTENT -->
+<section class="section container" id="support-content" style="max-width:1240px">
+  <div class="support-grid">
+
+    <!-- Left: Contact Form -->
+    <div class="form-card reveal">
+      <h3><svg class="icn"><use href="#i-send"/></svg> Send a Message</h3>
+      <form id="supportForm">
+        <div class="f-row">
+          <div class="f-field">
+            <label>Full Name *</label>
+            <input type="text" required placeholder="John Doe">
+          </div>
+          <div class="f-field">
+            <label>Email Address *</label>
+            <input type="email" required placeholder="john@example.com">
           </div>
         </div>
+        <div class="f-row">
+          <div class="f-field">
+            <label>Department *</label>
+            <select class="f-select" required>
+              <option value="" disabled selected>Select a topic</option>
+              <option>Sales Inquiry</option>
+              <option>Technical Issue</option>
+              <option>Billing Question</option>
+              <option>Partnership</option>
+            </select>
+          </div>
+          <div class="f-field">
+            <label>Priority *</label>
+            <select class="f-select" required>
+              <option value="" disabled selected>Select priority</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Urgent</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-field">
+          <label>Message *</label>
+          <textarea rows="5" required placeholder="Describe your question or issue in detail..."></textarea>
+        </div>
+        <div class="f-field">
+          <label>Attachment (Optional)</label>
+          <div class="file-drop" id="fileDrop" onclick="document.getElementById('fileInput').click()">
+            <svg class="icn"><use href="#i-upload"/></svg>
+            <p id="fileLabel">Click to upload or drag &amp; drop</p>
+            <small style="font-size:10px;margin-top:4px;color:#b0a695">PNG, JPG, PDF — Max 5MB</small>
+            <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf" style="display:none">
+          </div>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
 
-        <a href="https://wa.me/919876543210" target="_blank" class="hidden lg:inline-flex items-center font-heading text-xs tracking-[0.2em] uppercase px-5 py-2.5 btn-book-call" data-i18n="btn_call">
-          Book a Free Call
+    <!-- Right: Contact Methods + Stats -->
+    <div class="side-col">
+
+      <div class="ccard reveal">
+        <h4><svg class="icn"><use href="#i-address"/></svg> Contact Methods</h4>
+        <a href="mailto:hello@flixifys.com" class="contact-method">
+          <div class="cm-ic"><svg class="icn"><use href="#i-mail"/></svg></div>
+          <div>
+            <b>Email Support</b>
+            <small>hello@flixifys.com</small>
+          </div>
         </a>
-        <button id="menuBtn" class="lg:hidden text-white text-2xl z-[120]"><i class="fas fa-bars"></i></button>
+        <a href="https://wa.me/919876543210" target="_blank" class="contact-method">
+          <div class="cm-ic"><svg class="icn fill"><use href="#i-wa"/></svg></div>
+          <div>
+            <b>WhatsApp Chat</b>
+            <small>+91 98765 43210</small>
+          </div>
+        </a>
+        <a href="tel:+919876543210" class="contact-method">
+          <div class="cm-ic"><svg class="icn"><use href="#i-phone"/></svg></div>
+          <div>
+            <b>Phone Support</b>
+            <small>+91 98765 43210</small>
+          </div>
+        </a>
       </div>
-    </div>
-  </header>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-drawer lg:hidden" id="mobileDrawer">
-    <div class="flex justify-between items-center mb-10">
-      <div class="logo">
-        <a href="https://flixifys.com/"><img src="/assets/images/LOGO-WHITE.png" alt="Flixifys" class="h-10 w-auto"></a>
+      <div class="ccard reveal">
+        <h4><svg class="icn"><use href="#i-bolt"/></svg> Avg. Response Time</h4>
+        <div class="resp-grid">
+          <div class="resp-stat"><div class="num">2h</div><div class="label">Email</div></div>
+          <div class="resp-stat"><div class="num">5m</div><div class="label">WhatsApp</div></div>
+          <div class="resp-stat"><div class="num">10m</div><div class="label">Phone</div></div>
+        </div>
       </div>
-      <div class="flex items-center gap-4">
-        <button id="closeDrawer" class="text-2xl text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
-      </div>
-    </div>
 
-    <div class="mb-8">
-      <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.2em] uppercase mb-3">Language</div>
-      <div class="grid grid-cols-2 gap-2" id="mobileLangGrid">
-        <button data-lang="en" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)] active-lang">English</button>
-        <button data-lang="zh" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Chinese</button>
-        <button data-lang="hi" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Hindi</button>
-        <button data-lang="es" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">Spanish</button>
-        <button data-lang="fr" class="mobile-lang-btn px-3 py-2 border border-[var(--border-light)] text-sm font-heading text-[var(--fg-dim)]">French</button>
-      </div>
     </div>
-
-    <nav class="flex flex-col gap-6">
-      <a href="/about-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_about">About Us</a>
-      <a href="/services/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_services">Services</a>
-      <a href="/blog/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_blog">Blog</a>
-      <a href="/referral-program/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_referral">Referral Program</a>
-      <a href="/contact-us/" class="text-xl font-heading tracking-wider text-gray-300 hover:text-[var(--accent)]" data-i18n="nav_contact">Contact Us</a>
-    </nav>
-    <a href="https://wa.me/919876543210" target="_blank" class="mt-auto bg-[var(--accent)] text-black text-center py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors" data-i18n="btn_call">
-      Book Free Call
-    </a>
   </div>
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  
-  <!-- HERO -->
-  <section class="relative min-h-[70vh] w-full overflow-hidden flex items-center pt-24 pb-20" id="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-grid-3d"></div>
-    
-    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="reveal in-view max-w-4xl mx-auto text-center">
-        <div class="section-marker justify-center mb-6">
-          <span data-i18n="s_hero_marker">HELP CENTER · 24/7 SUPPORT</span>
-        </div>
-        <h1 class="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] mb-6">
-          <span class="headline-line"><span data-i18n="s_hero_h1_l1">HOW CAN WE</span></span>
-          <span class="headline-line"><span class="text-[var(--accent)]" data-i18n="s_hero_h1_l2">HELP YOU?</span></span>
-        </h1>
-        <p class="max-w-2xl mx-auto text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body" data-i18n="s_hero_p">
-          Our team is here to assist you with any questions, technical issues, or project inquiries. Reach out and we'll get back to you fast.
-        </p>
+
+  <!-- SUPPORT PROCESS -->
+  <div style="margin-top:64px">
+    <div class="reveal text-center" style="margin-bottom:40px">
+      <div class="kicker" style="justify-content:center">HOW IT WORKS</div>
+      <h2 style="font-size:32px;font-weight:600">Support Process</h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-card reveal">
+        <div class="proc-num">01</div>
+        <h4>Submit Request</h4>
+        <p>Fill out the form with your details and issue description.</p>
+      </div>
+      <div class="proc-card reveal">
+        <div class="proc-num">02</div>
+        <h4>We Review</h4>
+        <p>Our team reviews your ticket and assigns it to the right expert.</p>
+      </div>
+      <div class="proc-card reveal">
+        <div class="proc-num">03</div>
+        <h4>Action Taken</h4>
+        <p>We work on the solution and keep you updated throughout.</p>
+      </div>
+      <div class="proc-card reveal">
+        <div class="proc-num">04</div>
+        <h4>Resolution</h4>
+        <p>Issue resolved! We ensure you're 100% satisfied with the fix.</p>
       </div>
     </div>
-  </section>
-
-  <!-- SUPPORT CONTENT -->
-  <section class="relative py-28 lg:py-36" id="support-content">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-        
-        <!-- Left: Contact Form -->
-        <div class="lg:col-span-7 flex">
-          <div class="info-card notch-corner p-8 lg:p-10 reveal relative w-full flex flex-col">
-            <h2 class="font-display text-4xl mb-8 flex items-center gap-3">
-              <i class="fas fa-paper-plane text-2xl text-[var(--accent)]"></i> <span data-i18n="s_form_h">Send a Message</span>
-            </h2>
-            <form id="supportForm" onsubmit="handleSubmit(event)" class="space-y-6 flex-1 flex flex-col">
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label class="form-label" data-i18n="s_lbl_name">Full Name *</label>
-                  <input type="text" class="form-input" required placeholder="John Doe">
-                </div>
-                <div>
-                  <label class="form-label" data-i18n="s_lbl_email">Email Address *</label>
-                  <input type="email" class="form-input" required placeholder="john@example.com">
-                </div>
-              </div>
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label class="form-label" data-i18n="s_lbl_dept">Department *</label>
-                  <select class="form-input" required>
-                    <option value="" disabled selected data-i18n="s_opt_select">Select a topic</option>
-                    <option data-i18n="s_opt_sales">Sales Inquiry</option>
-                    <option data-i18n="s_opt_tech">Technical Issue</option>
-                    <option data-i18n="s_opt_bill">Billing Question</option>
-                    <option data-i18n="s_opt_part">Partnership</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="form-label" data-i18n="s_lbl_priority">Priority *</label>
-                  <select class="form-input" required>
-                    <option value="" disabled selected data-i18n="s_opt_select">Select priority</option>
-                    <option data-i18n="s_pri_low">Low</option>
-                    <option data-i18n="s_pri_med">Medium</option>
-                    <option data-i18n="s_pri_high">High</option>
-                    <option data-i18n="s_pri_urg">Urgent</option>
-                  </select>
-                </div>
-              </div>
-              <div class="flex-1">
-                <label class="form-label" data-i18n="s_lbl_msg">Message *</label>
-                <textarea class="form-input" required rows="5" placeholder="Describe your question or issue in detail..."></textarea>
-              </div>
-              <div>
-                <label class="form-label" data-i18n="s_lbl_file">Attachment (Optional)</label>
-                <div class="file-drop" id="fileDrop" onclick="document.getElementById('fileInput').click()">
-                  <i class="fas fa-cloud-arrow-up"></i>
-                  <p id="fileLabel" data-i18n="s_file_p">Click to upload or drag & drop</p>
-                  <p style="font-size:11px; margin-top:4px">PNG, JPG, PDF — Max 5MB</p>
-                  <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf" style="display:none">
-                </div>
-              </div>
-              <button type="submit" class="w-full bg-[var(--accent)] text-black py-4 font-heading uppercase tracking-wider hover:bg-[var(--accent-bright)] transition-colors mt-auto" data-i18n="s_btn_submit">
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Right: Contact Methods + Stats -->
-        <div class="lg:col-span-5 flex flex-col gap-8">
-          
-          <div class="info-card notch-corner p-8 lg:p-10 reveal relative flex-1 flex flex-col">
-            <h2 class="font-display text-4xl mb-6 flex items-center gap-3">
-              <i class="fas fa-address-book text-2xl text-[var(--accent)]"></i> <span data-i18n="s_meth_h">Contact Methods</span>
-            </h2>
-            <div class="space-y-3 flex-1 flex flex-col justify-center">
-              <a href="mailto:hello@flixifys.com" class="contact-method">
-                <div class="contact-method-icon"><i class="fas fa-envelope"></i></div>
-                <div>
-                  <h4 class="font-heading text-base text-white" data-i18n="s_meth_email">Email Support</h4>
-                  <p class="text-sm text-[var(--muted)] font-mono">hello@flixifys.com</p>
-                </div>
-              </a>
-              <a href="https://wa.me/919876543210" target="_blank" class="contact-method">
-                <div class="contact-method-icon"><i class="fab fa-whatsapp"></i></div>
-                <div>
-                  <h4 class="font-heading text-base text-white" data-i18n="s_meth_wa">WhatsApp Chat</h4>
-                  <p class="text-sm text-[var(--muted)] font-mono">+91 98765 43210</p>
-                </div>
-              </a>
-              <a href="tel:+919876543210" class="contact-method">
-                <div class="contact-method-icon"><i class="fas fa-phone"></i></div>
-                <div>
-                  <h4 class="font-heading text-base text-white" data-i18n="s_meth_phone">Phone Support</h4>
-                  <p class="text-sm text-[var(--muted)] font-mono">+91 98765 43210</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="info-card notch-corner p-8 lg:p-10 reveal relative flex-1 flex flex-col justify-center">
-            <h2 class="font-display text-4xl mb-6 flex items-center gap-3">
-              <i class="fas fa-bolt text-2xl text-[var(--accent)]"></i> <span data-i18n="s_stats_h">Avg. Response Time</span>
-            </h2>
-            <div class="grid grid-cols-3 gap-4">
-              <div class="response-stat">
-                <div class="num">2h</div>
-                <div class="label" data-i18n="s_stats_email">Email</div>
-              </div>
-              <div class="response-stat">
-                <div class="num">5m</div>
-                <div class="label" data-i18n="s_stats_wa">WhatsApp</div>
-              </div>
-              <div class="response-stat">
-                <div class="num">10m</div>
-                <div class="label" data-i18n="s_stats_phone">Phone</div>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-
-      <!-- SUPPORT PROCESS (Added Content) -->
-      <div class="mt-16 lg:mt-24 reveal">
-        <div class="text-center mb-12">
-          <div class="section-marker justify-center mb-4">
-            <span data-i18n="s_proc_marker">HOW IT WORKS</span>
-          </div>
-          <h2 class="font-display text-5xl md:text-6xl" data-i18n="s_proc_h">Support Process</h2>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="info-card p-6 notch-corner">
-            <div class="process-num">01</div>
-            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_1">Submit Request</h4>
-            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_1_d">Fill out the form with your details and issue description.</p>
-          </div>
-          <div class="info-card p-6 notch-corner">
-            <div class="process-num">02</div>
-            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_2">We Review</h4>
-            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_2_d">Our team reviews your ticket and assigns it to the right expert.</p>
-          </div>
-          <div class="info-card p-6 notch-corner">
-            <div class="process-num">03</div>
-            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_3">Action Taken</h4>
-            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_3_d">We work on the solution and keep you updated throughout.</p>
-          </div>
-          <div class="info-card p-6 notch-corner">
-            <div class="process-num">04</div>
-            <h4 class="font-heading text-lg text-white mt-2 mb-2" data-i18n="s_proc_4">Resolution</h4>
-            <p class="text-sm text-[var(--muted)]" data-i18n="s_proc_4_d">Issue resolved! We ensure you're 100% satisfied with the fix.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- EXPANDED FAQ (Added Content) -->
-      <div class="mt-16 lg:mt-24 reveal">
-        <div class="text-center mb-12">
-          <div class="section-marker justify-center mb-4">
-            <span data-i18n="s_faq_marker">QUICK ANSWERS</span>
-          </div>
-          <h2 class="font-display text-5xl md:text-6xl" data-i18n="s_faq_h">Frequently Asked Questions</h2>
-        </div>
-        <div class="max-w-[860px] mx-auto">
-          
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <div class="faq-q-text" data-i18n="s_faq_q_1">How do I start a project?</div>
-              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_1">Fill out our contact form or message us on WhatsApp. We'll schedule a free consultation to discuss your requirements and provide a detailed proposal.</div></div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <div class="faq-q-text" data-i18n="s_faq_q_2">Do you offer post-launch support?</div>
-              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_2">Yes! We offer ongoing support packages covering bug fixes, minor updates, and performance monitoring. Details are included in every project proposal.</div></div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <div class="faq-q-text" data-i18n="s_faq_q_3">What if I need changes after delivery?</div>
-              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_3">Each project includes defined revision rounds. Additional changes beyond scope can be accommodated at an agreed hourly rate. We're always flexible.</div></div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <div class="faq-q-text" data-i18n="s_faq_q_4">Can I migrate from another platform?</div>
-              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_4">Absolutely. We handle migrations from WooCommerce, Magento, Wix, and custom platforms — including products, customers, orders, and SEO data.</div></div>
-          </div>
-          
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <div class="faq-q-text" data-i18n="s_faq_q_5">Do you work with international clients?</div>
-              <div class="faq-q-arrow"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="faq-a"><div class="faq-a-inner" data-i18n="s_faq_a_5">Yes, we work with clients globally. Our communication is primarily through WhatsApp, email, and video calls, which makes geography irrelevant.</div></div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-white/5 bg-black py-16 relative overflow-hidden">
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
-      <div class="font-display text-[18vw] md:text-[14vw] leading-none text-stroke opacity-30 absolute bottom-0 left-0 right-0 text-center pointer-events-none select-none">
-        FLIXIFYS
-      </div>
-      
-      <div class="relative grid md:grid-cols-12 gap-10 mb-12">
-        <div class="md:col-span-5">
-          <div class="flex items-center gap-3 mb-5">
-            <div>
-              <div class="font-display text-2xl leading-none tracking-wider text-white">FLIXIFYS</div>
-              <div class="font-mono text-[10px] text-gray-400 tracking-[0.3em] mt-0.5">SHOPIFY · STUDIO</div>
-            </div>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6" data-i18n="footer_about">
-            A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.
-          </p>
-          <div class="flex gap-3">
-            <a href="https://instagram.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://linkedin.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-x-twitter"></i>
-            </a>
-            <a href="https://youtube.com" target="_blank" class="w-12 h-12 border border-gray-800 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-all flex items-center justify-center text-gray-400 text-lg">
-              <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="md:col-span-2">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_links">Quick Links</h5>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/about-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_about">About Us</a></li>
-            <li><a href="/services/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_services">Services</a></li>
-            <li><a href="/blog/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_blog">Blog</a></li>
-            <li><a href="/referral-program/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_referral">Referral Program</a></li>
-            <li><a href="/contact-us/" class="text-gray-400 hover:text-white link-underline" data-i18n="nav_contact">Contact Us</a></li>
-            <li><a href="/support/" class="text-[var(--accent)] link-underline" data-i18n="nav_support">Support</a></li>
-          </ul>
-        </div>
-        
-        <div class="md:col-span-2">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4">Legal</h5>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/terms-and-conditions/" class="text-gray-400 hover:text-white link-underline">Terms & Conditions</a></li>
-            <li><a href="/privacy-policy/" class="text-gray-400 hover:text-white link-underline">Privacy Policy</a></li>
-            <li><a href="/cookie-policy/" class="text-gray-400 hover:text-white link-underline">Cookie Policy</a></li>
-            <li><a href="/faq/" class="text-gray-400 hover:text-white link-underline">FAQ</a></li>
-            <li><a href="/disclaimer/" class="text-gray-400 hover:text-white link-underline">Disclaimer</a></li>
-          </ul>
-        </div>
-        
-        <div class="md:col-span-3">
-          <h5 class="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-4" data-i18n="footer_news">Newsletter</h5>
-          <p class="text-gray-400 text-xs mb-4 leading-relaxed" data-i18n="footer_news_desc">Weekly Shopify insights, case studies, and studio updates.</p>
-          <form class="flex border border-gray-800 focus-within:border-[var(--accent)] transition-colors">
-            <input type="email" placeholder="email@address.com" class="flex-1 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-gray-500">
-            <button type="submit" class="px-4 bg-[var(--accent)] text-black hover:bg-[var(--accent-bright)] transition-colors">
-              <i class="fas fa-arrow-right text-xs"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-      
-      <div class="relative border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-center gap-4 text-gray-400 font-mono text-[11px] tracking-[0.15em] uppercase">
-        <div>© 2024 FLIXIFYS SHOPIFY STUDIO. ALL RIGHTS RESERVED.</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP WITH SCROLL PROGRESS -->
-  <div class="wa-progress-container">
-    <svg class="wa-progress-svg" width="64" height="64" viewBox="0 0 64 64">
-      <circle class="wa-progress-bg" cx="32" cy="32" r="30"></circle>
-      <circle class="wa-progress-circle" id="progressCircle" cx="32" cy="32" r="30"></circle>
-    </svg>
-    <a href="https://wa.me/919876543210?text=Hi%20Flixifys" target="_blank" class="wa-btn-center">
-      <i class="fab fa-whatsapp"></i>
-    </a>
   </div>
-  
-  <!-- Toast -->
-  <div class="toast" id="toast">
-    <div class="flex items-start gap-3">
-      <div class="w-8 h-8 bg-[var(--accent)] flex items-center justify-center flex-shrink-0">
-        <i class="fas fa-check text-black text-xs"></i>
+
+  <!-- FAQ -->
+  <div style="margin-top:64px">
+    <div class="reveal text-center" style="margin-bottom:40px">
+      <div class="kicker" style="justify-content:center">QUICK ANSWERS</div>
+      <h2 style="font-size:32px;font-weight:600">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-wrap">
+
+      <div class="faq-item">
+        <div class="faq-q"><span>How do I start a project?</span><span class="faq-chevron"><svg class="icn"><use href="#i-chev"/></svg></span></div>
+        <div class="faq-a"><p>Fill out our contact form or message us on WhatsApp. We'll schedule a free consultation to discuss your requirements and provide a detailed proposal.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you offer post-launch support?</span><span class="faq-chevron"><svg class="icn"><use href="#i-chev"/></svg></span></div>
+        <div class="faq-a"><p>Yes! We offer ongoing support packages covering bug fixes, minor updates, and performance monitoring. Details are included in every project proposal.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q"><span>What if I need changes after delivery?</span><span class="faq-chevron"><svg class="icn"><use href="#i-chev"/></svg></span></div>
+        <div class="faq-a"><p>Each project includes defined revision rounds. Additional changes beyond scope can be accommodated at an agreed hourly rate. We're always flexible.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I migrate from another platform?</span><span class="faq-chevron"><svg class="icn"><use href="#i-chev"/></svg></span></div>
+        <div class="faq-a"><p>Absolutely. We handle migrations from WooCommerce, Magento, Wix, and custom platforms — including products, customers, orders, and SEO data.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you work with international clients?</span><span class="faq-chevron"><svg class="icn"><use href="#i-chev"/></svg></span></div>
+        <div class="faq-a"><p>Yes, we work with clients globally. Our communication is primarily through WhatsApp, email, and video calls, which makes geography irrelevant.</p></div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<div class="footer-wrap">
+  <footer class="reveal">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="color:#fff"><span class="logo-mark"></span>Flixifys</div>
+        <div style="font-size:10px;letter-spacing:.25em;color:#8a8690;margin-top:4px">SHOPIFY · STUDIO</div>
+        <p>A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.</p>
+        <div class="socials">
+          <a href="https://instagram.com" target="_blank" title="Instagram"><svg class="icn"><use href="#i-ig"/></svg></a>
+          <a href="https://linkedin.com" target="_blank" title="LinkedIn"><svg class="icn fill"><use href="#i-in"/></svg></a>
+          <a href="https://twitter.com" target="_blank" title="X"><svg class="icn fill"><use href="#i-xx"/></svg></a>
+          <a href="https://youtube.com" target="_blank" title="YouTube"><svg class="icn fill"><use href="#i-yt"/></svg></a>
+        </div>
       </div>
       <div>
-        <div class="font-heading text-sm tracking-wider uppercase" data-i18n="s_toast_h">Message Sent</div>
-        <div class="text-[var(--fg-dim)] text-xs mt-1" data-i18n="s_toast_p">We'll get back to you within 2 hours.</div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/referral-program/">Referral Program</a></li>
+          <li><a href="/contact-us/">Contact Us</a></li>
+          <li><a href="/support/" class="f-active">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/cookie-policy/">Cookie Policy</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+      <div class="newsletter">
+        <h5>Newsletter</h5>
+        <p>Weekly Shopify insights, case studies, and studio updates.</p>
+        <form class="nl-form" id="nlForm">
+          <input type="email" placeholder="email@address.com" required>
+          <button type="submit" aria-label="Subscribe"><svg class="icn"><use href="#i-arrow"/></svg></button>
+        </form>
       </div>
     </div>
+    <div class="copy">© 2024 FLIXIFYS SHOPIFY STUDIO. ALL RIGHTS RESERVED.</div>
+  </footer>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <svg class="wa-ring" viewBox="0 0 64 64" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <defs>
+      <linearGradient id="waGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F0642D"/>
+        <stop offset="100%" stop-color="#1F9C9C"/>
+      </linearGradient>
+    </defs>
+    <circle class="wa-track" cx="32" cy="32" r="29"></circle>
+    <circle class="wa-prog" id="waProgress" cx="32" cy="32" r="29" pathLength="100"></circle>
+  </svg>
+  <a href="https://wa.me/919876543210?text=Hi%20Flixifys" target="_blank" class="wa-btn" aria-label="WhatsApp">
+    <svg class="icn fill"><use href="#i-wa"/></svg>
+  </a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="t-ic"><svg class="icn"><use href="#i-check"/></svg></div>
+  <div>
+    <b>Message Sent</b>
+    <small>We'll get back to you within 2 hours.</small>
   </div>
-  
-  <script>
-    // Mobile Drawer
-    const menuBtn = document.getElementById('menuBtn');
-    const closeDrawer = document.getElementById('closeDrawer');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const drawerOverlay = document.getElementById('drawerOverlay');
+</div>
 
-    menuBtn.addEventListener('click', () => { mobileDrawer.classList.add('open'); drawerOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
-    closeDrawer.addEventListener('click', () => { mobileDrawer.classList.remove('open'); drawerOverlay.classList.remove('open'); document.body.style.overflow = ''; });
-    drawerOverlay.addEventListener('click', () => { mobileDrawer.classList.remove('open'); drawerOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+<script>
+/* ===== Moving Background - Floating Geometric Shapes ===== */
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+addEventListener('resize', resize); resize();
 
-    // Reveal on Scroll
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('in-view');
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+const colors = ['#F0642D','#1F9C9C','#4E4A67','#F0B429','#17161C'];
+const types = ['circle','square','triangle','ring','dot'];
+const shapes = [];
+for(let i=0;i<28;i++){
+  shapes.push({
+    x:Math.random()*W, y:Math.random()*H,
+    size:10+Math.random()*30,
+    type:types[Math.floor(Math.random()*types.length)],
+    color:colors[Math.floor(Math.random()*colors.length)],
+    vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+    rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*.012,
+    alpha:.10+Math.random()*.18
+  });
+}
+(function draw(){
+  ctx.clearRect(0,0,W,H);
+  shapes.forEach(s=>{
+    s.x+=s.vx; s.y+=s.vy; s.rot+=s.vr;
+    if(s.x<-60)s.x=W+60; if(s.x>W+60)s.x=-60;
+    if(s.y<-60)s.y=H+60; if(s.y>H+60)s.y=-60;
+    ctx.save(); ctx.translate(s.x,s.y); ctx.rotate(s.rot);
+    ctx.globalAlpha=s.alpha; ctx.fillStyle=s.color; ctx.strokeStyle=s.color;
+    const h=s.size/2;
+    if(s.type==='circle'){ctx.beginPath();ctx.arc(0,0,h,0,7);ctx.fill();}
+    else if(s.type==='square'){ctx.fillRect(-h,-h,s.size,s.size);}
+    else if(s.type==='triangle'){ctx.beginPath();ctx.moveTo(0,-h);ctx.lineTo(h,h);ctx.lineTo(-h,h);ctx.closePath();ctx.fill();}
+    else if(s.type==='ring'){ctx.lineWidth=s.size/4;ctx.beginPath();ctx.arc(0,0,h,0,7);ctx.stroke();}
+    else {ctx.beginPath();ctx.arc(0,0,s.size/6,0,7);ctx.fill();}
+    ctx.restore();
+  });
+  requestAnimationFrame(draw);
+})();
 
-    // FAQ Accordion
-    function toggleFaq(q) {
-      var item = q.closest('.faq-item');
-      var a = item.querySelector('.faq-a');
-      var isOpen = item.classList.contains('open');
-      
-      document.querySelectorAll('.faq-item.open').forEach(function(i) {
-        i.classList.remove('open');
-        i.querySelector('.faq-a').style.maxHeight = '0';
-      });
-      
-      if (!isOpen) {
-        item.classList.add('open');
-        a.style.maxHeight = a.scrollHeight + 'px';
-      }
-    }
+/* ===== Scroll Reveal ===== */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Form Submit
-    function handleSubmit(e) {
-      e.preventDefault();
-      var t = document.getElementById('toast');
-      t.classList.add('visible');
-      e.target.reset();
-      document.getElementById('fileLabel').textContent = 'Click to upload or drag & drop';
-      setTimeout(function() {
-        t.classList.remove('visible');
-      }, 4000);
-    }
-
-    // File Upload Logic
-    var fileDrop = document.getElementById('fileDrop'), fileInput = document.getElementById('fileInput');
-    ['dragenter','dragover'].forEach(function(ev){ fileDrop.addEventListener(ev, function(e){ e.preventDefault(); fileDrop.classList.add('dragover'); }) });
-    ['dragleave','drop'].forEach(function(ev){ fileDrop.addEventListener(ev, function(e){ e.preventDefault(); fileDrop.classList.remove('dragover'); }) });
-    fileDrop.addEventListener('drop', function(e){ if(e.dataTransfer.files.length){ fileInput.files=e.dataTransfer.files; document.getElementById('fileLabel').innerHTML='<span style="color:var(--accent)">'+e.dataTransfer.files[0].name+'</span> uploaded'; } });
-    fileInput.addEventListener('change', function(){ if(fileInput.files.length){ document.getElementById('fileLabel').innerHTML='<span style="color:var(--accent)">'+fileInput.files[0].name+'</span> uploaded'; } });
-
-    // Grain Parallax
-    const grain = document.getElementById('grain');
-    let targetGrainY = 0; let currentGrainY = 0;
-    window.addEventListener('scroll', () => { targetGrainY = window.scrollY * 0.15; }, { passive: true });
-    function animateGrain() {
-      currentGrainY += (targetGrainY - currentGrainY) * 0.08;
-      grain.style.transform = `translateY(${currentGrainY}px)`;
-      requestAnimationFrame(animateGrain);
-    }
-    animateGrain();
-
-    // WhatsApp Scroll Progress
-    const progressCircle = document.getElementById('progressCircle');
-    const circumference = 2 * Math.PI * 30;
-    progressCircle.style.strokeDasharray = circumference;
-    function updateScrollProgress() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      progressCircle.style.strokeDashoffset = circumference - (scrollPercent / 100) * circumference;
-    }
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-    updateScrollProgress();
-
-    // Full Language Translations Dictionary
-    const translations = {
-      en: {
-        nav_about: "About Us", nav_services: "Services", nav_blog: "Blog", nav_referral: "Referral Program", nav_contact: "Contact Us", btn_call: "Book a Free Call",
-        footer_about: "A Shopify-focused digital studio helping brands build, optimize and scale high-converting ecommerce experiences.", footer_links: "Quick Links", footer_news: "Newsletter", footer_news_desc: "Weekly Shopify insights, case studies, and studio updates.",
-        s_hero_marker: "HELP CENTER · 24/7 SUPPORT", s_hero_h1_l1: "HOW CAN WE", s_hero_h1_l2: "HELP YOU?", s_hero_p: "Our team is here to assist you with any questions, technical issues, or project inquiries. Reach out and we'll get back to you fast.",
-        s_form_h: "Send a Message", s_lbl_name: "Full Name *", s_lbl_email: "Email Address *", s_lbl_dept: "Department *", s_lbl_priority: "Priority *", s_lbl_msg: "Message *", s_lbl_file: "Attachment (Optional)", s_btn_submit: "Send Message",
-        s_opt_select: "Select an option", s_opt_sales: "Sales Inquiry", s_opt_tech: "Technical Issue", s_opt_bill: "Billing Question", s_opt_part: "Partnership", s_pri_low: "Low", s_pri_med: "Medium", s_pri_high: "High", s_pri_urg: "Urgent", s_file_p: "Click to upload or drag & drop",
-        s_meth_h: "Contact Methods", s_meth_email: "Email Support", s_meth_wa: "WhatsApp Chat", s_meth_phone: "Phone Support",
-        s_stats_h: "Avg. Response Time", s_stats_email: "Email", s_stats_wa: "WhatsApp", s_stats_phone: "Phone",
-        s_proc_marker: "HOW IT WORKS", s_proc_h: "Support Process", s_proc_1: "Submit Request", s_proc_1_d: "Fill out the form with your details and issue description.", s_proc_2: "We Review", s_proc_2_d: "Our team reviews your ticket and assigns it to the right expert.", s_proc_3: "Action Taken", s_proc_3_d: "We work on the solution and keep you updated throughout.", s_proc_4: "Resolution", s_proc_4_d: "Issue resolved! We ensure you're 100% satisfied with the fix.",
-        s_faq_marker: "QUICK ANSWERS", s_faq_h: "Frequently Asked Questions",
-        s_faq_q_1: "How do I start a project?", s_faq_a_1: "Fill out our contact form or message us on WhatsApp. We'll schedule a free consultation to discuss your requirements and provide a detailed proposal.",
-        s_faq_q_2: "Do you offer post-launch support?", s_faq_a_2: "Yes! We offer ongoing support packages covering bug fixes, minor updates, and performance monitoring. Details are included in every project proposal.",
-        s_faq_q_3: "What if I need changes after delivery?", s_faq_a_3: "Each project includes defined revision rounds. Additional changes beyond scope can be accommodated at an agreed hourly rate. We're always flexible.",
-        s_faq_q_4: "Can I migrate from another platform?", s_faq_a_4: "Absolutely. We handle migrations from WooCommerce, Magento, Wix, and custom platforms — including products, customers, orders, and SEO data.",
-        s_faq_q_5: "Do you work with international clients?", s_faq_a_5: "Yes, we work with clients globally. Our communication is primarily through WhatsApp, email, and video calls, which makes geography irrelevant.",
-        s_toast_h: "Message Sent", s_toast_p: "We'll get back to you within 2 hours."
-      },
-      hi: {
-        nav_about: "हमारे बारे में", nav_services: "सेवाएँ", nav_blog: "ब्लॉग", nav_referral: "रेफरल प्रोग्राम", nav_contact: "संपर्क करें", btn_call: "निःशुल्क कॉल बुक करें",
-        footer_about: "एक शॉपिफाई-केंद्रित डिजिटल स्टूडियो जो ब्रांड्स को बनाने, अनुकूलित करने और स्केल करने में मदद करता है।", footer_links: "त्वरित लिंक", footer_news: "न्यूज़लेटर", footer_news_desc: "साप्ताहिक शॉपिफाई इनसाइट्स, केस स्टडीज़ और स्टूडियो अपडेट।",
-        s_hero_marker: "हेल्प सेंटर · 24/7 सहायता", s_hero_h1_l1: "हम आपकी", s_hero_h1_l2: "कैसे मदद करें?", s_hero_p: "हमारी टीम किसी भी प्रश्न, तकनीकी समस्या या प्रोजेक्ट पूछताछ में आपकी सहायता के लिए यहाँ है। संपर्क करें और हम जल्दी आपको वापस संपर्क करेंगे।",
-        s_form_h: "संदेश भेजें", s_lbl_name: "पूरा नाम *", s_lbl_email: "ईमेल पता *", s_lbl_dept: "विभाग *", s_lbl_priority: "प्राथमिकता *", s_lbl_msg: "संदेश *", s_lbl_file: "अटैचमेंट (वैकल्पिक)", s_btn_submit: "संदेश भेजें",
-        s_opt_select: "एक विकल्प चुनें", s_opt_sales: "बिक्री पूछताछ", s_opt_tech: "तकनीकी समस्या", s_opt_bill: "बिलिंग प्रश्न", s_opt_part: "साझेदारी", s_pri_low: "कम", s_pri_med: "मध्यम", s_pri_high: "उच्च", s_pri_urg: "तत्काल", s_file_p: "अपलोड करने के लिए क्लिक करें या खींचें",
-        s_meth_h: "संपर्क विधियाँ", s_meth_email: "ईमेल सहायता", s_meth_wa: "व्हाट्सएप चैट", s_meth_phone: "फ़ोन सहायता",
-        s_stats_h: "औसत प्रतिक्रिया समय", s_stats_email: "ईमेल", s_stats_wa: "व्हाट्सएप", s_stats_phone: "फ़ोन",
-        s_proc_marker: "यह कैसे काम करता है", s_proc_h: "सहायता प्रक्रिया", s_proc_1: "अनुरोध सबमिट करें", s_proc_1_d: "अपने विवरण और समस्या के विवरण के साथ फॉर्म भरें।", s_proc_2: "हम समीक्षा करते हैं", s_proc_2_d: "हमारी टीम आपके टिकट की समीक्षा करती है और इसे सही विशेषज्ञ को सौंपती है।", s_proc_3: "कार्रवाई की गई", s_proc_3_d: "हम समाधान पर काम करते हैं और आपको लगातार अपडेट रखते हैं।", s_proc_4: "समाधान", s_proc_4_d: "समस्या हल हो गई! हम सुनिश्चित करते हैं कि आप ठीक से संतुष्ट हों।",
-        s_faq_marker: "त्वरित उत्तर", s_faq_h: "अक्सर पूछे जाने वाले प्रश्न",
-        s_faq_q_1: "मैं प्रोजेक्ट कैसे शुरू करूँ?", s_faq_a_1: "हमारा संपर्क फॉर्म भरें या WhatsApp पर संदेश भेजें। हम आपकी आवश्यकताओं पर चर्चा करने के लिए एक निःशुल्क परामर्श निर्धारित करेंगे।",
-        s_faq_q_2: "क्या आप लॉन्च के बाद की सहायता प्रदान करते हैं?", s_faq_a_2: "हाँ! हम बग फिक्स, मामूली अपडेट और प्रदर्शन निगरानी को कवर करने वाले चल रहे सहायता पैकेज प्रदान करते हैं।",
-        s_faq_q_3: "डिलीवरी के बाद यदि मुझे बदलाव चाहिए तो?", s_faq_a_3: "प्रत्येक प्रोजेक्ट में निर्धारित संशोधन दौर शामिल होते हैं। दायरे से परे अतिरिक्त बदलाव एक सहमत दर पर किए जा सकते हैं।",
-        s_faq_q_4: "क्या मैं किसी अन्य प्लेटफ़ॉर्म से माइग्रेट कर सकता हूँ?", s_faq_a_4: "बिल्कुल। हम WooCommerce, Magento, Wix आदि से माइग्रेशन संभालते हैं।",
-        s_faq_q_5: "क्या आप अंतरराष्ट्रीय ग्राहकों के साथ काम करते हैं?", s_faq_a_5: "हाँ, हम वैश्विक स्तर पर ग्राहकों के साथ काम करते हैं।",
-        s_toast_h: "संदेश भेजा गया", s_toast_p: "हम 2 घंटों के भीतर आपको वापस संपर्क करेंगे।"
-      },
-      zh: {
-        nav_about: "关于我们", nav_services: "服务", nav_blog: "博客", nav_referral: "推荐计划", nav_contact: "联系我们", btn_call: "预约免费通话",
-        footer_about: "一家专注于 Shopify 的工作室，帮助品牌构建和扩展。", footer_links: "快速链接", footer_news: "订阅", footer_news_desc: "每周 Shopify 洞察和更新。",
-        s_hero_marker: "帮助中心 · 24/7 支持", s_hero_h1_l1: "我们如何", s_hero_h1_l2: "帮助您？", s_hero_p: "我们的团队在此协助您解决任何问题、技术故障或项目查询。联系我们，我们将快速回复您。",
-        s_form_h: "发送消息", s_lbl_name: "全名 *", s_lbl_email: "电子邮件 *", s_lbl_dept: "部门 *", s_lbl_priority: "优先级 *", s_lbl_msg: "消息 *", s_lbl_file: "附件（可选）", s_btn_submit: "发送消息",
-        s_opt_select: "选择一个选项", s_opt_sales: "销售咨询", s_opt_tech: "技术问题", s_opt_bill: "账单问题", s_opt_part: "合作", s_pri_low: "低", s_pri_med: "中", s_pri_high: "高", s_pri_urg: "紧急", s_file_p: "点击上传或拖放",
-        s_meth_h: "联系方式", s_meth_email: "电子邮件支持", s_meth_wa: "WhatsApp 聊天", s_meth_phone: "电话支持",
-        s_stats_h: "平均响应时间", s_stats_email: "电子邮件", s_stats_wa: "WhatsApp", s_stats_phone: "电话",
-        s_proc_marker: "工作原理", s_proc_h: "支持流程", s_proc_1: "提交请求", s_proc_1_d: "填写表格并提供您的详细信息和问题描述。", s_proc_2: "我们审核", s_proc_2_d: "我们的团队会审核您的工单并分配给合适的专家。", s_proc_3: "采取行动", s_proc_3_d: "我们致力于解决方案并全程为您更新。", s_proc_4: "解决", s_proc_4_d: "问题已解决！我们确保您对修复感到 100% 满意。",
-        s_faq_marker: "快速解答", s_faq_h: "常见问题",
-        s_faq_q_1: "如何开始项目？", s_faq_a_1: "填写我们的联系表单或通过 WhatsApp 给我们留言。我们将安排免费咨询。",
-        s_faq_q_2: "你们提供上线后支持吗？", s_faq_a_2: "是的！我们提供持续的支持包，涵盖错误修复、小幅更新和性能监控。",
-        s_faq_q_3: "如果交付后需要更改怎么办？", s_faq_a_3: "每个项目都包含规定的修订轮次。超出范围的额外更改可按协商的费率进行。",
-        s_faq_q_4: "我可以从其他平台迁移吗？", s_faq_a_4: "绝对可以。我们处理来自 WooCommerce、Magento、Wix 等的迁移。",
-        s_faq_q_5: "你们与国际客户合作吗？", s_faq_a_5: "是的，我们与全球客户合作。",
-        s_toast_h: "消息已发送", s_toast_p: "我们将在 2 小时内回复您。"
-      },
-      es: {
-        nav_about: "Acerca de Nosotros", nav_services: "Servicios", nav_blog: "Blog", nav_referral: "Programa de Referidos", nav_contact: "Contáctanos", btn_call: "Reservar Llamada Gratis",
-        footer_about: "Un estudio digital enfocado en Shopify que ayuda a las marcas a crecer.", footer_links: "Enlaces", footer_news: "Boletín", footer_news_desc: "Información semanal de Shopify.",
-        s_hero_marker: "CENTRO DE AYUDA · SOPORTE 24/7", s_hero_h1_l1: "CÓMO PODEMOS", s_hero_h1_l2: "AYUDARLE?", s_hero_p: "Nuestro equipo está aquí para asistirle con cualquier pregunta, problema técnico o consulta de proyecto. Contáctenos y le responderemos rápidamente.",
-        s_form_h: "Enviar un Mensaje", s_lbl_name: "Nombre Completo *", s_lbl_email: "Correo Electrónico *", s_lbl_dept: "Departamento *", s_lbl_priority: "Prioridad *", s_lbl_msg: "Mensaje *", s_lbl_file: "Adjunto (Opcional)", s_btn_submit: "Enviar Mensaje",
-        s_opt_select: "Seleccione una opción", s_opt_sales: "Consulta de Ventas", s_opt_tech: "Problema Técnico", s_opt_bill: "Pregunta de Facturación", s_opt_part: "Asociación", s_pri_low: "Baja", s_pri_med: "Media", s_pri_high: "Alta", s_pri_urg: "Urgente", s_file_p: "Haga clic para subir o arrastrar y soltar",
-        s_meth_h: "Métodos de Contacto", s_meth_email: "Soporte por Correo", s_meth_wa: "Chat de WhatsApp", s_meth_phone: "Soporte Telefónico",
-        s_stats_h: "Tiempo de Respuesta Prom.", s_stats_email: "Correo", s_stats_wa: "WhatsApp", s_stats_phone: "Teléfono",
-        s_proc_marker: "CÓMO FUNCIONA", s_proc_h: "Proceso de Soporte", s_proc_1: "Enviar Solicitud", s_proc_1_d: "Complete el formulario con sus datos y descripción del problema.", s_proc_2: "Revisamos", s_proc_2_d: "Nuestro equipo revisa su ticket y lo asigna al experto adecuado.", s_proc_3: "Acción Tomada", s_proc_3_d: "Trabajamos en la solución y lo mantenemos actualizado.", s_proc_4: "Resolución", s_proc_4_d: "¡Problema resuelto! Aseguramos que esté 100% satisfecho.",
-        s_faq_marker: "RESPUESTAS RÁPIDAS", s_faq_h: "Preguntas Frecuentes",
-        s_faq_q_1: "¿Cómo inicio un proyecto?", s_faq_a_1: "Complete nuestro formulario de contacto o envíenos un mensaje por WhatsApp. Programaremos una consulta gratuita.",
-        s_faq_q_2: "¿Ofrecen soporte post-lanzamiento?", s_faq_a_2: "¡Sí! Ofrecemos paquetes de soporte continuo que cubren corrección de errores y monitoreo.",
-        s_faq_q_3: "¿Qué si necesito cambios después de la entrega?", s_faq_a_3: "Cada proyecto incluye rondas de revisión definidas. Cambios adicionales pueden acomodarse a una tarifa acordada.",
-        s_faq_q_4: "¿Puedo migrar de otra plataforma?", s_faq_a_4: "Absolutamente. Manejamos migraciones desde WooCommerce, Magento, Wix, etc.",
-        s_faq_q_5: "¿Trabajan con clientes internacionales?", s_faq_a_5: "Sí, trabajamos con clientes a nivel global.",
-        s_toast_h: "Mensaje Enviado", s_toast_p: "Le responderemos en un plazo de 2 horas."
-      },
-      fr: {
-        nav_about: "À propos", nav_services: "Services", nav_blog: "Blog", nav_referral: "Parrainage", nav_contact: "Contact", btn_call: "Réserver Appel",
-        footer_about: "Un studio numérique axé sur Shopify aidant les marques à croître.", footer_links: "Liens", footer_news: "Newsletter", footer_news_desc: "Infos Shopify hebdomadaires.",
-        s_hero_marker: "CENTRE D'AIDE · SUPPORT 24/7", s_hero_h1_l1: "COMMENT POUVONS-NOUS", s_hero_h1_l2: "VOUS AIDER ?", s_hero_p: "Notre équipe est là pour vous assister avec toute question, problème technique ou demande de projet. Contactez-nous et nous vous répondrons rapidement.",
-        s_form_h: "Envoyer un Message", s_lbl_name: "Nom Complet *", s_lbl_email: "Adresse E-mail *", s_lbl_dept: "Département *", s_lbl_priority: "Priorité *", s_lbl_msg: "Message *", s_lbl_file: "Pièce Jointe (Optionnel)", s_btn_submit: "Envoyer Message",
-        s_opt_select: "Sélectionner une option", s_opt_sales: "Demande Commerciale", s_opt_tech: "Problème Technique", s_opt_bill: "Question de Facturation", s_opt_part: "Partenariat", s_pri_low: "Basse", s_pri_med: "Moyenne", s_pri_high: "Haute", s_pri_urg: "Urgente", s_file_p: "Cliquez pour télécharger ou glisser-déposer",
-        s_meth_h: "Méthodes de Contact", s_meth_email: "Support E-mail", s_meth_wa: "Chat WhatsApp", s_meth_phone: "Support Téléphonique",
-        s_stats_h: "Temps de Réponse Moy.", s_stats_email: "E-mail", s_stats_wa: "WhatsApp", s_stats_phone: "Téléphone",
-        s_proc_marker: "COMMENT ÇA MARCHE", s_proc_h: "Processus de Support", s_proc_1: "Soumettre la Demande", s_proc_1_d: "Remplissez le formulaire avec vos détails et la description du problème.", s_proc_2: "Nous Examinons", s_proc_2_d: "Notre équipe examine votre ticket et l'assigne au bon expert.", s_proc_3: "Action Entreprise", s_proc_3_d: "Nous travaillons sur la solution et vous tenons informé.", s_proc_4: "Résolution", s_proc_4_d: "Problème résolu ! Nous nous assurons que vous êtes satisfait à 100 %.",
-        s_faq_marker: "RÉPONSES RAPIDES", s_faq_h: "Questions Fréquentes",
-        s_faq_q_1: "Comment démarrer un projet ?", s_faq_a_1: "Remplissez notre formulaire de contact ou envoyez-nous un message sur WhatsApp. Nous planifierons une consultation gratuite.",
-        s_faq_q_2: "Offrez-vous un support post-lancement ?", s_faq_a_2: "Oui ! Nous proposons des forfaits de support continu couvrant la correction de bugs et la surveillance.",
-        s_faq_q_3: "Que faire si j'ai besoin de modifications après la livraison ?", s_faq_a_3: "Chaque projet inclut des tours de révision définis. Des modifications supplémentaires peuvent être accomplies à un tarif horaire convenu.",
-        s_faq_q_4: "Puis-je migrer depuis une autre plateforme ?", s_faq_a_4: "Absolument. Nous gérons les migrations depuis WooCommerce, Magento, Wix, etc.",
-        s_faq_q_5: "Travaillez-vous avec des clients internationaux ?", s_faq_a_5: "Oui, nous travaillons avec des clients du monde entier.",
-        s_toast_h: "Message Envoyé", s_toast_p: "Nous vous répondrons dans les 2 heures."
-      }
-    };
-
-    // --- LANGUAGE LOCAL STORAGE LOGIC (PERSISTENT) ---
-    const langBtn = document.getElementById('langBtnDesktop');
-    const langDropdown = document.getElementById('langDropdownDesktop');
-    const currentLangSpan = document.getElementById('currentLangDesktop');
-
-    // 1. Function to set language and save to localStorage
-    function setLanguage(lang, save = true) {
-      if (!translations[lang]) return;
-      
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-      
-      // Recalculate FAQ open heights after language change
-      document.querySelectorAll('.faq-item.open').forEach(function(i) {
-        var a = i.querySelector('.faq-a');
-        a.style.maxHeight = a.scrollHeight + 'px';
-      });
-
-      // Update UI text and active states
-      if(currentLangSpan) {
-        const selectedLangItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
-        if(selectedLangItem) currentLangSpan.textContent = selectedLangItem.textContent;
-      }
-      
-      document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-        btn.classList.toggle('active-lang', btn.getAttribute('data-lang') === lang);
-      });
-
-      // Save to localStorage so it works on other pages
-      if (save) {
-        localStorage.setItem('flixifys_lang', lang);
-      }
-    }
-
-    // 2. Apply saved language on page load immediately
-    const savedLang = localStorage.getItem('flixifys_lang') || 'en';
-    setLanguage(savedLang, false);
-
-    // 3. Desktop Dropdown Click Events
-    if(langBtn && langDropdown) {
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-            if(!langDropdown.contains(e.target) && !langBtn.contains(e.target)) {
-                langDropdown.classList.add('hidden');
-            }
-        });
-
-        document.querySelectorAll('.lang-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = item.getAttribute('data-lang');
-                setLanguage(lang); // Save and apply
-                langDropdown.classList.add('hidden');
-            });
-        });
-    }
-
-    // 4. Mobile Drawer Click Events
-    document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang); // Save and apply
-        });
+/* ===== FAQ Accordion ===== */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('on');
+    /* close others */
+    document.querySelectorAll('.faq-item.on').forEach(o=>{
+      o.classList.remove('on');
+      o.querySelector('.faq-a').style.maxHeight = null;
     });
-      
-      // Recalculate FAQ open heights after language change
-      document.querySelectorAll('.faq-item.open').forEach(function(i) {
-        var a = i.querySelector('.faq-a');
-        a.style.maxHeight = a.scrollHeight + 'px';
-      });
-  </script>
+    if(!isOpen){
+      item.classList.add('on');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ===== Form Submit + Toast ===== */
+const supportForm = document.getElementById('supportForm');
+if(supportForm){
+  supportForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    e.target.reset();
+    document.getElementById('fileLabel').innerHTML = 'Click to upload or drag &amp; drop';
+    setTimeout(function(){ t.classList.remove('show'); }, 4000);
+  });
+}
+
+/* ===== File Upload Logic (drag & drop preserved) ===== */
+var fileDrop = document.getElementById('fileDrop'), fileInput = document.getElementById('fileInput');
+if(fileDrop && fileInput){
+  ['dragenter','dragover'].forEach(function(ev){ fileDrop.addEventListener(ev, function(e){ e.preventDefault(); fileDrop.classList.add('dragover'); }); });
+  ['dragleave','drop'].forEach(function(ev){ fileDrop.addEventListener(ev, function(e){ e.preventDefault(); fileDrop.classList.remove('dragover'); }); });
+  fileDrop.addEventListener('drop', function(e){ if(e.dataTransfer.files.length){ fileInput.files=e.dataTransfer.files; document.getElementById('fileLabel').innerHTML='<b>'+e.dataTransfer.files[0].name+'</b> uploaded'; } });
+  fileInput.addEventListener('change', function(){ if(fileInput.files.length){ document.getElementById('fileLabel').innerHTML='<b>'+fileInput.files[0].name+'</b> uploaded'; } });
+}
+
+/* ===== Footer Newsletter ===== */
+const nlForm = document.getElementById('nlForm');
+if(nlForm){
+  nlForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const btn = nlForm.querySelector('button');
+    btn.innerHTML = '✓';
+    nlForm.reset();
+    setTimeout(()=>{btn.innerHTML='<svg class="icn"><use href="#i-arrow"/></svg>';},2500);
+  });
+}
+
+/* ===== Mobile Menu ===== */
+const burger=document.getElementById('hamburger'),mMenu=document.querySelector('.mobile-menu');
+let menuOpen=false;
+burger.addEventListener('click',()=>{
+  menuOpen=!menuOpen;
+  burger.classList.toggle('open',menuOpen);
+  mMenu.classList.toggle('open',menuOpen);
+  document.body.classList.toggle('lock',menuOpen);
+});
+mMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  menuOpen=false;burger.classList.remove('open');mMenu.classList.remove('open');document.body.classList.remove('lock');
+}));
+
+/* ===== WhatsApp Scroll Progress ===== */
+const waProg = document.getElementById('waProgress');
+function waUpdate(){
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = max > 0 ? (window.scrollY / max) : 0;
+  waProg.style.strokeDashoffset = 100 - (pct * 100);
+}
+addEventListener('scroll', waUpdate, {passive:true});
+addEventListener('resize', waUpdate);
+waUpdate();
+</script>
 </body>
 </html>
