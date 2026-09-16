@@ -44,7 +44,15 @@ main,header,footer{position:relative;z-index:1}
   padding:20px 60px;background:rgba(255,255,255,.85);
   backdrop-filter:blur(10px);position:sticky;top:0;z-index:200;
 }
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.logo-link{
+  display:flex;align-items:center;text-decoration:none;
+  background:var(--dark);border-radius:12px;padding:7px 14px;
+  box-shadow:0 4px 12px rgba(23,22,28,.18);
+  transition:background .3s,transform .3s,box-shadow .3s;
+}
+.logo-link:hover{background:var(--orange);transform:translateY(-2px);box-shadow:0 8px 18px rgba(240,100,45,.35)}
+.logo-link img{height:24px;width:auto;max-width:150px;object-fit:contain;display:block}
+.logo-fallback{display:none;align-items:center;gap:9px;color:#fff;font-weight:700;font-size:16px}
 .logo-mark{width:30px;height:30px;position:relative;animation:spinSlow 14s linear infinite}
 .logo-mark::before{content:"";position:absolute;left:0;top:0;width:14px;height:14px;background:var(--orange);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
 .logo-mark::after{content:"";position:absolute;right:0;bottom:0;width:14px;height:14px;background:var(--teal);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
