@@ -48,20 +48,18 @@ main,header,footer{position:relative;z-index:1}
 .logo-link,
 .navbar .logo a{
   display:flex;align-items:center;text-decoration:none;
-  background:var(--dark);border-radius:12px;padding:7px 14px;
-  box-shadow:0 4px 12px rgba(23,22,28,.18);
-  transition:background .3s,transform .3s,box-shadow .3s;
+  background:transparent;padding:0;border-radius:0;
+  box-shadow:none;transition:opacity .3s,transform .3s;
 }
 .logo-link:hover,
 .navbar .logo a:hover{
-  background:var(--orange);transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(240,100,45,.35);
+  background:transparent;opacity:.72;transform:translateY(-1px);box-shadow:none;
 }
 .logo-link img,
 .navbar .logo a img{
-  height:24px;width:auto;max-width:150px;object-fit:contain;display:block;
+  height:30px;width:auto;max-width:170px;object-fit:contain;display:block;
 }
-.logo-fallback{display:none;align-items:center;gap:9px;color:#fff;font-weight:700;font-size:16px}
+.logo-fallback{display:flex;align-items:center;gap:9px;color:var(--dark);font-weight:700;font-size:18px}
 .logo-mark{width:30px;height:30px;position:relative;animation:spinSlow 14s linear infinite}
 .logo-mark::before{content:"";position:absolute;left:0;top:0;width:14px;height:14px;background:var(--orange);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
 .logo-mark::after{content:"";position:absolute;right:0;bottom:0;width:14px;height:14px;background:var(--teal);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
