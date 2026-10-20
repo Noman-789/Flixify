@@ -52,9 +52,10 @@ main,header,footer{position:relative;z-index:1}
 .nav-links a.active,.nav-links a:hover{color:var(--orange)}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--orange);transition:.3s}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.btn-outline{
-  padding:10px 24px;border:1.5px solid var(--dark);border-radius:999px;
-  background:transparent;font-weight:600;font-size:14px;cursor:pointer;transition:.3s;color:var(--text);text-decoration:none;display:inline-block;
+.btn-book{
+  padding:10px 24px;border:none;border-radius:999px;
+  background:var(--dark);color:#fff;font-weight:600;font-size:14px;cursor:pointer;transition:.3s;text-decoration:none;display:inline-block;
+  margin-right:26px;
 }
   .logo-link img,
 .navbar .logo a img{
@@ -430,7 +431,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
     <li><a href="/referral-program/" class="active">Referral Program</a></li>
     <li><a href="/contact-us/">Contact Us</a></li>
   </ul>
-  <a href="https://wa.me/919876543210" target="_blank" class="btn-outline">Book a Free Call</a>
+  <a href="https://wa.me/919876543210" target="_blank" class="btn-book">Book a Free Call &rsaquo;</a>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
@@ -442,7 +443,7 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
   <a href="/blog/">Blog</a>
   <a href="/referral-program/">Referral Program</a>
   <a href="/contact-us/">Contact Us</a>
-  <a href="https://wa.me/919876543210" target="_blank" class="btn-outline">Book a Free Call &rsaquo;</a>
+  <a href="https://wa.me/919876543210" target="_blank" class="btn-book">Book a Free Call &rsaquo;</a>
 </div>
 
 <main>
