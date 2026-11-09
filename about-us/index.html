@@ -156,21 +156,100 @@ main,header,footer{position:relative;z-index:1}
 .founder-name span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 
 /* ===== VALUES CARDS ===== */
-.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
-.value-card{
-  background:#fff;border-radius:16px;padding:30px 26px;box-shadow:0 10px 30px rgba(0,0,0,.06);
-  transition:.35s;display:flex;flex-direction:column;transform-style:preserve-3d;
+/* ===== VALUES CARDS — HOME PAGE ANIMATION ===== */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
 }
-.value-card:hover{box-shadow:0 20px 40px rgba(0,0,0,.12)}
-.vc-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px}
-.vc-ic .icn{width:23px;height:23px}
-.vc-ic.o{background:rgba(240,100,45,.12);color:var(--orange)}
-.vc-ic.t{background:rgba(31,156,156,.12);color:var(--teal)}
-.vc-ic.p{background:rgba(78,74,103,.12);color:var(--purple)}
-.value-card h3{font-size:17.5px;font-weight:600;line-height:1.35;margin-bottom:10px}
-.value-card p{font-size:12.5px;color:var(--muted);line-height:1.8}
-.values-grid .value-card:nth-child(2){transition-delay:.1s}
-.values-grid .value-card:nth-child(3){transition-delay:.2s}
+
+.value-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px 26px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        transform .45s cubic-bezier(.22,.68,.3,1),
+        box-shadow .45s cubic-bezier(.22,.68,.3,1);
+}
+
+/* Home Page Hover Effect */
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 46px rgba(0,0,0,.13);
+}
+
+/* Scroll Animation */
+@keyframes cardUp {
+    from {
+        opacity: 0;
+        transform: translateY(46px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.values-grid .value-card.visible {
+    animation: cardUp .8s cubic-bezier(.22,.68,.3,1) backwards;
+}
+
+.values-grid .value-card:nth-child(2).visible {
+    animation-delay: .09s;
+}
+
+.values-grid .value-card:nth-child(3).visible {
+    animation-delay: .18s;
+}
+
+/* Card Content */
+.vc-ic {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+}
+
+.vc-ic .icn {
+    width: 23px;
+    height: 23px;
+}
+
+.vc-ic.o {
+    background: rgba(240,100,45,.12);
+    color: var(--orange);
+}
+
+.vc-ic.t {
+    background: rgba(31,156,156,.12);
+    color: var(--teal);
+}
+
+.vc-ic.p {
+    background: rgba(78,74,103,.12);
+    color: var(--purple);
+}
+
+.value-card h3 {
+    font-size: 17.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.8;
+}
 
 /* ===== CTA CARD + STATS ===== */
 .cta-card{
@@ -312,12 +391,18 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
 }
   /* ===== ABOUT PAGE — SAME HOME PAGE CARD ANIMATION ===== */
 
-/* ===== ABOUT US — HOME PAGE WHITE CARD ANIMATION ===== */
+/* ===== VALUE CARD — SAME AS HOME PAGE ===== */
 
 .value-card {
     transition:
         transform .45s cubic-bezier(.22,.68,.3,1),
         box-shadow .45s cubic-bezier(.22,.68,.3,1);
+}
+
+/* Card hover / lift effect */
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 46px rgba(0,0,0,.13);
 }
 
 /* Scroll entry animation */
@@ -336,19 +421,13 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
     animation: cardUp .8s cubic-bezier(.22,.68,.3,1) backwards;
 }
 
-/* Stagger delay */
+/* Stagger animation */
 .value-card:nth-child(2).visible {
     animation-delay: .09s;
 }
 
 .value-card:nth-child(3).visible {
     animation-delay: .18s;
-}
-
-/* Hover animation */
-.value-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 22px 46px rgba(0,0,0,.13);
 }
 </style>
 </head>
