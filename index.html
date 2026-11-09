@@ -1133,17 +1133,32 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
 
 /* ===== FLIXIFYS – PREMIUM THEME BORDERS ===== */
 
-/* CREAM BACKGROUND SECTIONS */
+/* ===== FLIXIFYS — VISIBLE CREAM SECTION SHADOW ===== */
+
 .hero,
 .stats-box,
 .work-strip,
 .form-card,
 .proc-panel {
-    border: 1px solid #E6D8C7;
+    border: 1px solid #E6D8C7 !important;
 
     box-shadow:
-        0 2px 5px rgba(23, 22, 28, 0.02),
-        0 10px 28px rgba(100, 70, 45, 0.045);
+        0 6px 16px rgba(70, 55, 40, 0.08),
+        0 18px 45px rgba(70, 55, 40, 0.13) !important;
+
+    position: relative;
+    z-index: 1;
+}
+
+/* Stronger shadow on hover */
+.hero:hover,
+.stats-box:hover,
+.work-strip:hover,
+.form-card:hover,
+.proc-panel:hover {
+    box-shadow:
+        0 10px 24px rgba(70, 55, 40, 0.11),
+        0 25px 55px rgba(70, 55, 40, 0.16) !important;
 }
 
 /* WHITE BACKGROUND CARDS & SECTIONS */
