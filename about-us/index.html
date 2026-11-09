@@ -310,6 +310,42 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
         0 10px 24px rgba(70, 55, 40, 0.11),
         0 25px 55px rgba(70, 55, 40, 0.16) !important;
 }
+  /* ===== ABOUT PAGE — SAME HOME PAGE CARD ANIMATION ===== */
+
+.values-grid .value-card {
+    transition:
+        transform .45s cubic-bezier(.22,.68,.3,1),
+        box-shadow .45s cubic-bezier(.22,.68,.3,1);
+}
+
+@keyframes cardUp {
+    from {
+        opacity: 0;
+        transform: translateY(46px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.values-grid .value-card.visible {
+    animation: cardUp .8s cubic-bezier(.22,.68,.3,1) backwards;
+}
+
+.values-grid .value-card:nth-child(2).visible {
+    animation-delay: .09s;
+}
+
+.values-grid .value-card:nth-child(3).visible {
+    animation-delay: .18s;
+}
+
+/* Same hover effect as Home Page */
+.values-grid .value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 46px rgba(0,0,0,.13);
+}
 </style>
 </head>
 <body>
