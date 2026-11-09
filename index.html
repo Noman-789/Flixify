@@ -892,6 +892,201 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
   *,*::before,*::after{animation:none!important;transition:none!important}
   .walker{display:none!important}
 }
+
+/* ============================================================
+   RESPONSIVE FIXES (paste at very end of stylesheet)
+   ============================================================ */
+
+/* ---------- TABLET ≤1024px ---------- */
+@media (max-width:1024px){
+  /* NAVBAR */
+  .navbar{padding:14px 22px}
+  .nav-links{display:none}
+  .navbar .btn-book{display:none}
+  .hamburger{display:flex}
+
+  /* HERO */
+  .hero{grid-template-columns:1fr;padding:46px 34px 28px;gap:26px}
+  .hero h1{font-size:38px}
+  .hero-art{height:380px}
+
+  /* STATS */
+  .stats-box{grid-template-columns:1fr;padding:44px 32px;gap:28px}
+
+  /* CARDS + WHY US */
+  .cards-grid,.why-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* SERVICES */
+  .svc-panel.on{grid-template-columns:1fr}
+  .svc-info{border-right:none;border-bottom:1px dashed #e5dcd0}
+
+  /* HOW WE WORK */
+  .proc-grid{grid-template-columns:repeat(2,1fr)}
+  .pc-item{grid-column:auto !important;grid-row:auto !important}
+  .pc-item.down{padding-top:0}
+
+  /* WORK STRIP */
+  .work-strip{grid-template-columns:repeat(2,1fr)}
+
+  /* INDUSTRIES */
+  .ind-layout{grid-template-columns:1fr;gap:28px}
+  .ip-stage{height:380px}
+}
+
+/* ---------- MOBILE ≤768px ---------- */
+@media (max-width:768px){
+  .container{padding:0 20px}
+  .hero-wrap{padding:10px 16px}
+
+  /* HERO */
+  .hero{padding:34px 22px 24px;border-radius:20px}
+  .hero h1{font-size:30px}
+  .hero p{max-width:100%}
+
+  /* DEVICE SHOWCASE */
+  .devices{padding:14px 0 34px}
+  .devices .mock-browser{max-width:100%}
+  .dev-phone,.chip-3,.chip-4{display:none}   /* overflow stop — chahiye to scale(.8) karke rakh sakte ho */
+
+  /* STATS */
+  .stats-box{padding:34px 22px;border-radius:20px}
+  .stats-box h2{font-size:24px}
+  .stat h3{font-size:24px}
+  .stat+.stat::before{display:none}
+
+  /* CARDS + WHY US */
+  .cards-grid,.why-grid{grid-template-columns:1fr}
+
+  /* SERVICES */
+  .svc-info,.svc-art{padding:24px 20px}
+  .svc-info h3{font-size:21px}
+  .mock-ide,.mock-dash,.mock-admin{height:300px}
+
+  /* HOW WE WORK — zigzag ko simple stack banao */
+  .proc-panel{padding:38px 20px 26px;border-radius:20px}
+  .proc-side,.proc-note,.proc-svg,.walker{display:none}  /* road/walker mobile pe off */
+  .proc-grid{grid-template-columns:1fr;gap:14px;margin-top:26px}
+  .pc-item{grid-column:auto !important;grid-row:auto !important}
+  .pc-item.down{padding-top:0}
+  .pc-card{grid-template-columns:1fr}
+  .pc-visual{grid-column:1;grid-row:auto;min-height:130px}
+  .pc-badge{right:auto;left:14px;top:12px}
+  .route-pill{font-size:9px;padding:8px 13px}
+
+  /* WORK STRIP */
+  .work-strip{grid-template-columns:1fr;padding:28px 22px}
+  .ws-col{border-right:none;padding-right:0;border-bottom:1px dashed #e0d3c2;padding-bottom:14px}
+  .ws-col:last-child{border-bottom:none;padding-bottom:0}
+
+  /* MARQUEE */
+  .marquee-track span{font-size:16px}
+}
+
+/* ---------- SMALL PHONES ≤480px ---------- */
+@media (max-width:480px){
+  .hero h1{font-size:26px}
+  .sec-title,.proc-title{font-size:24px}
+  .hero-trust{flex-direction:column;align-items:flex-start}
+  .live-box{align-items:flex-start}
+  .stats-box{padding:28px 18px}
+  .stats-row{flex-direction:column}
+  .stat+.stat::before{display:none}
+  .ip-stage{height:320px}
+}
+
+/* ============================================================
+   MOBILE SPACING SYSTEM (paste AFTER responsive block, at end)
+   ============================================================ */
+@media (max-width:768px){
+  /* --- GLOBAL RHYTHM --- */
+  .section{padding:26px 0}
+  .container{padding:0 16px}
+  .sec-title{margin-bottom:10px}
+  .sec-sub{margin-bottom:26px;font-size:12.5px;line-height:1.7}
+
+  /* --- HERO --- */
+  .hero-wrap{padding:8px 14px}
+  .hero{padding:26px 18px 18px;gap:16px}
+  .tagline{margin-bottom:8px}
+  .hero h1{margin-bottom:12px}
+  .hero p{margin-bottom:20px}
+  .hero-trust{padding-top:16px;gap:14px}
+  .hero-art{height:340px;margin-top:4px}
+
+  /* --- DEVICE SHOWCASE --- */
+  .devices{padding:10px 0 30px}
+  .dev-chip{padding:6px 11px 6px 7px;font-size:9.5px}
+
+  /* --- MARQUEE --- */
+  .marquee{padding:14px 0}
+  .mq-set{gap:30px;padding-right:30px}
+
+  /* --- STATS --- */
+  .stats-box{padding:26px 18px;gap:20px}
+  .stats-box h2{margin-bottom:16px}
+  .stats-right p{margin-bottom:20px}
+  .stats-row{gap:14px}
+
+  /* --- WHAT WE DO CARDS + WHY US --- */
+  .cards-grid,.why-grid{gap:14px}
+  .card,.why-card{padding:20px 16px}
+  .card h3{margin:10px 0 8px}
+  .card p{margin-bottom:10px}
+  .meta-grid{padding:10px 0;margin-bottom:12px;gap:8px 10px}
+  .ic{margin-bottom:12px}
+  .why-result{margin-top:12px;padding-top:10px}
+
+  /* --- CORE SERVICES (TABS) --- */
+  .svc-tabs{margin-bottom:16px;padding:6px;gap:4px}
+  .svc-tab{padding:8px 14px;font-size:11.5px}
+  .svc-info{padding:22px 16px}
+  .svc-info h3{margin-bottom:6px}
+  .svc-info>p{margin-bottom:10px}
+  .svc-feats li{padding:8px 0;gap:10px}
+  .svc-art{padding:18px 12px}
+  .svc-info .btn{margin-top:14px}
+
+  /* --- HOW WE WORK --- */
+  .proc-panel{padding:30px 16px 20px}
+  .proc-kicker{margin-bottom:10px;gap:10px}
+  .proc-title{margin-bottom:8px}
+  .proc-sub{font-size:12.5px;line-height:1.7}
+  .proc-stage{margin-top:20px}
+  .proc-grid{gap:12px;margin-top:10px}
+  .pc-card{padding:14px 12px 12px}
+  .pc-h{margin-top:8px}
+  .pc-p{margin-top:4px}
+  .pc-link{margin-top:8px}
+  .pc-visual{min-height:120px}
+  .proc-foot{margin-top:22px;padding-top:14px}
+  .pf-flow{gap:8px;letter-spacing:.18em}
+
+  /* --- WORK STRIP --- */
+  .work-strip{padding:22px 18px;gap:0;margin-top:20px}
+  .ws-col{gap:10px;padding-bottom:12px;margin-bottom:12px}
+
+  /* --- PARTNERS --- */
+  .partner-wrap{padding:8px 0 22px}
+
+  /* --- INDUSTRIES --- */
+  .ind-layout{gap:18px}
+  .ind-head{padding:14px 6px;gap:10px}
+  .ind-head h3{font-size:16px}
+  .ind-body p{padding:0 8px 0 56px}
+  .ind-item.on .ind-body{padding-bottom:12px}
+}
+
+/* --- SMALL PHONES --- */
+@media (max-width:480px){
+  .section{padding:20px 0}
+  .container{padding:0 14px}
+  .hero{padding:22px 14px 16px}
+  .stats-box{padding:22px 14px}
+  .cards-grid,.why-grid{gap:12px}
+  .card,.why-card{padding:18px 14px}
+  .proc-panel{padding:26px 12px 18px}
+  .work-strip{padding:20px 14px}
+}
 </style>
 </head>
 <body>
