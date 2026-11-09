@@ -1133,21 +1133,27 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
 
 /* ===== FLIXIFYS – PREMIUM THEME BORDERS ===== */
 
-/* ===== FLIXIFYS — VISIBLE CREAM SECTION SHADOW ===== */
+/* ===== FLIXIFYS — PERMANENT CREAM SECTION SHADOW ===== */
 
 .hero,
 .stats-box,
 .work-strip,
-.form-card,
-.proc-panel {
-    border: 1px solid #E6D8C7 !important;
-
+.proc-panel,
+.form-card {
     box-shadow:
-        0 6px 16px rgba(70, 55, 40, 0.08),
-        0 18px 45px rgba(70, 55, 40, 0.13) !important;
+        0 10px 24px rgba(70, 55, 40, 0.11),
+        0 25px 55px rgba(70, 55, 40, 0.16) !important;
+}
 
-    position: relative;
-    z-index: 1;
+/* Same shadow on hover — no extra effect */
+.hero:hover,
+.stats-box:hover,
+.work-strip:hover,
+.proc-panel:hover,
+.form-card:hover {
+    box-shadow:
+        0 10px 24px rgba(70, 55, 40, 0.11),
+        0 25px 55px rgba(70, 55, 40, 0.16) !important;
 }
 
 /* Stronger shadow on hover */
