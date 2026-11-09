@@ -312,12 +312,15 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
 }
   /* ===== ABOUT PAGE — SAME HOME PAGE CARD ANIMATION ===== */
 
-.values-grid .value-card {
+/* ===== ABOUT US — HOME PAGE WHITE CARD ANIMATION ===== */
+
+.value-card {
     transition:
         transform .45s cubic-bezier(.22,.68,.3,1),
         box-shadow .45s cubic-bezier(.22,.68,.3,1);
 }
 
+/* Scroll entry animation */
 @keyframes cardUp {
     from {
         opacity: 0;
@@ -329,20 +332,21 @@ footer::before{content:"";position:absolute;top:0;left:8%;width:84%;height:1px;b
     }
 }
 
-.values-grid .value-card.visible {
+.value-card.visible {
     animation: cardUp .8s cubic-bezier(.22,.68,.3,1) backwards;
 }
 
-.values-grid .value-card:nth-child(2).visible {
+/* Stagger delay */
+.value-card:nth-child(2).visible {
     animation-delay: .09s;
 }
 
-.values-grid .value-card:nth-child(3).visible {
+.value-card:nth-child(3).visible {
     animation-delay: .18s;
 }
 
-/* Same hover effect as Home Page */
-.values-grid .value-card:hover {
+/* Hover animation */
+.value-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 22px 46px rgba(0,0,0,.13);
 }
